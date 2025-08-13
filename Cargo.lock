@@ -706,6 +706,7 @@ dependencies = [
  "html_parse",
  "reqwest",
  "serde",
+ "serde_json",
  "surrealdb",
  "tendril",
  "time",

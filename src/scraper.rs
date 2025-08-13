@@ -31,13 +31,9 @@ impl Bachelor {
 	}
 }
 
-pub struct Course {
-	pub code: Box<str>,
-	pub name: Box<str>,
-}
-
 pub async fn wip_get_course_json(num: Bachelor) -> color_eyre::Result<()> {
 	let url = num.url();
+	info!("Searching a url: {}", url);
 	let res = reqwest::get(url).await?.text().await?;
 
 	{
@@ -78,6 +74,20 @@ pub async fn wip_get_course_json(num: Bachelor) -> color_eyre::Result<()> {
 		"Found the script text which is {} characters long",
 		script.len()
 	);
+
+	let (preamble, json) = script.split_once('=').ok_or(eyre!("No = found"))?;
+	// remove the trailing ;
+	let json = json.trim().trim_end_matches(";");
+	debug!("First part of the string: {}", preamble);
+
+	let json: serde_json::Value = serde_json::from_str(json)?;
+
+	info!("{:#?}", json);
+	{
+		// save to file
+		let path = Utf8PathBuf::from(concat!(env!("CARGO_MANIFEST_DIR"), "/maths.json"));
+		fs::write(path, serde_json::to_string_pretty(&json)?).await?;
+	}
 
 	Ok(())
 }
