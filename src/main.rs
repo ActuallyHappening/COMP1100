@@ -3,7 +3,10 @@ use ystd::prelude::*;
 #[path = "tracing.rs"]
 mod app_tracing;
 
-fn main() {
-	app_tracing::install_tracing("info,comp1100=trace");
+#[tokio::main]
+async fn main() -> color_eyre::Result<()> {
+	app_tracing::install_tracing("info,comp1100=trace")?;
 	trace!("Installed tracing for comp1100");
+
+	Ok(())
 }
