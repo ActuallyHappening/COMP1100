@@ -3,4 +3,4 @@ pub mod prelude {
 	pub use ystd::url::Url;
 }
 
-mod scraper;
+pub mod scraper;

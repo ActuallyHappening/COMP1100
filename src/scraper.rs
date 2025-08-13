@@ -1,3 +1,8 @@
+use html5ever::interface::TreeSink;
+use tendril::TendrilSink;
+
+mod html;
+
 use crate::prelude::*;
 
 #[derive(Clone, Copy, Debug)]
@@ -29,4 +34,26 @@ impl Bachelor {
 pub struct Course {
 	pub code: Box<str>,
 	pub name: Box<str>,
+}
+
+pub async fn wip_get_course_json(num: Bachelor) -> color_eyre::Result<()> {
+	let url = num.url();
+	let res = reqwest::get(url).await?.text().await?;
+
+	{
+		// save to file
+		let path = Utf8PathBuf::from(concat!(env!("CARGO_MANIFEST_DIR"), "/maths.html"));
+		fs::write(path, &res).await?;
+	}
+
+	let res = html5ever::parse_document(html::RcDom::default(), html5ever::ParseOpts::default())
+		.from_utf8()
+		.read_from(&mut res.as_bytes())
+		.wrap_err("Couldn't parse")?;
+
+	for child in &*res.document.children.borrow() {
+		info!(?child, "A child is:");
+	}
+
+	Ok(())
 }
