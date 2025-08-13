@@ -3,7 +3,7 @@ use tendril::TendrilSink;
 
 mod html;
 
-use crate::prelude::*;
+use crate::{prelude::*, scraper::html::NodeData};
 
 #[derive(Clone, Copy, Debug)]
 pub enum Bachelor {
@@ -46,14 +46,103 @@ pub async fn wip_get_course_json(num: Bachelor) -> color_eyre::Result<()> {
 		fs::write(path, &res).await?;
 	}
 
-	let res = html5ever::parse_document(html::RcDom::default(), html5ever::ParseOpts::default())
+	let dom = html5ever::parse_document(html::RcDom::default(), html5ever::ParseOpts::default())
 		.from_utf8()
 		.read_from(&mut res.as_bytes())
 		.wrap_err("Couldn't parse")?;
 
-	for child in &*res.document.children.borrow() {
-		info!(?child, "A child is:");
-	}
+	let script = dom
+		.descendants(dom.document.clone())
+		.filter(|child| {
+			if let NodeData::Element { name, .. } = &child.data {
+				// trace!("Node is a child: {:?}", name);
+				if &name.local == "script" {
+					return true;
+				}
+			}
+			false
+		})
+		.filter_map(|script| {
+			let node = script.children.borrow();
+			let node = node.get(0)?;
+			let NodeData::Text { contents } = &node.data else {
+				return None;
+			};
+			let str = contents.borrow();
+			Some(str.to_owned())
+		})
+		.find(|str| str.len() > 500)
+		.ok_or(eyre!("Couldn't find appropriate script tag"))?;
+
+	debug!(
+		"Found the script text which is {} characters long",
+		script.len()
+	);
 
 	Ok(())
+}
+
+struct DepthFirstDescendants {
+	// root: html::Handle,
+	this_layer: std::vec::IntoIter<html::Handle>,
+	depth: Option<Box<DepthFirstDescendants>>,
+}
+
+impl DepthFirstDescendants {
+	fn new(root: html::Handle) -> Self {
+		Self {
+			this_layer: root.children.borrow().to_owned().into_iter(),
+			depth: None,
+		}
+	}
+}
+
+impl Iterator for DepthFirstDescendants {
+	type Item = html::Handle;
+
+	fn next(&mut self) -> Option<Self::Item> {
+		match self.depth {
+			None => {
+				// first off this_layer
+				let next = self.this_layer.next()?;
+				self.depth = Some(Box::new(DepthFirstDescendants::new(next.clone())));
+				return Some(next);
+			}
+			Some(ref mut depth) => match depth.next() {
+				Some(next) => Some(next),
+				None => {
+					self.depth = None;
+					self.next()
+				}
+			},
+		}
+	}
+}
+
+impl html::RcDom {
+	fn descendants(&self, root: html::Handle) -> DepthFirstDescendants {
+		DepthFirstDescendants::new(root)
+	}
+
+	fn find<CB>(&self, from: html::Handle, cb: &mut CB) -> Option<html::Handle>
+	where
+		CB: FnMut(html::Handle) -> bool,
+	{
+		// try finding
+		for child in &*from.children.borrow() {
+			if cb(child.clone()) {
+				return Some(child.clone());
+			}
+		}
+
+		// try each recursively
+		for child in &*from.children.borrow() {
+			if let Some(handle) = self.find(child.clone(), cb) {
+				return Some(handle);
+			}
+		}
+
+		// else None
+		None
+	}
 }
