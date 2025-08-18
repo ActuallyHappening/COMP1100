@@ -6,4 +6,12 @@
     - @TNTreee
     - p.elgey@student.uq.edu.au
 
-- Rafael Chase(49618459, Rafael-Chase, Rafael.Chase@student.uq.edu.au)
+- Rafael Chase
+    - 49618459
+    - Rafael-Chase
+    - rafael.chase@student.uq.edu.au
+
+- Liam Bienkowski
+    - 49898953
+    - @liamb-a
+    - l.bienkowski@student.uq.edu.au
