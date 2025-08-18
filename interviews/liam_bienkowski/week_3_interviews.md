@@ -1,4 +1,4 @@
-###Closed Question:
+### Closed Question:
 Liam: *Now, Ben, when you were applying for your course, did you find the process of selecting like the order in which you're going to do your courses to be more difficult than you imagined?*
 
 Ben: 
@@ -17,7 +17,7 @@ Liam: Thank you very much.
 
 
 
-###Open Question:
+### Open Question:
 Liam: *So, Matthew, tell me about any difficulties that you might have had when doing like to the course planning for your degree.*
 
 Matthew: 
