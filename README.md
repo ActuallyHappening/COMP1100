@@ -9,7 +9,7 @@
 - Rafael Chase
     - 49618459
     - Rafael-Chase
-    - rafael.chase@student.uq.edu.au)
+    - rafael.chase@student.uq.edu.au
 
 - Liam Bienkowski
     - 49898953
