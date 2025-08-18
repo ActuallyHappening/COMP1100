@@ -15,3 +15,8 @@
     - 49898953
     - @liamb-a
     - l.bienkowski@student.uq.edu.au
+
+- Himanshu
+   - 49661428
+   - codingaddict-debug
+   - himanshu@student.uq.edu.au
