@@ -16,7 +16,6 @@ Ben:
 Liam: Thank you very much.
 
 
-
 ### Open Question:
 Liam: *So, Matthew, tell me about any difficulties that you might have had when doing like to the course planning for your degree.*
 
