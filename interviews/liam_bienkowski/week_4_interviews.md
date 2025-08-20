@@ -52,3 +52,13 @@ Alex:
 Liam: *Thank you for your time.* 
 
 ### Interview 2:
+
+### Interview 3:
+
+### Interview 4:
+
+### Interview 5:
+
+### Interview 6:
+
+### Interview 7:
