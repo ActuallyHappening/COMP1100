@@ -1,0 +1,23 @@
+## Firstly, what degree are you studing and how did you come to chosing that degree
+So, I'm curently studying a bachelour of science, and I came about this as one of the recommended degrees as my undegrad as a pathway into medecien as a provisional medicine student.
+
+## So, after you had chosen that degree, how did you decide exactly which courses to enroll in?
+So, alot of my courses I am taking as part of my biomedical major, so I can meet the pre-reqs for medecine, and the other ones I chose based on my interests outide of, like, just study
+
+## For the biomed requirements, did you relied on the course planner?
+Yes, the course planner, and also the medecine guide?
+
+## Did you use the UQ Website at all?
+I did a little bit, but I was also sent information by different people, friends, and word of mouth
+
+## Another interesting question, would you consider doing a course without having done its pre-requisites first
+I would consider it, but I would have to look into why it was a pre-requisite and what would happen
+
+## And, when you were planning down your courses, did you ever write them all down in one spot like a word doc?
+I wouldn't say all the courses, but I have written in a document courses I was interested in taking
+
+## Yeah Ok, so cards on the table, when researching which courses to take, would you benefit from a holistic visualisation? Maybe a tree diagram or some digital links page? Or, what do you think would be most beneficial if you could wave a magic wand?
+I think that holistic links page would be beneficial, but I think the best way would be a forum, a discussion forum, where past students can chip into courses and how they feel about them
+
+## Huh, interesting, so when you look at a course, do you think of it as mostly what other people have said, or do you look at the pre-reqs mostly for where you place it?
+My decision is based on what is actually being studied, does it interest me, but also what the general concensus from people who are like minded to me, so like student feedback is very important to me
