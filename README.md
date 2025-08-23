@@ -22,6 +22,6 @@
    - himanshu@student.uq.edu.au
 
 - Caleb Yates
-		- 49886251
-		- actuallyhappening
-		- caleb.yates@student.uq.edu.au
+    - 49886251
+    - actuallyhappening
+    - caleb.yates@student.uq.edu.au
