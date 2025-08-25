@@ -1,5 +1,6 @@
 # Week 2 Meeting:
 
+## Agenda
 - Challenge chosen: selecting course requirements
 - Discussed:
   - Questions to be chosen to be asked (1 open, 1 closed)
@@ -10,6 +11,10 @@
   - Reconvene on teams @11:00 Monday 11 on teams for 1 hour to discuss results and put in report
 
 # Week 3 Meeting:
+
+## Agenda
+- Reconvene and discuss interviews conducted
+- Form report for submission
 
 Length: Is one longer than the other on average?
 
@@ -50,9 +55,7 @@ Write a brief report answering the above (
 
 - Both questions were very important and did provide useful information regarding the challenge. However, the findings support that the interviewee was more important than the question itself. (this may be due to the vast scope of the question)
 
-## Report (to be submitted 24h after team notification)
-
-### Liam B Report:
+### Report:
 
 **Length**:
 The difference in length between responses was minimal when comparing data from the closed- and open-ended questions. Whilst the argument could be made that responses to the open-ended questions were slightly longer, data was mixed from across the group. The findings supported the conclusion that variations between students’ personalities was the largest contributing factor to response length rather than style of question.
@@ -73,6 +76,10 @@ Both closed- and open-ended questions allowed for further clarity from the inter
 In conclusion, both questions proved useful to understanding the target audience and provided useful information. The findings suggest that both closed and open questions can be useful in an interview setting to get the best set of information from the interviewee, when done right. However, one unexpected finding was that the type of person being interviewed mattered as much as the question being asked. Namely, a good question being asked to someone who is naturally willing to talk and elaborate is much more likely to yield results than a great question asked to someone who is naturally more reserved and less talkative.
 
 # Week 4 Meeting:
+
+## Agenda
+- Choose challenge
+- Discuss hypotheses to be used in the business model canvas
 
 Chosen challenge:
 
