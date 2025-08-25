@@ -1,3 +1,4 @@
+**Interviews done on preliminary questions.**
 ### Closed Question:
 Liam: *Now, Ben, when you were applying for your course, did you find the process of selecting like the order in which you're going to do your courses to be more difficult than you imagined?*
 
