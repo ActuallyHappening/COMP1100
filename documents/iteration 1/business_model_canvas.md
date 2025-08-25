@@ -1,4 +1,4 @@
-## Business Model Canvas
+# Business Model Canvas
 
 **Customer Segments**
 - Our customers are undergraduate students who need to select courses every semester.
