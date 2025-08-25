@@ -1,15 +1,3 @@
-# Week 2 Meeting:
-
-## Agenda
-- Challenge chosen: selecting course requirements
-- Discussed:
-  - Questions to be chosen to be asked (1 open, 1 closed)
-  - Only ask the open OR closed question to someone
-  - Record their answer with a voice recording app (e.g. voice memos)
-  - Transcribe the interview with a transcription app or manually
-- Next steps:
-  - Reconvene on teams @11:00 Monday 11 on teams for 1 hour to discuss results and put in report
-
 # Week 3 Meeting:
 
 ## Agenda
@@ -74,51 +62,3 @@ Both closed- and open-ended questions allowed for further clarity from the inter
 
 **Future Practise:**
 In conclusion, both questions proved useful to understanding the target audience and provided useful information. The findings suggest that both closed and open questions can be useful in an interview setting to get the best set of information from the interviewee, when done right. However, one unexpected finding was that the type of person being interviewed mattered as much as the question being asked. Namely, a good question being asked to someone who is naturally willing to talk and elaborate is much more likely to yield results than a great question asked to someone who is naturally more reserved and less talkative.
-
-# Week 4 Meeting:
-
-## Agenda
-- Choose challenge
-- Discuss hypotheses to be used in the business model canvas
-
-Chosen challenge:
-
-### **Selecting courses**
-
-Once enrolled in a program, students receive a course plan. However, still many choices remain: can I switch do core courses in a different order to the plan? Which electives should I take? Which major and courses should I take for specific career paths?
-
-**Challenge:** The challenge is to innovate a software-based solution to help students to navigate selection of majors, courses, etc., throughout various stages of their degree program.
-
-Hypotheses:
-
-- It is harder than it needs to be to pick courses while maintaining prerequisites
-
-Value propositions
-
-- Students wish for an easier way to find prerequisites
-- Students find the current course selection system convoluted
-- Students wish to find a course that will help them diverse their carrier paths
-- Students find that needing to choose courses in a specific order is important to their time at UQ
-
-Customer relations
-
-- Students wish to have a more integrated solution (rather than 3+ programs to view information: [MySI.net](http://MySI.net), allocate+, etc.)
-- Students want to have more options for class allocation and timetable during the semester
-
-Channels
-
-- Students are forced to use alternative programs to cobble together course plans
-- Word of mouth, spreading through
-
-Customer segments
-
-- Our customers are comprised of students
-
-Interview questions:
-
-- Would you find it beneficial to have a more seamless system to apply for courses?
-- In your experience, has the course application process been a seamless system, is there any room for tangible improvement?
-- In your experience at UQ, how important is it to you to be able to effectively view and choose your courses based on prerequisites?
-- What problems have you encountered when planning your courses? (focus follow-up)
-- How do you find the integration between the numerous websites that UQ uses to display and utilise information regarding courses?
-- Are
