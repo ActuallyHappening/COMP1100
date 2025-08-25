@@ -1,5 +1,3 @@
-### Interview 3:
-
 ### Interview 4:
 
 ### Interview 5:
