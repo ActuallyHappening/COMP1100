@@ -1,0 +1,76 @@
+Patrick: *Firstly, do you consent to this being recorded?*
+
+Dylan:
+> Yes
+
+Patrick: *For your degree, do you have a plan for the courses you're taking?*
+
+Dylan:
+> Yes, I do. I have plans.
+
+Patrick: *What does this plan look like, like what platform have you put it on?*
+
+Dylan:
+> I mostly have put it down onto a simple document, a plan for each of my semesters
+
+Patrick: *Well, how did you find the process of choosing that?*
+
+Dylan:
+> It required me to get a current university student that was already in university to help me.
+
+Patrick: *Did you specifically have more problems with finding... with getting the prerequisites correct?*
+
+Dylan:
+> Yes, I did, yeah. There was issues with figuring out whether it was some courses were required or not.
+
+Patrick: *In what ways would a software to combine all the information and resources (to make it easier) help you?*
+
+Dylan:
+> I think what could be easier is that they give you a... basically you plan it ahead, so you haven't assigned anything yet, but you make it in a way that you have to make a draft plan, and onto the official UQ website, and it has some sorta checklists, and the university sorta ticks off it, for every single time you pass of that course, and if you haven't, they don't tick it off. It might say, 'hint:' (or not hint but) 'tip: may require this course'.
+
+Patrick: *So would you envision this as more of a flow chart or a drag and drop of course*s?
+
+Dylan:
+> I think, a drag and drop, would be better.
+
+Patrick: *Like where things are highlighted and greyed out because you need to do the prerequisites?*
+
+Dylan:
+> Yep. I think so.
+
+Patrick: *Anything else you would like to add? Like, how you would simplify the process?*
+
+Dylan:
+> So I think... simplifying the process you could maybe have brief explanations of what the course entitles, because sometimes they have it too big.
+
+Patrick: Yeah, like the difference between something and something advanced!
+
+Dylan:
+> I think so, I think they should be like... just something to explain it a bit more. They should be like, this is more introductory for this
+
+Patrick: *Would you ever consider doing a course without doing the prerequisites?*
+
+Dylan:
+> I would!
+
+Patrick: *In what circumstance?*
+
+Dylan:
+> Because, due to some courses only being provided every once a semester, and that would require me to end up having to miss a course for that semester and I'll be, basically, lagging behind maybe one full course. I'd rather just do it now rather than having to wait until it's available.
+
+Patrick: *So would information on what courses will be available at what times, like, predicted, would that be helpful then?*
+
+Dylan:
+> I think it would be easier, because they only really demonstrate what will be in that year, they don't demonstrate further years do they.
+
+Patrick: *Yeah, you can see what's in the past...*
+
+Dylan:
+> Not the future years.
+
+Patrick: *But it takes effort because you have to navigate to this site and then back to... for planning and such.*
+
+Dylan:
+> You have to kind of like, guess...
+
+Patrick: *Alright, thank you for your time!*
