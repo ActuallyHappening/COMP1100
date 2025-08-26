@@ -1,0 +1,24 @@
+## Firstly, what degree are you studying at UQ and how did you come to chosing that degree?
+I'm studying a bachelour of Computer Science with a major in Machine Learning.
+I first decided to choose it because I tried a bit of programming with Python and really enjoyed it, so I decided to persue it further, so yeah I kinda enjoyed the aspects of Computer Science
+
+## And after you had chosen that degree, how did you decide exactly which courses to enroll in?
+Well I used the UQ website because I kindod have to. The courses I had to enroll in, I tried initially to pick the ones I had to do with not really electives but some were pre-requisites to others, and then later on as I had made a few friends I started to pick a few courses I knew they were taking, that more-so aligned with my degree
+
+## And so, when you were deciding which courses to enroll in, did you encounter difficulties with the UQ website, like did you write anything down in a seperate document?
+I did, I had multiple tabs open to the UQ website and I had to cross-reference multiple courses and when that offered and what their pre-requisites were and if they were in my degree at all and if they could be taken while not overloading a semester or really having to take a summer semester, so yeah
+
+## So did you end up writing down things in a seperate place or just multiple tabs
+Yeah multiple tabs, I also took screenshots so yes I had to store the information elsewhere. Yeah, I also had to write down what the plan was for each semester
+
+## Interesting. Did you rely on your course planner at all?
+I did at the beginning, but I found some issues with trying to keep it up to date and actually import courses I had already done, so I had a few technical dificulties with it and then, I think I kindof moved away from it because I had kinda already done all the work myself
+
+## Interesting, so would you consider ever doing a course without having first done its pre-requisites?
+I would consider it, it would only be if I needed that course for my degree or major, I assumed the pre-requisites were ... not doing the pre-requisites for a course would give me a much more difficult task doing that course so I did my best to align it where I only did courses once I had done those pre-requisites, and I was in the correct semester for
+
+## So I'm assuming you've never enrolled in a subject without having done all its pre-requisites?
+I have accidentally, but, once I realised that I quickly changed subjects
+
+## So finally, when researching which courses to do, do you think you would benefit from a holistic visualisation, like one page with links to all other courses? Or, what would you most benefit from if you could wave a magic wand?
+I think seeing, or perhaps visually constructing your course timetable could really help planning your whole degree and each semester, and as it is it's just a list and multiple webpages, but I think maybe, not necessary an interactive element, but some kindof implementation that helped you curate which courses you actually could take and which you can't
