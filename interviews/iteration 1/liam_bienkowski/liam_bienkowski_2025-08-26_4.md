@@ -10,7 +10,7 @@ Liam: *So. Willem, first, tell me about, like, how your experience has been so f
 Willem: 
 >Enrolling in the courses was pretty simple, the one single headache was PSYC1030 and being allowed to use the computer for that. But other than that, most of them have been pretty smooth. The only other thing I can really think of with not being told that you have to, like, for in-semester in-week assessments, you have to manually submit to get your changes form. But other than that, it's been pretty simple enrolling in courses. 
 
-Liam: *Yeah, and so like, at the beginning of this mess, like, before the semester started, how did you find the process of, like, finding your courses and enrolling into them?* 
+Liam: *Yeah, and so like, at the beginning of the semester, like, before the semester started, how did you find the process of, like, finding your courses and enrolling into them?* 
 
 Willem: 
 >The only thing that I kind of found difficult at any point was determining which ones I wanted to do. That's more because, like, not that many psych ones that I also was not doing as an elective as a core subject and or are the ones that didn’t really interest me. So, that, but, like, actually the ones I found, once I found the course that was interesting, it was not, it was really easy to enrol and do all that. 
