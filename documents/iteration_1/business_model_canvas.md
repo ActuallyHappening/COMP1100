@@ -1,7 +1,5 @@
 # Business Model Canvas
 
-[test](interviews:iteration_1:liam_bienkowski:liam_bienkowski_2025-08-19_1.md)
-
 **Customer Segments**
 - We believe that our customers are undergraduate students who need to select courses every semester.
 - We believe students invest more time than they would like in the course enrolment procedure as a consequence of the process spanning several sites.

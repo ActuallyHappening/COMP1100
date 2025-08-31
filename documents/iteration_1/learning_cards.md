@@ -29,7 +29,7 @@ Therefore, we will accept this hypothesis
 
 Evidence:
 
-- “Oh, I spend like, like when I'm, like researching my course to make sure I get the right subjects for the prerequisites, I can spend over, like half an hour an hour, because it's so cumbersome, just, like, traveling, like navigating all of this- navigating this UI and over to different sites and like, keeping track of everything, yeah.” \- LB interview 1
+- “Oh, I spend like, like when I'm, like researching my course to make sure I get the right subjects for the prerequisites, I can spend over, like half an hour an hour, because it's so cumbersome, just, like, traveling, like navigating all of this- navigating this UI and over to different sites and like, keeping track of everything, yeah.” - [Liam Bienkowski interview 1](../../interviews/iteration_1/liam_bienkowski/liam_bienkowski_2025-08-19_1.md)
 
 **Hypothesis: We believed students made erroneous selections during course planning as a consequence of a lack of proper communication as prerequisites are not properly communicated.**
 
