@@ -58,7 +58,7 @@ Therefore, we will: accept this hypothesis as true.
 
 Evidence: 
 
-- “Yes. Yeah. I have got like a sort of plan for my degree. So I do know generally the prerequisites to do. So I was looking for them when I was searching through.” \- LB interview 1
+- “Yes. Yeah. I have got like a sort of plan for my degree. So I do know generally the prerequisites to do. So I was looking for them when I was searching through.” [Liam Bienkowski interview 2](../../interviews/iteration_1/liam_bienkowski/liam_bienkowski_2025-08-20_2.md)
 
 *Another interesting question, would you ever consider doing a course without having done its pre-requisites?*
 
@@ -80,7 +80,7 @@ Therefore, we will disregard this hypothesis as unimportant to the application.
 
 Evidence:
 
-- “Uh. Probably not really. That's just because… the main subjects that are of interest to me are the psychology ones and I’m already doing all the psychology ones anyways as the core. Like, maybe I grab a bio one, but, like, generally, I, I only, I really struggle with finding courses I thought were going to be interesting in terms of electives, most of them were even grabbed because I thought they might have been useful, or they were going to be easy this semester. And I think it was like one I picked could it look good, it looked interesting, but other than that, like, it was a bit of struggle to find one that I found interesting. My area of interest is what with psychological studies, which I am already doing a lot of.” \- LB interview 4
+- “Uh. Probably not really. That's just because… the main subjects that are of interest to me are the psychology ones and I’m already doing all the psychology ones anyways as the core. Like, maybe I grab a bio one, but, like, generally, I, I only, I really struggle with finding courses I thought were going to be interesting in terms of electives, most of them were even grabbed because I thought they might have been useful, or they were going to be easy this semester. And I think it was like one I picked could it look good, it looked interesting, but other than that, like, it was a bit of struggle to find one that I found interesting. My area of interest is what with psychological studies, which I am already doing a lot of.” [Liam Bienkowski interview 4](../../interviews/iteration_1/liam_bienkowski/liam_bienkowski_2025-08-20_4.md)
 
 **Hypothesis: We believed students who kept a plan for the courses they do were forced to custom make it in a program not designed for it because of the current system.**
 
@@ -92,4 +92,4 @@ Therefore, we will accept this hypothesis.
 
 Evidence: “I have it on a google sheet” \- Patrick 1\. “I mostly… \[on\] a simple document…” \- Patrick 2\.
 
-- “Um, because I am preMed, there is a lot of stuff around that \[course planning\], so not too hard. But I imagine other degrees would be a bit harder if they didn't have that. Because that saved me.” LB interview 2
+- “Um, because I am preMed, there is a lot of stuff around that \[course planning\], so not too hard. But I imagine other degrees would be a bit harder if they didn't have that. Because that saved me.” [Liam Bienkowski interview 2](../../interviews/iteration_1/liam_bienkowski/liam_bienkowski_2025-08-20_2.md)
