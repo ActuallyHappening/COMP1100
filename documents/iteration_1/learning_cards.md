@@ -11,14 +11,6 @@ Therefore, we will \[accept/reject hypothesis\]
 
 ## Learning cards:
 
-We believed that \[target\] were \[showing behaviour / display interest in \] \[for reason Y\]
-
-We observed that \[explanation of results with link to hard evidence\]
-
-From this we learnt \[findings from the interviews, including key areas\]
-
-Therefore, we will \[accept/reject hypothesis\]
-
 **Hypothesis: we believed students would invest more time than strictly necessary in the course enrolment procedure as a consequence of the process spanning several sites.**
 
 Observation: we observed this to be true. Students would have several tabs open at all times and would often get confused or find it more difficult than necessary to navigate the process.
@@ -30,6 +22,7 @@ Therefore, we will accept this hypothesis
 Evidence:
 
 - “Oh, I spend like, like when I'm, like researching my course to make sure I get the right subjects for the prerequisites, I can spend over, like half an hour an hour, because it's so cumbersome, just, like, traveling, like navigating all of this- navigating this UI and over to different sites and like, keeping track of everything, yeah.” - [Liam Bienkowski interview 1](../../interviews/iteration_1/liam_bienkowski/liam_bienkowski_2025-08-19_1.md)
+- "I spent a little more than the average person to just plan everything out" - [Patrick Interview 3](../../interviews/iteration_1/patrick/PATRICK_2025_08_27_3.md)
 
 **Hypothesis: We believed students made erroneous selections during course planning as a consequence of a lack of proper communication as prerequisites are not properly communicated.**
 
@@ -45,6 +38,8 @@ Evidence:
 
 *So I'm assuming you've never enrolled in a subject without having done all its pre-requisites?*  
 I have accidentally, but, once I realised that I quickly changed subjects
+
+- "I knew of friends who did, but within the first couple of weeks they ended up being able to catch up with the one they needed to do" - [Patrick Interview 3](../../interviews/iteration_1/patrick/PATRICK_2025_08_27_3.md)
 
 [Rafael Chase interview 3](../../interviews/iteration_1/rafael_chase/rafael_2025_08_27_3.md)
 
@@ -72,6 +67,10 @@ Yeah no
 
 (Caleb Yates, interview 3\)
 
+"I did actually... (describes doing a similar course on exchange)" - [Patrick Interview 3](../../interviews/iteration_1/patrick/PATRICK_2025_08_27_3.md)
+
+"I would!... Because, due to some courses only being provided every once a semester, and that would require me to end up having to miss a course for that semester and I'll be, basically, lagging behind maybe one full course. I'd rather just do it now rather than having to wait until it's available." - [Patrick Interview 2](../../interviews/iteration_1/patrick/PATRICK_2025_08_25_2.md)
+
 **Hypothesis: We believed students were unaware of the selection of courses offered by the university.**
 
 Observation: we observed, students don’t invest too much time into elective courses, often preferring ease over practical application. 
@@ -93,5 +92,6 @@ Learning and insights: from this, we learned, there is a market for a streamline
 Therefore, we will accept this hypothesis.
 
 Evidence: “I have it on a google sheet” \- Patrick 1\. “I mostly… \[on\] a simple document…” \- Patrick 2\.
+- "I had an excel spreadsheet specially for me" - [Patrick Interview 3](../../interviews/iteration_1/patrick/PATRICK_2025_08_27_3.md)
 
 - “Um, because I am preMed, there is a lot of stuff around that \[course planning\], so not too hard. But I imagine other degrees would be a bit harder if they didn't have that. Because that saved me.” [Liam Bienkowski interview 2](../../interviews/iteration_1/liam_bienkowski/liam_bienkowski_2025-08-20_2.md)
