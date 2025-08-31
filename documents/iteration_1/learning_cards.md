@@ -46,6 +46,8 @@ Evidence:
 *So I'm assuming you've never enrolled in a subject without having done all its pre-requisites?*  
 I have accidentally, but, once I realised that I quickly changed subjects
 
+[Rafael Chase interview 3](../../interviews/iteration_1/rafael_chase/rafael_2025_08_27_3.md)
+
 “In particular, there was this one course for my accounting subject that I thought I had the prerequisite for because I did it in school, but it turns out it did not count for it and it didn't say anything about that. And so now I have to go back and do the course anyway…” (Rafael Chase, interview 3\)
 
 **Hypothesis: We believed students enrolled in courses having already completed the appropriate prerequisites.**
