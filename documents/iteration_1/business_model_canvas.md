@@ -1,6 +1,6 @@
 # Business Model Canvas
 
-[test](test_cards.md)
+[test](interviews:iteration_1:liam_bienkowski:liam_bienkowski_2025-08-19_1.md)
 
 **Customer Segments**
 - We believe that our customers are undergraduate students who need to select courses every semester.
