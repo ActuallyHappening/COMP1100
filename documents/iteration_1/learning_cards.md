@@ -41,10 +41,6 @@ I have accidentally, but, once I realised that I quickly changed subjects
 
 - "I knew of friends who did, but within the first couple of weeks they ended up being able to catch up with the one they needed to do" - [Patrick Interview 3](../../interviews/iteration_1/patrick/PATRICK_2025_08_27_3.md)
 
-[Rafael Chase interview 3](../../interviews/iteration_1/rafael_chase/rafael_2025_08_27_3.md)
-
-“In particular, there was this one course for my accounting subject that I thought I had the prerequisite for because I did it in school, but it turns out it did not count for it and it didn't say anything about that. And so now I have to go back and do the course anyway…” (Rafael Chase, interview 3\)
-
 **Hypothesis: We believed students enrolled in courses having already completed the appropriate prerequisites.**
 
 Observation: we observed, students were always completing prerequisites prior to enrolling in a new course. Practically nobody had ever enrolled in a course without having completed its appropriate prerequisites. However, students may intend to if circumstances arise.
