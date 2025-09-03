@@ -58,4 +58,12 @@ Our solution seeks to create the following gains:
 
 “We believed students enrolled in courses having already completed the appropriate prerequisites.” We accepted this hypothesis as we found students were more often than not aware of prerequisites, and actively completing them prior to completing branching courses. However, it is important to note students agreed this was always more difficult than they felt. I.e. they agreed a more seamless system would be highly beneficial.
 
-“We believed students who kept a plan for the courses they do were forced to custom make it in a program not designed for it because of the current system.” This was found to be true. Students were unable to find the UQ planner at times, and resorted to other methods of planning, or following their friends / worrying about it when it came time to select courses. 
+“We believed students who kept a plan for the courses they do were forced to custom make it in a program not designed for it because of the current system.” This was found to be true. Students were unable to find the UQ planner at times, and resorted to other methods of planning, or following their friends / worrying about it when it came time to select courses.
+
+**Rejected Hypothesis:**
+
+We rejected the hypothesis “Save time in the course application process” for a customer gain, as applying for courses when you know the course codes and/or names was actually really easy. “So like, its kindof a you problem, the current system functions quite well if you have the necessary information and if you have gone into enough research into which course you want to do, you should also know the name of the course.” (Caleb interview 7)
+
+We rejected the hypothesis “We believed students made erroneous selections during course planning as a consequence of a lack of proper communication as prerequisites are not properly communicated,” as we found the students we interviewed didn’t choose incorrect classes due to pre-requisites. “Yes I am, because they are very nicely laid out right next to the course when I'm looking at them.” (Caleb interview 7)
+
+We rejected the hypothesis “We believed students were unaware of the selection of courses offered by the university.” It turns out the course program page for degrees lists all the relevant courses in a convenient way that was obvious to the people who were interviewed. “Because if I go to the program major and what is within my degree on the UQ website it has all the courses that could give me credit and thats where I learn of courses I want to take.” (Caleb interview 7)
