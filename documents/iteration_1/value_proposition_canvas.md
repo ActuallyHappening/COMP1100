@@ -52,9 +52,9 @@ Our solution seeks to create the following gains:
 - Usage of a seamless system with everything in one place
 - Allowing viewing of what other people are planning on doing
 
-**Accepted Hypothesis:**
+## Accepted Hypothesis:
 
-“we believed students would invest more time than strictly necessary in the course enrolment procedure as a consequence of the process spanning several sites.” We accepted this hypothesis as we found a strong trend amongst most of the interviews that students found the process to be cumbersome, and longer than what they felt was necessary.
+“we believed students would invest more time than strictly necessary in the course enrolment procedure as a consequence of the process spanning several sites.” We accepted this hypothesis as we found a strong trend amongst most of the interviews that students found the process to be cumbersome, and longer than what they felt was necessary. This links to some of the pains mentioned above. Mainly, customers being pained by a bad website, with offerings being found in different places and the current system being outdated and difficult to use all proved to be concerns raised by interviewees, as seen in [Liam Bienkowski interview 1](../../interviews/iteration_1/liam_bienkowski/liam_bienkowski_2025-08-19_1.md). There is then a valid pain reliever to improving UI and layout, and the ability to create a gain by implementing a seamless system with everything in one place. By extension, customer gains 1 and 2 can be accepted. 
 
 “We believed students enrolled in courses having already completed the appropriate prerequisites.” We accepted this hypothesis as we found students were more often than not aware of prerequisites, and actively completing them prior to completing branching courses. However, it is important to note students agreed this was always more difficult than they felt. I.e. they agreed a more seamless system would be highly beneficial.
 
@@ -62,7 +62,7 @@ Our solution seeks to create the following gains:
 
 **Rejected Hypothesis:**
 
-We rejected the hypothesis “Save time in the course application process” for a customer gain, as applying for courses when you know the course codes and/or names was actually really easy. “So like, its kindof a you problem, the current system functions quite well if you have the necessary information and if you have gone into enough research into which course you want to do, you should also know the name of the course.” [Caleb Yates interview 7](../../interviews/iteration_1/caleby/CALEB_2025_9_1_7.md)
+We rejected the hypothesis “Save time in the course application process” for a customer gain, as applying for courses when you know the course codes and/or names was actually really easy. “So like, its kind of a you problem, the current system functions quite well if you have the necessary information and if you have gone into enough research into which course you want to do, you should also know the name of the course.” [Caleb Yates interview 7](../../interviews/iteration_1/caleby/CALEB_2025_9_1_7.md)
 
 We rejected the hypothesis “We believed students made erroneous selections during course planning as a consequence of a lack of proper communication as prerequisites are not properly communicated,” as we found the students we interviewed didn’t choose incorrect classes due to pre-requisites. “Yes I am, because they are very nicely laid out right next to the course when I'm looking at them.” [Caleb Yates interview 7](../../interviews/iteration_1/caleby/CALEB_2025_9_1_7.md)
 
