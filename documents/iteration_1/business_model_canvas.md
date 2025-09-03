@@ -21,7 +21,10 @@ This hypothesis was accepted for reasons found in [Learning Card 5](learning_car
 
 **Value Propositions**
 - We believe that our market wants an easier way to identify the prerequisites for a given course
+This hypothesis was accepted as many interviewees reported struggling to find information such as prerequisites, often having to open needlessly many browser tabs. EVIDENCE
 
 - We believe that our market wants a less convoluted process to select and enroll in courses
+This hypothesis was discarded as it was found through interviews that the problem with selecting courses lied not with the enrolling process, but the choosing of what courses to enrol in. This process is the one that is convoluted, whereas actually enrolling is straightforward. EVIDENCE
 
 - We believe that our market wants the ability to plan course completion order for their degree
+This hypothesis is accepted based on many interviewees who reported that the ability to plan completion order would be quite helpful (quote) and xyz. EVIDENCE
