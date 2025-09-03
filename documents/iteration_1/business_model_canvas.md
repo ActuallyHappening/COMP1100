@@ -2,7 +2,7 @@
 
 **Customer Segments**
 - We believe that our customers are undergraduate students who need to select courses every semester.
-This hypothesis was accepted. The amount of feedback recieved in interviews demonstrate a demand from undergraduate students for a solution in this field to be developed. 
+This hypothesis was accepted. The amount of feedback recieved in interviews demonstrate a demand from undergraduate students for a solution in this field to be developed. As shown in the evaluation of hypotheses in the [value proposition campus](value_proposition_canvas.md), many of the assumed pains and gains of this customer base were proven to be correct. 
 
 - We believe students invest more time than they would like in the course enrolment procedure as a consequence of the process spanning several sites. [Test Card 1](test_cards.md)
 This hypothesis was accepted for reasons found in [Learning Card 1](learning_cards.md).
