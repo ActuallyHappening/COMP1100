@@ -13,11 +13,11 @@ Therefore, we will ask \[specific questions\]
 ### Test Card 1
 **Hypothesis: we believe students invest more time than strictly necessary in the course enrolment procedure as a consequence of the process spanning several sites.**
 
-Test: To verify this, we will interview students to identify redundancies in the process.
+*Test:* To verify this, we will interview students to identify redundancies in the process.
 
-Metric: As well, we will aim to measure how long it takes to select courses for the semester.
+*Metric:* As well, we will aim to measure how long it takes to select courses for the semester.
 
-Criteria: If this is the case, we estimate students will be spending over 30 minutes trying
+*Criteria:* If this is the case, we estimate students will be spending over 30 minutes trying
 
 Therefore, we will ask the following:
 
@@ -27,11 +27,11 @@ Therefore, we will ask the following:
 ### Test Card 2
 **Hypothesis: We believe that students make erroneous selections during course planning as a consequence of a lack of proper communication as prerequisites are not properly communicated.**
 
-Test: To verify this, we will interview students to see if they have ever chosen a course they regret for credit reasons.
+*Test:* To verify this, we will interview students to see if they have ever chosen a course they regret for credit reasons.
 
-Metric: As well, we wish to measure the amount of students who have experienced something to this effect.
+*Metric:* As well, we wish to measure the amount of students who have experienced something to this effect.
 
-Criteria: Should this be the case, we estimate approximately 50% of students have experienced this type of issue.
+*Criteria:* Should this be the case, we estimate approximately 50% of students have experienced this type of issue.
 
 Therefore, we will ask:
 
@@ -41,11 +41,11 @@ Therefore, we will ask:
 ### Test Card 3
 **Hypothesis: We believe students enrol in courses having already completed the appropriate prerequisites.**
 
-Test: To verify this, we will interview students to see if they would consider doing a course prior to completing its prerequisite.
+*Test:* To verify this, we will interview students to see if they would consider doing a course prior to completing its prerequisite.
 
-Metric: As well, we wish to measure how many students would take this option.
+*Metric:* As well, we wish to measure how many students would take this option.
 
-Criteria: Our hypothesis is correct if the majority (~70%) of students would always complete a prerequisite
+*Criteria:* Our hypothesis is correct if the majority (~70%) of students would always complete a prerequisite
 
 Therefore, we will ask:
 
@@ -56,11 +56,11 @@ Therefore, we will ask:
 ### Test Card 4
 **Hypothesis: We believe students are unaware of the selection of courses offered by the university.**
 
-Test: To verify this, we will interview students with electives on how they have chosen their subjects.
+*Test:* To verify this, we will interview students with electives on how they have chosen their subjects.
 
-Metric: As well, we wish to measure how many students want to diversify their degree with other general electives they take interest in.
+*Metric:* As well, we wish to measure how many students want to diversify their degree with other general electives they take interest in.
 
-Criteria: We are correct if it is found that approximately 50% of students want to do more than the course they are enrolled in.
+*Criteria:* We are correct if it is found that approximately 50% of students want to do more than the course they are enrolled in.
 
 Therefore, we will ask:
 
@@ -70,11 +70,11 @@ Therefore, we will ask:
 ### Test Card 5
 **Hypothesis: We believe students who keep a plan for the courses they do are forced to custom make it in a program not designed for it.**
 
-Test: To verify this, we will interview students about their course plans
+*Test:* To verify this, we will interview students about their course plans
 
-Metric: As well, we wish to know what they used to construct it.
+*Metric:* As well, we wish to know what they used to construct it.
 
-Criteria: We are correct if most (~70%) students agree or take issue with course planning in more complicated systems
+*Criteria:* We are correct if most (~70%) students agree or take issue with course planning in more complicated systems
 
 Therefore, we will ask: 
 
