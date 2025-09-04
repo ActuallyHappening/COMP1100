@@ -32,7 +32,7 @@ This hypothesis was accepted as many interviewees reported struggling to find in
 
 Evidence
 - "Oh, um for me, for my degree, it's pretty straightforward, because there's not too many prerequisites. But, like, the course profiles are a bit annoying to go through and like, have to look individually each course to find all the prerequisites for it. But, like, I know how to do it. It's like it's very well, like very commonly known. Yeah." - [Liam Bienkowski interview 2](../../interviews/iteration_1/liam_bienkowski/liam_bienkowski_2025-08-20_2.md)
-- "First off, I'd like if it could have maybe an easier way to see when the classes run and what the prereqs are. And then another thing, when I was doing the dual degree, there was stuff where it's like, 'if you take this course and you're doing this major, then it counts towards the math degree." - [Patrick interview 6](../../interviews/iteration_1/patrick/PATRICK_2025_09_01_6.md)
+- "First off, I'd like if it could have maybe an easier way to see when the classes run and what the prereqs are. And then another thing, when I was doing the dual degree, there was stuff where it's like, 'if you take this course and you're doing this major, then it counts towards the math degree." - [Patrick Elgey interview 6](../../interviews/iteration_1/patrick/PATRICK_2025_09_01_6.md)
 
 2) We believe that our market wants a less convoluted process to select and enroll in courses
 
@@ -48,4 +48,4 @@ This hypothesis is accepted based on many interviewees who reported that the abi
 
 Evidence
 - "I usually just write it down in a separate, like, word document plan that I've got set up." - [Liam Bienkowski interview 7](../../interviews/iteration_1/liam_bienkowski/liam_bienkowski_2025-08-27_7.md)
-- "I mostly have put it down onto a simple document, a plan for each of my semesters" - [Patrick interview 2](../../interviews/iteration_1/patrick/PATRICK_2025_08_25_2.md)
+- "I mostly have put it down onto a simple document, a plan for each of my semesters" - [Patrick Elgey interview 2](../../interviews/iteration_1/patrick/PATRICK_2025_08_25_2.md)
