@@ -14,7 +14,7 @@ Himanshu: *So do you usually use course planner for planning your things like as
 
 Adam: *Hmm, for planning out my uni like semester timetable. I usually just use the calender on my phone like I Put in the assessment due dates and when the exams are all that kind of stuff. So now I don't actually don't use the uni resources for planning at all I just used it to allocate my courses and that's it.* 
 
-Himanshu:*And finl question, how do you think about the integration about the numerous websites that UK uses to display and utilising information regarding courses?*
+Himanshu:*And finl question, how do you think about the integration about the numerous websites that UQ uses to display and utilising information regarding courses?*
 
 Adam: *I sometimes think it's a little bit convoluted, I would really enjoy a my UQ app like I wouldn't have to go on Google everytime and I think I'd really enjoy, that to be information availabe  On the portal, like on the my UQ, because when I have to do research my degree, I have to go through the websites it's a very long process like, I have to figure out what courses I have to take the requirements are and if I'm not doing that, I have to actually like, email someone, talk to someone , I definitely appreciate resources through the portal. I think a student portal.*
 
