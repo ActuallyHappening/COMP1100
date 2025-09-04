@@ -1,8 +1,8 @@
-*Himanshu: *Hey, my name is Himanshu. I'm currently studying bachelor of information technology. So can I, record our conversation and what is your name.* 
+Himanshu: *Hey, my name is Himanshu. I'm currently studying bachelor of information technology. So can I, record our conversation and what is your name.* 
 
 Mujahid: *yeah, so my name is Mujahid and yeah, I am ok with this interview.* 
 
-Himanshu: *So, let's continue with our questions. So Would you ever consider doing a course without having completed its associated prerequisties? 
+Himanshu: *So, let's continue with our questions. So Would you ever consider doing a course without having completed its associated prerequisties?* 
 
 Mujahid: *Uh, actually, during my first semester. Yes, I did. Take one without any prerequisite, which is 2310 computer system and principle.But about week 5 is getting harder and I dropped the course, so I think it's very important to do the prerequisite before you enrol in any courses.*
 
