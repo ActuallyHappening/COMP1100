@@ -3,6 +3,7 @@
   "specifiers": {
     "npm:@vitejs/plugin-vue@^6.0.1": "6.0.1_vite@7.1.5__picomatch@4.0.3_vue@3.5.21__typescript@5.8.3_typescript@5.8.3",
     "npm:@vue/tsconfig@0.7": "0.7.0_typescript@5.8.3_vue@3.5.21__typescript@5.8.3",
+    "npm:@vueuse/core@^13.9.0": "13.9.0_vue@3.5.21__typescript@5.8.3_typescript@5.8.3",
     "npm:bootstrap@^5.3.8": "5.3.8_@popperjs+core@2.11.8",
     "npm:typescript@~5.8.3": "5.8.3",
     "npm:vite@^7.1.2": "7.1.5_picomatch@4.0.3",
@@ -278,6 +279,9 @@
     "@types/estree@1.0.8": {
       "integrity": "sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w=="
     },
+    "@types/web-bluetooth@0.0.21": {
+      "integrity": "sha512-oIQLCGWtcFZy2JW77j9k8nHzAOpqMHLQejDA48XXMWH6tjCQHz5RCFz1bzsmROyL6PUm+LLnUiI4BCn221inxA=="
+    },
     "@vitejs/plugin-vue@6.0.1_vite@7.1.5__picomatch@4.0.3_vue@3.5.21__typescript@5.8.3_typescript@5.8.3": {
       "integrity": "sha512-+MaE752hU0wfPFJEUAIxqw18+20euHHdxVtMvbFcOEpjEyfqXH/5DCoTHiVJ0J29EhTJdoTkjEv5YBKU9dnoTw==",
       "dependencies": [
@@ -409,6 +413,24 @@
       ],
       "optionalPeers": [
         "typescript",
+        "vue"
+      ]
+    },
+    "@vueuse/core@13.9.0_vue@3.5.21__typescript@5.8.3_typescript@5.8.3": {
+      "integrity": "sha512-ts3regBQyURfCE2BcytLqzm8+MmLlo5Ln/KLoxDVcsZ2gzIwVNnQpQOL/UKV8alUqjSZOlpFZcRNsLRqj+OzyA==",
+      "dependencies": [
+        "@types/web-bluetooth",
+        "@vueuse/metadata",
+        "@vueuse/shared",
+        "vue"
+      ]
+    },
+    "@vueuse/metadata@13.9.0": {
+      "integrity": "sha512-1AFRvuiGphfF7yWixZa0KwjYH8ulyjDCC0aFgrGRz8+P4kvDFSdXLVfTk5xAN9wEuD1J6z4/myMoYbnHoX07zg=="
+    },
+    "@vueuse/shared@13.9.0_vue@3.5.21__typescript@5.8.3_typescript@5.8.3": {
+      "integrity": "sha512-e89uuTLMh0U5cZ9iDpEI2senqPGfbPRTHM/0AaQkcxnpqjkZqDYP8rpfm7edOz8s+pOCOROEy1PIveSW8+fL5g==",
+      "dependencies": [
         "vue"
       ]
     },
@@ -613,6 +635,7 @@
       "dependencies": [
         "npm:@vitejs/plugin-vue@^6.0.1",
         "npm:@vue/tsconfig@0.7",
+        "npm:@vueuse/core@^13.9.0",
         "npm:bootstrap@^5.3.8",
         "npm:typescript@~5.8.3",
         "npm:vite@^7.1.2",

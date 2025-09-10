@@ -1,20 +1,23 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { state } from "../state";
 
-const studentNumber = ref(10000000);
+const router = useRouter();
+
 function next() {
-	console.log();
+	console.log(`Student number: `, state.studentNumber);
+	router.push({ path: `/onboarding/program` });
 }
 </script>
 
 <template>
 	<h1>Your Student Number?</h1>
-	<form @submit="next">
+	<form @submit.prevent="next">
 		<input
-			:value="studentNumber"
+			v-model="state.studentNumber"
 			type="number"
-			min="10000000"
-			max="99999999"
+			min="1000000"
+			max="9999999"
 		/>
 	</form>
 </template>
