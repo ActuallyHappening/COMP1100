@@ -3,7 +3,9 @@ import StudentNumberForm from "./components/StudentNumberForm.vue";
 </script>
 
 <template>
-	<StudentNumberForm />
+	<main>
+		<RouterView />
+	</main>
 </template>
 
 <style scoped></style>
