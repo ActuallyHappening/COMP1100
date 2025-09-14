@@ -46,3 +46,5 @@ Therefore, we will ask:
 3) Would you like a system similar to EdStem prior to choosing courses so as to understand what actually happens in a course?
 4) Would you participate in a system where you aid other students?
 5) Would you prefer a system where course staff are present in the forums or not present in the forums
+
+*note from raf mid interview, what if we have course positivity from the end of year reviews?
