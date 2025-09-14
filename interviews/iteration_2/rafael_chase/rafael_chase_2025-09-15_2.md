@@ -90,7 +90,7 @@ Rafael: Okay, not even a bit of staff?
 
 Ruby: A bit of both, but, like, I'd like to talk past students and their experiences with courses. 
 
-Rafael: Yeah, okay.  And what about the course positivity? So like at the end of the semester, you know, you get a feedback form. Would it be helpful if you saw how many people gave positive feedback?  So, you know, if 70% of people like this? 
+Rafael: Yeah, okay. And what about the course positivity? So like at the end of the semester, you know, you get a feedback form. Would it be helpful if you saw how many people gave positive feedback?  So, you know, if 70% of people like this? 
 
 Ruby: No, I don't think so, because people usually do those forums in order to give negative feedback. 
 
@@ -98,4 +98,4 @@ Rafael: Right. Okay. So you think it's just, like, flawed?
 
 Ruby: I think it's slightly. I think it's good that the course coordinators get that, to see what students are saying, but I think overall, people usually use those forms when they're a bit annoyed, but some of that happens. So I think that it would fit more and would actually accurately reflect how people felt about the course. 
 
-Rafael: Okay.  Thank you for your time.
+Rafael: Okay. Thank you for your time.
