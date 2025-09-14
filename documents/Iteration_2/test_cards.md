@@ -47,4 +47,4 @@ Therefore, we will ask:
 4) Would you participate in a system where you aid other students?
 5) Would you prefer a system where course staff are present in the forums or not present in the forums
 
-*note from raf mid interview, what if we have course positivity from the end of year reviews?
+*note from raf mid interview, what if we have course positivity from the end of semester reviews for each course?
