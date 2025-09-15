@@ -1,4 +1,4 @@
-**ITERATION ONE**:
+**ITERATION ONE + TWO**:
 
 # Value Proposition Canvas
 
@@ -72,5 +72,3 @@ After testing the hypotheses in the business model canvas and the value proposit
 3) Choosing subjects based off of which semesters they are offered by the university
 4) Choosing subjects that will integrate well into a wider course plan
 5) Once all of the above is done, being able to save and refence back to the chosen course plan
-
-**ITERATION TWO**:
