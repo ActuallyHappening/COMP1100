@@ -53,4 +53,10 @@ Evidence
 - "I mostly have put it down onto a simple document, a plan for each of my semesters" - [Patrick Elgey interview 2](../../interviews/iteration_1/patrick/PATRICK_2025_08_25_2.md)
 
 **ITERATION TWO**:
+**Channels**
+1) Our customers would like to have a laptop-capable website to view, edit and choose courses in line with the solution proposed
+2) Our customers would like to have a phone app to view their course information and compare with friends on-the-go
 
+**Customer Relationships**
+1) We believe that customers will spread the news about this through word of mouth
+2) We believe that customers would like UQ to promote this through the 'Welcome to UQ' page for new students
