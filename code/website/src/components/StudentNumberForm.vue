@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
-import { state } from "../state";
+import { oldState, state } from "../state";
 
 const router = useRouter();
 
 function next() {
-	console.log(`Student number: `, state.studentNumber);
+	console.log(`Student number: `, state.value.studentNumber);
+	oldState.value.studentNumber = state.value.studentNumber;
 	router.push({ path: `/onboarding/program` });
 }
 </script>
@@ -19,6 +20,7 @@ function next() {
 			min="1000000"
 			max="9999999"
 		/>
+		<input type="submit" value="Next" />
 	</form>
 </template>
 
