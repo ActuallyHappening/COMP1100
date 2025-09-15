@@ -7,25 +7,43 @@ Undergraduate UQ Students doing Bachelor of Computer Science who are planning wh
 
 **Customer Jobs:**
 Our customers want to:
+Iteration One:
 - Plan their degree at a higher level, including their majors and/or minors
 - Make sure they finish all the required courses for their degree / majors
 - Choose subjects for each semester, making sure they are available in the correct semesters
 - Choose subjects with having done all the proper pre-requisites
 
+Iteration Two:
+- Take courses with friends where possible. 
+- Want to know more about a course from other students / staff before enrolling.
+
 **Customer pains:**
 Our customers are pained by:
+Iteration One:
 - UQ websites being bad
 - Often planning out courses in a separate space
 - The current system being outdated
 - Current system being difficult to use
 
+Iteration Two:
+- It is difficult to align with friends without explicitly cooperating with them outside of UQ services. 
+- My SI-Net is notoriously difficult to use, and so customers do not know of current ways to cooperate with friends.
+- There is no clear way to converse with students who have finished a course unless you personally know someone. 
+- Students are sometimes unsure as to what is actually involved in a course based off of the profile alone.
+
 **Customer gains:**
 Our customers stand to gain by:
+Iteration One:
 - Saving time in the course application process
 - Saving effort when applying for courses
 - Having less stress induced by course planning
 - Having greater certainty for course selections
 - Experiencing greater appreciation for possible paths in a given course
+
+Iteration Two:
+- A more seamless system to interact and cooperate in course planning with friends.
+- A system that allows students to see active feedback for the course from students who have previously taken it.
+- Students will know more about the courses they are going to take. 
 
 
 ### Value Proposition Map:
@@ -33,19 +51,33 @@ Our solution should attack the following:
 
 **Products/Services:**
 Our product should aim to have some/all of the following services:
+Iteration One:
 - One place to have all courses documented
 - One course viewer, showing the requirements and relationships between all the relevant courses
 - Combined planner showing semester limitations and pre-requisite limitations
 
+Iteration Two:
+- Integrate systems similar to UQ review so students have a more clear idea on course feedback. 
+- Integrate systems to allow friends to choose courses together should the situation arise.
+
 **Pain relievers:**
 Our solution seeks to relieve the following pains:
+Iteration One:
 - Fixing current UI issues, so that UI will be easy to use and navigate and fast
 - Ending non-personalised services with a solution that will adapt to what classes you have already done
 
+Iteration Two:
+- Make it clear what information is avaliable for a course via a similar system to UQ review, so students are immediately aware.
+- Students will be better and more seamlessly able to choose courses with friends. 
+
 **Gain creators:**
+Iteration One:
 Our solution seeks to create the following gains:
 - Usage of a seamless system with everything in one place
 - Allowing viewing of what other people are planning on doing
+
+Iteration Two:
+- Our solution aims to (like iteration one) create a more seamless system with additional information that we know students would like based on interviews. 
 
 
 ## Evaluation of Hypotheses
