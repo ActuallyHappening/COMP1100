@@ -48,7 +48,7 @@ Hongkai: yeah
 
 Rafael: All right, let's say hypothetically. Hypothetically. It wasn't so rigid, do you think you would find yourself planning ahead, knowing exactly what you're going to do or would you just choose it on a whim? 
 
-Hongkai: I I'll probably still sit down and find all four years in, like, one sitting and then just get it over with, but it'll definitely be more difficult, because if you didn't if the plan wasn't, like, as rigid as the one I got, obviously, I had to put in, like all those.  I had to consider all the factors, such as like, our prerequisition. Like, like a semester offerings and stuff like that. And that can be a bit of a hassle. 
+Hongkai: I I'll probably still sit down and find all four years in, like, one sitting and then just get it over with, but it'll definitely be more difficult, because if you didn't if the plan wasn't, like, as rigid as the one I got, obviously, I had to put in, like all those. I had to consider all the factors, such as like, our prerequisition. Like, like a semester offerings and stuff like that. And that can be a bit of a hassle. 
 
 Rafael: Okay. Would you like to see a system where previous participants of a course can, like, leave a note of summaries? Like, right now when you've got the course plan on you're choosing a course, it just gives you like a brief overview. Sometimes it's like two sentences, sometimes it's like a full paragraph. But it can always be very unclear as to what is actually in the course. So like, imagine like Ed Stem, right? Like you ask a question and then somebody who's done the course before answers to the question. Like, do you think that would be useful? 
 
@@ -60,9 +60,9 @@ Hongkai: Yes, certainly. Like, if there was, like, a reading system or something
 
 Rafael: And would you ever find yourself actively participating in that as somebody helping other students? At the very least, just, you know, posting one thing, right? It's like, oh, I found this course, you know, to be fun. And you’re just, like, done. Like that's, you've done the part. 
 
-Hongkai: Maybe. Yeah, okay.  Otherwise, like, you wouldn't really do it. 
+Hongkai: Maybe. Yeah, okay. Otherwise, like, you wouldn't really do it. 
 
-Rafael: Yeah. That's okay.  Would you prefer a system where core staff are present in these forums? Would you like to talk to course staff or just students or like a bit of both? 
+Rafael: Yeah. That's okay. Would you prefer a system where core staff are present in these forums? Would you like to talk to course staff or just students or like a bit of both? 
 
 Hongkai: Um.. I feel like sometimes core staff probably have a bit of a skewed view on a course, because obviously not from the student's perspective, right? Yeah. So I think it's good to have a boat, but I think I would personally, I just see more like a student's side.
 
