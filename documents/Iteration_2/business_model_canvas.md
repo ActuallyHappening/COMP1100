@@ -59,4 +59,10 @@ Evidence
 
 **Customer Relationships**
 1) We believe that customers will spread the news about this through word of mouth
+
 2) We believe that customers would like UQ to promote this through the 'Welcome to UQ' page for new students
+
+3) We believed students wish to take the same courses as their friends where possible [Test Card One](../iteration_2/test_cards.md)
+
+4) We believed students plan their course in reference to a long-term course plan [Test Card Two](../iteration_2/test_cards.md)
+
