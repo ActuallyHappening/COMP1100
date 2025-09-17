@@ -90,7 +90,7 @@ Rafael: Okay, not even a bit of staff?
 
 Ruby: A bit of both, but, like, I'd like to talk past students and their experiences with courses. 
 
-Rafael: Yeah, okay. And what about the course positivity? So like at the end of the semester, you know, you get a feedback form. Would it be helpful if you saw how many people gave positive feedback?  So, you know, if 70% of people like this? 
+Rafael: Yeah, okay. And what about the course positivity? So like at the end of the semester, you know, you get a feedback form. Would it be helpful if you saw how many people gave positive feedback? So, you know, if 70% of people like this? 
 
 Ruby: No, I don't think so, because people usually do those forums in order to give negative feedback. 
 

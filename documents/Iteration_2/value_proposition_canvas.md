@@ -125,9 +125,15 @@ In response to "how maby terms ahead have you planned?": "Until I've graduated..
 
 "We believed students would like a forum to interact with other people who have completed courses they have already completed." This hypothesis was accepted as it was agreed upon by students in interviews to be unanimously. It was found in the interviews that students sometimes struggled with understanding what a course was, what they would be doing and the type of content / assessment required to be completed based off of provided information in course profiles and the like. Students appreciated the possibiliy to talk with other students who have previously completed a course as it would provide them a greater understanding of what would actually happen in a course.
 
-Evidence;
+Evidence:
 "It would be very useful. Like, it gives students a good expectation of what to expect, right?...Yes, certainly. Like, if there was, like, a reading system or something, that would be pretty good. Like, if you, if students could rate a course, maybe like, different aspects, like, how interesting it was or, like, how difficult it was, right? That would definitely be taken into consideration choosing courses."
 [Rafael Chase interview 3](../../interviews/iteration_2/rafael_chase/rafael_chase_2025-09-16_3.md)
+
+"Students don’t understand how their major affects how credit points are counted towards their degree." Whilst some students were quite aware of how these decisions would impact credit, as well as other related issues that could arise, the general consensus suggests that students are still very much so struggling with this process. In some cases, memorisation was resorted to, as well as rigourous planning had the students actually been mostly aware of these issues. It is regarded that this current implementation, or lack thereof, requires more depth and nuance to ensure a smoother implemntation and solution for students when considering course planning. 
+
+Evidence:
+"It probably would have been helpful while organising however I have memorised the different majors enough that it is no longer necessary"
+[Caleb Yates interview 1](../../interviews/iteration_2/caleb_yates/CALEB_2025_9_10_1.md)
 
 ### Rejected Hypotheses:
 
