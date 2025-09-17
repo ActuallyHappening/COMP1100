@@ -66,3 +66,7 @@ Evidence
 
 4) We believed students plan their course in reference to a long-term course plan [Test Card Two](../iteration_2/test_cards.md)
 
+5) We believed students would like a forum to interact with other people who have completed courses they have already completed [Test Card Three](../iteration_2/test_cards.md)
+
+5) We believed students don’t understand how their major affects how credit points are counted towards their degree [Test Card Four](../iteration_2/test_cards.md)
+
