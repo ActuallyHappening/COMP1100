@@ -1,0 +1,3 @@
+Our project UQ Planet aims to solve current UI issues, so that UI will be easy to use and navigate and fast
+ for undergraduate UQ Students doing Bachelor of Computer Science who are planning which courses to enroll in during their course.We believe that our unique value proposition is ----. The following competitor analysis includes a comparison table, SWOT analysis of key competitors, and strategic insights based on our findings
+ **more to be added**
