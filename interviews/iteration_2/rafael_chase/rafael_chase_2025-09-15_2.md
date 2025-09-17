@@ -82,7 +82,7 @@ Rafael: Yeah, right. Would you personally share short opinions on it? Like, do y
 
 Ruby: Well, probably not unless there was someone who I knew that asked me. 
 
-Rafael: Right. Okay.  Um, Would you prefer a system where course staff are present in the forums, or not present in the forum? So would you rather talk to students or staff, basically, or a bit of both? 
+Rafael: Right. Okay. Um, Would you prefer a system where course staff are present in the forums, or not present in the forum? So would you rather talk to students or staff, basically, or a bit of both? 
 
 Ruby: Only students. 
 
