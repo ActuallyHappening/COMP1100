@@ -1,4 +1,4 @@
-**Hypothesis**: people wish to take the same as their friends where possible
+**Hypothesis**: people wish to take the same courses as their friends where possible
 
 **Test**: interview students to see if they specifically go out of their way to do the same courses as friends
 

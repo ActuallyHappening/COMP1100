@@ -10,7 +10,7 @@ Rafael: Okay, thank you. Is it okay if I record you?
 
 Ruby: Yes. 
 
-Rafael: Okay. So to start things off, do you try to take courses with your friends where possible?  
+Rafael: Okay. So to start things off, do you try to take courses with your friends where possible?
 
 Ruby: Where possible, like, I’ll sometimes do it, yeah.
 
@@ -42,7 +42,7 @@ Rafael: Right, so you've got like a very rigid plan for until graduation.
 
 Ruby: Yeah, I had to in order to make sure I met like the requirements. 
 
-Rafael: Right, okay.  Do you worry about that at all?
+Rafael: Right, okay. Do you worry about that at all?
 
 Ruby: Yeah, sometimes. 
 
