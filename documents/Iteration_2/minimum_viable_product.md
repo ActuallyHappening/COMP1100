@@ -27,3 +27,32 @@
 		- List friends doing the same course
 		- Then a (scrollable) list of comments making the available space,
 		- And on the bottom a bar to post your own comment
+
+
+# MVP Test Cards
+Hypothesis: Students would benefit from one place with many classes in the same place, with each course conveniently showing course information
+
+Test: We will ask students if the above MVP shows course information in the same place well
+
+Metric: If students believe they could see all necessary information for the courses
+
+Criteria: If all students believed they could see all necessary information for their course plan, then this hypothesis will be achieved
+
+Therefore, we will ask:
+Does our solution show all the relevant information for courses?
+Do you like the comments section being listed for each course next to its information?
+Did you want any other links for each course?
+
+
+Hypothesis: Students would benefit from a multi-user incorporation where they can interact with other students who have previously completed courses they are to take, as well as basing decisions off of what friends are doing, as implemented by us (in-house)
+
+Test: We will show/explain a simple in-house solution and see their thoughts
+
+Metric: If our in-house solution is liked and would be used by students
+
+Criteria: If all students liked our in-house solution, we will consider this hypothesis achieved
+
+Therefore, we will ask:
+Would you feel it useful to comment on courses for future students in that manner?
+Would you like a badge for users based on if they are a tutor or lecturer?
+Do you want all people who give a review to be verified UQ students?
