@@ -1,31 +1,33 @@
-**ITERATION ONE**:
-
 # Business Model Canvas
-
+## Iteration 1 (Updated in Iteration 2):
 **Customer Segments**
 1) We believe that our customers are undergraduate students who need to select courses every semester.
 
-This hypothesis was accepted. The amount of feedback recieved in interviews demonstrate a demand from undergraduate students for a solution in this field to be developed. As shown in the evaluation of hypotheses in the [value proposition campus](value_proposition_canvas.md), many of the assumed pains and gains of this customer base were proven to be correct. Therefore, there is clear need to address this customer segment with a solution in the area that we are proposing.  
+This hypothesis was accepted. The amount of feedback recieved in interviews demonstrate a demand from undergraduate students for a solution in this field to be developed. As shown in the evaluation of hypotheses in the [value proposition canvas](value_proposition_canvas.md), many of the assumed pains and gains of this customer base were proven to be correct. Therefore, there is clear need to address this customer segment with a solution in the area that we are proposing.  
 
-2) We believe students invest more time than they would like in the course enrolment procedure as a consequence of the process spanning several sites. [Test Card 1](test_cards.md)
+2) We believe students invest more time than they would like in the course enrolment procedure as a consequence of the process spanning several sites. [Iteration 1 Test Card 1](test_cards.md)
 
-This hypothesis was accepted for reasons found in [Learning Card 1](learning_cards.md).
+This hypothesis was accepted for reasons found in [Iteration 1 Learning Card 1](../iteration_1/learning_cards.md).
 
-3) We believe that students make erroneous selections during course planning as a consequence of a lack of proper communication as prerequisites are not properly communicated. [Test Card 2](test_cards.md)
+3) We believe that students make erroneous selections during course planning as a consequence of a lack of proper communication as prerequisites are not properly communicated. [Iteration 1 Test Card 2](../iteration_1/test_cards.md)
 
-This hypothesis was discarded for reasons found in [Learning Card 2](learning_cards.md).
+This hypothesis was discarded for reasons found in [Iteration 1 Learning Card 2](../iteration_1/learning_cards.md).
 
-4) We believe students enrol in courses having already completed the appropriate prerequisites. [Test Card 3](test_cards.md)
+4) We believe students enrol in courses having already completed the appropriate prerequisites. [Iteration 1 Test Card 3](../iteration_1/test_cards.md)
 
-This hypothesis was accepted for reasons found in [Learning Card 3](learning_cards.md).
+This hypothesis was accepted for reasons found in [Iteration 1 Learning Card 3](../iteration_1/learning_cards.md).
 
-5) We believe students are unaware of the selection of courses offered by the university. [Test Card 4](test_cards.md)
+5) We believe students are unaware of the selection of courses offered by the university. [Iteration 1 Test Card 4](../iteration_1/test_cards.md)
 
-This hypothesis was discarded for reasons found in [Learning Card 4](learning_cards.md).
+This hypothesis was discarded for reasons found in [Iteration 1 Learning Card 4](../iteration_1/learning_cards.md).
 
-6) We believe students who keep a plan for the courses they do are forced to custom make it in a program not designed for it. [Test Card 5](test_cards.md)
+6) We believe students who keep a plan for the courses they do are forced to custom make it in a program not designed for it. [Iteration 1 Test Card 5](../iteration_1/test_cards.md)
 
-This hypothesis was accepted for reasons found in [Learning Card 5](learning_cards.md).
+This hypothesis was accepted for reasons found in [Iteration 1 Learning Card 5](../iteration_1/learning_cards.md).
+
+7) We believe students plan their course in reference to a long-term course plan [Iteration 2 Test Card 2](../iteration_2/test_cards.md)
+
+This hypothesis was rejected for reasons found in [Iteration 2 Learning Card 2](../iteration_2/learning_cards.md).
 
 **Value Propositions**
 1) We believe that our market wants an easier way to identify the prerequisites for a given course
@@ -52,21 +54,25 @@ Evidence
 - "I usually just write it down in a separate, like, word document plan that I've got set up." - [Liam Bienkowski interview 7](../../interviews/iteration_1/liam_bienkowski/liam_bienkowski_2025-08-27_7.md)
 - "I mostly have put it down onto a simple document, a plan for each of my semesters" - [Patrick Elgey interview 2](../../interviews/iteration_1/patrick/PATRICK_2025_08_25_2.md)
 
-**ITERATION TWO**:
+4) We believe students would like a forum to interact with other people who have completed courses they have already completed [Iteration 2 Test Card 3](../iteration_2/test_cards.md)
+
+This hypothesis was accepted for reasons found in [Iteration 2 Learning Card 3](../iteration_2/learning_cards.md).
+
+## Iteration 2:
 **Channels**
-1) Our customers would like to have a laptop-capable website to view, edit and choose courses in line with the solution proposed
-2) Our customers would like to have a phone app to view their course information and compare with friends on-the-go
+1) We believe that our customers would like to have a laptop-capable website to view, edit and choose courses in line with the solution proposed
+
+2) We believe that our customers would like to have a phone app to view their course information and compare with friends on-the-go
 
 **Customer Relationships**
 1) We believe that customers will spread the news about this through word of mouth
 
 2) We believe that customers would like UQ to promote this through the 'Welcome to UQ' page for new students
 
-3) We believed students wish to take the same courses as their friends where possible [Test Card One](../iteration_2/test_cards.md)
+3) We believe students wish to take the same courses as their friends where possible [Iteration 2 Test Card 1](../iteration_2/test_cards.md)
 
-4) We believed students plan their course in reference to a long-term course plan [Test Card Two](../iteration_2/test_cards.md)
+This hypothesis was accepted for reasons found in [Iteration 2 Learning Card 1](../iteration_2/learning_cards.md).
 
-5) We believed students would like a forum to interact with other people who have completed courses they have already completed [Test Card Three](../iteration_2/test_cards.md)
+4) We believe students don’t understand how their major affects how credit points are counted towards their degree [Iteration 2 Test Card 4](../iteration_2/test_cards.md)
 
-5) We believed students don’t understand how their major affects how credit points are counted towards their degree [Test Card Four](../iteration_2/test_cards.md)
-
+This hypothesis was accepted for reasons found in [Iteration 2 Learning Card 4](../iteration_2/learning_cards.md).
