@@ -24,9 +24,9 @@ Metric: We will measure if students have a long-term plan considering what cours
 Therefore we will reject this hypothesis
 
 *Evidence:*
-- "[planning too far in advance isn't useful] because things change, obviously." - [Liam Bienkowski Interview 1]()
-- "...you've got to be prepared if your plans change..." - [Patrick Elgey Interview 1]()
-- "I have planned those 2 courses, but anything around that, I have not really even looked to plan with that" - [Liam Bienkowski Interview 2]()
+- "[planning too far in advance isn't useful] because things change, obviously." - [Liam Bienkowski Iteration 2 Interview 1](../../interviews/iteration_2/liam_bienkowski/liam_bienkowski_2025-09-18_1.md)
+- "...you've got to be prepared if your plans change..." - [Patrick Elgey Iteration 2 Interview 1](../../interviews/iteration_2/patrick/PATRICK_2025_09_16_1.md)
+- "I have planned those 2 courses, but anything around that, I have not really even looked to plan with that" - [Liam Bienkowski Iteration 2 Interview 2](../../interviews/iteration_2/liam_bienkowski/liam_bienkowski_2025-09-18_2.md)
 - - "...I don't have a setup plan. I have classes, I’d like to do sometime in the next 4 years, but no, I don't have a specific plan at all after like the next 2 semesters." - [Liam Bienkowski Iteration 2 Interview 1](../../interviews/iteration_2/liam_bienkowski/liam_bienkowski_2025-09-18_1.md)
 
 
@@ -42,8 +42,8 @@ Metric: We will measure if students want a system like this to streamline the pr
 Therefore we will accept this hypothesis as true.
 
 *Evidence:*
-- "I think that would be beneficial for myself and many of my peers" & "if it were staff moderated, potentially, there's room for bias and manipulation" - [Caleb Yates Interview 2]()
-- "Yeah, I think that'll be very useful" - [Rafael Chase Interview 1]()
+- "I think that would be beneficial for myself and many of my peers" & "if it were staff moderated, potentially, there's room for bias and manipulation" - [Caleb Yates Iteration 2 Interview 2](../../interviews/iteration_2/caleb_yates/CALEB_2025_9_12_2.md)
+- "Yeah, I think that'll be very useful" - [Rafael Chase Iteration 2 Interview 1](../../interviews/iteration_2/rafael_chase/rafael_chase_2025-09-14_1.md)
 - "I believe it would um, beneficial to see a very recent student perspective on the course, uh, any key things about it that you'd only know if you had just done it." - [Liam Bienkowski Iteration 2 Interview 3](../../interviews/iteration_2/liam_bienkowski/liam_bienkowski_2025-09-22_4.md)
 
 
