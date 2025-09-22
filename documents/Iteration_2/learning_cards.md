@@ -7,11 +7,10 @@
 Therefore we will accept this hypothesis as true.
 
 *Evidence:*
-- “[it’s] something I try to do after I selected [courses]” - [Caleb Yates Interview 1]()
-- “Absolutely in fact I've got stat 1301 right now that I specifically chose so I could be with a friend from high school." - [Rafael Chase	 interview 1](../../interviews/iteration_2/rafael_chase/rafael_chase_2025-09-14_1.md)
--  “I usually choose for my degree first because that is the most important thing. And then I check with my friends and determine if it's possible to be in like classes together.” - [Patrick Elgey Interview 1]()
+- “[it’s] something I try to do after I selected [courses]” - [Caleb Yates Iteration 2 Interview 1](../../interviews/iteration_2/caleb_yates/CALEB_2025_9_10_1.md)
+- “Absolutely in fact I've got stat 1301 right now that I specifically chose so I could be with a friend from high school." - [Rafael Chase	Iteration 2 Interview 1](../../interviews/iteration_2/rafael_chase/rafael_chase_2025-09-14_1.md)
+-  “I usually choose for my degree first because that is the most important thing. And then I check with my friends and determine if it's possible to be in like classes together.” - [Patrick Elgey Iteration 2 Interview 1](../../interviews/iteration_2/patrick/PATRICK_2025_09_16_1.md)
 - "It's significant when I'm... talking to people who are doing... a similar course structure to me... Because it's like we have to complete the same units, the same courses by the end of our degree." - [Liam Bienkowski Iteration 2 Interview 2](../../interviews/iteration_2/liam_bienkowski/liam_bienkowski_2025-09-18_1.md)
-
 
 **Hypothesis: students plan their course in reference to a long-term course plan**
 
@@ -60,4 +59,5 @@ Metric: We will measure how many people are aware of their major and which cours
 Therefore we will accept this hypothesis as true.
 
 *Evidence:*
+- "Um, I mean, it's online. There's a lot, but like not off the top of my head, but yes, I know where to go to look at it. I have to look them up to go and check, like, where my, on my degree, which subjects I need to do." [Liam Bienkowski Iteration 2 Interview 1](../../interviews/iteration_2/liam_bienkowski/liam_bienkowski_2025-09-18_1.md)
 - "Um, I mean, it's online. There's a lot, but like not off the top of my head, but yes, I know where to go to look at it. I have to look them up to go and check, like, where my, on my degree, which subjects I need to do." [Liam Bienkowski Iteration 2 Interview 1](../../interviews/iteration_2/liam_bienkowski/liam_bienkowski_2025-09-18_1.md)
