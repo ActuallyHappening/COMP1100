@@ -56,7 +56,7 @@ Hugo: And easier to, maybe with some details as well. Maybe, for instance, with 
 
 Rafael: Okay, no, thank you. Is there anything else that you think? 
 
-Hugo: Um, not. entirely. I think every. I like all the other, um.. added features of the app.  I think it's gonna be really helpful for planning, because as things currently stand, I find it incredibly difficult to actually navigate through other the UQ websites and mySI, and actually planning on my courses. So I like that this is all in one place to help me put it all together, and so I' better understanding of what I'm actually doing with my degree. 
+Hugo: Um, not. entirely. I think every. I like all the other, um.. added features of the app. I think it's gonna be really helpful for planning, because as things currently stand, I find it incredibly difficult to actually navigate through other the UQ websites and mySI, and actually planning on my courses. So I like that this is all in one place to help me put it all together, and so I' better understanding of what I'm actually doing with my degree. 
 
 Rafael: Okay. And would you personally use this? 
 
