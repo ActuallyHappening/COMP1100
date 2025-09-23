@@ -10,7 +10,7 @@ Rafael: Okay, thank you. Is it okay if I record you?
 
 Ruby: Yes. 
 
-Rafael: Okay. So to start things off, do you try to take courses with your friends where possible?  
+Rafael: Okay. So to start things off, do you try to take courses with your friends where possible?
 
 Ruby: Where possible, like, I’ll sometimes do it, yeah.
 
@@ -42,7 +42,7 @@ Rafael: Right, so you've got like a very rigid plan for until graduation.
 
 Ruby: Yeah, I had to in order to make sure I met like the requirements. 
 
-Rafael: Right, okay.  Do you worry about that at all?
+Rafael: Right, okay. Do you worry about that at all?
 
 Ruby: Yeah, sometimes. 
 
@@ -90,7 +90,7 @@ Rafael: Okay, not even a bit of staff?
 
 Ruby: A bit of both, but, like, I'd like to talk past students and their experiences with courses. 
 
-Rafael: Yeah, okay. And what about the course positivity? So like at the end of the semester, you know, you get a feedback form. Would it be helpful if you saw how many people gave positive feedback?  So, you know, if 70% of people like this? 
+Rafael: Yeah, okay. And what about the course positivity? So like at the end of the semester, you know, you get a feedback form. Would it be helpful if you saw how many people gave positive feedback? So, you know, if 70% of people like this? 
 
 Ruby: No, I don't think so, because people usually do those forums in order to give negative feedback. 
 

@@ -1,4 +1,4 @@
-**Hypothesis**: people wish to take the same as their friends where possible
+**Hypothesis**: people wish to take the same courses as their friends where possible
 
 **Test**: interview students to see if they specifically go out of their way to do the same courses as friends
 
@@ -47,4 +47,17 @@ Therefore, we will ask:
 4) Would you participate in a system where you aid other students?
 5) Would you prefer a system where course staff are present in the forums or not present in the forums
 
-*note from raf mid interview, what if we have course positivity from the end of semester reviews for each course?
+**Hypothesis**: Students don’t understand how their major affects how credit points are counted towards their degree
+
+**Test**: We will interview students to find out if they understand how credit points are counted towards their major
+
+**Metric**: We will measure how many people are aware of their major and which courses are relevant to their chosen major
+
+**Criteria**: We will consider this hypothesis correct if more than 50% of people didn’t know which classes counted towards their major
+
+**Therefore, we will ask**:
+1) Have you chosen your major/minor?
+2) How are your course’s credits counted towards your major?
+3) Do you know what courses you need to complete in order to do it?
+4) If you changed majors starting from next term, what would happen in terms of course credit points?
+5) Would it help you to have a way to create and compare multiple plans?

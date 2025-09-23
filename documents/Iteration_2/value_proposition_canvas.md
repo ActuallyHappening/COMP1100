@@ -80,7 +80,7 @@ Iteration Two:
 - Our solution aims to (like iteration one) create a more seamless system with additional information that we know students would like based on interviews. 
 
 
-## Evaluation of Hypotheses (Iteration two):
+## Evaluation of Hypotheses (Iteration one):
 
 ### Accepted Hypotheses (Iteration one):
 
@@ -107,8 +107,34 @@ After testing the hypotheses in the business model canvas and the value proposit
 4) Choosing subjects that will integrate well into a wider course plan
 5) Once all of the above is done, being able to save and refence back to the chosen course plan
 
-### Evaluation of Hypothesis (Iteration two):
 
-### Accepted Hypotheses:
 
-### Rejected Hypotheses:
+## Evaluation of Hypothesis (Iteration two):
+
+### Accepted Hypotheses (Iteration two):
+"We believed students wished to take the same courses as their friends where possible." We decided to accept this hypothesis as it was found overwhelmingly that most students favour taking courses with friends. Whilst it wasn't necessarily a significant driving factor in course selections, it was still found that students wished to align courses with friends after having completed selections and enrolement. 
+
+Evidence:
+"Absolutely in fact I've got stat 1301 right now that I specifically chose so I could be with a friend from high school." [Rafael Chase interview 1](../../interviews/iteration_2/rafael_chase/rafael_chase_2025-09-14_1.md)
+
+"We believed that students plan their course in reference to a long-term course plan." We accepted this hypothesis as it was found most students do have a strong course plan. It was found that this was out of both some courses having rigid structures, but also students wanting to know exactly what they will be taken at any given point in their degree. Furthermore, students did agree that this process could incur some level of stress at the prospect of not knowing what will happen. This also isn't to say some students preferred to go with the flow of the degree and take things on a whim as opposed to rigourously planning ahead. On the whole, interviews suggest the formermost argument. 
+
+Evidence:
+In response to "how maby terms ahead have you planned?": "Until I've graduated...I had to in order to make sure I met like the requirements..."
+[Rafael Chase interview 2](../../interviews/iteration_2/rafael_chase/rafael_chase_2025-09-15_2.md)
+
+"We believed students would like a forum to interact with other people who have completed courses they have already completed." This hypothesis was accepted as it was agreed upon by students in interviews to be unanimously. It was found in the interviews that students sometimes struggled with understanding what a course was, what they would be doing and the type of content / assessment required to be completed based off of provided information in course profiles and the like. Students appreciated the possibiliy to talk with other students who have previously completed a course as it would provide them a greater understanding of what would actually happen in a course.
+
+Evidence:
+"It would be very useful. Like, it gives students a good expectation of what to expect, right?...Yes, certainly. Like, if there was, like, a reading system or something, that would be pretty good. Like, if you, if students could rate a course, maybe like, different aspects, like, how interesting it was or, like, how difficult it was, right? That would definitely be taken into consideration choosing courses."
+[Rafael Chase interview 3](../../interviews/iteration_2/rafael_chase/rafael_chase_2025-09-16_3.md)
+
+"Students don’t understand how their major affects how credit points are counted towards their degree." Whilst some students were quite aware of how these decisions would impact credit, as well as other related issues that could arise, the general consensus suggests that students are still very much so struggling with this process. In some cases, memorisation was resorted to, as well as rigourous planning had the students actually been mostly aware of these issues. It is regarded that this current implementation, or lack thereof, requires more depth and nuance to ensure a smoother implemntation and solution for students when considering course planning. 
+
+Evidence:
+"It probably would have been helpful while organising however I have memorised the different majors enough that it is no longer necessary"
+[Caleb Yates interview 1](../../interviews/iteration_2/caleb_yates/CALEB_2025_9_10_1.md)
+
+### Rejected Hypotheses (iteration two):
+
+In this iteration, it was found that no hypotheses formulated provided contradictory and refuted testimony from interviews. As such, nothing is being refuted in any significant capacity.
