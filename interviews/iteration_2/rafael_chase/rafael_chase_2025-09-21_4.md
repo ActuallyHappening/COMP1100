@@ -28,15 +28,17 @@ If you didn't like it, then that might show up. If you've got questions, kind of
 
 Like, do you like the layout of it? Anything helps? 
 
-Ruby: I like the layout. I like the layout. I think that. I really like it. I think it's good. I think having the plan is very useful. I think having the ability to save plans is very useful. I don't think I'd change it. I do think that maybe being able for it to generate a plan for you would be good instead of, you having do it yourself, maybe if the thing could program it for you, kind of like how it does a your timetable, I think that would be a good way to start, or it could, you know, like how the timetable works, where it says, give me a draft plan and it kind of gives you something and then you can go in and edit it yourself kind of thing. 
+Ruby: I like the layout. I like the layout. I think that. I really like it. I think it's good. I think having the plan is very useful. I think having the ability to save plans is very useful.
+
+I don't think I'd change it. I do think that maybe being able for it to generate a plan for you would be good instead of, you having do it yourself, maybe if the thing could program it for you, kind of like how it does a your timetable, I think that would be a good way to start, or it could, you know, like how the timetable works, where it says, give me a draft plan and it kind of gives you something and then you can go in and edit it yourself kind of thing. 
 
 Rafael: I think that's quite complicated about what, like, we could do instead is just have, like, some mock plans, like, as in, like the UQ plan obviously leaves a lot of free space, so it could just make recommended plans that we've calculated, just give it to people. Of course, it's a lot of work, but do you think that would, like if you just had one or two? 
 
-Ruby: But how would a mock plan like a mock plan how does it make it more like personalised if you can't get more personalised through the UQ system and then you can't just generate a plan for itself? Like, how do you find a middle ground between that? It's not really, you can’t really do that...
+Ruby: But how would a mock plan like a mock plan how does it make it more like personalised if you can't get more personalised through the UQ system and then you can't just generate a plan for itself? Like, how do you find a middle ground between that? It's not really, you can’t really do that...
 
 Rafael: As I said, it's a work in progress, so...
 
-Rafael: I accept that. That is a good point that I hadn't thought of. I appreciate your input.  Is there anything else that you anything else that you think like could be? 
+Rafael: I accept that. That is a good point that I hadn't thought of. I appreciate your input. Is there anything else that you anything else that you think like could be? 
 
 Ruby: No, I think it's great. You like it? Yeah, I like it. 
 
@@ -48,7 +50,7 @@ Rafael: Do you think that this makes it more complicated because we've added yet
 
 Ruby: I think if maybe you could like make it a part of timetabling, then that would solve that problem. 
 
-Rafael: Yeah, because what this isn't and this is very important, it doesn't select the courses for you. You still have to go into my SI-net and choose the courses. This just gives you the template. You have to put it in the timetable. Okay, so do you think that this would be helpful provided that students know about it and it's like actively a part of the process instead of just like a sort of like you could grade calculator, right? Like I didn't know about it until somebody told me. Right? Like yeah, like how it…
+Rafael: Yeah, because what this isn't and this is very important, it doesn't select the courses for you. You still have to go into my SI-net and choose the courses. This just gives you the template. You have to put it in the timetable. Okay, so do you think that this would be helpful provided that students know about it and it's like actively a part of the process instead of just like a sort of like you could grade calculator, right? Like I didn't know about it until somebody told me. Right? Like yeah, like how it…
 
 Ruby: I think it's good. Awesome. I would use it. 
 

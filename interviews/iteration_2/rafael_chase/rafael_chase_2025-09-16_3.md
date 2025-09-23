@@ -28,7 +28,7 @@ Hongkai: Like, especially the timetabling rather than course selection.
 
 Rafael: Do you think it would be more beneficial if there was a better way to actually collaborate when you're choosing courses? 
 
-Hongkai: Um, collaborate when choosing, like talking to other people while choosing courses. Yeah.. that’s interesting. Um.  Maybe, like, if you if you had a couple, like, new first year students coming together, they might, none of them might like know what they're doing, right? But, if you did have assistance, like from someone who actually knows, then like choosing courses together, like especially like, if you were in person, like, that would be pretty helpful. 
+Hongkai: Um, collaborate when choosing, like talking to other people while choosing courses. Yeah.. that’s interesting. Um. Maybe, like, if you if you had a couple, like, new first year students coming together, they might, none of them might like know what they're doing, right? But, if you did have assistance, like from someone who actually knows, then like choosing courses together, like especially like, if you were in person, like, that would be pretty helpful. 
 
 Rafael: Yeah, okay. What about, like, course planning? How many terms ahead have you planned? 
 
@@ -40,7 +40,7 @@ Hongkai: yeah
 
 Rafael: Right, okay. 
 
-Hongkai: And since I don't have that many, like electives, I can do, I don't really have any options to move around.  
+Hongkai: And since I don't have that many, like electives, I can do, I don't really have any options to move around.
 
 Rafael: Right, so you would say that you don't really have to plan an advance, then. So is that something you don't stress about then? Like, it's just just done for you, right? 
 

@@ -18,7 +18,7 @@ So if I just go here, then we can see what I've done. So in this case, I've got 
 
 So, you know, but it comes up as, you know, like that you failed it in red, right, when you do. And you know, in the 6s, it's green, that you pass, tick, and then the warning if you fail. So the courses that you're currently doing is that in progress is, you know, all these courses. and then upcoming. 
 
-So courses that are upcoming in my degree. So if I just click down on here, we'll see the pre-requisites for the course, and the earliest commencement date. So in this case, this cause, comma 2048, can only be taken in semester 2.  
+So courses that are upcoming in my degree. So if I just click down on here, we'll see the pre-requisites for the course, and the earliest commencement date. So in this case, this cause, comma 2048, can only be taken in semester 2.
 
 So the early I can take it that is semester 2, 2026. Right. And it's not implemented for the rest of these courses yet, but, you know, that's like the general premise of what will be there. 
 
@@ -26,11 +26,13 @@ All right. So that's this screen, quite basic, so we just go back to home here, 
 
 So if I, you know, check like my major minor, like, you know, first thing, like for pure mathematics, for example, Math 2001 or mathath 2901, and then math 2301, those are all courses that you have to do for that, so it's just like outlining what you have to do, right? Okay. And then for, like artificial intelligence, say in the computer science component of the degree, that's not linked. 
 
-But it basically shows you the course that you have to do it. Like as opposed to this and, you know, in an ideal world, as I showed you before, it would show it would show like the prerequisites and stuff like that. So if we just go back to home and we can now review my plans.  So these are like plans that we've made so you can create a new plan. with, you know, it's like drag and drop, pretty simple. It's just boost stuff around. Anyway, so we go back and we can check, like a saved plan, and so we see the courses that we have here. 
+But it basically shows you the course that you have to do it. Like as opposed to this and, you know, in an ideal world, as I showed you before, it would show it would show like the prerequisites and stuff like that. So if we just go back to home and we can now review my plans. 
+
+So these are like plans that we've made so you can create a new plan. with, you know, it's like drag and drop, pretty simple. It's just boost stuff around. Anyway, so we go back and we can check, like a saved plan, and so we see the courses that we have here. 
 
 If I, like undo and open up the card, we can see you know, the things during the course and like prerequisites for it, stuff like that. As you can see, it's prototype so we don't have everything quite ironed out yet, but this is the journey process and you can plan for a few semesters ahead. Okay. 
 
-Right? And you can save a plan, make new ones, very simple premise, and then, like viewing class reviews, you can search for a course. So in this case, if I click this, we go INFS 1200 research and we will see feedback for it if I want to leave a comment, just enter a comment. Send, and bang and, it does it, and other students can see that.
+Right? And you can save a plan, make new ones, very simple premise, and then, like viewing class reviews, you can search for a course. So in this case, if I click this, we go INFS 1200 research and we will see feedback for it if I want to leave a comment, just enter a comment. Send, and bang and, it does it, and other students can see that.
 
 Like, you can sort it most recent, you, whatever. 
 
@@ -40,7 +42,7 @@ Okay. So that's the general premise of it, you click the exit button here and it
 
 What do you not like? What do you think we can do better? Anything else? 
 
-Hugo: Okay. Alright, um, I love the effective format, I think it's, um. It's simple and it's easy to navigate.  I'd like how kind of all the options, all the abilities of the app kind of link into helping me plan my semesters. I really like the future planning in particular because I've struggled a lot especially online with finding my future courses and figuring out what I'm actually going to be doing as the years progress. I also do think that the ability to see the prerequisites is helpful. However, with the course classes, I think there needs to be a bit more explanation behind the, um completed classes and then possibly a better format for how to display the upcoming and available classes for the future. 
+Hugo: Okay. Alright, um, I love the effective format, I think it's, um. It's simple and it's easy to navigate. I'd like how kind of all the options, all the abilities of the app kind of link into helping me plan my semesters. I really like the future planning in particular because I've struggled a lot especially online with finding my future courses and figuring out what I'm actually going to be doing as the years progress. I also do think that the ability to see the prerequisites is helpful. However, with the course classes, I think there needs to be a bit more explanation behind the, um completed classes and then possibly a better format for how to display the upcoming and available classes for the future. 
 
 Rafael: Okay, so, like, would you say that here in, like, the planning, where you're just like, checking out courses is ineffective, or do you mean more so in, like the actual plan? 
 
@@ -68,7 +70,7 @@ Hugo: No, no, I think it completely removes the chaos. I feel like, I would stil
 
 Rafael: kay. Is there anything else or…? 
 
-Hugo: No, I think that's all good. I think everything else is, um, pretty solid. 
+Hugo: No, I think that's all good. I think everything else is, um, pretty solid. 
 
 Rafael: Alright, thank you. 
 
