@@ -80,7 +80,7 @@ Iteration Two:
 - Our solution aims to (like iteration one) create a more seamless system with additional information that we know students would like based on interviews. 
 
 
-## Evaluation of Hypotheses (Iteration two):
+## Evaluation of Hypotheses (Iteration one):
 
 ### Accepted Hypotheses (Iteration one):
 
@@ -109,9 +109,9 @@ After testing the hypotheses in the business model canvas and the value proposit
 
 
 
-### Evaluation of Hypothesis (Iteration two):
+## Evaluation of Hypothesis (Iteration two):
 
-### Accepted Hypotheses:
+### Accepted Hypotheses (Iteration two):
 "We believed students wished to take the same courses as their friends where possible." We decided to accept this hypothesis as it was found overwhelmingly that most students favour taking courses with friends. Whilst it wasn't necessarily a significant driving factor in course selections, it was still found that students wished to align courses with friends after having completed selections and enrolement. 
 
 Evidence:
@@ -135,6 +135,6 @@ Evidence:
 "It probably would have been helpful while organising however I have memorised the different majors enough that it is no longer necessary"
 [Caleb Yates interview 1](../../interviews/iteration_2/caleb_yates/CALEB_2025_9_10_1.md)
 
-### Rejected Hypotheses:
+### Rejected Hypotheses (iteration two):
 
 In this iteration, it was found that no hypotheses formulated provided contradictory and refuted testimony from interviews. As such, nothing is being refuted in any significant capacity.
