@@ -8,3 +8,4 @@ Our project UQ Plan It aims to solve current UI issues, so that UI will be easy 
 | Uni of Melb My Course Planner | Direct | students (uni-specific) |  | official, accurate | inflexible, isolated |
 | EdStem Discussion Boards | Indirect | classmates | Q&A | Immediate | disorganized |
 | Campusvue | Direct | students | scheduling | combines schedule, tasks, grade in one personal view | not tailored to specific uni degree prerequisites |
+| UQ Planet | Direct | students | unified student profile,visual progress tracker,multi-scenario planning | adaptable,efficient | Data dependent, university reliance, moderation need|
