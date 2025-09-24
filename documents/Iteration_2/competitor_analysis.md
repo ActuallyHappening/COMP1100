@@ -25,3 +25,15 @@ Campusvue        Direct          students     scheduling     combines schedule, 
                                                              tasks,grade in one  to specific
                                                               personal view      uni degree
                                                                                  prerequisites
+
+
+
+# Competitor Analysis
+
+| Competitor | Direct/Indirect | Target | Key Features | Strengths | Weaknesses |
+|------------|----------------|--------|--------------|-----------|------------|
+| Student VIP | Indirect | students | marketplace, textbooks, notes | Network, large active user base | focus is on commerce, not on academic |
+| UQ My Course Planner | Direct | students | validation | authoritative | inflexible |
+| Uni of Melb My Course Planner | Direct | students (uni-specific) |  | official, accurate | inflexible, isolated |
+| EdStem Discussion Boards | Indirect | classmates | Q&A | Immediate | disorganized |
+| Campusvue | Direct | students | scheduling | combines schedule, tasks, grade in one personal view | not tailored to specific uni degree prerequisites |
