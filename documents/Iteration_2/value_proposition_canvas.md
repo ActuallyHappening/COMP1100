@@ -117,12 +117,6 @@ After testing the hypotheses in the business model canvas and the value proposit
 Evidence:
 "Absolutely in fact I've got stat 1301 right now that I specifically chose so I could be with a friend from high school." [Rafael Chase interview 1](../../interviews/iteration_2/rafael_chase/rafael_chase_2025-09-14_1.md)
 
-"We believed that students plan their course in reference to a long-term course plan." We accepted this hypothesis as it was found most students do have a strong course plan. It was found that this was out of both some courses having rigid structures, but also students wanting to know exactly what they will be taken at any given point in their degree. Furthermore, students did agree that this process could incur some level of stress at the prospect of not knowing what will happen. This also isn't to say some students preferred to go with the flow of the degree and take things on a whim as opposed to rigourously planning ahead. On the whole, interviews suggest the formermost argument. 
-
-Evidence:
-In response to "how maby terms ahead have you planned?": "Until I've graduated...I had to in order to make sure I met like the requirements..."
-[Rafael Chase interview 2](../../interviews/iteration_2/rafael_chase/rafael_chase_2025-09-15_2.md)
-
 "We believed students would like a forum to interact with other people who have completed courses they have already completed." This hypothesis was accepted as it was agreed upon by students in interviews to be unanimously. It was found in the interviews that students sometimes struggled with understanding what a course was, what they would be doing and the type of content / assessment required to be completed based off of provided information in course profiles and the like. Students appreciated the possibiliy to talk with other students who have previously completed a course as it would provide them a greater understanding of what would actually happen in a course.
 
 Evidence:
@@ -137,4 +131,4 @@ Evidence:
 
 ### Rejected Hypotheses (iteration two):
 
-In this iteration, it was found that no hypotheses formulated provided contradictory and refuted testimony from interviews. As such, nothing is being refuted in any significant capacity.
+"We believed that students plan their course in reference to a long-term course plan." We rejected this hypothesis as it was found most students were not planning for the long haul. When this was the case, it was often a result of an already rigid plan for a course with little to no wiggle room. Most students revealed they would 'go with the flow' and simply choose courses based on what either their friends were doing, or recommended pairings via the UQ planner. This isn't to say students refrain from long term planning, but the process was generally found to be more short-sided, and limited to one, sometimes two semesters in advance. As a consequence, we decided that this was not a valid hypothesis. 
