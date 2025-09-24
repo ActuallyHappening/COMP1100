@@ -48,8 +48,6 @@ Jonathan:
 
 Liam: *Yeah, and so like on that then, would you refer a system where it's just like always present? like a little description on every single page? Or would you like instead a tutorial on 1st boot up that walks you through how it works and then leaves you to your own devices?* 
 
-*[Third person: Me when my academically challenging degree is academically challenging]* 
-
 Jonathan: 
 >I think, I think probably, I think... I think probably, like, the 1st, like, um, like maybe the 1st time a tutorial. But, like, I don't know if you, like, go like an info button kind of thing. Like having something like that, because it's like, you don't want to see it all the time, because it would really get annoying and get on your nerves. Like, opening every time. There be a pop-up or every time there's like a big chunk of text. But it's like, if you ever forgot, or if it's your 1st time, you'd be like, okay, I'm gonna click the info. Like, that kind of thing? Um, that's probably, I'd say, the best way to go around it. But I think a tutorial 1st time around could also be helpful. But yeah, I wouldn't want it always there. 
 
