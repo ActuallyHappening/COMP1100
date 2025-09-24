@@ -3,7 +3,7 @@
 # Value Proposition Canvas
 
 ### Customer Profile:
-Undergraduate UQ Students doing Bachelor of Computer Science who are planning which courses to enroll in during their course.
+Undergraduate UQ Students commencing in Semester 1 of a year doing Bachelor of Computer Science who are planning which courses to enroll in during their course.
 
 **Customer Jobs:**
 Our customers want to:
