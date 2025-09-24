@@ -3,14 +3,26 @@
  */
 
 import { useStorage } from "@vueuse/core";
+import { computed } from "vue";
 
-export const localState = useStorage(`student-info`, {
-	current: "plan1",
-	plan1: {
-		name: "My first plan",
-		programId: null,
+const defaultState = {
+	current: "Plan 1",
+	plans: {
+		"Plan 1": {
+			name: "My first plan",
+			programId: null,
+		},
 	},
-});
+};
+const _localState = useStorage(`student-info`, defaultState);
+// export const localState = computed(() => _localState ?? defaultState);
+export const localState = _localState;
+
+export const planState = () => {
+	const ret = localState?.value.plans?.[localState.value.current];
+	console.log(`planState`, ret);
+	return ret;
+};
 
 import { Surreal, Table } from "surrealdb";
 
