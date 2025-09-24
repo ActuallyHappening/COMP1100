@@ -28,6 +28,7 @@
 		- Then a (scrollable) list of comments making the available space,
 		- And on the bottom a bar to post your own comment
 
+[Figma presentation link](https://www.figma.com/proto/PnW2aTLoTMUzGnjrT3GJhi/COMP1100-Example-Prototype)
 
 # MVP Test Cards
 Hypothesis: Students would benefit from one place with many classes in the same place, with each course conveniently showing course information
@@ -56,3 +57,25 @@ Therefore, we will ask:
 Would you feel it useful to comment on courses for future students in that manner?
 Would you like a badge for users based on if they are a tutor or lecturer?
 Do you want all people who give a review to be verified UQ students?
+
+# MVP Learning Cards
+Hypothesis: Students would benefit from one place with many classes in the same place, with each course conveniently showing course information
+
+Observation: Students really liked how many courses were laid out all in one place. All students recommended colour coding. One student with insight recommended a badge system for courses contributing to your major or minor
+
+Learning and insights: Students benefit from colour coding their classes
+
+Therefore, we will accept this hypothesis as true
+
+Evidence:
+Caleb Interview 4 & 5
+
+
+Hypothesis: Students would benefit from a multi-user incorporation where they can interact with other students who have previously completed courses they are to take, as well as basing decisions off of what friends are doing, as implemented by us (in-house)
+
+Observation: The simple leave a comment system was sufficient. Students wanted accountability (so that not anybody could comment on every course) but preferred anonymity. Comments should be identified to be from tutors or lecturers if possible
+
+Learning and insights: The simple leave a comment system achieved all the goals students wanted
+
+Evidence:
+Caleb Interview 4 & 5

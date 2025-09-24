@@ -1,40 +1,65 @@
+/**
+ * This file manages the network and localStorage state
+ */
+
 import { useStorage } from "@vueuse/core";
+import { computed } from "vue";
 
-export const localState = useStorage(`student-info`, {
-	studentNumber: null,
-	programCode: null,
-	plans: null,
-});
+const defaultState = {
+	current: "Plan 1",
+	plans: {
+		"Plan 1": {
+			name: "My first plan",
+			programId: null,
+		},
+	},
+};
+const _localState = useStorage(`student-info`, defaultState);
+// export const localState = computed(() => _localState ?? defaultState);
+export const localState = _localState;
 
-export const oldState = useStorage(`old-student-info`, {
-	studentNumber: null,
-	programCode: null,
-	plan: null,
-});
+export const planState = () => {
+	const ret = localState?.value.plans?.[localState.value.current];
+	console.log(`planState`, ret);
+	return ret;
+};
 
 import { Surreal, Table } from "surrealdb";
 
 const db = new Surreal();
 
 // Open a connection and authenticate
+let dbPassword;
+if (typeof process !== "undefined") {
+	// assuming running node directly
+	dbPassword = process.env.COMP1100_PASSWORD;
+} else {
+	// assuming this is running in the browser
+	dbPassword = import.meta.env.VITE_COMP1100_PASSWORD;
+}
 await db.connect(
 	"wss://eager-bee-06aqohg53hq27c0jg11k14gdbk.aws-use1.surreal.cloud",
 	{
 		namespace: "comp1100",
 		database: "master",
-		auth: {
-			username: "comp1100-team10",
-			password: process.env.COMP1100_PASSWORD,
-		},
+		// auth: {
+		// 	username: "im-lazy-user",
+		// 	password: dbPassword,
+		// },
 	},
 );
 
-// read file query.surql
-import { readFile } from "fs/promises";
+export const programs = await db.select(new Table("program"));
+export const courses = await db.select(new Table("course"));
 
-const query = await readFile("./query.surql", "utf8");
+console.log(programs, courses);
 
-const resp = await db.query(query);
-console.log(`resp`, resp);
+// // read file query.surql
+// import { readFile } from "fs/promises";
 
-export const netState = null;
+// const query = await readFile("./query.surql", "utf8");
+
+// const resp = await db.query(query);
+// console.log(`resp`, resp);
+
+// export const netState = null;

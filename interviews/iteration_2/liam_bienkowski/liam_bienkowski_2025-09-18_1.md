@@ -1,8 +1,6 @@
 ### Value Propositions Interview 1
 *Interview can be found [here](https://uq.sharepoint.com/teams/Section_7560_62502/_layouts/15/stream.aspx?id=/teams/Section_7560_62502/Shared%20Documents/Mon_9am_Team_10/liam_bienkowski_audio_recordings/iteration_2/liam_bienkowski_2025-09-18_1.mp3&isDarkMode=true).*
 
-*Metro: Now approaching cultural centre.* 
-
 Liam: *Now Alexander, Do you agree to have this interview recorded?* 
 
 Alex: 
@@ -53,14 +51,10 @@ Liam: *Yeah, so, have you planned any of your courses more than 2 terms in advan
 Alex: 
 >Like, I don't have a setup plan. I have classes, I’d like to do sometime in the next 4 years, but no, I don't have a specific plan at all after like the next 2 semesters. 
 
-*Metro: The next station is South Bank.* 
-
 Liam: *Have you planned all of your courses yourself? Or have you relied on UQ course advisor or a course planner?* 
 
 Alex: 
 >Um, I, the, my primary source is myself, so I go and check the prerequisites of, like, the, um, specialisation I'm interested in, like, those subjects, see which ones are most beneficial, um, and also which ones I'd enjoy. Um, and yeah, which one I need to do to, as proper prerequisites of other subjects, and then afterwards, I go and look at a course plan to, like, compare everything. Yeah, okay, on track, just to make sure. 
-
-*Metro: Now approaching South Bank*
 
 Liam: *Yeah. So would you like to see a system where previous students of a course can leave a note, like, of summary of that course?* 
 
@@ -84,8 +78,6 @@ Alex:
 
 Liam: *Makes sense. And which for a system where core staff are present in the forum? Or not present in their work?* 
 
-*Metro: The next station is Mater Hill*
-
 Alex: 
 >Wait what? 
 
@@ -93,8 +85,6 @@ Liam: *Would you prefer a system where core staff are present in the forums or n
 
 Alex: 
 >I think, like, you could have, um, just like, yeah, well, obviously you have moderators, so like you don't have, um, people going haywire, but I think in terms of like the course staff, um, like, being involved with the reviews, I think they should be able to, um, like, respond, like a developer response on the App Store and stuff to certain, um, reviews. But, like, I don't think the course staff themselves should be able to remove things, 'cause then that just defeats the whole purpose. I think that's a job for, like, a separate team of moderators. 
-
-*Metro: Now arriving at Mater Hill*
 
 Liam: *Yeah, great. And a final few questions now. So have you chosen your major or minor?* 
 
@@ -115,8 +105,6 @@ Liam: *Do you know, of course, like, do you know then what courses you need to c
 
 Alex: 
 >Um, I mean, it's online. There's a lot, but like not off the top of my head, but yes, I know where to go to look at it. I have to look them up to go and check, like, where my, on my degree, which subjects I need to do. 
-
-*Metro: The next station is PA Hospital*
 
 Liam: *And so have you considered what would happen if you were to change majors, like if you were, say, change when you're starting next term? And then what would happen to your course credits?* 
 

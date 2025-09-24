@@ -1,5 +1,4 @@
-import StudentNumberForm from "./components/StudentNumberForm.vue";
-import ProgramForm from "./components/ProgramForm.vue";
+import Home from "./components/Home.vue";
 
 import {
 	createMemoryHistory,
@@ -8,10 +7,10 @@ import {
 } from "vue-router";
 
 const routes = [
-	{ path: `/`, component: StudentNumberForm },
-	{ path: `/onboarding`, component: StudentNumberForm },
-	{ path: `/onboarding/student-number`, component: StudentNumberForm },
-	{ path: `/onboarding/program`, component: ProgramForm },
+	{ path: `/`, component: Home },
+	// { path: `/onboarding`, component: StudentNumberForm },
+	// { path: `/onboarding/student-number`, component: StudentNumberForm },
+	// { path: `/onboarding/program`, component: ProgramForm },
 ];
 
 export const router = createRouter({
