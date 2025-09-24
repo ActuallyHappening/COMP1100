@@ -5,15 +5,11 @@
 import { useStorage } from "@vueuse/core";
 
 export const localState = useStorage(`student-info`, {
-	studentNumber: null,
-	programCode: null,
-	plans: null,
-});
-
-export const oldState = useStorage(`old-student-info`, {
-	studentNumber: null,
-	programCode: null,
-	plan: null,
+	current: "plan1",
+	plan1: {
+		name: "My first plan",
+		programId: null,
+	},
 });
 
 import { Surreal, Table } from "surrealdb";
@@ -41,8 +37,10 @@ await db.connect(
 	},
 );
 
-import query from "../query.surql?raw";
-console.log(query);
+export const programs = await db.select(new Table("program"));
+export const courses = await db.select(new Table("course"));
+
+console.log(programs, courses);
 
 // // read file query.surql
 // import { readFile } from "fs/promises";
