@@ -2,7 +2,7 @@ Our project UQ Planet aims to solve current UI issues, so that UI will be easy t
 ## COMPARISON TABLE
 
 | Competitor | Direct/Indirect | Target | Key Features | Pricing Model| Strengths | Weaknesses |
-|------------|----------------|--------|--------------|-----------|------------|
+|------------|----------------|--------|--------------|-----------|------------|------------|
 | Student VIP | Indirect | students | marketplace, textbooks, notes | Network, large active user base | focus is on commerce, not on academic |
 | UQ My Course Planner | Direct | students | validation | authoritative | inflexible |
 | Uni of Melb My Course Planner | Direct | students (uni-specific) |  | official, accurate | inflexible, isolated |
