@@ -1,3 +1,6 @@
+**For Iteration 1 Test cards, click [here](../iteration_1/test_cards.md)**
+
+### Test Card 1
 **Hypothesis**: people wish to take the same courses as their friends where possible
 
 **Test**: interview students to see if they specifically go out of their way to do the same courses as friends
@@ -14,7 +17,7 @@ Therefore, we will ask:
 5) Do you think it would be more beneficial if there was a way you could better collaborate prior to selecting courses, or do you already confer with friends prior to selecting courses?
 
 
-
+### Test Card 2
 **Hypothesis**: we believe that students plan their course in reference to a long-term course plan
 
 **Test**: we will interview students to see if they are considering how their course should be set out long-term
@@ -31,7 +34,7 @@ Therefore, we will ask:
 5) Have you planned all your courses yourself, or relied on a UQ advisor or course planner?
 
 
-
+### Test Card 3
 **Hypothesis**: Students would like a forum to interact with other people who have completed courses they have already completed
 
 **Test**: We will interview students to find out if this system is desired and deemed as useful.
@@ -47,6 +50,8 @@ Therefore, we will ask:
 4) Would you participate in a system where you aid other students?
 5) Would you prefer a system where course staff are present in the forums or not present in the forums
 
+
+### Test Card 4
 **Hypothesis**: Students don’t understand how their major affects how credit points are counted towards their degree
 
 **Test**: We will interview students to find out if they understand how credit points are counted towards their major

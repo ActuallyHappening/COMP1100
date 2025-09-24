@@ -68,7 +68,8 @@ Learning and insights: Students benefit from colour coding their classes
 Therefore, we will accept this hypothesis as true
 
 Evidence:
-Caleb Interview 4 & 5
+- Caleb Interview 4 & 5
+- "Yeah, I think that would be very helpful. Being able to just have all that information there rather than search around for it, probably would help. Especially like people who don't really understand how to navigate, courses and uni stuff. It would really help them with finding information on stuff that's important to them." - [Liam Bienkowski Iteration 2 Interview 5](../../interviews/iteration_2/liam_bienkowski/liam_bienkowski_2025-09-23_5.md)
 
 
 Hypothesis: Students would benefit from a multi-user incorporation where they can interact with other students who have previously completed courses they are to take, as well as basing decisions off of what friends are doing, as implemented by us (in-house)
@@ -77,5 +78,8 @@ Observation: The simple leave a comment system was sufficient. Students wanted a
 
 Learning and insights: The simple leave a comment system achieved all the goals students wanted
 
+Therefore, we will accept this hypothesis as true
+
 Evidence:
-Caleb Interview 4 & 5
+- Caleb Interview 4 & 5
+- "Um, yeah, I think it would be. Commenting on courses could also give some coordinators some feedback. So they'd understand what the general consensus is around their courses are at the moment and then they can use that feedback to change certain things about courses." - [Liam Bienkowski Iteration 2 Interview 5](../../interviews/iteration_2/liam_bienkowski/liam_bienkowski_2025-09-23_5.md) 
