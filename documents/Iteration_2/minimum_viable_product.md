@@ -28,6 +28,7 @@
 		- Then a (scrollable) list of comments making the available space,
 		- And on the bottom a bar to post your own comment
 
+[Figma presentation link](https://www.figma.com/proto/PnW2aTLoTMUzGnjrT3GJhi/COMP1100-Example-Prototype)
 
 # MVP Test Cards
 Hypothesis: Students would benefit from one place with many classes in the same place, with each course conveniently showing course information
