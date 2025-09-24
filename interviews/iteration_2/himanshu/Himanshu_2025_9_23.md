@@ -1,5 +1,5 @@
 ### Value Propositions Interview 3
-
+*link to interview can be found [here](https://uq.sharepoint.com/:u:/t/Section_7560_62502/EcRbrEucjKpJgO0XbNxrgpwBqHkkEMPpSgIKCZOBhpAD_w)*
 Himanshu:
 *Hey, my name is Himanshu. I'm currently studying bachelor of information technology. So tell me about yourself, and can I record this interview?*
 
