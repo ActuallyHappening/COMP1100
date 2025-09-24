@@ -1,6 +1,17 @@
 <script setup lang="ts">
 import { reactive } from "vue";
-import { localState, planState, programs } from "../state";
+import { localState, planState, programs, defaultPlan } from "../state";
+
+function newPlan() {
+	const planNums = Object.keys(localState.value.plans).map((planString) =>
+		Number(planString.slice(5)),
+	);
+	const max = Math.max(...planNums);
+	const newNum = max + 1;
+	const newPlan = `Plan ${newNum}`;
+	localState.value.plans[newPlan] = defaultPlan(newNum);
+	localState.value.current = newPlan;
+}
 </script>
 
 <template>
@@ -17,6 +28,7 @@ import { localState, planState, programs } from "../state";
 				{{ localState.plans[plan].name }}
 			</option>
 		</select>
+		<button class="btn" @click="newPlan">New Plan</button>
 	</div>
 
 	<!-- Horizontal bar for majors -->
@@ -27,7 +39,9 @@ import { localState, planState, programs } from "../state";
 				name="major-code"
 				id="major-code"
 				:value="planState().programId"
-				@input="($event) => {console.log($event);  planState().programId = $event.target.value}"
+				@input="
+					($event) => (planState().programId = $event.target.value)
+				"
 			>
 				<option value="">Please select a major</option>
 				<option v-for="program in programs" :value="program.id">

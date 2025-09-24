@@ -5,12 +5,16 @@
 import { useStorage } from "@vueuse/core";
 import { computed } from "vue";
 
+export const defaultPlan = (num: number) => ({
+	name: `Plan ${num}`,
+	programId: null,
+});
 const defaultState = {
 	current: "Plan 1",
 	plans: {
 		"Plan 1": {
+			...defaultPlan(1),
 			name: "My first plan",
-			programId: null,
 		},
 	},
 };
@@ -21,6 +25,10 @@ export const localState = _localState;
 export const planState = () => {
 	const ret = localState?.value.plans?.[localState.value.current];
 	console.log(`planState`, ret);
+	if (typeof ret === "undefined") {
+		// REALLY should never hit this but we do?
+		return defaultState;
+	}
 	return ret;
 };
 
