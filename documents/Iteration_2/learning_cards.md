@@ -1,3 +1,4 @@
+**For Iteration 1 Learning cards, click [here](../iteration_1/learning_cards.md)**
 ### Hypothesis: people wish to take the same as their friends where possible
 
 *Observation:* Choosing courses with friends was a secondary priority for most people interviewed, behind completing their course. However some students reported feeling that they would rather co-ordinate with their friends externally.
