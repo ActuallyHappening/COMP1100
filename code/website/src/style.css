@@ -1,0 +1,27 @@
+/* Temp styling for proof of concept */
+.container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin: 0;
+}
+
+#div_1 {
+    background-color: firebrick;
+    width: 33%;
+}
+
+#div_2 {
+    background-color: #51247A;
+    flex-grow: 1;
+}
+
+#div_3{
+    background-color: pink;
+    width: 100%;
+}
+
+#div_4{
+    background-color: navajowhite;
+    width: 100%;
+}

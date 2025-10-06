@@ -52,4 +52,18 @@ function newPlan() {
 		</fieldset>
 	</form>
 	<h1>Hello world!</h1>
+	<div class="container">
+		<div id="div_1">
+			<h1>This is where the courses for selection will be placed</h1>
+		</div>
+		<div id="div_2">
+			<h1>This is where the courses will be placed</h1>
+			<div class="container">
+				<h2 id="div_3">Semester 1</h2>
+			</div>
+			<div class="container">
+				<h2 id="div_4">Semester 2</h2>
+			</div>
+		</div>
+	</div>
 </template>
