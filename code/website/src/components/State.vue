@@ -24,7 +24,7 @@ const _localState = useStorage(`student-info`, defaultState);
 const localState = _localState;
 
 const planState = () => {
-	const ret = localState?.value.plans?.[localState.value.current];
+	const ret = localState.value?.plans?.[localState.value.current];
 	console.log(`planState`, ret);
 	// if (typeof ret === "undefined") {
 	// 	// REALLY should never hit this but we do?
@@ -34,7 +34,7 @@ const planState = () => {
 	return ret;
 };
 const planStateLoaded = () => {
-	return !!planState;
+	return !!localState.value?.plans?.[localState.value.current];
 };
 
 export type Program = {
@@ -109,6 +109,6 @@ provide("state", {
 </script>
 
 <template>
-	<!-- <pre>{{ localState }}</pre> -->
+	<pre>{{ localState }}</pre>
 	<slot v-if="planStateLoaded()" />
 </template>
