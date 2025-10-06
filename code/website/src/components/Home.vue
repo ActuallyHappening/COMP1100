@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { reactive, inject } from "vue";
-import { STATE } from "./State.vue";
-const { localState, planState, programs, defaultPlan } = inject(STATE);
+// import { STATE } from "./State.vue";
+const { localState, planState, programs, defaultPlan } = inject("state");
 
 function newPlan() {
 	const planNums = Object.keys(localState.value.plans).map((planString) =>

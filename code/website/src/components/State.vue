@@ -6,7 +6,7 @@
 import { useStorage } from "@vueuse/core";
 import { computed, provide, onMounted, ref } from "vue";
 
-export const defaultPlan = (num: number) => ({
+const defaultPlan = (num: number) => ({
 	name: `Plan ${num}`,
 	programId: null,
 });
@@ -21,9 +21,9 @@ const defaultState = {
 };
 const _localState = useStorage(`student-info`, defaultState);
 // export const localState = computed(() => _localState ?? defaultState);
-export const localState = _localState;
+const localState = _localState;
 
-export const planState = () => {
+const planState = () => {
 	const ret = localState?.value.plans?.[localState.value.current];
 	console.log(`planState`, ret);
 	// if (typeof ret === "undefined") {
@@ -37,10 +37,27 @@ const planStateLoaded = () => {
 	return !!planState;
 };
 
-const programs = ref(null as );
-const courses = ref(null);
+export type Program = {
+	id: RecordId<string>;
+	code: number;
+	name: string;
+	url: string;
+};
+export type Course = {
+	id: RecordId<string>;
+	code: string;
+	cp: number;
+	name: string;
+	prerequisites: string[];
+	sem_1: boolean;
+	sem_2: boolean;
+	sem_summer: boolean;
+};
 
-import { Surreal, Table } from "surrealdb";
+const programs = ref(null! as Program[]);
+const courses = ref(null! as Course[]);
+
+import { RecordId, Surreal, Table } from "surrealdb";
 
 onMounted(() => {
 	const db = new Surreal();
@@ -68,23 +85,30 @@ onMounted(() => {
 			);
 		})
 		.then(async () => {
-			programs.value = await db.select(new Table("program"));
-			courses.value = await db.select(new Table("course"));
+			programs.value = (await db.select(new Table("program"))) as any;
+			courses.value = (await db.select(new Table("course"))) as any;
+		})
+		.catch((err) => {
+			const error = new Error(`Failed to load data from the database`, {
+				cause: err,
+			});
+			console.error(error);
 		});
 });
 
 console.log(programs, courses);
 
-export const STATE = Symbol("App level state");
-provide(STATE, {
+// export const STATE = Symbol("App level state");
+provide("state", {
 	localState,
 	planState,
 	programs,
 	defaultPlan,
+	courses,
 });
 </script>
 
 <template>
-	<pre>{{ localState }}</pre>
+	<!-- <pre>{{ localState }}</pre> -->
 	<slot v-if="planStateLoaded()" />
 </template>
