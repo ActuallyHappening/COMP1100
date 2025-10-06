@@ -1,8 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import State from "./components/State.vue";
+</script>
 
 <template>
 	<main>
-		<RouterView />
+		<State>
+			<RouterView />
+		</State>
 	</main>
 </template>
 

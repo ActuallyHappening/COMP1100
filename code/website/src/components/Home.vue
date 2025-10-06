@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { reactive } from "vue";
-import { localState, planState, programs, defaultPlan } from "../state";
+import { reactive, inject } from "vue";
+import { STATE } from "./State.vue";
+const { localState, planState, programs, defaultPlan } = inject(STATE);
 
 function newPlan() {
 	const planNums = Object.keys(localState.value.plans).map((planString) =>
@@ -24,7 +25,10 @@ function newPlan() {
 			id="plan-current"
 			v-model="localState.current"
 		>
-			<option v-for="plan in Object.keys(localState.plans)" :value="plan">
+			<option
+				v-for="plan in Object.keys((localState ?? defaultState).plans)"
+				:value="plan"
+			>
 				{{ localState.plans[plan].name }}
 			</option>
 		</select>
