@@ -25,10 +25,7 @@ function newPlan() {
 			id="plan-current"
 			v-model="localState.current"
 		>
-			<option
-				v-for="plan in Object.keys((localState ?? defaultState).plans)"
-				:value="plan"
-			>
+			<option v-for="plan in Object.keys(localState.plans)" :value="plan">
 				{{ localState.plans[plan].name }}
 			</option>
 		</select>
