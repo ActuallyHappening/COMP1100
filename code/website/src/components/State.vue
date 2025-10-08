@@ -63,7 +63,7 @@ function getCourse(code: string): Course | undefined {
 
 import { RecordId, Surreal, Table } from "surrealdb";
 
-onMounted(() => {
+function refresh() {
 	const db = new Surreal();
 	return Promise.resolve()
 		.then(() => {
@@ -98,7 +98,9 @@ onMounted(() => {
 			});
 			console.error(error);
 		});
-});
+}
+
+onMounted(() => refresh());
 
 console.log(programs, courses);
 
@@ -110,6 +112,7 @@ provide("state", {
 	defaultPlan,
 	courses,
 	getCourse,
+	refresh,
 });
 </script>
 
