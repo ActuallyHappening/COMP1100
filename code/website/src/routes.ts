@@ -10,6 +10,8 @@ import {
 
 const routes = [
 	{ path: `/`, component: Home },
+	{ path: `/home`, component: Home },
+	{ path: `/index.html`, component: Home },
 	{ path: `/edit`, component: AdminEdit },
 	{ path: `/courses`, component: CoursesList },
 	// { path: `/onboarding`, component: StudentNumberForm },
