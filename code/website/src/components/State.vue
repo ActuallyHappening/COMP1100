@@ -6,6 +6,8 @@
 import { useStorage } from "@vueuse/core";
 import { computed, provide, onMounted, ref } from "vue";
 
+const debug = useStorage("debug", false);
+
 const defaultPlan = (num: number) => ({
 	name: `Plan ${num}`,
 	programId: null,
@@ -117,6 +119,6 @@ provide("state", {
 </script>
 
 <template>
-	<pre>{{ localState }}</pre>
+	<pre v-if="debug">{{ localState }}</pre>
 	<slot v-if="planStateLoaded()" />
 </template>

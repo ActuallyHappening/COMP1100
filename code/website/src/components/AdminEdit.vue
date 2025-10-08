@@ -6,7 +6,7 @@ import { RecordId, Surreal, Table } from "surrealdb";
 import CoursesList from "./CoursesList.vue";
 import Course from "./Course.vue";
 
-const { programs, courses } = inject("state");
+const { programs, courses, refresh: refreshState } = inject("state");
 
 const storedPassword = useStorage(`db-password`, ``);
 const adminDb = ref(undefined as undefined | Surreal);
@@ -41,6 +41,7 @@ onMounted(() => {
 				cause: err,
 			});
 			console.error(error);
+			messageError(error.message);
 		});
 });
 
@@ -69,22 +70,35 @@ const addCourseState = reactive({
 	prerequisites: {},
 });
 function addCourse() {
+	const prerequisites = Object.keys(addCourseState.prerequisites)
+		.filter((code) => addCourseState.prerequisites[code])
+		.map((code) => new RecordId("course", code.toLowerCase()));
+
 	const newCourse = {
-		...addCourseState,
-		prerequisites: Object.keys(addCourseState.prerequisites).filter(
-			(code) => addCourseState.prerequisites[code],
-		),
-		id: new RecordId("course", addCourseState.code),
+		code: addCourseState.code.toUpperCase(),
+		cp: addCourseState.cp,
+		name: addCourseState.name,
+		sem_1: addCourseState.sem_1,
+		sem_2: addCourseState.sem_2,
+		sem_summer: addCourseState.sem_summer,
+		prerequisites,
+		id: new RecordId("course", addCourseState.code.toLowerCase()),
 	};
 	return Promise.resolve()
+		.then(() => {
+			console.info(`Inserting`, structuredClone(newCourse));
+		})
 		.then(() => {
 			return adminDb.value.insert("course", newCourse);
 		})
 		.then(() => {
 			messageSuccess("Added course");
+			refreshState();
 		})
-		.catch(() => {
-			messageError("Failed to add course :(");
+		.catch((err) => {
+			const error = new Error(`Failed to add course`, { cause: err });
+			console.error(error);
+			messageError(error.message);
 		});
 }
 </script>
