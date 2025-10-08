@@ -57,6 +57,10 @@ export type Course = {
 const programs = ref(null! as Program[]);
 const courses = ref(null! as Course[]);
 
+function getCourse(code: string): Course | undefined {
+	return courses.value.find((course) => course.code == code);
+}
+
 import { RecordId, Surreal, Table } from "surrealdb";
 
 onMounted(() => {
@@ -105,6 +109,7 @@ provide("state", {
 	programs,
 	defaultPlan,
 	courses,
+	getCourse,
 });
 </script>
 

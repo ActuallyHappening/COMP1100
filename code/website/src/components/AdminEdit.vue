@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useStorage } from "@vueuse/core";
-import { inject, onMounted, ref } from "vue";
+import { inject, onMounted, ref, reactive } from "vue";
 import { RecordId, Surreal, Table } from "surrealdb";
 
 const { programs, courses } = inject("state");
@@ -22,6 +22,8 @@ onMounted(() => {
 					namespace: "comp1100",
 					database: "master",
 					auth: {
+						namespace: "comp1100",
+						database: "master",
 						username: "team",
 						password: storedPassword.value,
 					},
@@ -39,7 +41,7 @@ onMounted(() => {
 		});
 });
 
-const addCourse = computed({
+const addCourseState = reactive({
 	code: undefined,
 	cp: 2,
 	name: undefined,
@@ -53,7 +55,24 @@ function addCourse() {}
 <template>
 	<h2>Add a course</h2>
 	<form @submit.prevent="addCourse">
-		<label for="addCourse-code">
-		<input type="text" id="addCourse-code" v-model="addCourse.code" />
+		<label for="addCourse-code"> Course Code ABCD1234 </label>
+		<input
+			type="text"
+			id="addCourse-code"
+			v-model="addCourseState.code"
+			placeholder="MATH1051"
+		/>
+
+		<label for="addCourse-name">Course name</label>
+		<input
+			type="text"
+			id="addCourse-name"
+			v-model="addCourseState.name"
+			placeholder="Advanced Discrete Math"
+		/>
 	</form>
+
+	<button @click="storedPassword = ``">
+		Reset the db password if you typed the wrong password
+	</button>
 </template>
