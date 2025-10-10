@@ -12,6 +12,7 @@ const debug = useStorage("debug", false);
 const defaultPlan = (num: number) => ({
 	name: `Plan ${num}`,
 	programId: null,
+	/** An additive list of all program requirements selected by the user, even for irrelevant majors / programs */
 	programRequirementsSelected: [],
 });
 const defaultState = {
@@ -37,15 +38,13 @@ const planState = () => {
 	// }
 	return ret;
 };
-const planStateLoaded = () => {
-	return !!localState.value?.plans?.[localState.value.current];
-};
 
 export type Program = {
 	id: RecordId<string>;
 	code: number;
 	name: string;
 	url: string;
+	program_requirements: ProgramRequirement[][];
 };
 export type Course = {
 	id: RecordId<string>;
@@ -57,18 +56,24 @@ export type Course = {
 	sem_2: boolean;
 	sem_summer: boolean;
 };
-export type ProgramRequirements = {
+export type ProgramRequirement = {
 	id: RecordId<string>;
 	name: string;
 	short_name: string | undefined;
 	required_cp: number | undefined;
-	sub_requirements: ProgramRequirements[][] | undefined;
+	sub_requirements: ProgramRequirement[][] | undefined;
 	course_options: Course[][] | undefined;
 };
 
 const programs = ref(null! as Program[]);
 const courses = ref(null! as Course[]);
-const program_requirements = ref(null! as ProgramRequirements[]);
+const program_requirements = ref(null! as ProgramRequirement[]);
+
+function getCurrentProgram(): Program | undefined {
+	return programs.value.find(
+		(program) => program.id === planState().programId,
+	);
+}
 
 function getCourse(code: string): Course | undefined {
 	return courses.value.find((course) => course.code == code);
@@ -136,18 +141,32 @@ onMounted(() => refresh());
 console.log(programs, courses);
 
 // export const STATE = Symbol("App level state");
-provide("state", {
+const provided_export = {
+	debug,
 	localState,
 	planState,
 	programs,
+	getCurrentProgram,
 	defaultPlan,
 	courses,
 	getCourse,
+	program_requirements,
 	refresh,
-});
+};
+export type ProvidedExport = typeof provided_export;
+provide("state", provided_export);
+
+const fullyLoaded = () => {
+	return (
+		!!localState.value?.plans?.[localState.value.current] &&
+		!!programs.value &&
+		!!courses.value &&
+		!!program_requirements.value
+	);
+};
 </script>
 
 <template>
 	<pre v-if="debug">{{ localState }}</pre>
-	<slot v-if="planStateLoaded()" />
+	<slot v-if="fullyLoaded()" />
 </template>

@@ -1,7 +1,16 @@
 <script setup lang="ts">
 import { reactive, inject } from "vue";
+import type { ProvidedExport } from "./State.vue";
+import ProgramReq from "./ProgramReq.vue";
 // import { STATE } from "./State.vue";
-const { localState, planState, programs, defaultPlan } = inject("state");
+const {
+	localState,
+	planState,
+	programs,
+	getCurrentProgram,
+	defaultPlan,
+	program_requirements,
+} = inject("state") as ProvidedExport;
 
 function newPlan() {
 	const planNums = Object.keys(localState.value.plans).map((planString) =>
@@ -12,6 +21,11 @@ function newPlan() {
 	const newPlan = `Plan ${newNum}`;
 	localState.value.plans[newPlan] = defaultPlan(newNum);
 	localState.value.current = newPlan;
+}
+
+function topLevelProgramReqs() {
+	const chosenProgramRequirements = planState()?.programRequirementsSelected;
+	const topLevelChoices = getCurrentProgram()?.program_requirements;
 }
 </script>
 
@@ -52,9 +66,14 @@ function newPlan() {
 		</fieldset>
 	</form>
 	<h1>Hello world!</h1>
-	
-	<!-- Major picker -->
-	
+
+	<!-- Top level program_requirement picker, e.g. between type: maj, and type: nomaj -->
+	<ProgramReq
+		v-for="(reqlist, index) in getCurrentProgram()?.program_requirements"
+		:key="!reqlist[0] ? undefined : reqlist[0].id.id.toString()"
+		:index="index"
+	/>
+
 	<div class="container">
 		<div id="div_1">
 			<h1>This is where the courses for selection will be placed</h1>
