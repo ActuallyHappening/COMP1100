@@ -27,31 +27,41 @@ function newPlan() {
 <template>
 	<!-- Top bar for plans  -->
 	<div id="header" class="container-fluid m-auto">
-        <div class="row purple-bg">
-            <div class="col-3">
-                <h1>UQ Planit</h1>
-            </div>
-            <div class="col-6 text-center align-content-center">
+		<div class="row purple-bg">
+			<div class="col-3">
+				<h1>UQ Planit</h1>
+			</div>
+			<div class="col-6 text-center align-content-center">
 				<!-- Editable title but difficult to communicate, I think an edit symbol that is overlayed but disappears when editing would be ideal -->
-                <h2><input type="text" id="plan-name" v-model="planState().name" class="border-0 purple-bg text-center" /></h2> 
-            </div>
-            <div class="col-2 text-end align-content-center">
-                <select
-                    name="plan-current"
-                    id="plan-current"
-                    v-model="localState.current"
-                >
-                    <option v-for="plan in Object.keys(localState.plans)" :value="plan">
-                        {{ localState.plans[plan].name }}
-                    </option>
-                </select>
-            </div>
-            <div class="col-1">
-                <button class="btn" @click="newPlan">New Plan</button>
-            </div>
-        </div>
-    </div>
-	
+				<h2>
+					<input
+						type="text"
+						id="plan-name"
+						v-model="planState().name"
+						class="border-0 purple-bg text-center"
+					/>
+				</h2>
+			</div>
+			<div class="col-2 text-end align-content-center">
+				<select
+					name="plan-current"
+					id="plan-current"
+					v-model="localState.current"
+				>
+					<option
+						v-for="plan in Object.keys(localState.plans)"
+						:value="plan"
+					>
+						{{ localState.plans[plan].name }}
+					</option>
+				</select>
+			</div>
+			<div class="col-1">
+				<button class="btn" @click="newPlan">New Plan</button>
+			</div>
+		</div>
+	</div>
+
 	<div class="container-fluid">
 		<label for="plan-name">Plan name:</label>
 		<input type="text" id="plan-name" v-model="planState().name" />
@@ -112,8 +122,8 @@ function newPlan() {
 </template>
 
 <style scoped>
-.purple-bg{
-    background-color: mediumpurple;
+.purple-bg {
+	background-color: mediumpurple;
 }
 /* Temp styling for proof of concept */
 .container {
