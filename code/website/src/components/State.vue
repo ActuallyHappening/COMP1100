@@ -4,11 +4,16 @@
  */
 
 import { useStorage } from "@vueuse/core";
-import { computed, provide, onMounted, ref } from "vue";
+import { computed, provide, onMounted, ref, reactive } from "vue";
 import _ from "lodash";
 
 const debug = useStorage("debug", false);
 
+export type PlanState = {
+	name: string;
+	programId: string;
+	programRequirementsSelected: string[];
+};
 const defaultPlan = (num: number) => ({
 	name: `Plan ${num}`,
 	programId: null,
@@ -24,19 +29,26 @@ const defaultState = {
 		},
 	},
 };
-const _localState = useStorage(`student-info`, defaultState);
+const _localState = useStorage(`student-info`, reactive(defaultState));
 // export const localState = computed(() => _localState ?? defaultState);
 const localState = _localState;
 
-const planState = () => {
+const planState = (): PlanState | undefined => {
 	const ret = localState.value?.plans?.[localState.value.current];
-	console.log(`planState`, ret);
+	// console.log(`planState`, ret);
 	// if (typeof ret === "undefined") {
 	// 	// REALLY should never hit this but we do?
 	// 	console.info(`Returning default plan`, defaultPlan(-1));
 	// 	return defaultPlan(-1);
 	// }
 	return ret;
+};
+const getCurrentPlanState = (): PlanState => {
+	const ret = planState();
+	if (!ret) {
+		console.error(`getCurrentPlanState returned undefined`);
+	}
+	return ret!;
 };
 
 export type Program = {
@@ -141,6 +153,7 @@ const provided_export = {
 	debug,
 	localState,
 	planState,
+	getCurrentPlanState,
 	programs,
 	getCurrentProgram,
 	defaultPlan,
