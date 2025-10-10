@@ -11,6 +11,7 @@ const debug = useStorage("debug", false);
 const defaultPlan = (num: number) => ({
 	name: `Plan ${num}`,
 	programId: null,
+	programRequirementsSelected: [],
 });
 const defaultState = {
 	current: "Plan 1",

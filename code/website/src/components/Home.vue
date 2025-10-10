@@ -52,6 +52,9 @@ function newPlan() {
 		</fieldset>
 	</form>
 	<h1>Hello world!</h1>
+	
+	<!-- Major picker -->
+	
 	<div class="container">
 		<div id="div_1">
 			<h1>This is where the courses for selection will be placed</h1>
@@ -67,3 +70,33 @@ function newPlan() {
 		</div>
 	</div>
 </template>
+
+<style scoped>
+/* Temp styling for proof of concept */
+.container {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	margin: 0;
+}
+
+#div_1 {
+	background-color: firebrick;
+	width: 33%;
+}
+
+#div_2 {
+	background-color: #51247a;
+	flex-grow: 1;
+}
+
+#div_3 {
+	background-color: pink;
+	width: 100%;
+}
+
+#div_4 {
+	background-color: navajowhite;
+	width: 100%;
+}
+</style>
