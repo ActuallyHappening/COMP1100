@@ -5,6 +5,7 @@
 
 import { useStorage } from "@vueuse/core";
 import { computed, provide, onMounted, ref } from "vue";
+import _ from "lodash";
 
 const debug = useStorage("debug", false);
 
@@ -56,9 +57,18 @@ export type Course = {
 	sem_2: boolean;
 	sem_summer: boolean;
 };
+export type ProgramRequirements = {
+	id: RecordId<string>;
+	name: string;
+	short_name: string | undefined;
+	required_cp: number | undefined;
+	sub_requirements: ProgramRequirements[][] | undefined;
+	course_options: Course[][] | undefined;
+};
 
 const programs = ref(null! as Program[]);
 const courses = ref(null! as Course[]);
+const program_requirements = ref(null! as ProgramRequirements[]);
 
 function getCourse(code: string): Course | undefined {
 	return courses.value.find((course) => course.code == code);
@@ -91,15 +101,33 @@ function refresh() {
 				},
 			);
 		})
-		.then(async () => {
-			programs.value = (await db.select(new Table("program"))) as any;
-			courses.value = (await db.select(new Table("course"))) as any;
-		})
+		.then(() =>
+			Promise.all([
+				db
+					.select(new Table("program"))
+					.then((data) => (programs.value = data as any)),
+				db
+					.select(new Table("course"))
+					.then((data) => (courses.value = data as any)),
+				db
+					.select(new Table("program_requirement"))
+					.then((data) => (program_requirements.value = data as any)),
+			]),
+		)
 		.catch((err) => {
 			const error = new Error(`Failed to load data from the database`, {
 				cause: err,
 			});
 			console.error(error);
+		})
+		.then(() => {
+			console.info(`Successfully loaded all information from the db:`);
+			console.info(`programs`, _.cloneDeep(programs.value));
+			console.info(`courses`, _.cloneDeep(courses.value));
+			console.info(
+				`program_requirement`,
+				_.cloneDeep(program_requirements.value),
+			);
 		});
 }
 
