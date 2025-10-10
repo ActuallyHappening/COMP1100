@@ -76,14 +76,28 @@ const choseReq = () => {
 	$debug(
 		`Chosing`,
 		chosen,
-		_.cloneDeep(getCurrentPlanState().programRequirementsSelected),
+		// _.cloneDeep(getCurrentPlanState().programRequirementsSelected),
 	);
-	getCurrentPlanState().programRequirementsSelected.push(chosen);
-	$debug(
-		`Chosen`,
-		chosen,
-		_.cloneDeep(getCurrentPlanState().programRequirementsSelected),
+	// remove conflicting choices, then add the current choice
+	const __allOptions = allOptions();
+	if (!__allOptions) throw TypeError();
+	const _allOptions = new Set(
+		__allOptions.map((option) => option.toString()),
 	);
+	if (!_allOptions) throw TypeError();
+
+	const _chosen = new Set([chosen]);
+	const current = new Set(getCurrentPlanState().programRequirementsSelected);
+
+	// current = current - (allOptions - chosen) + chosen
+	getCurrentPlanState().programRequirementsSelected = [
+		...current.difference(_allOptions).union(_chosen),
+	];
+	// $debug(
+	// 	`Chosen`,
+	// 	chosen,
+	// 	// _.cloneDeep(getCurrentPlanState().programRequirementsSelected),
+	// );
 };
 watch(selectedRequirement, choseReq);
 </script>
