@@ -13,8 +13,12 @@ const {
 } = inject("state") as ProvidedExport;
 
 const props = defineProps({
-	index: { type: Number },
+	index: { type: Number, required: true },
 });
+
+const allOptions = () => {
+	getCurrentProgram()?.program_requirements[props.index];
+};
 </script>
 
 <template>

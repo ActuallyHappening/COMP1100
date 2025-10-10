@@ -22,11 +22,6 @@ function newPlan() {
 	localState.value.plans[newPlan] = defaultPlan(newNum);
 	localState.value.current = newPlan;
 }
-
-function topLevelProgramReqs() {
-	const chosenProgramRequirements = planState()?.programRequirementsSelected;
-	const topLevelChoices = getCurrentProgram()?.program_requirements;
-}
 </script>
 
 <template>
@@ -70,7 +65,7 @@ function topLevelProgramReqs() {
 	<!-- Top level program_requirement picker, e.g. between type: maj, and type: nomaj -->
 	<ProgramReq
 		v-for="(reqlist, index) in getCurrentProgram()?.program_requirements"
-		:key="!reqlist[0] ? undefined : reqlist[0].id.id.toString()"
+		:key="!reqlist[0] ? undefined : reqlist[0].id.toString()"
 		:index="index"
 	/>
 

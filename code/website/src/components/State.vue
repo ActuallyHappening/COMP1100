@@ -44,7 +44,7 @@ export type Program = {
 	code: number;
 	name: string;
 	url: string;
-	program_requirements: ProgramRequirement[][];
+	program_requirements: RecordId<string>[];
 };
 export type Course = {
 	id: RecordId<string>;
@@ -61,8 +61,8 @@ export type ProgramRequirement = {
 	name: string;
 	short_name: string | undefined;
 	required_cp: number | undefined;
-	sub_requirements: ProgramRequirement[][] | undefined;
-	course_options: Course[][] | undefined;
+	sub_requirements: RecordId<string>[] | undefined;
+	course_options: RecordId<string>[][] | undefined;
 };
 
 const programs = ref(null! as Program[]);
@@ -70,9 +70,17 @@ const courses = ref(null! as Course[]);
 const program_requirements = ref(null! as ProgramRequirement[]);
 
 function getCurrentProgram(): Program | undefined {
-	return programs.value.find(
-		(program) => program.id === planState().programId,
+	const ret = programs.value.find(
+		(program) => program.id.toString() === planState().programId,
 	);
+	if (!ret) {
+		console.info(
+			`getCurrentProgram returned undefined`,
+			_.cloneDeep(programs.value),
+			planState().programId,
+		);
+	}
+	return ret;
 }
 
 function getCourse(code: string): Course | undefined {
@@ -85,24 +93,12 @@ function refresh() {
 	const db = new Surreal();
 	return Promise.resolve()
 		.then(() => {
-			// Open a connection and authenticate
-			let dbPassword;
-			if (typeof process !== "undefined") {
-				// assuming running node directly
-				dbPassword = process.env.COMP1100_PASSWORD;
-			} else {
-				// assuming this is running in the browser
-				dbPassword = import.meta.env.VITE_COMP1100_PASSWORD;
-			}
 			return db.connect(
 				"wss://eager-bee-06aqohg53hq27c0jg11k14gdbk.aws-use1.surreal.cloud",
 				{
 					namespace: "comp1100",
 					database: "master",
-					// auth: {
-					// 	username: "im-lazy-user",
-					// 	password: dbPassword,
-					// },
+					// guest auth
 				},
 			);
 		})
