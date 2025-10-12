@@ -98,12 +98,18 @@ function newPlan() {
 	</form>
 	<h1>Hello world!</h1>
 
-	<!-- Top level program_requirement picker, e.g. between type: maj, and type: nomaj -->
-	<ProgramReq
-		v-for="(reqlist, index) in getCurrentProgram()?.program_requirements"
-		:key="!reqlist[0] ? undefined : reqlist[0].id.toString()"
-		:index="index"
-	/>
+	<table>
+		<!-- Top level program_requirement picker, e.g. between type: maj, and type: nomaj -->
+		<thead>
+			<th
+				v-for="(reqlist, index) in getCurrentProgram()
+					?.program_requirements"
+				:key="!reqlist[0] ? undefined : reqlist[0].id.toString()"
+			>
+				<ProgramReq :index="index" />
+			</th>
+		</thead>
+	</table>
 
 	<div class="container">
 		<div id="div_1">
