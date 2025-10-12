@@ -82,17 +82,30 @@ function newPlan() {
 		<fieldset>
 			<!-- v-model="planState().programId" -->
 			<select
-				name="major-code"
-				id="major-code"
+				name="course-code"
+				id="course-code"
 				:value="planState().programId"
 				@input="
 					($event) => (planState().programId = $event.target.value)
 				"
 			>
-				<option value="">Please select a major</option>
+				<option value="">Please select a course</option>
 				<option v-for="program in programs" :value="program.id">
 					{{ program.name }}
 				</option>
+			</select>
+			<select
+				name="major-code"
+				id="major-code"
+				:value="planState().majorId"
+				@input="
+					($event) => (planState().majorId = $event.target.value)
+				"
+			>
+			<option value="">Please select a major</option>
+			<option v-for="major in program_requirements" :value="major.id">
+				{{ major.name }}
+			</option>
 			</select>
 		</fieldset>
 	</form>

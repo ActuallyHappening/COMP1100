@@ -12,6 +12,7 @@ const debug = useStorage("debug", false);
 export type PlanState = {
 	name: string;
 	programId: string;
+	majorId: string;
 	programRequirementsSelected: string[];
 };
 const defaultPlan = (num: number) => ({
