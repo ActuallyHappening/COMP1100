@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, inject } from "vue";
+import { reactive, inject, computed } from "vue";
 import type { ProvidedExport } from "./State.vue";
 import ProgramReq from "./ProgramReq.vue";
 // import { STATE } from "./State.vue";
@@ -93,19 +93,6 @@ function newPlan() {
 				<option v-for="program in programs" :value="program.id">
 					{{ program.name }}
 				</option>
-			</select>
-			<select
-				name="major-code"
-				id="major-code"
-				:value="planState().majorId"
-				@input="
-					($event) => (planState().majorId = $event.target.value)
-				"
-			>
-			<option value="">Please select a major</option>
-			<option v-for="major in program_requirements" :value="major.id">
-				{{ major.name }}
-			</option>
 			</select>
 		</fieldset>
 	</form>

@@ -32,7 +32,7 @@ const allOptionsLoaded = (): ProgramRequirement[] | undefined => {
 		return ret;
 	});
 };
-const selectedRequirement = ref(null as null | string);
+const selectedRequirement = ref("" as string);
 const chosenOption = (): string | undefined => {
 	const _allOptions = new Set(allOptions().map((id) => id.toString()));
 	const desiredRequirements = new Set(
@@ -71,6 +71,7 @@ const chosenOption = (): string | undefined => {
 const choseReq = () => {
 	const chosen = selectedRequirement.value;
 	if (!chosen) {
+		return;
 		throw new TypeError();
 	}
 	$debug(
@@ -108,6 +109,7 @@ watch(selectedRequirement, choseReq);
 	<!-- <pre v-if="debug"> {{ allOptionsLoaded() }}</pre> -->
 	<template v-if="chosenOption()"> </template>
 	<select v-model="selectedRequirement">
+		<option value="" disabled>Choose your major</option>
 		<option
 			v-for="option in allOptionsLoaded()"
 			:key="option.id.toString()"
