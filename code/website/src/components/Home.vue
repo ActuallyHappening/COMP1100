@@ -56,7 +56,7 @@ function newPlan() {
 					</option>
 				</select>
 			</div>
-			<div class="col-1">
+			<div class="col-1 align-content-center">
 				<button class="btn" @click="newPlan">New Plan</button>
 			</div>
 		</div>
@@ -75,6 +75,44 @@ function newPlan() {
 			</option>
 		</select>
 		<button class="btn" @click="newPlan">New Plan</button>
+	</div>
+
+	<div class="container-fluid">
+		<form action="#" @submit.prevent="() => {}">
+			<div class="input-group">
+				<span class="input-group-text">Year</span>
+				<input type="number" class="input-group-text" placeholder="2025" disabled>
+				<span class="input-group-text">Course</span>
+				<select
+					class="form-select"
+					name="course-code"
+					id="course-code"
+					:value="planState().programId"
+					@input="
+						($event) => (planState().programId = $event.target.value)
+					"
+				>
+					<option value="">Please select a course</option>
+					<option v-for="program in programs" :value="program.id">
+						{{ program.name }}
+					</option>
+				</select>
+				<span class="input-group-text">Major</span>
+				<select
+					name="major-code"
+					id="major-code"
+					:value="planState().majorId"
+					@input="
+						($event) => (planState().majorId = $event.target.value)
+					"
+				>
+				<option value="">Please select a major</option>
+				<option v-for="major in program_requirements" :value="major.id">
+					{{ major.name }}
+				</option>
+				</select>
+			</div>
+		</form>
 	</div>
 
 	<!-- Horizontal bar for majors -->
@@ -135,7 +173,7 @@ function newPlan() {
 </template>
 
 <style scoped>
-.purple-bg {
+.purple-bg { /* Change to UQ colours pls */
 	background-color: mediumpurple;
 }
 /* Temp styling for proof of concept */
