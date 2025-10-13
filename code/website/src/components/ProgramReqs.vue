@@ -3,7 +3,6 @@ import { reactive, inject, ref, watch } from "vue";
 import type { ProvidedExport } from "./State.vue";
 import type { ProgramRequirement } from "./State.vue";
 import _ from "lodash";
-// import { STATE } from "./State.vue";
 const {
 	debug,
 	localState,

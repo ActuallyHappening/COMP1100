@@ -15,12 +15,13 @@ export type PlanState = {
 	majorId: string;
 	programRequirementsSelected: string[];
 };
-const defaultPlan = (num: number) => ({
-	name: `Plan ${num}`,
-	programId: null,
-	/** An additive list of all program requirements selected by the user, even for irrelevant majors / programs */
-	programRequirementsSelected: [],
-});
+const defaultPlan = (num: number) =>
+	_.cloneDeep({
+		name: `Plan ${num}`,
+		programId: null,
+		/** An additive list of all program requirements selected by the user, even for irrelevant majors / programs */
+		programRequirementsSelected: [],
+	});
 const defaultState = {
 	current: "Plan 1",
 	plans: {
@@ -30,9 +31,15 @@ const defaultState = {
 		},
 	},
 };
-const _localState = useStorage(`student-info`, reactive(defaultState));
+const _localState = useStorage(
+	`student-info`,
+	reactive(_.cloneDeep(defaultState)),
+);
 // export const localState = computed(() => _localState ?? defaultState);
 const localState = _localState;
+const reset = () => {
+	localState.value = _.cloneDeep(defaultState);
+};
 
 const planState = (): PlanState | undefined => {
 	const ret = localState.value?.plans?.[localState.value.current];
@@ -179,4 +186,7 @@ const fullyLoaded = () => {
 <template>
 	<pre v-if="debug">{{ localState }}</pre>
 	<slot v-if="fullyLoaded()" />
+	<button v-if="debug" @click="reset">
+		Reset (if not working or updating your version)
+	</button>
 </template>
