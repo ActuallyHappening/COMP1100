@@ -27,7 +27,7 @@ const top_level_selected = reactive({});
 </script>
 
 <template>
-	<!-- Top bar for plans  -->
+	<!-- Top bars for plans  -->
 	<div id="header" class="container-fluid m-auto">
 		<div class="row purple-bg">
 			<div class="col-3">
@@ -42,6 +42,7 @@ const top_level_selected = reactive({});
 						v-model="planState().name"
 						class="border-0 purple-bg text-center"
 					/>
+					<span>✎</span>
 				</h2>
 			</div>
 			<div class="col-2 text-end align-content-center">
@@ -64,6 +65,7 @@ const top_level_selected = reactive({});
 		</div>
 	</div>
 
+	<!--
 	<div class="container-fluid">
 		<label for="plan-name">Plan name:</label>
 		<input type="text" id="plan-name" v-model="planState().name" />
@@ -78,6 +80,8 @@ const top_level_selected = reactive({});
 		</select>
 		<button class="btn" @click="newPlan">New Plan</button>
 	</div>
+	-->
+
 
 	<div class="container-fluid">
 		<form action="#" @submit.prevent="() => {}">
@@ -105,8 +109,11 @@ const top_level_selected = reactive({});
 						{{ program.name }}
 					</option>
 				</select>
-				<span class="input-group-text">Major</span>
-				<select
+				<span class="input-group-text">Major option</span> 
+				<!-- make this part disabled until a major is selected -->
+				<!-- disabled-->
+				<select 
+					class="form-select"
 					name="major-code"
 					id="major-code"
 					:value="planState().majorId"
@@ -114,7 +121,7 @@ const top_level_selected = reactive({});
 						($event) => (planState().majorId = $event.target.value)
 					"
 				>
-					<option value="">Please select a major</option>
+					<option value="" hidden selected>Please select</option>
 					<option
 						v-for="major in program_requirements"
 						:value="major.id"
@@ -122,14 +129,21 @@ const top_level_selected = reactive({});
 						{{ major.name }}
 					</option>
 				</select>
+				<span class="input-group-text">Minor option</span>
+				<select
+					class="form-select"
+					disabled
+				>
+					<option hidden selected>Please select</option>
+				</select>
 			</div>
 		</form>
 	</div>
 
-	<!-- Horizontal bar for majors -->
+	<!-- Horizontal bar for majors
 	<form action="#" @submit.prevent="() => {}">
 		<fieldset>
-			<!-- v-model="planState().programId" -->
+			<!-- v-model="planState().programId"
 			<select
 				name="course-code"
 				id="course-code"
@@ -145,6 +159,7 @@ const top_level_selected = reactive({});
 			</select>
 		</fieldset>
 	</form>
+	-->
 	<h1>Guys! Guys! Guys!</h1>
 
 	<!-- Top level program_requirement picker, e.g. between type: maj, and type: nomaj -->
