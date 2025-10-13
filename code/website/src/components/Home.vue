@@ -43,7 +43,7 @@ const top_level_selected = reactive({} as { [key: number]: string });
 						v-model="planState().name"
 						class="border-0 purple-bg text-center"
 					/>
-					<span>✎</span>
+					<label for="plan-name"><span>✎</span></label>
 				</h2>
 			</div>
 			<div class="col-2 text-end align-content-center">
@@ -83,7 +83,6 @@ const top_level_selected = reactive({} as { [key: number]: string });
 	</div>
 	-->
 
-
 	<div class="container-fluid">
 		<form action="#" @submit.prevent="() => {}">
 			<div class="input-group">
@@ -109,33 +108,6 @@ const top_level_selected = reactive({} as { [key: number]: string });
 					<option v-for="program in programs" :value="program.id">
 						{{ program.name }}
 					</option>
-				</select>
-				<span class="input-group-text">Major option</span> 
-				<!-- make this part disabled until a major is selected -->
-				<!-- disabled-->
-				<select 
-					class="form-select"
-					name="major-code"
-					id="major-code"
-					:value="planState().majorId"
-					@input="
-						($event) => (planState().majorId = $event.target.value)
-					"
-				>
-					<option value="" hidden selected>Please select</option>
-					<option
-						v-for="major in program_requirements"
-						:value="major.id"
-					>
-						{{ major.name }}
-					</option>
-				</select>
-				<span class="input-group-text">Minor option</span>
-				<select
-					class="form-select"
-					disabled
-				>
-					<option hidden selected>Please select</option>
 				</select>
 			</div>
 		</form>
