@@ -22,6 +22,8 @@ function newPlan() {
 	localState.value.plans[newPlan] = defaultPlan(newNum);
 	localState.value.current = newPlan;
 }
+
+const top_level_selected = reactive({});
 </script>
 
 <template>
@@ -81,7 +83,12 @@ function newPlan() {
 		<form action="#" @submit.prevent="() => {}">
 			<div class="input-group">
 				<span class="input-group-text">Year</span>
-				<input type="number" class="input-group-text" placeholder="2025" disabled>
+				<input
+					type="number"
+					class="input-group-text"
+					placeholder="2025"
+					disabled
+				/>
 				<span class="input-group-text">Course</span>
 				<select
 					class="form-select"
@@ -89,7 +96,8 @@ function newPlan() {
 					id="course-code"
 					:value="planState().programId"
 					@input="
-						($event) => (planState().programId = $event.target.value)
+						($event) =>
+							(planState().programId = $event.target.value)
 					"
 				>
 					<option value="">Please select a course</option>
@@ -106,10 +114,13 @@ function newPlan() {
 						($event) => (planState().majorId = $event.target.value)
 					"
 				>
-				<option value="">Please select a major</option>
-				<option v-for="major in program_requirements" :value="major.id">
-					{{ major.name }}
-				</option>
+					<option value="">Please select a major</option>
+					<option
+						v-for="major in program_requirements"
+						:value="major.id"
+					>
+						{{ major.name }}
+					</option>
 				</select>
 			</div>
 		</form>
@@ -141,6 +152,7 @@ function newPlan() {
 		v-for="(reqlist, index) in getCurrentProgram()?.program_requirements"
 		:key="!reqlist[0] ? undefined : reqlist[0].id.toString()"
 		:index="index"
+		@selected="(req) => (top_level_selected[index] = req)"
 	/>
 
 	<div class="container">
@@ -160,7 +172,8 @@ function newPlan() {
 </template>
 
 <style scoped>
-.purple-bg { /* Change to UQ colours pls */
+.purple-bg {
+	/* Change to UQ colours pls */
 	background-color: mediumpurple;
 }
 /* Temp styling for proof of concept */

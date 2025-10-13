@@ -17,6 +17,7 @@ const {
 const props = defineProps({
 	index: { type: Number, required: true },
 });
+const emit = defineEmits(["selected"]);
 
 const $debug = (...args) => console.info(props.index, ...args);
 const allOptions = (): RecordId<string>[] | undefined =>
@@ -33,6 +34,9 @@ const allOptionsLoaded = (): ProgramRequirement[] | undefined => {
 	});
 };
 const selectedRequirement = ref("" as string);
+watch(selectedRequirement, () => {
+	emit("selected", selectedRequirement.value);
+});
 const chosenOption = (): string | undefined => {
 	const _allOptions = new Set(allOptions().map((id) => id.toString()));
 	const desiredRequirements = new Set(
