@@ -134,7 +134,7 @@ function newPlan() {
 			</select>
 		</fieldset>
 	</form>
-	<h1>Hello world!</h1>
+	<h1>Guys! Guys! Guys!</h1>
 
 	<!-- Top level program_requirement picker, e.g. between type: maj, and type: nomaj -->
 	<ProgramReq
