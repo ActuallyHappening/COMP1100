@@ -38,7 +38,9 @@ watch(selectedRequirement, () => {
 	emit("selected", selectedRequirement.value);
 });
 const chosenOption = (): string | undefined => {
-	const _allOptions = new Set(allOptions().map((id) => id.toString()));
+	const _allOptions = new Set(
+		allOptions()!.map((id) => id.toString()),
+	) as Set<string>;
 	const desiredRequirements = new Set(
 		getCurrentPlanState().programRequirementsSelected,
 	);
@@ -47,7 +49,7 @@ const chosenOption = (): string | undefined => {
 		// need to choose one
 		if (_allOptions.size === 1) {
 			// chose the only option
-			const onlyOption = _allOptions.values().next().value;
+			const onlyOption = _allOptions.values().next().value!;
 			$debug(`Chosing the only option available`, onlyOption);
 			getCurrentPlanState().programRequirementsSelected.push(onlyOption);
 			selectedRequirement.value = onlyOption;

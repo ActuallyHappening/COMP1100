@@ -2,6 +2,7 @@
 import { reactive, inject, computed } from "vue";
 import type { ProvidedExport } from "./State.vue";
 import ProgramReq from "./ProgramReq.vue";
+import ProgramReqs from "./ProgramReqs.vue";
 // import { STATE } from "./State.vue";
 const {
 	localState,
@@ -23,7 +24,7 @@ function newPlan() {
 	localState.value.current = newPlan;
 }
 
-const top_level_selected = reactive({});
+const top_level_selected = reactive({} as { [key: number]: string });
 </script>
 
 <template>
@@ -148,12 +149,19 @@ const top_level_selected = reactive({});
 	<h1>Guys! Guys! Guys!</h1>
 
 	<!-- Top level program_requirement picker, e.g. between type: maj, and type: nomaj -->
-	<ProgramReq
+	<div
 		v-for="(reqlist, index) in getCurrentProgram()?.program_requirements"
 		:key="!reqlist[0] ? undefined : reqlist[0].id.toString()"
-		:index="index"
-		@selected="(req) => (top_level_selected[index] = req)"
-	/>
+	>
+		<ProgramReq
+			:index="index"
+			@selected="(req) => (top_level_selected[index] = req)"
+		/>
+		<ProgramReqs
+			:requirement-id="top_level_selected[index]"
+			v-if="top_level_selected[index]"
+		/>
+	</div>
 
 	<div class="container">
 		<div id="div_1">
