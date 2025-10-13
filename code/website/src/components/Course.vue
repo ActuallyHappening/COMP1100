@@ -10,7 +10,13 @@ const props = defineProps({
 
 const { getCourse } = inject("state");
 
-const course = computed(() => getCourse(props.code));
+const course = computed(() => {
+	const ret = getCourse(props.code);
+	if (!ret) {
+		throw new Error(`Couldn't find course ${props.code}`);
+	}
+	return ret;
+});
 </script>
 
 <template>

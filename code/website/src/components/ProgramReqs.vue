@@ -22,7 +22,7 @@ const props = defineProps({
 const $debug = (...args) => console.info(props.index, ...args);
 const this_program_req = computed((): ProgramRequirement => {
 	const ret = program_requirements.value.find(
-		(req) => req.id.id.toString() == props.requirementId,
+		(req) => req.id.toString() == props.requirementId,
 	);
 	if (!ret) {
 		console.error(
@@ -34,15 +34,17 @@ const this_program_req = computed((): ProgramRequirement => {
 	}
 	return ret;
 });
+const flattened_course_codes = computed((): string[] => {
+	return this_program_req.value.course_options
+		?.flat()
+		?.map((course) => course.id.toString());
+});
 </script>
 
 <template>
 	<ul>
 		<li>
-			<Course
-				v-for="course in this_program_req.sub_requirements"
-				:code="course.id.toString()"
-			/>
+			<Course v-for="code in flattened_course_codes" :code="code" />
 		</li>
 	</ul>
 </template>

@@ -104,7 +104,7 @@ function getCurrentProgram(): Program | undefined {
 }
 
 function getCourse(code: string): Course | undefined {
-	return courses.value.find((course) => course.code == code);
+	return courses.value.find((course) => course.code == code.toUpperCase());
 }
 
 import { RecordId, Surreal, Table } from "surrealdb";
@@ -186,7 +186,10 @@ const fullyLoaded = () => {
 <template>
 	<pre v-if="debug">{{ localState }}</pre>
 	<slot v-if="fullyLoaded()" />
-	<button v-if="debug" @click="reset">
+	<button @click="reset">
 		Reset (if not working or updating your version)
 	</button>
+
+	<label for="debug"> Enable debugging: </label>
+	<input id="debug" type="checkbox" v-model="debug" />
 </template>

@@ -51,6 +51,7 @@ const chosenOption = (): string | undefined => {
 			// chose the only option
 			const onlyOption = _allOptions.values().next().value!;
 			$debug(`Chosing the only option available`, onlyOption);
+			console.info(`debug value:`, _.cloneDeep(getCurrentPlanState()));
 			getCurrentPlanState().programRequirementsSelected.push(onlyOption);
 			selectedRequirement.value = onlyOption;
 			return onlyOption;
