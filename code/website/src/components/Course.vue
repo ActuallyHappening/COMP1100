@@ -18,12 +18,15 @@ const course = computed(() => {
 	return ret;
 });
 
-function listOfIncompatibles () {
-	return "Incompatible: " + course.value.incompatible ? course.value.incompatible.map((coursestr)=>{
-return coursestr.split(':')[1].toUpperCase();
-	}).join(", ") : "NONE"
+function listOfIncompatibles() {
+	return "Incompatible: " + !!course.value.incompatible
+		? course.value.incompatible
+				.map((coure_id) => {
+					return course_id.id.toUpperCase();
+				})
+				.join(", ")
+		: "NONE";
 }
-
 </script>
 
 <template>
@@ -34,6 +37,6 @@ return coursestr.split(':')[1].toUpperCase();
 		<p>{{ course.name }}</p>
 		<p>{{ listOfIncompatibles() }}</p>
 		<p>{{ course.prerequisites }}</p>
-		<pre v-if="debug"> {{  course  }}</pre>
+		<pre v-if="debug"> {{ course }}</pre>
 	</div>
 </template>
