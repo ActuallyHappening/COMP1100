@@ -37,6 +37,7 @@ function listOfPrerequisites() {
 				.join(", ")
 		: "NONE";
 }
+
 </script>
 
 <template>
@@ -45,8 +46,9 @@ function listOfPrerequisites() {
 			{{ course.code }}
 		</h4>
 		<p>{{ course.name }}</p>
-		<p>{{ listOfIncompatibles() }}</p>
-		<p>{{ listOfPrerequisites() }}</p>
+		<!-- <p>{{ listOfIncompatibles() }}</p> -->
+		<!-- <p>{{ listOfPrerequisites() }}</p> -->
+		<p>{{ course.companions }}</p>
 		<pre v-if="debug"> {{ course }}</pre>
 	</div>
 </template>
