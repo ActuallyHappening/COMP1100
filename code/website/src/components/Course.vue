@@ -27,6 +27,13 @@ function listOfIncompatibles() {
 				.join(", ")
 		: "NONE";
 }
+
+function listOfPrerequisites () {
+	return "Prerequisites: " + course.value.prerequisites ? course.value.prerequisites.map((coursestr) => {
+		return coursestr.split(':')[1].toUpperCase();
+	}).join(", ") : "NONE"
+}
+
 </script>
 
 <template>
@@ -36,7 +43,12 @@ function listOfIncompatibles() {
 		</h4>
 		<p>{{ course.name }}</p>
 		<p>{{ listOfIncompatibles() }}</p>
+<<<<<<< HEAD
 		<p>{{ course.prerequisites }}</p>
 		<pre v-if="debug"> {{ course }}</pre>
+=======
+		<p>{{ listOfPrerequisites() }}</p>
+		<pre v-if="debug"> {{  course  }}</pre>
+>>>>>>> 356d93a (RC added prerequisites to website)
 	</div>
 </template>
