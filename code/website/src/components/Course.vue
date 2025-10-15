@@ -21,7 +21,7 @@ const course = computed(() => {
 function listOfIncompatibles() {
 	return "Incompatible: " + !!course.value.incompatible
 		? course.value.incompatible
-				.map((coure_id) => {
+				.map((course_id) => {
 					return course_id.id.toUpperCase();
 				})
 				.join(", ")

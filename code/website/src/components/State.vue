@@ -71,8 +71,8 @@ export type Course = {
 	code: string;
 	cp: number;
 	name: string;
-	prerequisites: string[] | undefined;
-	incompatible: string[] | undefined;
+	prerequisites: RecordId<string>[] | undefined;
+	incompatible: RecordId<string>[] | undefined;
 	sem_1: boolean;
 	sem_2: boolean;
 	sem_summer: boolean;
