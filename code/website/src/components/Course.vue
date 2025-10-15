@@ -28,12 +28,15 @@ function listOfIncompatibles() {
 		: "NONE";
 }
 
-function listOfPrerequisites () {
-	return "Prerequisites: " + course.value.prerequisites ? course.value.prerequisites.map((coursestr) => {
-		return coursestr.split(':')[1].toUpperCase();
-	}).join(", ") : "NONE"
+function listOfPrerequisites() {
+	return "Prerequisites: " + course.value.prerequisites
+		? course.value.prerequisites
+				.map((course_id) => {
+					return course_id.id.toUpperCase();
+				})
+				.join(", ")
+		: "NONE";
 }
-
 </script>
 
 <template>
@@ -43,12 +46,7 @@ function listOfPrerequisites () {
 		</h4>
 		<p>{{ course.name }}</p>
 		<p>{{ listOfIncompatibles() }}</p>
-<<<<<<< HEAD
-		<p>{{ course.prerequisites }}</p>
-		<pre v-if="debug"> {{ course }}</pre>
-=======
 		<p>{{ listOfPrerequisites() }}</p>
-		<pre v-if="debug"> {{  course  }}</pre>
->>>>>>> 356d93a (RC added prerequisites to website)
+		<pre v-if="debug"> {{ course }}</pre>
 	</div>
 </template>
