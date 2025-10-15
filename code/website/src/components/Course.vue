@@ -8,7 +8,7 @@ const props = defineProps({
 	},
 });
 
-const { getCourse } = inject("state");
+const { getCourse, debug } = inject("state");
 
 const course = computed(() => {
 	const ret = getCourse(props.code);
@@ -17,6 +17,13 @@ const course = computed(() => {
 	}
 	return ret;
 });
+
+function listOfIncompatibles () {
+	return "Incompatible: " + course.value.incompatible ? course.value.incompatible.map((coursestr)=>{
+return coursestr.split(':')[1].toUpperCase();
+	}).join(", ") : "NONE"
+}
+
 </script>
 
 <template>
@@ -25,5 +32,8 @@ const course = computed(() => {
 			{{ course.code }}
 		</h4>
 		<p>{{ course.name }}</p>
+		<p>{{ listOfIncompatibles() }}</p>
+		<p>{{ course.prerequisites }}</p>
+		<pre v-if="debug"> {{  course  }}</pre>
 	</div>
 </template>
