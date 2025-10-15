@@ -115,7 +115,7 @@ watch(selectedRequirement, choseReq);
 	<!-- <pre v-if="debug"> {{ allOptions() }}</pre> -->
 	<!-- <pre v-if="debug"> {{ allOptionsLoaded() }}</pre> -->
 	<template v-if="chosenOption()"> </template>
-	<select v-model="selectedRequirement">
+	<select v-model="selectedRequirement" id="vue-ProgramReq">
 		<option value="" disabled>Choose your major</option>
 		<option
 			v-for="option in allOptionsLoaded()"

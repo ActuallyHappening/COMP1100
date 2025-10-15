@@ -20,7 +20,7 @@ const course = computed(() => {
 </script>
 
 <template>
-	<div>
+	<div id="vue-Course">
 		<h4>
 			{{ course.code }}
 		</h4>

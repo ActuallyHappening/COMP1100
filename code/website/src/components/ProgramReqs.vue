@@ -34,17 +34,37 @@ const this_program_req = computed((): ProgramRequirement => {
 	}
 	return ret;
 });
-const flattened_course_codes = computed((): string[] => {
+const flattened_course_codes = computed((): string[] | undefined => {
 	return this_program_req.value.course_options
 		?.flat()
 		?.map((course) => course.id.toString());
 });
+const flattened_subreqs = computed((): string[] | undefined => {
+	return this_program_req.value.sub_requirements?.map((req) =>
+		req.id.toString(),
+	);
+});
 </script>
 
 <template>
-	<ul>
-		<li>
-			<Course v-for="code in flattened_course_codes" :code="code" />
+	<ul
+		:id="
+			this_program_req.short_name
+				? `vue-ProgramReqs-${this_program_req.short_name}`
+				: `vue-ProgramReqs`
+		"
+	>
+		<h5>{{ this_program_req.short_name }}</h5>
+		<li
+			v-if="flattened_course_codes"
+			v-for="code in flattened_course_codes"
+		>
+			<Course :code="code" />
 		</li>
+		<ProgramReqs
+			v-if="flattened_subreqs"
+			v-for="code in flattened_subreqs"
+			:requirement-id="code"
+		/>
 	</ul>
 </template>
