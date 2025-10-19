@@ -19,6 +19,13 @@ const props = defineProps({
 	requirementId: { type: String, required: true },
 });
 
+type Err = any;
+const error = ref(undefined as undefined | Err);
+const handleError = (err: Err) => {
+	console.error(err);
+	error.value = err;
+};
+
 const $debug = (...args) => console.info(props.index, ...args);
 const this_program_req = computed((): ProgramRequirement => {
 	const ret = program_requirements.value.find(
@@ -41,7 +48,7 @@ const flattened_course_codes = computed((): string[] | undefined => {
 });
 const flattened_subreqs = computed((): string[] | undefined => {
 	return this_program_req.value.sub_requirements?.map((req) =>
-		req.id.toString(),
+		req.toString(),
 	);
 });
 </script>
