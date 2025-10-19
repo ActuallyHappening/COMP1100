@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { inject, defineProps, computed } from "vue";
+import { inject, defineProps, computed, ref } from "vue";
+import ErrorView from "../Error.vue";
 
 const props = defineProps({
 	code: {
@@ -9,11 +10,16 @@ const props = defineProps({
 });
 
 const { getCourse } = inject("state");
+type Err = any;
+const error = ref(undefined as undefined | Err);
+const handleError = (err: Err) => {
+	error.value = err;
+};
 
 const course = computed(() => {
 	const ret = getCourse(props.code);
 	if (!ret) {
-		throw new Error(`Couldn't find course ${props.code}`);
+		return handleError(new Error(`Couldn't find course ${props.code}`));
 	}
 	return ret;
 });
@@ -21,9 +27,12 @@ const course = computed(() => {
 
 <template>
 	<div id="vue-Course">
-		<h4>
-			{{ course.code }}
-		</h4>
-		<p>{{ course.name }}</p>
+		<template v-if="error">
+			<h4>
+				{{ course.code }}
+			</h4>
+			<p>{{ course.name }}</p>
+		</template>
+		<ErrorView v-else :err="error" />
 	</div>
 </template>
