@@ -13,6 +13,7 @@ const { getCourse } = inject("state");
 type Err = any;
 const error = ref(undefined as undefined | Err);
 const handleError = (err: Err) => {
+	console.error(err);
 	error.value = err;
 };
 
@@ -27,7 +28,7 @@ const course = computed(() => {
 
 <template>
 	<div id="vue-Course">
-		<template v-if="error">
+		<template v-if="!error">
 			<h4>
 				{{ course.code }}
 			</h4>
