@@ -135,6 +135,15 @@ const top_level_selected = reactive({} as { [key: number]: string });
 	</form>
 	-->
 	<h1>Guys! Guys! Guys!</h1>
+	<div class="container-fluid row"> <!-- components to be split up into different vue files -->
+		<div class="col-4">
+			program req<br>program reqs
+		</div>
+		<div class="col-7" id="plan">
+			 plan
+
+		</div>
+	</div>
 
 	<!-- Top level program_requirement picker, e.g. between type: maj, and type: nomaj -->
 	<div

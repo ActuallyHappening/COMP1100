@@ -26,4 +26,10 @@ const course = computed(() => {
 		</h4>
 		<p>{{ course.name }}</p>
 	</div>
+	<!-- ui needing functionality -->
+	<!--<button type="button" class="list-group-item list-group-item-action">
+        <h4 class="text-center">CODE1111: Course name goes here (<i>Sem 1</i>)</h4>
+        <p class="m-0 p-0">Prerequisites: <i>TGRA5500</i></p>
+		<p class="m-0 p-0">Incompatible: <i>SOCI4100</i></p>
+	</button>-->
 </template>

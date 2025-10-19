@@ -67,4 +67,9 @@ const flattened_subreqs = computed((): string[] | undefined => {
 			:requirement-id="code"
 		/>
 	</ul>
+	<!-- <div id="core courses">
+        <div class="list-group">
+            
+        </div>            
+    </div>-->
 </template>
