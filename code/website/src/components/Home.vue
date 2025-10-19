@@ -35,7 +35,6 @@ const top_level_selected = reactive({} as { [key: number]: string });
 				<h1>UQ Planit</h1>
 			</div>
 			<div class="col-6 text-center align-content-center">
-				<!-- Editable title but difficult to communicate, I think an edit symbol that is overlayed but disappears when editing would be ideal -->
 				<h2>
 					<input
 						type="text"
@@ -43,6 +42,7 @@ const top_level_selected = reactive({} as { [key: number]: string });
 						v-model="planState().name"
 						class="border-0 purple-bg text-center"
 					/>
+					<!-- Would appreciate if this input could be dynamically scaled -->
 					<label for="plan-name"><span>✎</span></label>
 				</h2>
 			</div>
@@ -50,6 +50,7 @@ const top_level_selected = reactive({} as { [key: number]: string });
 				<select
 					name="plan-current"
 					id="plan-current"
+					class="form-select"
 					v-model="localState.current"
 				>
 					<option
@@ -61,7 +62,7 @@ const top_level_selected = reactive({} as { [key: number]: string });
 				</select>
 			</div>
 			<div class="col-1 align-content-center">
-				<button class="btn" @click="newPlan">New Plan</button>
+				<button class="btn btn-primary w-100" @click="newPlan">New Plan</button>
 			</div>
 		</div>
 	</div>
@@ -83,7 +84,7 @@ const top_level_selected = reactive({} as { [key: number]: string });
 	</div>
 	-->
 
-	<div class="container-fluid">
+	<div class="container-fluid p-0">
 		<form action="#" @submit.prevent="() => {}">
 			<div class="input-group">
 				<span class="input-group-text">Year</span>
@@ -104,7 +105,7 @@ const top_level_selected = reactive({} as { [key: number]: string });
 							(planState().programId = $event.target.value)
 					"
 				>
-					<option value="">Please select a course</option>
+					<option value="" hidden>Please select a course</option>
 					<option v-for="program in programs" :value="program.id">
 						{{ program.name }}
 					</option>
