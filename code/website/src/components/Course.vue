@@ -51,6 +51,15 @@ const prereqs = computed(() => {
 		return "";
 	}
 });
+const incompatible = computed(() => {
+	if (course.value?.incompatible) {
+		return course.value.incompatible
+			.map((id) => id.toUpperCase())
+			.join(", ");
+	} else {
+		return "";
+	}
+});
 </script>
 
 <template>
@@ -64,10 +73,12 @@ const prereqs = computed(() => {
 			<h4 class="text-center">
 				{{ course.code }}: {{ course.name }} (<i>Sem 1</i>)
 			</h4>
-			<p class="m-0 p-0">
+			<p class="m-0 p-0" v-if="prereqs">
 				Prerequisites: <i>{{ prereqs }}</i>
 			</p>
-			<p class="m-0 p-0">Incompatible: <i>SOCI4100</i></p>
+			<p class="m-0 p-0" v-if="incompatible">
+				Incompatible: <i>{{ incompatible }}</i>
+			</p>
 		</template>
 		<ErrorView v-else :err="error" />
 	</button>
