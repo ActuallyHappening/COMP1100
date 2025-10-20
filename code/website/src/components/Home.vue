@@ -149,7 +149,8 @@ const top_level_selected = reactive({} as { [key: number]: string });
 	background-color: #51247a;
 	color: white;
 }
-.tababble{
+#nav-tab {
+	display: flex;
 	white-space: nowrap;
 	overflow-y: hidden;
 	overflow-x: auto;
@@ -168,15 +169,15 @@ const top_level_selected = reactive({} as { [key: number]: string });
 	overflow-x: auto;
 }
 
-a {
+button.nav-link {
 	color: gray;
 }
 
-a:hover {
+button.nav-link:hover {
 	color: black;
 }
 
-a .active {
+button.active {
 	color: black;
 }
 
