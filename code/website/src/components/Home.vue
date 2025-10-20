@@ -146,6 +146,30 @@ const top_level_selected = reactive({} as { [key: number]: string });
 	overflow-y: hidden;
 	overflow-x: auto;
 	flex-wrap: nowrap;
+	overflow: hidden;
+	mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 20px, /* Start solid black after 20px from left */
+        black calc(100% - 20px), /* End solid black 20px from right */
+        transparent /* Fade to transparent at the right edge */
+    );
+}
+
+.tababble:hover {
+	overflow-x: auto;
+}
+
+a {
+	color: gray;
+}
+
+a:hover {
+	color: black;
+}
+
+a .active {
+	color: black;
 }
 /* Temp styling for proof of concept */
 .container {
