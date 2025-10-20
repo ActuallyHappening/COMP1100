@@ -8,6 +8,11 @@ const props = defineProps({
 		required: true,
 		type: String,
 	},
+	small: {
+		required: true,
+		type: Boolean,
+		default: false,
+	},
 });
 
 const { getCourse, selectedState } = inject("state") as ProvidedExport;
@@ -75,13 +80,14 @@ const selectCourse = () => {
 		@click="selectCourse"
 	>
 		<template v-if="!error">
-			<h4 class="text-center">
+			<h4 class="text-center" v-if="!props.small">
 				{{ course.code }}: {{ course.name }} (<i>Sem 1</i>)
 			</h4>
-			<p class="m-0 p-0" v-if="prereqs">
+			<h4 v-if="props.small">{{ course.code }}</h4>
+			<p class="m-0 p-0" v-if="prereqs && !props.small">
 				Prerequisites: <i>{{ prereqs }}</i>
 			</p>
-			<p class="m-0 p-0" v-if="incompatible">
+			<p class="m-0 p-0" v-if="incompatible && !props.small">
 				Incompatible: <i>{{ incompatible }}</i>
 			</p>
 		</template>
