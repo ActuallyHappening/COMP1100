@@ -10,7 +10,7 @@ const props = defineProps({
 	},
 });
 
-const { getCourse } = inject("state") as ProvidedExport;
+const { getCourse, selectedState } = inject("state") as ProvidedExport;
 type Err = any;
 const error = ref(undefined as undefined | Err);
 const handleError = (err: Err) => {
@@ -54,12 +54,16 @@ const prereqs = computed(() => {
 const incompatible = computed(() => {
 	if (course.value?.incompatible) {
 		return course.value.incompatible
-			.map((id) => id.toUpperCase())
+			.map((id) => id.id.toUpperCase())
 			.join(", ");
 	} else {
 		return "";
 	}
 });
+const selectCourse = () => {
+	console.info(`Selecting course: `, course.value.code);
+	selectedState.value = course.value.code;
+};
 </script>
 
 <template>
@@ -68,6 +72,7 @@ const incompatible = computed(() => {
 		type="button"
 		class="list-group-item list-group-item-action"
 		id="vue-Course"
+		@click="selectCourse"
 	>
 		<template v-if="!error">
 			<h4 class="text-center">

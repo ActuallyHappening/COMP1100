@@ -6,14 +6,29 @@
 import { useStorage } from "@vueuse/core";
 import { computed, provide, onMounted, ref, reactive } from "vue";
 import _ from "lodash";
+import { Planner } from "./PlannerVisuals.vue";
 
 const debug = useStorage("debug", false);
+
+const sem_ids = ["2025 Sem 2", "2026 Sem 1"] as const;
+export type SemId = (typeof sem_ids)[number];
+const defaultPlanner = (): Planner => {
+	const ret = {} as Planner;
+	for (const sem_id of sem_ids) {
+		ret[sem_id] = [undefined, undefined, undefined, undefined];
+	}
+	return ret;
+};
+
+/** Course code */
+const selectedState = ref(undefined as undefined | string);
 
 export type PlanState = {
 	name: string;
 	programId: string;
 	majorId: string;
 	programRequirementsSelected: string[];
+	planner: Planner;
 };
 const defaultPlan = (num: number) =>
 	_.cloneDeep({
@@ -21,6 +36,7 @@ const defaultPlan = (num: number) =>
 		programId: null,
 		/** An additive list of all program requirements selected by the user, even for irrelevant majors / programs */
 		programRequirementsSelected: [],
+		planner: defaultPlanner(),
 	});
 const defaultState = {
 	current: "Plan 1",
@@ -110,6 +126,7 @@ function getCourse(code: string): Course | undefined {
 }
 
 import { RecordId, Surreal, Table } from "surrealdb";
+import type { Planner } from "./PlannerVisuals.vue";
 
 function refresh() {
 	const db = new Surreal();
@@ -171,6 +188,8 @@ const provided_export = {
 	getCourse,
 	program_requirements,
 	refresh,
+	sem_ids,
+	selectedState,
 };
 export type ProvidedExport = typeof provided_export;
 provide("state", provided_export);

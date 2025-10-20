@@ -3,6 +3,7 @@ import { reactive, inject, computed } from "vue";
 import type { ProvidedExport } from "./State.vue";
 import ProgramReq from "./ProgramReq.vue";
 import ProgramReqs from "./ProgramReqs.vue";
+import PlannerVisuals from "./PlannerVisuals.vue";
 // import { STATE } from "./State.vue";
 const {
 	localState,
@@ -116,7 +117,6 @@ const top_level_selected = reactive({} as { [key: number]: string });
 		</form>
 	</div>
 
-
 	<div class="container-fluid row">
 		<div class="col-4">
 			<div class="tababble">
@@ -145,8 +145,8 @@ const top_level_selected = reactive({} as { [key: number]: string });
 			</div>
 		</div>
 		<div class="col-7" id="plan">
-			 plan
-
+			plan
+			<PlannerVisuals />
 		</div>
 	</div>
 
