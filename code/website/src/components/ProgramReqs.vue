@@ -54,7 +54,7 @@ const flattened_subreqs = computed((): string[] | undefined => {
 </script>
 
 <template>
-	<ul
+	<!--<ul
 		:id="
 			this_program_req.short_name
 				? `vue-ProgramReqs-${this_program_req.short_name}`
@@ -73,10 +73,25 @@ const flattened_subreqs = computed((): string[] | undefined => {
 			v-for="code in flattened_subreqs"
 			:requirement-id="code"
 		/>
-	</ul>
-	<!-- <div id="core courses">
-        <div class="list-group">
-            
-        </div>            
-    </div>-->
+	</ul>-->
+	<div 
+		:id="
+			this_program_req.short_name
+				? `vue-ProgramReqs-${this_program_req.short_name}`
+				: `vue-ProgramReqs`
+		">
+		<h5>{{ this_program_req.short_name }}</h5>
+        <div 
+			v-if="flattened_course_codes"
+			v-for="code in flattened_course_codes"
+			class="list-group"
+		>
+            <Course :code="code" />
+        </div>  
+		<ProgramReqs
+			v-if="flattened_subreqs"
+			v-for="code in flattened_subreqs"
+			:requirement-id="code"
+		/>     
+    </div>
 </template>

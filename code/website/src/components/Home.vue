@@ -116,30 +116,24 @@ const top_level_selected = reactive({} as { [key: number]: string });
 		</form>
 	</div>
 
-	<!-- Horizontal bar for majors
-	<form action="#" @submit.prevent="() => {}">
-		<fieldset>
-			<!-- v-model="planState().programId"
-			<select
-				name="course-code"
-				id="course-code"
-				:value="planState().programId"
-				@input="
-					($event) => (planState().programId = $event.target.value)
-				"
-			>
-				<option value="">Please select a course</option>
-				<option v-for="program in programs" :value="program.id">
-					{{ program.name }}
-				</option>
-			</select>
-		</fieldset>
-	</form>
-	-->
-	<h1>Guys! Guys! Guys!</h1>
-	<div class="container-fluid row"> <!-- components to be split up into different vue files -->
+
+	<div class="container-fluid row">
 		<div class="col-4">
-			program req<br>program reqs
+			<!-- Top level program_requirement picker, e.g. between type: maj, and type: nomaj -->
+			<div
+				v-for="(reqlist, index) in getCurrentProgram()
+					?.program_requirements"
+				:key="!reqlist[0] ? undefined : reqlist[0].id.toString()"
+			>
+				<ProgramReq
+					:index="index"
+					@selected="(req) => (top_level_selected[index] = req)"
+				/>
+				<ProgramReqs
+					:requirement-id="top_level_selected[index]"
+					v-if="top_level_selected[index]"
+				/>
+			</div>
 		</div>
 		<div class="col-7" id="plan">
 			 plan
@@ -147,10 +141,9 @@ const top_level_selected = reactive({} as { [key: number]: string });
 		</div>
 	</div>
 
-	<div class="container">
+	<!--<div class="container">
 		<div id="div_1">
 			<h1>This is where the courses for selection will be placed</h1>
-			<!-- Top level program_requirement picker, e.g. between type: maj, and type: nomaj -->
 			<div
 				v-for="(reqlist, index) in getCurrentProgram()
 					?.program_requirements"
@@ -175,7 +168,7 @@ const top_level_selected = reactive({} as { [key: number]: string });
 				<h2 id="div_4">Semester 2</h2>
 			</div>
 		</div>
-	</div>
+	</div>-->
 </template>
 
 <style scoped>
