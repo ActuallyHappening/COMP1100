@@ -62,7 +62,9 @@ const top_level_selected = reactive({} as { [key: number]: string });
 				</select>
 			</div>
 			<div class="col-1 align-content-center">
-				<button class="btn btn-primary w-100" @click="newPlan">New Plan</button>
+				<button class="btn btn-primary w-100" @click="newPlan">
+					New Plan
+				</button>
 			</div>
 		</div>
 	</div>
@@ -145,24 +147,24 @@ const top_level_selected = reactive({} as { [key: number]: string });
 		</div>
 	</div>
 
-	<!-- Top level program_requirement picker, e.g. between type: maj, and type: nomaj -->
-	<div
-		v-for="(reqlist, index) in getCurrentProgram()?.program_requirements"
-		:key="!reqlist[0] ? undefined : reqlist[0].id.toString()"
-	>
-		<ProgramReq
-			:index="index"
-			@selected="(req) => (top_level_selected[index] = req)"
-		/>
-		<ProgramReqs
-			:requirement-id="top_level_selected[index]"
-			v-if="top_level_selected[index]"
-		/>
-	</div>
-
 	<div class="container">
 		<div id="div_1">
 			<h1>This is where the courses for selection will be placed</h1>
+			<!-- Top level program_requirement picker, e.g. between type: maj, and type: nomaj -->
+			<div
+				v-for="(reqlist, index) in getCurrentProgram()
+					?.program_requirements"
+				:key="!reqlist[0] ? undefined : reqlist[0].id.toString()"
+			>
+				<ProgramReq
+					:index="index"
+					@selected="(req) => (top_level_selected[index] = req)"
+				/>
+				<ProgramReqs
+					:requirement-id="top_level_selected[index]"
+					v-if="top_level_selected[index]"
+				/>
+			</div>
 		</div>
 		<div id="div_2">
 			<h1>This is where the courses will be placed</h1>
