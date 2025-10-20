@@ -27,19 +27,13 @@ const course = computed(() => {
 </script>
 
 <template>
-	<div id="vue-Course">
+	<!-- let me know if these need to be -->
+	<button type="button" class="list-group-item list-group-item-action" id="vue-Course">
 		<template v-if="!error">
-			<h4>
-				{{ course.code }}
-			</h4>
-			<p>{{ course.name }}</p>
+			<h4 class="text-center">{{ course.code }}: {{ course.name }} (<i>Sem 1</i>)</h4>
+        	<p class="m-0 p-0">Prerequisites: <i>TGRA5500</i></p>
+			<p class="m-0 p-0">Incompatible: <i>SOCI4100</i></p>
 		</template>
 		<ErrorView v-else :err="error" />
-	</div>
-	<!-- ui needing functionality -->
-	<!--<button type="button" class="list-group-item list-group-item-action">
-        <h4 class="text-center">CODE1111: Course name goes here (<i>Sem 1</i>)</h4>
-        <p class="m-0 p-0">Prerequisites: <i>TGRA5500</i></p>
-		<p class="m-0 p-0">Incompatible: <i>SOCI4100</i></p>
-	</button>-->
+	</button>
 </template>
