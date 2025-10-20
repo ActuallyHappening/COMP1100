@@ -102,15 +102,25 @@ const top_level_selected = reactive({} as { [key: number]: string });
 
 	<div class="container-fluid row">
 		<div class="col-4">
-			<div class="tababble">
-				<div class="nav nav-tabs" role="tablist" style="flex-wrap: nowrap !important;">
-					<a class="nav-item nav-link active" data-toggle="tab" href="" role="tab" aria-controls="" aria-selected="true">Core Courses</a>
-					<a class="nav-item nav-link" data-toggle="tab" href="" role="tab" aria-controls="" aria-selected="false">Major core</a>
-					<a class="nav-item nav-link" data-toggle="tab" href="" role="tab" aria-controls="" aria-selected="false">Electives</a>
-					<a class="nav-item nav-link" data-toggle="tab" href="" role="tab" aria-controls="" aria-selected="false">Minor core</a>
-					<a class="nav-item nav-link" data-toggle="tab" href="" role="tab" aria-controls="" aria-selected="false">Major electives</a>
+			<!-- Tabs -->
+
+			<div class="nav nav-tabs" id="nav-tab" role="tablist">
+				<button class="nav-link active" id="core-tab" data-bs-toggle="tab" data-bs-target="#core" type="button" role="tab" aria-controls="core" aria-selected="true">Core Courses</button>
+				<button class="nav-link" id="major-tab" data-bs-toggle="tab" data-bs-target="#major" type="button" role="tab" aria-controls="major-tab" aria-selected="false">Major Courses</button>
+				<button class="nav-link" id="minor-tab" data-bs-toggle="tab" data-bs-target="#minor" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Minor Courses</button>
+			</div>
+			<div class="tab-content" id="nav-tabContent">
+				<div class="tab-pane fade show active" id="core" role="tabpanel" aria-labelledby="core-tab" tabindex="0">
+					core courses
+				</div>
+				<div class="tab-pane fade" id="major" role="tabpanel" aria-labelledby="major-tab" tabindex="0">
+					major courses
+				</div>
+				<div class="tab-pane fade" id="minor" role="tabpanel" aria-labelledby="minor-tab" tabindex="0">
+					minor courses
 				</div>
 			</div>
+
 			<!-- Top level program_requirement picker, e.g. between type: maj, and type: nomaj -->
 			<div
 				v-for="(reqlist, index) in getCurrentProgram()
@@ -128,7 +138,6 @@ const top_level_selected = reactive({} as { [key: number]: string });
 			</div>
 		</div>
 		<div class="col-7" id="plan">
-			plan
 			<PlannerVisuals />
 		</div>
 	</div>
@@ -137,7 +146,6 @@ const top_level_selected = reactive({} as { [key: number]: string });
 
 <style scoped>
 .purple-bg {
-	/* Change to UQ colours pls */
 	background-color: #51247a;
 	color: white;
 }
@@ -171,11 +179,5 @@ a:hover {
 a .active {
 	color: black;
 }
-/* Temp styling for proof of concept */
-.container {
-	display: flex;
-	width: 100%;
-	align-items: center;
-	margin: 0;
-}
+
 </style>

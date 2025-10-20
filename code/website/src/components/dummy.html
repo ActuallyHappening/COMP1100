@@ -36,114 +36,63 @@
 	<div class="container-fluid row justify-content-center"> <!-- components to be split up into different vue files -->
 		<div class="col-4">
 			<!-- select -->
-			<div class="tababble">
-				<div class="nav nav-tabs" role="tablist" style="flex-wrap: nowrap !important;">
-					<a class="nav-item nav-link active" data-toggle="tab" href="" role="tab" aria-controls="" aria-selected="true">Core Courses</a>
-					<a class="nav-item nav-link" data-toggle="tab" href="" role="tab" aria-controls="" aria-selected="false">Major core</a>
-					<a class="nav-item nav-link" data-toggle="tab" href="" role="tab" aria-controls="" aria-selected="false">Electives</a>
-					<a class="nav-item nav-link" data-toggle="tab" href="" role="tab" aria-controls="" aria-selected="false">Minor core</a>
-					<a class="nav-item nav-link" data-toggle="tab" href="" role="tab" aria-controls="" aria-selected="false">Major electives</a>
-				</div>
+			<div class="nav nav-tabs" id="nav-tab" role="tablist">
+				<button class="nav-link active" id="core-tab" data-bs-toggle="tab" data-bs-target="#core" type="button" role="tab" aria-controls="core" aria-selected="true">Core Courses</button>
+				<button class="nav-link" id="major-tab" data-bs-toggle="tab" data-bs-target="#major" type="button" role="tab" aria-controls="major-tab" aria-selected="false">Major Courses</button>
+				<button class="nav-link" id="minor-tab" data-bs-toggle="tab" data-bs-target="#minor" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Minor Courses</button>
 			</div>
-			<div id="core courses" class="scroll-list">
-                <div class="list-group">
-                    <button type="button" class="list-group-item list-group-item-action">
-                        <h4 class="text-center">CODE1111: Course name goes here (<i>Sem 1, Sem 2</i>)</h4>
-                        <p class="m-0 p-0">Prerequisites: <i>TGRA5500</i></p>
-						<p class="m-0 p-0">Incompatible: <i>SOCI4100</i></p>
-					</button>
-                </div>
-                <!--<div class="list-group">
-                    <button type="button" class="list-group-item list-group-item-action">
-                        <h4 class="text-center">CODE1111: Course name goes here (<i>Sem 1, Sem 2</i>)</h4>
-                        <p class="m-0 p-0">Prerequisites: <i>TGRA5500</i></p>
-						<p class="m-0 p-0">Incompatible: <i>SOCI4100</i></p>
-					</button>
-                </div>
-				<div class="list-group">
-                    <button type="button" class="list-group-item list-group-item-action">
-                        <h4 class="text-center">CODE1111: Course name goes here (<i>Sem 1, Sem 2</i>)</h4>
-                        <p class="m-0 p-0">Prerequisites: <i>TGRA5500</i></p>
-						<p class="m-0 p-0">Incompatible: <i>SOCI4100</i></p>
-					</button>
-                </div>
-				<div class="list-group">
-                    <button type="button" class="list-group-item list-group-item-action">
-                        <h4 class="text-center">CODE1111: Course name goes here (<i>Sem 1, Sem 2</i>)</h4>
-                        <p class="m-0 p-0">Prerequisites: <i>TGRA5500</i></p>
-						<p class="m-0 p-0">Incompatible: <i>SOCI4100</i></p>
-					</button>
-                </div>
-				<div class="list-group">
-                    <button type="button" class="list-group-item list-group-item-action">
-                        <h4 class="text-center">CODE1111: Course name goes here (<i>Sem 1, Sem 2</i>)</h4>
-                        <p class="m-0 p-0">Prerequisites: <i>TGRA5500</i></p>
-						<p class="m-0 p-0">Incompatible: <i>SOCI4100</i></p>
-					</button>
-                </div>
-				<div class="list-group">
-                    <button type="button" class="list-group-item list-group-item-action">
-                        <h4 class="text-center">CODE1111: Course name goes here (<i>Sem 1, Sem 2</i>)</h4>
-                        <p class="m-0 p-0">Prerequisites: <i>TGRA5500</i></p>
-						<p class="m-0 p-0">Incompatible: <i>SOCI4100</i></p>
-					</button>
-                </div>
-				<div class="list-group">
-                    <button type="button" class="list-group-item list-group-item-action">
-                        <h4 class="text-center">CODE1111: Course name goes here (<i>Sem 1, Sem 2</i>)</h4>
-                        <p class="m-0 p-0">Prerequisites: <i>TGRA5500</i></p>
-						<p class="m-0 p-0">Incompatible: <i>SOCI4100</i></p>
-					</button>
-                </div>
-				<div class="list-group">
-                    <button type="button" class="list-group-item list-group-item-action">
-                        <h4 class="text-center">CODE1111: Course name goes here (<i>Sem 1, Sem 2</i>)</h4>
-                        <p class="m-0 p-0">Prerequisites: <i>TGRA5500</i></p>
-						<p class="m-0 p-0">Incompatible: <i>SOCI4100</i></p>
-					</button>
-                </div>
-				<div class="list-group">
-                    <button type="button" class="list-group-item list-group-item-action">
-                        <h4 class="text-center">CODE1111: Course name goes here (<i>Sem 1, Sem 2</i>)</h4>
-                        <p class="m-0 p-0">Prerequisites: <i>TGRA5500</i></p>
-						<p class="m-0 p-0">Incompatible: <i>SOCI4100</i></p>
-					</button>
-                </div>
-				<div class="list-group">
-                    <button type="button" class="list-group-item list-group-item-action">
-                        <h4 class="text-center">CODE1111: Course name goes here (<i>Sem 1, Sem 2</i>)</h4>
-                        <p class="m-0 p-0">Prerequisites: <i>TGRA5500</i></p>
-						<p class="m-0 p-0">Incompatible: <i>SOCI4100</i></p>
-					</button>
-                </div>
-				<div class="list-group">
-                    <button type="button" class="list-group-item list-group-item-action">
-                        <h4 class="text-center">CODE1111: Course name goes here (<i>Sem 1, Sem 2</i>)</h4>
-                        <p class="m-0 p-0">Prerequisites: <i>TGRA5500</i></p>
-						<p class="m-0 p-0">Incompatible: <i>SOCI4100</i></p>
-					</button>
-                </div>
-				<div class="list-group">
-                    <button type="button" class="list-group-item list-group-item-action">
-                        <h4 class="text-center">CODE1111: Course name goes here (<i>Sem 1, Sem 2</i>)</h4>
-                        <p class="m-0 p-0">Prerequisites: <i>TGRA5500</i></p>
-						<p class="m-0 p-0">Incompatible: <i>SOCI4100</i></p>
-					</button>
-                </div>
-				<div class="list-group">
-                    <button type="button" class="list-group-item list-group-item-action">
-                        <h4 class="text-center">CODE1111: Course name goes here (<i>Sem 1, Sem 2</i>)</h4>
-                        <p class="m-0 p-0">Prerequisites: <i>TGRA5500</i></p>
-						<p class="m-0 p-0">Incompatible: <i>SOCI4100</i></p>
-					</button>
-                </div>
-				<div class="list-group">
-                    <button type="button" class="list-group-item list-group-item-action">
-                        <h4 class="text-center">CODE1111: BOTTOM (<i>Sem 1, Sem 2</i>)</h4>
-                        <p class="m-0 p-0">Prerequisites: <i>TGRA5500</i></p>
-						<p class="m-0 p-0">Incompatible: <i>SOCI4100</i></p>
-					</button>
-                </div>-->
+
+			<div class="tab-content" id="nav-tabContent">
+
+				<div class="tab-pane fade show active" id="core" role="tabpanel" aria-labelledby="core-tab" tabindex="0">
+					<div id="core courses" class="scroll-list">
+						<h4 class="mt-1">Compulsory courses</h4>
+						<div class="list-group">
+							<button type="button" class="list-group-item list-group-item-action">
+								<h4 class="text-center">TODO0000: Courses go here</h4>
+								<p class="m-0 p-0">Prerequisites: <i>programreq for correct list</i></p>
+								<p class="m-0 p-0">Incompatible: <i>previous solution</i></p>
+							</button>
+						</div>
+						<h4 class="mt-1">Elective courses</h4>
+						<div class="input-group p-2">
+							<input type="text" class="form-control" placeholder="Unavailable at this moment." style="font-style: italic;" disabled>
+							<span class="input-group-text" role="button">Search</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="tab-pane fade" id="major" role="tabpanel" aria-labelledby="major-tab" tabindex="0">
+					<div id="major-courses" class="scroll-list">
+						<div class="input-group p-2">
+							<span class="input-group-text">Major option</span>
+							<select class="form-select">
+								<option value="" hidden>Please choose 1 major?</option>
+								<option>Code</option>
+							</select>
+						</div>
+						<h4 class="mt-1">Compulsory courses</h4>
+						<div class="list-group">
+							<button type="button" class="list-group-item list-group-item-action">
+								<h4 class="text-center">TODO0000: Courses go here</h4>
+								<p class="m-0 p-0">Prerequisites: <i>programreq for correct list</i></p>
+								<p class="m-0 p-0">Incompatible: <i>previous solution</i></p>
+							</button>
+						</div>
+						<h4 class="mt-1">Elective courses: choose x?</h4>
+						<div class="list-group">
+							<button type="button" class="list-group-item list-group-item-action">
+								<h4 class="text-center">TODO0000: Courses go here</h4>
+								<p class="m-0 p-0">Prerequisites: <i>programreq for correct list</i></p>
+								<p class="m-0 p-0">Incompatible: <i>previous solution</i></p>
+							</button>
+						</div>
+					</div>
+					
+				</div>
+				<div class="tab-pane fade" id="minor" role="tabpanel" aria-labelledby="minor-tab" tabindex="0">
+					minor courses
+				</div>
             </div>
 		</div>
 		<div class="col-7 border" id="plan">
@@ -162,7 +111,7 @@
 						<th scope="row">2025 Sem 1</th>
 						<td>
 							<h4 class="text-center">CODE1111</h4><br>
-							<p class="m-0 p-0">Prerequisites:⚠ </p> <!-- Hoverable -->
+							<p class="m-0 p-0">Prerequisites:⚠ </p> <!-- Hoverable? Clickable -->
 							<p class="m-0 p-0">Incompatible:✓ </p>
 						</td>
 						<td>

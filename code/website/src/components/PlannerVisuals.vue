@@ -5,7 +5,7 @@ import type { ProvidedExport, Prereq, SemId } from "./State.vue";
 import Course from "./Course.vue";
 
 const { sem_ids, selectedState, planState } = inject("state") as ProvidedExport;
-const slots = [1, 2, 3, 4];
+const slots = ["Course 1", "Course 2", "Course 3", "Course 4"];
 
 export type SemPlan = [
 	string | undefined,
@@ -31,10 +31,10 @@ const getPlan = (sem_id: SemId, id: number) => {
 };
 </script>
 <template>
-	<table class="table">
+	<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th scope="col">#</th>
+				<th scope="col"></th>
 				<th scope="col" v-for="id in slots">{{ id }}</th>
 			</tr>
 		</thead>
