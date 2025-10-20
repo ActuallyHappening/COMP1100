@@ -66,12 +66,14 @@ export type Program = {
 	url: string;
 	program_requirements: RecordId<string>[];
 };
+export type Prereq = ("OR" | "AND" | RecordId<string> | Prereq)[];
 export type Course = {
 	id: RecordId<string>;
 	code: string;
 	cp: number;
 	name: string;
-	prerequisites: string[];
+	prerequisites: Prereq;
+	incompatible: RecordId<string>[];
 	sem_1: boolean;
 	sem_2: boolean;
 	sem_summer: boolean;

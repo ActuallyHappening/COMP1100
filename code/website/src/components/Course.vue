@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { inject, defineProps, computed, ref } from "vue";
 import ErrorView from "../Error.vue";
+import type { Course, ProvidedExport, Prereq } from "./State.vue";
 
 const props = defineProps({
 	code: {
@@ -9,7 +10,7 @@ const props = defineProps({
 	},
 });
 
-const { getCourse } = inject("state");
+const { getCourse } = inject("state") as ProvidedExport;
 type Err = any;
 const error = ref(undefined as undefined | Err);
 const handleError = (err: Err) => {
@@ -17,21 +18,55 @@ const handleError = (err: Err) => {
 	error.value = err;
 };
 
-const course = computed(() => {
+const course = computed((): Course | undefined => {
 	const ret = getCourse(props.code);
 	if (!ret) {
-		return handleError(new Error(`Couldn't find course ${props.code}`));
+		handleError(new Error(`Couldn't find course ${props.code}`));
+		return {
+			code: "Cannot Find Course",
+			name: "Cannot find course",
+			prerequisites: [],
+			incompatible: [],
+		} as Course;
 	}
 	return ret;
+});
+const renderPrereq = (arr: Prereq) => {
+	const ret = [];
+	for (const idiom of arr) {
+		if (idiom === "OR" || idiom === "AND") {
+			ret.push(idiom.toLowerCase());
+		} else if (typeof idiom.id === "string") {
+			ret.push(idiom.id.toUpperCase());
+		} else {
+			ret.push("(" + renderPrereq(idiom) + ")");
+		}
+	}
+	return ret.join(" ");
+};
+const prereqs = computed(() => {
+	if (course.value?.prerequisites) {
+		return renderPrereq(course.value?.prerequisites);
+	} else {
+		return "";
+	}
 });
 </script>
 
 <template>
 	<!-- let me know if these need to be -->
-	<button type="button" class="list-group-item list-group-item-action" id="vue-Course">
+	<button
+		type="button"
+		class="list-group-item list-group-item-action"
+		id="vue-Course"
+	>
 		<template v-if="!error">
-			<h4 class="text-center">{{ course.code }}: {{ course.name }} (<i>Sem 1</i>)</h4>
-        	<p class="m-0 p-0">Prerequisites: <i>TGRA5500</i></p>
+			<h4 class="text-center">
+				{{ course.code }}: {{ course.name }} (<i>Sem 1</i>)
+			</h4>
+			<p class="m-0 p-0">
+				Prerequisites: <i>{{ prereqs }}</i>
+			</p>
 			<p class="m-0 p-0">Incompatible: <i>SOCI4100</i></p>
 		</template>
 		<ErrorView v-else :err="error" />
