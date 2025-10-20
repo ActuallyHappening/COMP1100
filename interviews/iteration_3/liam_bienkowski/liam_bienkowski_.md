@@ -1,124 +1,102 @@
-### Value Propositions Interview 1
-*Interview can be found [here](https://uq.sharepoint.com/teams/Section_7560_62502/_layouts/15/stream.aspx?id=/teams/Section_7560_62502/Shared%20Documents/Mon_9am_Team_10/liam_bienkowski_audio_recordings/iteration_2/liam_bienkowski_2025-09-18_1.mp3&isDarkMode=true).*
+### Interview 1
+*Interview can be found [here](https://translink.com.au).*
 
-Liam: *Now Alexander, Do you agree to have this interview recorded?* 
+Speaker 1: *Okay, Jonathan, do you agree to have this audio recorded?* 
 
-Alex: 
+Speaker 2: 
 >Yes. 
 
-Liam: *So the first question is, do you try and take courses with your friends when possible?* 
+Speaker 1: *So the 1st question I'd like to ask you is just in regards to the current system at UQ. What makes the current system UQ for selecting courses so sluggish?* 
 
-Alex: 
->Um, yeah, I'd say I do organise with my friends to some of my classes, I'd say it's a combination. Like, if it's... it's push really close to shove I like, prioritised by degree, and, um, that, but, like, it is a consideration, definitely. 
+Speaker 2: 
+>So right now, like, honestly, it's just like really confusing because I think the hardest part is like the information about the course is not the same place where you sign up to the course, which just means, like, compatibility, prerequisites, that kind of thing, is not easily accessible. So it's like, you have to know what you're doing. You have to like sort of set aside time in a day to sort of plan it, right? And then on top of that, like, the way you have to search for the courses and actually apply for the courses is just a bit like painful and definitely could be optimised a bit better. Like, it's not laid, you have to search for your course. It's not laid out in, like, an easy way. For, like, for, like, your program or your degree. Um, yeah, so, like, it could definitely be optimised. I think the 1st way I'd say is like just centralising it to one sort of platform. And then secondly, just like making it easier to access calls is actually relevant to you as opposed to just having to know the course before you set it up. 
 
-Liam: *So, would you say that it is a significant factor in choosing your courses or would you say it's something you try and do after you've chosen what course you want to do in the semester?*
+Speaker 1: *Yeah, great. And so then would you say that would you believe that our solution that I just showed you, and that you just had to go at, would be more effective than the current system?* 
 
-Alex: 
->I'd say I, like, look at the subjects I want to do, and then I'm, like, I go to my friends, and, like, guys, this is probably, like, the best course of action for me, and, like, if you guys want to follow, like, you know, be good to organise. So, like, I reckon it's more after the fact, well, after I'd, like, looked at prerequisites. 
+Speaker 2: 
+>Yeah, 100%. I think it just addresses like basically all the concern I had. Like, 1st of all, it's all in one place, which is helpful. You can see prerequisites, compatibility, in the same place where you actually apply for the courses, right? And you can set out your whole plan and everything. And then I think on top of that as well, it shows you core, breadth, like program electives, general electives, all of that. It's like different sections. So, like, you can see what courses are available as opposed to just, like, having to search for the course that you've already had to research. So, like, it takes a bit of the guesswork kind of you and also, like, provides you with narrow down options, which makes it a lot quicker and easier. As opposed to you accidentally picking a course. That is like you can't actually do. And you end up having to do like a summer semester to make up for like just just because there's been poor information out about it. So I think it's definitely a helpful thing. 
 
-Liam: *Yeah. So, do you know that my timetable, the official UQ timetailing website, has a built in way to share timetables?* 
+Speaker 1: *So do you prefer a system of having a singular tab for this? Or multiple tabs, for course, selections? And why?* 
 
-Alex: 
->Yes, I do know that. I've got a bunch of my friends on it. 
+Speaker 2: 
+>Is that like the core… 
 
-Liam: *So is this a system that you use often then, or you say it's something that's useful, or is it something that is useful for playing with your friends?* 
+Speaker 1: *Like on Chrome, for example, having numerous tabs open versus a singular tab?* 
 
-Alex: 
->Um, I'd say it's somewhat useful. Yeah, I do use it, like... I mean, I, I, like, take screenshots of the different type of tables to see where my classes line up with my friends. So, you know, I could say I would use it. 
+Speaker 2: 
+>Oh, 100% singular tab. I think if it's all in one place, because, like, the other thing is, like, I'm only choosing one course at a time. Like, the only reason I've multiple tabs is because I'm choosing between 2 courses at one and then I have to like switch between because they're all on different pages, right? But if it's all on one page, I can sort of choose one course at a time and I can see everything that I'm doing on the one page because if I had so many tabs open, like I might miss a tab. I might miss a potential option of a course that I could have done. So I think it's definitely better to have that all onto one crown. like window. 
 
-Liam: *Yeah. Great. So would it be more beneficial if there was a way you could better collaborate prior to selecting courses? Or do you already confer with your friends to a reasonable extent before selecting courses?* 
+Speaker 1: *Yes, as an extension of that, is the one tab system more effective than having several open at once?* 
 
-Alex: 
->Um, I mean, before selecting courses, I think that, um, the timetable website is a bit, like, dodgy when it comes to like, I think, is there a way you can look at each other's plans? 'Cause I thought it was just after you've gotten your courses allocated, then you can see each other's timetables. So, yeah, beforehand, it's all just like purple, so there's no way to, like, visualise it. 
+Speaker 2: 
+>Yeah, I think so. It saves time and also just easier on the eyes. 
 
-Liam: *Yeah, great. So moving on. Have you planned your courses for the upcoming 2 terms?* 
+Speaker 1: *So...just, in general, looking at all the different UQ systems, um, would you, so, overall, do you prefer having one tap open? And if so, why?* 
 
-Alex: 
->No. I probably shouldn't, but, like, I know generally what I want to do next semester, but, yeah, no. 
+Speaker 2: 
+>So, to repeat that,Daiyaan... 
 
-Liam: *So, do you worry, then, that planning too far in advance isn't useful?* 
+Speaker 1: *Yeah, sorry. So just looking at UQ generally, do you prefer having one tab open? And if so, just one tab open. if so, why?* 
 
-Alex: 
->Yes, I do, um, because things change, obviously. Yep. 
+Speaker 2: 
+>Yeah, no, that's like one of my like biggest gripes is like with blackboard and whatnot. Like, to get to like multiple stuff and whatnot and having to deal with like, it doesn't save like breadcrumbs, like, you can't keep, you can't do like multiple things or like, same with my UQ, it all branches off to different subwebsites and things. So it's like I have to keep my current chrome window has like 20 tabs in it because I have to keep like every single tab open of like these various different websites because it's like blackboard, my UQ, my SI Net? All of that, all of that kind of stuff. which is a real pain in the arse, right? Like, like, you know, I think it's so, I think someone needs to do something about that. So yeah. Yeah, definitely. I think it's a UQ wide issue. I think they're just a bit lazy to combine it all into one thing. 
 
-Liam: *Yeah, so when you're planning in advance, how likely do you think your preferences will change over time with which plan you've taken?* 
+Speaker 1: *Do you personally see any benefits in having several tabs open for each course?* 
 
-Alex: 
->I'd say there's, like, a good chance that it could change, like, on a per semester basis. Like, part of my degree is computer science, and I still don't know where I want to major in, um, there's, like, three of the majors I am still interested in, and I've changed which one I'm interested in each day, and so those will be different parts I'd have to, um, like, pick which classes I do to do, each one of those major. So yeah, I would say it does, it is still up in the air. 
+Speaker 2: 
+>Like, I think I think being able to open course profile in new tab, as in, like, I think you should be able to open it as a pop-up, but you should also have the option of opening it in a new tab. Because if you wanted to keep track of different like profiles or different like things, I guess on multiple tabs, like, yes, it would be helpful to do that. But I don't think I don't think you should have to choose multiple tabs. Like, I think having the option, like, some people prefer to organise it that way. Me personally, I can only focus on one thing at a at a time. So, like, I only really need the one thing open at a time. But, like, yeah, having the option to, like, just like, right click open in new tab kind of thing, and then having the profile by itself, um, would not be a bad way to get it. yeah. 
 
-Liam: *Yeah, so, have you planned any of your courses more than 2 terms in advance, either for, as you were saying, computer science, or for your engineering degree?* 
+Speaker 1: *And so just personally, like in a more abstract sense then, in terms of how you use your computer. What do you find beneficial about only having one tab open at once?* 
 
-Alex: 
->Like, I don't have a setup plan. I have classes, I’d like to do sometime in the next 4 years, but no, I don't have a specific plan at all after like the next 2 semesters. 
+Speaker 2: 
+>Yeah, um, 1st of all, is like saving, like, websites or whatever, right? Like, so when I have lots of different tabs, I think. Like, I, if I finish with one tab, I can't close my whole window. I can only close that tab, right? Because I have multiple things going at once. Whereas if it's all centralised in one tab, if I'm sort of working with it all on one platform, I have to finish the whole thing and then I can just close it. It's one window, really easy to keep track of, really easy to, like, reopen, close down, like, like, I can shut down my computer or something like that. Like just because it's only one tab to deal with. So it's a lot easier to manage that way. As opposed to opening multiple tabs and then losing track of some of the tabs and not remembering if it's important or not. So just keeping it open for the sake of it, in case it was something really important. And I just forgot. 
 
-Liam: *Have you planned all of your courses yourself? Or have you relied on UQ course advisor or a course planner?* 
+Speaker 1: *Yeah. So, how much time do you currently spend on course selection?* 
 
-Alex: 
->Um, I, the, my primary source is myself, so I go and check the prerequisites of, like, the, um, specialisation I'm interested in, like, those subjects, see which ones are most beneficial, um, and also which ones I'd enjoy. Um, and yeah, which one I need to do to, as proper prerequisites of other subjects, and then afterwards, I go and look at a course plan to, like, compare everything. Yeah, okay, on track, just to make sure. 
+Speaker 2: 
+>Um, less than I should, but also too much time. Like, I think I take a really sort of laid back approach and like, I'm a bit... What's the word, like, carped bombing about my constellation, if that's a proper term? Like, I'm very sort of Hail Mary, like, just, just, you know, throw it out there, right? But it still takes me a decent amount of time because I still need to check what course I can actually do. I don't want to end up doing a summer semester. But I'm pretty laid back about what courses I do because I know it because I'm obviously doing medicine. I know it won't hugely affect my future career. However, if I had to consider that, I'd spend a lot more time focussing on the courses I'm actually doing, which would take me even longer. So I think it takes me longer than it should. But me personally, I try and get it done in the least amount of effort as possible. So, like this sort of program would make that a lot easier. And definitely help me out quite a bit. 
 
-Liam: *Yeah. So would you like to see a system where previous students of a course can leave a note, like, of summary of that course?* 
+Speaker 1: *Yeah, so you kind of started to end that already. But do you think that this new system will significantly reduce the that time that you spent?* 
 
-Alex: 
->Oh, yeah, that would be definitely, really good, because currently, like, the course subscriptions on a lot of the ones I see on the program's domain. They're really not insightful into what the course is about at all, especially, like, um, yeah, just on a general basis, but also, like, for example, in semester one, I was choosing between MATH1051 and MATH1071, and the descriptions were literally exactly the same. Even though, like, in hindsight, the subjects were, like, quite significantly different. 
+Speaker 2: 
+>Yeah, 100%. It's simply because it seems, it also just like, oh, like perspective kind of thing, like motivation in a way. Like, it seems like a much smaller task if it's all in one place. Like, when currently the approach to course section is 1st before you even think about so many courses, you've got to check your prerequisites. You got to check what you've already done. You've got to check all the course profiles, like assessment everything. You gotta check your like plan, your program for the future, right? Whereas if it's like you're selecting your courses, it's a one thing on the one tab. I'd more likely do it in one sitting. Whereas right now I try to spread it out over a while, which is not normally the greatest of ideas. And I think also just like the convenience of it and the ease of it would just save me time logistically. But yeah, so I think those are the 2 main things. 
 
-Liam: *Yeah, so would, like, would, so would you be reading the short opinions of students?* 
+Speaker 1: *So at the very least, then, do you believe that this system will reduce the hassle of the current system?* 
 
-Alex: 
->Yeah, definitely, yeah. 
+Speaker 2: 
+>Yes, I think definitely. It just makes it easier to work with, which makes it less of a pain to use. And I guess I would dread I would dread less. I would not be as sad, come course selection time. I can't come with the proper word for that. 
 
-Liam: *So, would you like to see a system similar to EdStem prior to choosing a course? Like, a discussion board or more like a system of, like, Google reviews, where it's just, like, a simple review left to better understand the course.* 
+Speaker 1: *And so which factor do you think is going to save you the most time out of the new features?* 
 
-Alex: 
->I think reviews fits this sort of format better, because, like, a discussion board, like, I think would probably get out of hand, whereas, like, a review system, you can just, like, quickly. like looking at downloading an app on the App Store or like going to a restaurant, you can just kind of look at some reviews and be like, okay, yeah, yeah, yeah, yeah. I get the gist of the subject. Yeah. 
+Speaker 2: 
+>Um, I think the ability to have the core courses, spread courses, and electives there. Because I sort of know where I have spots, the core courses where I have spots for breadth, and where I have spots for general electives. It's just finding which ones are actually which, and knowing which ones are available for me in which semester and what time of year, like where on my course? Like, that would save the most time, instead of having to do that research, and then all I'd have to do is just check course profiles, check which ones I want to do, which suits me. So yeah, that's that would save me an understand. 
 
-Liam: *Awesome. Would you participate in a system where you aid other students?* 
+Speaker 1: *Final few questions now. If our system were to be available, would you use it over whichever method you are currently using?* 
 
-Alex: 
->Yeah, I'd say so. Like, if I, but obviously, like, the review system, probably only if I, like, really enjoyed it or really didn't like the subject, it was just, like, an average subject, I probably wouldn’t leave a review. 
+Speaker 2: 
+>Yes. 
 
-Liam: *Makes sense. And which for a system where core staff are present in the forum? Or not present in their work?* 
+Speaker 1: *And would you elaborate on why?* 
 
-Alex: 
->Wait what? 
+Speaker 2: 
+>Oh yeah. Sorry. No, because my current method just, I break it up too much. Like, the problem with my current method is I see it as like 3 different tasks I have to do. So, like, right now that makes course selection seem like so much more daunting and so much more annoying than it actually is. Whereas having it just there, right, makes it seem similar to just, like, it's more like actually enrolling in courses. It's less like doing, it's like another assignment to research your courses, figure out which is the best fit for you. you're basically doing optimisation on your own degree, right? Like, whereas, like, the current method, the current system, the sorry, the new system you're introducing just seems more like, yeah, this is how you enrol in courses. It seems a lot more normal and more like makes more sense. 
 
-Liam: *Would you prefer a system where core staff are present in the forums or not present, like, to moderate the discussions, like the reviews?* 
+Speaker 1: *What about our system do you find better than what you do now?* 
 
-Alex: 
->I think, like, you could have, um, just like, yeah, well, obviously you have moderators, so like you don't have, um, people going haywire, but I think in terms of like the course staff, um, like, being involved with the reviews, I think they should be able to, um, like, respond, like a developer response on the App Store and stuff to certain, um, reviews. But, like, I don't think the course staff themselves should be able to remove things, 'cause then that just defeats the whole purpose. I think that's a job for, like, a separate team of moderators. 
+Speaker 2: 
+>Yeah, I think just the availability of all the information, it's like a lot easier, and also just the simplicity of having it all on one tab. I think would be, um, what I found the most best. 
 
-Liam: *Yeah, great. And a final few questions now. So have you chosen your major or minor?* 
+Speaker 1: *Is there anything in particular that you think could be better or that your personal method does better than what the new system would do?* 
 
-Alex: 
->Well, I haven't declared my engineering one yet, but I have chosen one and computer science, no. 
+Speaker 2: 
+>Um, I guess the thing about my personal method is maybe, maybe it's good in a little bit of a way because it makes you think about it for a bit longer. Like any big decision, I guess, you should spend some time thinking about. So there is a slight chance I might rush the decision given the ease of it. But I think that's more of a me problem than a system problem. Like that's a benefit for me because the old system forces me to do that. Whereas the new system would give me a way out. But I don't think that's an issue with the system. I have no idea. 
 
-Liam: *So, um, how are your courses credits counted towards that major then?* 
+Speaker 1: *So on the whole, then, what are the strengths of the system that would influence the shift to it?* 
 
-Alex: 
->Like, what do you mean? 
+Speaker 2: 
+>Yeah, I think simplicity is a big one for me. Like, the easier it is for me, the less daunting of a task use is also the quicker I get it done. Like management of it, like currently I have to manage course profiles. Like if I'm doing it over multiple days, I have to keep lots of tabs open and whatnot. So it just makes it a lot easier to manage. And then I think, thirdly, would be just like the UI is nicer. It easier than typing in a course code and whatever. Like, I'm a big fan of Drag and Drop. Like, it makes feel like a game sort of thing. Like, it's just a lot more, um, it's a lot more nice than the current rate, isn't it? 
 
-Liam: *Prerequisites, et cetera.* 
+Speaker 1: *Yeah. Well, thank you for your time today, Jono.* 
 
-Alex: 
->Oh, well, currently in computer science, I've still got core courses to do for the next, like, 2 or 3 semesters. So I don't have to worry about like prerequisites for the major of computer science. But I've already started my prerequisites for my engineering major this semester because it's like there's only like 4 core courses and the rest is into specialisation. Yeah. Yep. 
-
-Liam: *Do you know, of course, like, do you know then what courses you need to complete in order to do your major or minors?* 
-
-Alex: 
->Um, I mean, it's online. There's a lot, but like not off the top of my head, but yes, I know where to go to look at it. I have to look them up to go and check, like, where my, on my degree, which subjects I need to do. 
-
-Liam: *And so have you considered what would happen if you were to change majors, like if you were, say, change when you're starting next term? And then what would happen to your course credits?* 
-
-Alex: 
->I actually have thought about this because semester one, I was thinking of just dropping engineering and just going to computer science, and I searched, I was researching, like, credit transfers and stuff. So I have considered like what would happen and see if I could get credit for some of my courses to and cross over and stuff and look at precedent for different course credits, yeah. 
-
-Liam: *And how was that?* 
-
-Alex: 
->Once again, it looks like the same UI as the programs domain. It's quite old and a lot of the, um, I can't remember exactly why, but I remember it basically just didn't work like for my situation. I don't know if it was because I had a situation that didn't have any precedent for. But I just couldn't find anything, any useful information at all for some reason, and I'm sorry, I don't remember what the problem was. 
-
-Liam: *And so then finally, would it help you if you had a way to create and compare multiple course plans to see how your course could play out?* 
-
-Alex: 
->Yeah, that would definitely be really good, bud. Yeah, that would be very useful, yes. 
-
-Liam: *Well, um, thank you very much. That's all we have time for.*
+Speaker 2: 
+>That's all right.
