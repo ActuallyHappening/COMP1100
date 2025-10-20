@@ -175,6 +175,7 @@ const top_level_selected = reactive({} as { [key: number]: string });
 .purple-bg {
 	/* Change to UQ colours pls */
 	background-color: #51247a;
+	color: white;
 }
 /* Temp styling for proof of concept */
 .container {
