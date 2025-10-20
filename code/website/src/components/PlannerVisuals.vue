@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { inject, defineProps, computed, ref } from "vue";
 import ErrorView from "../Error.vue";
-import type { Course, ProvidedExport, Prereq, SemId } from "./State.vue";
+import type { ProvidedExport, Prereq, SemId } from "./State.vue";
+import Course from "./Course.vue";
 
 const { sem_ids, selectedState, planState } = inject("state") as ProvidedExport;
 const slots = [1, 2, 3, 4];
@@ -25,6 +26,9 @@ const placeCourse = (sem_id: SemId, id: number) => {
 		}
 	}
 };
+const getPlan = (sem_id: SemId, id: number) => {
+	return planState()?.planner?.[sem_id]?.[id];
+};
 </script>
 <template>
 	<table class="table">
@@ -38,9 +42,13 @@ const placeCourse = (sem_id: SemId, id: number) => {
 			<tr v-for="sem_id in sem_ids">
 				<th scope="row">{{ sem_id }}</th>
 				<td v-for="id in slots">
-					<button @click="placeCourse(sem_id, id)">
+					<button
+						@click="placeCourse(sem_id, id)"
+						v-if="!getPlan(sem_id, id)"
+					>
 						Place course here!
 					</button>
+					<Course v-else :code="getPlan(sem_id, id)" small />
 				</td>
 			</tr>
 		</tbody>
