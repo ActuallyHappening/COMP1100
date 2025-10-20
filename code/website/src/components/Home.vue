@@ -119,6 +119,15 @@ const top_level_selected = reactive({} as { [key: number]: string });
 
 	<div class="container-fluid row">
 		<div class="col-4">
+			<div class="tababble">
+				<div class="nav nav-tabs" role="tablist" style="flex-wrap: nowrap !important;">
+					<a class="nav-item nav-link active" data-toggle="tab" href="" role="tab" aria-controls="" aria-selected="true">Core Courses</a>
+					<a class="nav-item nav-link" data-toggle="tab" href="" role="tab" aria-controls="" aria-selected="false">Major core</a>
+					<a class="nav-item nav-link" data-toggle="tab" href="" role="tab" aria-controls="" aria-selected="false">Electives</a>
+					<a class="nav-item nav-link" data-toggle="tab" href="" role="tab" aria-controls="" aria-selected="false">Minor core</a>
+					<a class="nav-item nav-link" data-toggle="tab" href="" role="tab" aria-controls="" aria-selected="false">Major electives</a>
+				</div>
+			</div>
 			<!-- Top level program_requirement picker, e.g. between type: maj, and type: nomaj -->
 			<div
 				v-for="(reqlist, index) in getCurrentProgram()
@@ -176,6 +185,12 @@ const top_level_selected = reactive({} as { [key: number]: string });
 	/* Change to UQ colours pls */
 	background-color: #51247a;
 	color: white;
+}
+.tababble{
+	white-space: nowrap;
+	overflow-y: hidden;
+	overflow-x: auto;
+	flex-wrap: nowrap;
 }
 /* Temp styling for proof of concept */
 .container {
