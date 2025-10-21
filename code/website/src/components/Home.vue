@@ -96,11 +96,30 @@ const top_level_selected = reactive({} as { [key: number]: string });
 						{{ program.name }}
 					</option>
 				</select>
+				<span class="input-group-text">Major</span>
+				<select
+					class="form-select"
+					name="course-code"
+					id="major-code"
+					:value="planState().majorId"
+					@input="
+						($event) =>
+							(planState().majorId = $event.target.value)
+					"
+				>
+					<option value="" hidden>Please select a major</option>
+					<!--<option 
+						v-for="program_requirement in program_requirements" 
+						v-if="program_requirement.type == 'major' || program_requirement.type == 'extmaj' || program_requirement.type == 'nomaj'"
+						:value="program_requirement.id">
+						{{ program_requirement.name }}
+					</option>-->
+				</select>
 			</div>
 		</form>
 	</div>
 
-	<div class="container-fluid row">
+	<div class="container-fluid row" id="parent-div">
 		<div class="col-4">
 			<!-- Tabs -->
 
@@ -181,12 +200,16 @@ button.active {
 	color: black;
 }
 
-button.course-selection-active {
-	background-color: purple !important;
-}
-
 button.list-group-item {
 	cursor: pointer;
+}
+
+#parent-div {
+	display: flex;
+}
+
+#plan {
+	flex-grow: 1;
 }
 
 </style>

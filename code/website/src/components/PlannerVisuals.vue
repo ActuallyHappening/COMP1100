@@ -54,3 +54,10 @@ const getPlan = (sem_id: SemId, id: number) => {
 		</tbody>
 	</table>
 </template>
+<style scoped>
+
+table {
+	width: 100%;
+}
+
+</style>

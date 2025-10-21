@@ -85,13 +85,24 @@ const selectCourse = () => {
 	console.info(`Selecting course: `, course.value.code);
 	selectedState.value = course.value.code;
 };
+
+const courseElements = Array.from(document.querySelectorAll<HTMLElement>('[id^=vue-Course-]'));
+document.addEventListener('click', (event) => {
+	const target = event.target as Node;
+	const clickedInside = courseElements.some(el => el.contains(target));
+	if (!clickedInside) {
+		courseElements.forEach(el => {
+			el.classList.remove('course-selection-active');
+		});
+	};
+});
 </script>
 
 <template>
 	<!-- let me know if these need to be -->
 	<button
 		type="button"
-		class="list-group-item list-group-item-action"
+		class="list-group-item"
 		:class="{ 'course-selection-active': selectedState === course?.code }"
 		:id="'vue-Course-' + course?.code"
 		@click="selectCourse"
@@ -128,3 +139,15 @@ const selectCourse = () => {
 		<ErrorView v-else :err="error" />
 	</button>
 </template>
+
+<style scoped>
+
+button.course-selection-active {
+	background-color: #8653b5;
+}
+
+button.course-selection-active:hover {
+	background-color: #b478eb;
+}
+
+</style>
