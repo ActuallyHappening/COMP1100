@@ -94,6 +94,19 @@ export type Course = {
 	sem_2: boolean;
 	sem_summer: boolean;
 };
+const error_course = (msg: string): Course => {
+	return {
+		id: new RecordId("course", `Error: ${msg}`),
+		code: msg,
+		cp: 2,
+		name: msg,
+		prerequisites: [],
+		incompatible: [],
+		sem_1: false,
+		sem_2: false,
+		sem_summer: false,
+	};
+};
 export type ProgramRequirement = {
 	id: RecordId<string>;
 	name: string;
@@ -190,6 +203,7 @@ const provided_export = {
 	refresh,
 	sem_ids,
 	selectedState,
+	error_course,
 };
 export type ProvidedExport = typeof provided_export;
 provide("state", provided_export);

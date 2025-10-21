@@ -8,14 +8,16 @@ const props = defineProps({
 		required: true,
 		type: String,
 	},
-	small: {
+	type: {
 		required: true,
-		type: Boolean,
-		default: false,
+		type: String,
+		default: "default",
 	},
 });
 
-const { getCourse, selectedState } = inject("state") as ProvidedExport;
+const { getCourse, selectedState, error_course } = inject(
+	"state",
+) as ProvidedExport;
 type Err = any;
 const error = ref(undefined as undefined | Err);
 const handleError = (err: Err) => {
@@ -27,12 +29,7 @@ const course = computed((): Course | undefined => {
 	const ret = getCourse(props.code);
 	if (!ret) {
 		handleError(new Error(`Couldn't find course ${props.code}`));
-		return {
-			code: "Cannot Find Course",
-			name: "Cannot find course",
-			prerequisites: [],
-			incompatible: [],
-		} as Course;
+		return error_course(`Couldn't find course ${props.code}`);
 	}
 	return ret;
 });
@@ -49,14 +46,14 @@ const renderPrereq = (arr: Prereq) => {
 	}
 	return ret.join(" ");
 };
-const prereqs = computed(() => {
+const prereqs_list = computed(() => {
 	if (course.value?.prerequisites) {
 		return renderPrereq(course.value?.prerequisites);
 	} else {
 		return "";
 	}
 });
-const incompatible = computed(() => {
+const incompatible_list = computed(() => {
 	if (course.value?.incompatible) {
 		return course.value.incompatible
 			.map((id) => id.id.toUpperCase())
@@ -65,32 +62,29 @@ const incompatible = computed(() => {
 		return "";
 	}
 });
+const sems = computed(() => {
+	if (!course.value) {
+		return "";
+	}
+	const summer = course.value.sem_summer ? " + Summer" : "";
+	if (course.value.sem_1 && course.value.sem_2) {
+		return "Sem 1 & 2" + summer;
+	} else if (course.value.sem_1) {
+		return "Sem 1" + summer;
+	} else if (course.value.sem_2) {
+		return "Sem 2" + summer;
+	} else {
+		handleError("Unknown semesters");
+		return "Unknown" + summer;
+	}
+});
 const selectCourse = () => {
+	if (!course.value) {
+		return;
+	}
 	console.info(`Selecting course: `, course.value.code);
 	selectedState.value = course.value.code;
-	const element = document.getElementById("vue-Course-" + course.value.code);
-	if (element) {
-		element.classList.add("course-selection-active");
-	};
-	const allCourseElements = Array.from(document.querySelectorAll<HTMLElement>('[id^="vue-Course-"]'));
-	console.log("All course elements:", allCourseElements);
-	const otherCourseElements = allCourseElements.filter(el => el.id !== element.id);
-	otherCourseElements.forEach(el => {
-		el.classList.remove("course-selection-active");
-	});
 };
-
-const courseElements = Array.from(document.querySelectorAll<HTMLElement>('[id^="vue-Course-"]'));
-
-document.addEventListener('click', (event) => {
-    const target = event.target as Node;
-    const clickedInside = courseElements.some(el => el.contains(target));
-    if (!clickedInside) {
-        courseElements.forEach(el => {
-			el.classList.remove("course-selection-active");
-		});
-	};
-});
 </script>
 
 <template>
@@ -98,20 +92,38 @@ document.addEventListener('click', (event) => {
 	<button
 		type="button"
 		class="list-group-item list-group-item-action"
-		:id="'vue-Course-' + course.code"
+		:class="{ 'course-selection-active': selectedState === course?.code }"
+		:id="'vue-Course-' + course?.code"
 		@click="selectCourse"
 	>
 		<template v-if="!error">
-			<h4 class="text-center" v-if="!props.small">
-				{{ course.code }}: {{ course.name }} (<i>Sem 1</i>)
-			</h4>
-			<h4 v-if="props.small">{{ course.code }}</h4>
-			<p class="m-0 p-0" v-if="prereqs && !props.small">
-				Prerequisites: <i>{{ prereqs }}</i>
-			</p>
-			<p class="m-0 p-0" v-if="incompatible && !props.small">
-				Incompatible: <i>{{ incompatible }}</i>
-			</p>
+			<template v-if="type === 'default'">
+				<h4 class="text-center">
+					{{ course?.code }}: {{ course?.name }} (<i>{{ sems }}</i
+					>)
+				</h4>
+				<p class="m-0 p-0" v-if="prereqs_list">
+					Prerequisites: <i>{{ prereqs_list }}</i>
+				</p>
+				<p class="m-0 p-0" v-if="incompatible_list">
+					Incompatible: <i>{{ incompatible_list }}</i>
+				</p>
+			</template>
+			<template v-else-if="type === 'small'">
+				<h4>{{ course?.code }}</h4>
+			</template>
+			<template v-else-if="type === 'summary'">
+				<h4>{{ course?.code }}</h4>
+			</template>
+			<template v-else>
+				<ErrorView
+					:err="
+						new Error(
+							`Unknown course type <Course type='${type}' />`,
+						)
+					"
+				/>
+			</template>
 		</template>
 		<ErrorView v-else :err="error" />
 	</button>
