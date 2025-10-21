@@ -14,6 +14,26 @@ const {
 	program_requirements,
 } = inject("state") as ProvidedExport;
 
+var currentProgramRequirements = [];
+for (const course in getCurrentProgram().program_requirements[1]) {
+	currentProgramRequirements.push(
+		getCurrentProgram().program_requirements[1][course].id,
+	);
+};
+
+var courseNamePairing: { [id: string]: string} = {};
+for (const item of program_requirements.value) {
+	for (const ids of currentProgramRequirements) {
+		var course_name = "";
+		if (item.id.id === ids) {
+			course_name = item.name;
+		}
+		if (course_name !== "") {
+			courseNamePairing[ids] = course_name;
+		};
+	};
+};
+
 function newPlan() {
 	const planNums = Object.keys(localState.value.plans).map((planString) =>
 		Number(planString.slice(5)),
@@ -26,6 +46,17 @@ function newPlan() {
 }
 
 const top_level_selected = reactive({} as { [key: number]: string });
+
+function majorChange(event: Event) {
+	const value = (event.target as HTMLSelectElement).value;
+	planState().majorId = value;
+};
+
+function courseChange(event: Event) {
+	const value = (event.target as HTMLSelectElement).value;
+	planState().programId = value;
+
+};
 </script>
 
 <template>
@@ -86,10 +117,7 @@ const top_level_selected = reactive({} as { [key: number]: string });
 					name="course-code"
 					id="course-code"
 					:value="planState().programId"
-					@input="
-						($event) =>
-							(planState().programId = $event.target.value)
-					"
+					@input="courseChange"
 				>
 					<option value="" hidden>Please select a course</option>
 					<option v-for="program in programs" :value="program.id">
@@ -102,18 +130,14 @@ const top_level_selected = reactive({} as { [key: number]: string });
 					name="course-code"
 					id="major-code"
 					:value="planState().majorId"
-					@input="
-						($event) =>
-							(planState().majorId = $event.target.value)
-					"
+					@input="majorChange"
 				>
 					<option value="" hidden>Please select a major</option>
-					<!--<option 
-						v-for="program_requirement in program_requirements" 
-						v-if="program_requirement.type == 'major' || program_requirement.type == 'extmaj' || program_requirement.type == 'nomaj'"
-						:value="program_requirement.id">
-						{{ program_requirement.name }}
-					</option>-->
+					<option 
+						v-for="[id, program_requirement] of Object.entries(courseNamePairing)"
+						:value="id">
+						{{ program_requirement }}
+					</option>
 				</select>
 			</div>
 		</form>
