@@ -68,7 +68,29 @@ const incompatible = computed(() => {
 const selectCourse = () => {
 	console.info(`Selecting course: `, course.value.code);
 	selectedState.value = course.value.code;
+	const element = document.getElementById("vue-Course-" + course.value.code);
+	if (element) {
+		element.classList.add("course-selection-active");
+	};
+	const allCourseElements = Array.from(document.querySelectorAll<HTMLElement>('[id^="vue-Course-"]'));
+	console.log("All course elements:", allCourseElements);
+	const otherCourseElements = allCourseElements.filter(el => el.id !== element.id);
+	otherCourseElements.forEach(el => {
+		el.classList.remove("course-selection-active");
+	});
 };
+
+const courseElements = Array.from(document.querySelectorAll<HTMLElement>('[id^="vue-Course-"]'));
+
+document.addEventListener('click', (event) => {
+    const target = event.target as Node;
+    const clickedInside = courseElements.some(el => el.contains(target));
+    if (!clickedInside) {
+        courseElements.forEach(el => {
+			el.classList.remove("course-selection-active");
+		});
+	};
+});
 </script>
 
 <template>
@@ -76,7 +98,7 @@ const selectCourse = () => {
 	<button
 		type="button"
 		class="list-group-item list-group-item-action"
-		id="vue-Course"
+		:id="'vue-Course-' + course.code"
 		@click="selectCourse"
 	>
 		<template v-if="!error">

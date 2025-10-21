@@ -181,4 +181,12 @@ button.active {
 	color: black;
 }
 
+button.course-selection-active {
+	background-color: purple !important;
+}
+
+button.list-group-item {
+	cursor: pointer;
+}
+
 </style>
