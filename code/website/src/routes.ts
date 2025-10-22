@@ -1,6 +1,4 @@
 import Home from "./components/Home.vue";
-import AdminEdit from "./components/AdminEdit.vue";
-import CoursesList from "./components/CoursesList.vue";
 
 import {
 	createMemoryHistory,
@@ -12,11 +10,6 @@ const routes = [
 	{ path: `/`, component: Home },
 	{ path: `/home`, component: Home },
 	{ path: `/index.html`, component: Home },
-	{ path: `/edit`, component: AdminEdit },
-	{ path: `/courses`, component: CoursesList },
-	// { path: `/onboarding`, component: StudentNumberForm },
-	// { path: `/onboarding/student-number`, component: StudentNumberForm },
-	// { path: `/onboarding/program`, component: ProgramForm },
 ];
 
 export const router = createRouter({

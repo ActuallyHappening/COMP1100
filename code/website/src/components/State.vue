@@ -13,7 +13,13 @@ const current_version = "0.1.0";
 const compatible_versions = `=${current_version}`;
 const debug = useStorage("debug", false);
 
-const sem_ids = ["2025 Sem 2", "2026 Sem 1"] as const;
+const sem_ids = [
+	"2025 Sem 1",
+	"2025 Sem 2",
+	"2026 Sem 1",
+	"2026 Sem 2",
+	"2027 Sem 1",
+] as const;
 export type SemId = (typeof sem_ids)[number];
 const defaultPlanner = (): Planner => {
 	const ret = {} as Planner;
@@ -21,6 +27,82 @@ const defaultPlanner = (): Planner => {
 		ret[sem_id] = [undefined, undefined, undefined, undefined];
 	}
 	return ret;
+};
+/** Does mutate original, assumes it is a Vue proxy */
+const plannerAPI = (planner: Planner) =>
+	({
+		getIndexOfCourse(
+			course: RecordId<string>,
+		): [SemId, number] | undefined {
+			for (const _sem_id in planner) {
+				const sem_id = _sem_id as SemId;
+				const index = planner[sem_id].indexOf(course.id.toString());
+				if (index !== -1) {
+					return [sem_id, index];
+				}
+			}
+			return undefined;
+		},
+		assertSemId(sem_id: SemId | unknown) {
+			if (sem_ids.indexOf(sem_id) === -1) {
+				throw new TypeError(`${sem_id} not valid`);
+			}
+		},
+		getSemPlan(sem_id: SemId): Planner[SemId] {
+			this.assertSemId(sem_id);
+
+			if (!planner[sem_id]) {
+				planner[sem_id] = defaultPlanner()[sem_id];
+			}
+			if (planner[sem_id].length !== defaultPlanner()[sem_id].length) {
+				planner[sem_id] = defaultPlanner()[sem_id];
+			}
+			return planner[sem_id];
+		},
+		getIndex(sem_id: SemId, index: number) {
+			this.assertSemId(sem_id);
+			if (typeof index !== "number") {
+				throw new TypeError();
+			}
+			return this.getSemPlan(sem_id)[index];
+		},
+		/** Doesn't include sem_id */
+		semIdsBefore(sem_id: SemId): SemId[] {
+			this.assertSemId(sem_id);
+
+			const index = sem_ids.indexOf(sem_id);
+			const ret = sem_ids.slice(index);
+			if (ret.indexOf(sem_id) !== -1) {
+				throw new Error();
+			}
+			return ret;
+		},
+		previousCoursesTo([sem_id, index]: [SemId, number]): Course[] {
+			const codes = new Set<string>([]);
+			// this sem_id
+			for (const _i in planner[sem_id]) {
+				const i = Number(_i);
+				if (i < index) {
+					const code = this.getIndex(sem_id, i);
+					if (code) {
+						codes.add(code);
+					}
+				}
+			}
+			// previous sem_ids
+			for (const prev_sem_id of this.semIdsBefore(sem_id)) {
+				this.getSemPlan(prev_sem_id).forEach((code) => {
+					if (code) {
+						codes.add(code);
+					}
+				});
+			}
+			return [...codes].map((code) => getCourse(code));
+		},
+	}) as const;
+export type PlannerAPI = ReturnType<typeof plannerAPI>;
+const wrapPlannerAPI = (planner: Planner): PlannerAPI => {
+	return plannerAPI;
 };
 
 /** Course code */
@@ -235,8 +317,10 @@ function getCurrentProgram(): Program | undefined {
 	return ret;
 }
 
-function getCourse(code: string): Course | undefined {
-	return courses.value.find((course) => course.code == code.toUpperCase());
+function getCourse(code: string): Course {
+	return courses.value.find(
+		(course) => course.code.toUpperCase() == code.toUpperCase(),
+	);
 }
 
 import { RecordId, Surreal, Table } from "surrealdb";
@@ -298,6 +382,7 @@ const provided_export = {
 	programs,
 	getCurrentProgram,
 	defaultPlan,
+	defaultPlanner,
 	courses,
 	getCourse,
 	program_requirements,

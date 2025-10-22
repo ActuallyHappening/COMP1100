@@ -5,7 +5,7 @@ import type { ProvidedExport, Prereq, SemId } from "./State.vue";
 import Course from "./Course.vue";
 import { preresuisiteCheck } from "../prerequisiteChecker.ts";
 
-const { sem_ids, selectedState, getCurrentPlanState } = inject(
+const { sem_ids, selectedState, getCurrentPlanState, defaultPlanner } = inject(
 	"state",
 ) as ProvidedExport;
 const slots = ["Course 1", "Course 2", "Course 3", "Course 4"] as const;
@@ -31,6 +31,9 @@ const placeCourse = (sem_id: SemId, id: number) => {
 	}
 };
 const getPlan = (sem_id: SemId, id: number): SemPlan[number] => {
+	if (!getCurrentPlanState().planner[sem_id]) {
+		getCurrentPlanState().planner[sem_id] = defaultPlanner()[sem_id];
+	}
 	return getCurrentPlanState().planner[sem_id][id];
 };
 </script>
