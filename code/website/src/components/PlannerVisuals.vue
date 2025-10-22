@@ -4,8 +4,9 @@ import ErrorView from "../Error.vue";
 import type { ProvidedExport, Prereq, SemId } from "./State.vue";
 import Course from "./Course.vue";
 import { preresuisiteCheck } from "../prerequisiteChecker.ts";
+import { RecordId } from "surrealdb";
 
-const { sem_ids, selectedState, getCurrentPlanState, defaultPlanner } = inject(
+const { sem_ids, selectedState, getCurrentPlanState, plannerAPI } = inject(
 	"state",
 ) as ProvidedExport;
 const slots = ["Course 1", "Course 2", "Course 3", "Course 4"] as const;
@@ -22,20 +23,17 @@ export type Planner = {
 };
 const placeCourse = (sem_id: SemId, id: number) => {
 	if (selectedState.value) {
-		const _planState = getCurrentPlanState();
-		if (_planState) {
-			console.info(sem_id, id, selectedState.value);
-			_planState.planner[sem_id][id] = selectedState.value.toLowerCase();
-			// preresuisiteCheck(sem_id, _planState.planner, selectedState.value);
-			selectedState.value = undefined;
-		}
+		const planState = getCurrentPlanState();
+		plannerAPI(planState.planner).assignNewCourse(
+			[sem_id, id],
+			new RecordId("course", selectedState.value),
+		);
+		// preresuisiteCheck(sem_id, _planState.planner, selectedState.value);
+		selectedState.value = undefined;
 	}
 };
 const getPlan = (sem_id: SemId, id: number): SemPlan[number] => {
-	if (!getCurrentPlanState().planner[sem_id]) {
-		getCurrentPlanState().planner[sem_id] = defaultPlanner()[sem_id];
-	}
-	return getCurrentPlanState().planner[sem_id][id];
+	return plannerAPI(getCurrentPlanState().planner).getIndex([sem_id, id]);
 };
 </script>
 <template>
@@ -49,7 +47,7 @@ const getPlan = (sem_id: SemId, id: number): SemPlan[number] => {
 		<tbody>
 			<tr v-for="sem_id in sem_ids">
 				<th scope="row" :id="`${sem_id}`">{{ sem_id }}</th>
-				<td v-for="id in slots.length" :id="`${sem_id}-${id}`">
+				<td v-for="(name, id) in slots.length" :id="`${sem_id}-${id}`">
 					<button
 						@click="placeCourse(sem_id, id)"
 						v-if="!getPlan(sem_id, id)"

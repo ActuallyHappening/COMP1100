@@ -59,7 +59,7 @@ const plannerAPI = (planner: Planner) =>
 			}
 			return planner[sem_id];
 		},
-		getIndex(sem_id: SemId, index: number) {
+		getIndex([sem_id, index]: [SemId, number]) {
 			this.assertSemId(sem_id);
 			if (typeof index !== "number") {
 				throw new TypeError();
@@ -71,7 +71,7 @@ const plannerAPI = (planner: Planner) =>
 			this.assertSemId(sem_id);
 
 			const index = sem_ids.indexOf(sem_id);
-			const ret = sem_ids.slice(index);
+			const ret = sem_ids.slice(0, index);
 			if (ret.indexOf(sem_id) !== -1) {
 				throw new Error();
 			}
@@ -83,7 +83,7 @@ const plannerAPI = (planner: Planner) =>
 			for (const _i in planner[sem_id]) {
 				const i = Number(_i);
 				if (i < index) {
-					const code = this.getIndex(sem_id, i);
+					const code = this.getIndex([sem_id, i]);
 					if (code) {
 						codes.add(code);
 					}
@@ -98,6 +98,24 @@ const plannerAPI = (planner: Planner) =>
 				});
 			}
 			return [...codes].map((code) => getCourse(code));
+		},
+		assignNewCourse(
+			[sem_id, index]: [SemId, number],
+			id: RecordId<string>,
+		) {
+			assert_id(id);
+			if (this.getIndexOfCourse(id)) {
+				toast(
+					`Not adding course ${id.id} which is already in your plan`,
+					{
+						type: "info",
+					},
+				);
+				return;
+			}
+			this.getIndex([sem_id, index]);
+			console.info(`Assigning`, sem_id, id, `to`, selectedState.value);
+			planner[sem_id][index] = id.id.toString();
 		},
 	}) as const;
 export type PlannerAPI = ReturnType<typeof plannerAPI>;
@@ -140,6 +158,7 @@ const _localState = useStorage(
 // export const localState = computed(() => _localState ?? defaultState);
 const localState = _localState;
 const reset = () => {
+	console.warn(`Resetting all local state`);
 	localState.value = _.cloneDeep(defaultState);
 };
 // Aggressively purge out of date state
