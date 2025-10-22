@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { reactive, inject, ref, watch, computed } from "vue";
+import { reactive, inject, ref, watch, computed, onMounted } from "vue";
 import type { ProvidedExport } from "./State.vue";
 import type { ProgramRequirement } from "./State.vue";
 import { RecordId } from "surrealdb";
@@ -37,6 +37,25 @@ const options = computed((): ProgramRequirement[] => {
 	}
 	return myReqs.map((req) => getProgramRequirement(req));
 });
+watch(
+	() => getCurrentProgram()?.program_requirements,
+	() => {
+		const currentProgram = getCurrentProgram();
+		const me = currentProgram?.program_requirements?.[props.index];
+		if (me) {
+			if (me.length === 1) {
+				// choose the only option available, duuh
+				console.info(
+					`Choosing the only option available`,
+					_.cloneDeep(me),
+				);
+				getCurrentPlanState().topLevelReqsSelected[props.index] =
+					me[0]!.id.toString();
+			}
+		}
+	},
+	{ deep: true, immediate: true },
+);
 </script>
 
 <template>
@@ -46,14 +65,19 @@ const options = computed((): ProgramRequirement[] => {
 	<template
 		v-if="
 			typeof getCurrentProgram()?.program_requirements?.[props.index] ===
-			'object'
+			'undefined'
 		"
 	>
-		<pre class="text-danger">Loading</pre>
+		<pre class="text-danger">Unknown index?</pre>
 	</template>
 	<template v-else>
 		<select
-			v-model="getCurrentPlanState().topLevelReqsSelected[props.index]"
+			:value="getCurrentPlanState().topLevelReqsSelected[props.index]"
+			@input="
+				(ev) =>
+					(getCurrentPlanState().topLevelReqsSelected[props.index] =
+						ev.target?.value)
+			"
 			id="vue-ProgramReq"
 			class="form-select"
 		>

@@ -164,6 +164,7 @@ const normalizedIndexHeaders = computed((): string[] => {
 				<button
 					v-if="getCurrentProgram()"
 					v-for="(id, i) in normalizedIndexHeaders"
+					:key="id"
 					class="nav-link"
 					:class="{ active: i === 0 }"
 					:id="`homescreen-leftbar-${id}-tab`"
@@ -181,6 +182,7 @@ const normalizedIndexHeaders = computed((): string[] => {
 				<div
 					v-if="getCurrentProgram()"
 					v-for="(id, i) in normalizedIndexHeaders"
+					:key="id"
 					class="tab-pane fade show"
 					:class="{ active: i === 0 }"
 					:id="`homescreen-leftbar-${id}-tabcontent`"

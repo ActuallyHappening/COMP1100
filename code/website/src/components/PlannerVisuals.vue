@@ -3,7 +3,7 @@ import { inject, defineProps, computed, ref } from "vue";
 import ErrorView from "../Error.vue";
 import type { ProvidedExport, Prereq, SemId } from "./State.vue";
 import Course from "./Course.vue";
-import { preresuisiteCheck, errors } from "../prerequisiteChecker.ts";
+import { preresuisiteCheck } from "../prerequisiteChecker.ts";
 
 const { sem_ids, selectedState, getCurrentPlanState } = inject(
 	"state",
@@ -25,7 +25,7 @@ const placeCourse = (sem_id: SemId, id: number) => {
 		if (_planState) {
 			console.info(sem_id, id, selectedState.value);
 			_planState.planner[sem_id][id] = selectedState.value;
-			preresuisiteCheck(sem_id, _planState.planner, selectedState.value);
+			// preresuisiteCheck(sem_id, _planState.planner, selectedState.value);
 			selectedState.value = undefined;
 		}
 	}
@@ -52,7 +52,7 @@ const getPlan = (sem_id: SemId, id: number): SemPlan[number] => {
 					>
 						Place course here!
 					</button>
-					<Course v-else :code="getPlan(sem_id, id)!" small />
+					<Course v-else :code="getPlan(sem_id, id)!" type="small" />
 				</td>
 			</tr>
 		</tbody>
