@@ -83,20 +83,25 @@ const selectCourse = () => {
 	if (!course.value) {
 		return;
 	}
-	console.info(`Selecting course: `, course.value.code);
-	selectedState.value = course.value.code;
+	if (selectedState.value == course.value.code) {
+		// already selected
+		selectedState.value = undefined;
+	} else {
+		console.info(`Selecting course: `, course.value.code);
+		selectedState.value = course.value.code;
+	}
 };
 
-const courseElements = Array.from(document.querySelectorAll<HTMLElement>('[id^=vue-Course-]'));
-document.addEventListener('click', (event) => {
-	const target = event.target as Node;
-	const clickedInside = courseElements.some(el => el.contains(target));
-	if (!clickedInside) {
-		courseElements.forEach(el => {
-			el.classList.remove('course-selection-active');
-		});
-	};
-});
+// const courseElements = Array.from(document.querySelectorAll<HTMLElement>('[id^=vue-Course-]'));
+// document.addEventListener('click', (event) => {
+// 	const target = event.target as Node;
+// 	const clickedInside = courseElements.some(el => el.contains(target));
+// 	if (!clickedInside) {
+// 		courseElements.forEach(el => {
+// 			el.classList.remove('course-selection-active');
+// 		});
+// 	};
+// });
 </script>
 
 <template>
@@ -142,7 +147,6 @@ document.addEventListener('click', (event) => {
 </template>
 
 <style scoped>
-
 button.course-selection-active {
 	background-color: #8653b5;
 }
@@ -150,5 +154,4 @@ button.course-selection-active {
 button.course-selection-active:hover {
 	background-color: #b478eb;
 }
-
 </style>

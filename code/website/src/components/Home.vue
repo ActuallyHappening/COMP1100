@@ -17,27 +17,8 @@ const {
 	requirement_types_to_header,
 	requirement_type_to_header,
 	getProgramRequirement,
+	getCurrentPlanState,
 } = inject("state") as ProvidedExport;
-
-var currentProgramRequirements = [];
-for (const course in getCurrentProgram().program_requirements[1]) {
-	currentProgramRequirements.push(
-		getCurrentProgram().program_requirements[1][course].id,
-	);
-}
-
-var courseNamePairing: { [id: string]: string } = {};
-for (const item of program_requirements.value) {
-	for (const ids of currentProgramRequirements) {
-		var course_name = "";
-		if (item.id.id === ids) {
-			course_name = item.name;
-		}
-		if (course_name !== "") {
-			courseNamePairing[ids] = course_name;
-		}
-	}
-}
 
 function newPlan() {
 	// "Plan 42069" -> Number(42069) + 1
@@ -52,14 +33,13 @@ function newPlan() {
 	localState.value.current = newPlan;
 }
 
-// function majorChange(event: Event) {
-// 	const value = (event.target as HTMLSelectElement).value;
-// 	planState().majorId = value;
-// };
-
-// function courseChange(event: Event) {
-// 	const value = (event.target as HTMLSelectElement).value;
-// 	planState().programId = value;
+function courseChange(event: Event) {
+	const value = (event.target as HTMLSelectElement).value;
+	const plan_state = getCurrentPlanState();
+	if (plan_state) {
+		plan_state.programId = value;
+	}
+}
 
 /** Keys are indicies into `getCurrentProgram().program_requirements` */
 const top_level_selected = reactive({} as { [key: number]: RecordId<string> });
@@ -160,7 +140,13 @@ const header_by_index = (index: number): string | undefined => {
 				<!-- Hardcoding the first index as the major
 				Trakcking issue: https://github.com/COMP1100-7110-2025-s2/Mon_9am_Team_10/issues/17
 				-->
-				<ProgramReq :index="1" />
+				<ProgramReq
+					v-if="
+						getCurrentProgram()?.program_requirements?.length >= 2
+					"
+					:index="1"
+					@selected="(req) => (top_level_selected[1] = req)"
+				/>
 			</div>
 		</form>
 	</div>

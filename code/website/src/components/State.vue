@@ -100,6 +100,7 @@ const getCurrentPlanState = (): PlanState => {
 	const ret = planState();
 	if (!ret) {
 		console.error(`getCurrentPlanState returned undefined`);
+		toast(`getCurrentPlanState() undefined`, { type: "error" });
 	}
 	return ret!;
 };
@@ -266,6 +267,7 @@ function refresh() {
 				cause: err,
 			});
 			console.error(error);
+			toast(error.message, { type: "error" });
 		})
 		.then(() => {
 			console.info(`Successfully loaded all information from the db:`);

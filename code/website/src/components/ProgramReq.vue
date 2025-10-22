@@ -15,6 +15,7 @@ const {
 	program_requirements,
 	getProgramRequirement,
 } = inject("state") as ProvidedExport;
+import { toast } from "vue3-toastify";
 
 const props = defineProps({
 	index: { type: Number, required: true },
@@ -24,8 +25,20 @@ const emit = defineEmits<{
 }>();
 
 const $debug = (...args) => console.info(props.index, ...args);
-const allOptions = (): RecordId<string>[] | undefined =>
-	getCurrentProgram()?.program_requirements[props.index];
+const allOptions = (): RecordId<string>[] | undefined => {
+	const currentProgram = getCurrentProgram();
+	if (!currentProgram) {
+		toast(`Couldn't getCurrentProgram`, { type: "warning" });
+		return undefined;
+	}
+	const ret = currentProgram.program_requirements[props.index];
+	if (!ret) {
+		toast(
+			`Couldn't find index ${props.index} in current program_requirements`,
+		);
+	}
+	return ret;
+};
 const allOptionsLoaded = (): ProgramRequirement[] | undefined => {
 	return allOptions()
 		?.map((id) => {
@@ -49,7 +62,7 @@ watch(selectedRequirement, () => {
 // TODO: Convert back to record IDs
 const chosenOption = (): string | undefined => {
 	const _allOptions = new Set(
-		allOptions()!.map((id) => id.id.toString()),
+		allOptions().map((id) => id.id.toString()),
 	) as Set<string>;
 	const desiredRequirements = new Set(
 		getCurrentPlanState().programRequirementsSelected,
