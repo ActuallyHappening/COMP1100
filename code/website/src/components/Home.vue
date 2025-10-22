@@ -133,17 +133,8 @@ const normalize = (str: string | undefined): string => {
 				Trakcking issue: https://github.com/COMP1100-7110-2025-s2/Mon_9am_Team_10/issues/17
 				-->
 				<ProgramReq
-					v-if="
-						getCurrentProgram()?.program_requirements?.length !==
-							undefined &&
-						getCurrentProgram()!.program_requirements.length >= 2
-					"
+					v-if="getCurrentProgram()?.program_requirements?.[1]"
 					:index="1"
-					@selected="
-						(req) =>
-							(getCurrentPlanState().topLevelReqsSelected[1] =
-								req.id.toString())
-					"
 				/>
 			</div>
 		</form>
