@@ -18,6 +18,7 @@ const {
 } = inject("state") as ProvidedExport;
 
 const props = defineProps({
+	// id/code part only
 	requirementId: { type: String, required: true },
 });
 
@@ -29,7 +30,7 @@ const handleError = (err: Err) => {
 };
 
 const $debug = (...args) => console.info(props.index, ...args);
-const this_program_req = computed((): ProgramRequirement | undefined => {
+const this_program_req = computed((): ProgramRequirement => {
 	return getProgramRequirement(
 		new RecordId("program_requirement", props.requirementId),
 	);

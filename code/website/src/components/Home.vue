@@ -59,8 +59,26 @@ const getHeaderByIndex = (index: number): string | undefined => {
 	return requirement_types_to_header(a);
 };
 const normalize = (str: string | undefined): string => {
-	return (str ?? "UNDEFINED").toLowerCase().replace(" ", "-");
+	return (
+		(str ?? "UNDEFINED")
+			.toLowerCase()
+			// pasted from claude https://claude.ai/chat/a6a9877e-b767-4173-bc62-da13870b7524
+			.replace(/[^a-zA-Z0-9\s]/g, "")
+			.replace(/\s+/g, "-")
+	);
 };
+const normalizedIndexHeaders = computed((): string[] => {
+	const ret: string[] = [];
+	const currentProgram = getCurrentProgram();
+	if (!currentProgram) {
+		return [];
+	}
+	for (const idx in currentProgram.program_requirements) {
+		const i = Number(idx);
+		ret[i] = normalize(getHeaderByIndex(i));
+	}
+	return ret;
+});
 </script>
 
 <template>
@@ -141,7 +159,7 @@ const normalize = (str: string | undefined): string => {
 	</div>
 
 	<div class="container-fluid row" id="parent-div">
-		<div class="col-3">
+		<div class="col-3" v-if="getCurrentProgram()">
 			<!-- Tabs -->
 
 			<div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -159,65 +177,40 @@ const normalize = (str: string | undefined): string => {
 				</button> -->
 				<button
 					v-if="getCurrentProgram()"
-					v-for="i in getCurrentProgram()!.program_requirements
-						.length"
+					v-for="(id, i) in normalizedIndexHeaders"
 					class="nav-link active"
-					:id="`${normalize(getHeaderByIndex(i))}-tab`"
+					:id="`${id}-tab`"
 					data-bs-toggle="tab"
-					:data-bs-target="`#${normalize(getHeaderByIndex(i))}`"
+					:data-bs-target="`#${id}`"
 					type="button"
 					role="tab"
-					:aria-controls="normalize(getHeaderByIndex(i))"
+					:aria-controls="id"
 					aria-selected="true"
 				>
-					<!-- Core Courses -->
+					<!-- e.g. Core Courses -->
 					{{ getHeaderByIndex(i) }}
 				</button>
 			</div>
 			<div class="tab-content" id="nav-tabContent">
 				<div
-					class="tab-pane fade show active"
-					id="core"
+					v-if="getCurrentProgram()"
+					v-for="(id, i) in normalizedIndexHeaders"
+					class="tab-pane fade"
+					:id="id"
 					role="tabpanel"
-					aria-labelledby="core-tab"
+					:aria-labelledby="`${id}-tab`"
 					tabindex="0"
 				>
-					<!-- {{ getHeaderByIndex(0) }} -->
-					<!-- <ProgramReq
-						:index="0"
-						@selected="(req) => (getCurrentPlanState[0] = req)"
-					/>
+					{{ getHeaderByIndex(i) }} -->
+					<ProgramReq :index="i" />
 					<ProgramReqs
-						v-if="top_level_selected[index]"
-						:requirement-id="top_level_selected[index]"
-					/> -->
-				</div>
-				<div
-					class="tab-pane fade"
-					id="major"
-					role="tabpanel"
-					aria-labelledby="major-tab"
-					tabindex="0"
-				>
-					major courses
-				</div>
-				<div
-					class="tab-pane fade"
-					id="minor"
-					role="tabpanel"
-					aria-labelledby="minor-tab"
-					tabindex="0"
-				>
-					minor courses
+						v-if="getCurrentPlanState().topLevelReqsSelected[i]"
+						:requirement-id="
+							getCurrentPlanState().topLevelReqsSelected[i]!
+						"
+					/>
 				</div>
 			</div>
-
-			<!-- Top level program_requirement picker, e.g. between type: maj, and type: nomaj -->
-			<div
-				v-for="(reqlist, index) in getCurrentProgram()
-					?.program_requirements"
-				:key="!reqlist[0] ? undefined : reqlist[0].id.toString()"
-			></div>
 		</div>
 		<div class="col-7" id="plan">
 			<PlannerVisuals />
