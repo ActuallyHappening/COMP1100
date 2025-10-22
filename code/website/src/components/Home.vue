@@ -154,6 +154,11 @@ const normalizedIndexHeaders = computed((): string[] => {
 					v-if="getCurrentProgram()?.program_requirements?.[1]"
 					:index="1"
 				/>
+				<select 
+					v-else 
+					class="form-select"
+					disabled
+				></select>
 			</div>
 		</form>
 	</div>
