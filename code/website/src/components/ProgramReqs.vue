@@ -19,7 +19,16 @@ const {
 
 const props = defineProps({
 	// id/code part only
-	requirementId: { type: String, required: true },
+	requirementId: {
+		type: String,
+		required: true,
+		validator(value: string) {
+			if (value.includes(":")) {
+				console.warn(`ProgramReqs passed invalid prop`, value);
+			}
+			return !value.includes(":");
+		},
+	},
 });
 
 type Err = any;
@@ -42,7 +51,7 @@ const flattened_course_codes = computed((): string[] | undefined => {
 });
 const flattened_subreqs = computed((): string[] | undefined => {
 	return this_program_req.value?.sub_requirements?.map((req) =>
-		req.toString(),
+		req.id.toString(),
 	);
 });
 </script>

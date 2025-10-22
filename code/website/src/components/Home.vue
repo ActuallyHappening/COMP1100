@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { reactive, inject, computed } from "vue";
+import { reactive, inject, computed, useTemplateRef, watch } from "vue";
 import type { ProvidedExport } from "./State.vue";
 import ProgramReq from "./ProgramReq.vue";
 import ProgramReqs from "./ProgramReqs.vue";
 import PlannerVisuals from "./PlannerVisuals.vue";
 import { RecordId } from "surrealdb";
 import _ from "lodash";
+import * as bootstrap from "bootstrap";
 // import { STATE } from "./State.vue";
 const {
 	localState,
@@ -79,6 +80,23 @@ const normalizedIndexHeaders = computed((): string[] => {
 	}
 	return ret;
 });
+
+// Vue tab impl
+const tabRefs = useTemplateRef("tabs");
+watch(
+	tabRefs,
+	(refs) => {
+		refs?.forEach((el) => {
+			el.bsTabTrigger = new bootstrap.Tab(el);
+			console.info(el, el.bsTabTrigger);
+		});
+	},
+	{ immediate: true },
+);
+const tabClicked = (event: Event) => {
+	event.preventDefault();
+	event.target?.bsTabTrigger?.show();
+};
 </script>
 
 <template>
@@ -169,9 +187,9 @@ const normalizedIndexHeaders = computed((): string[] => {
 				<button
 					v-if="getCurrentProgram()"
 					v-for="(id, i) in normalizedIndexHeaders"
+					ref="tabs"
 					:key="id"
 					class="nav-link"
-					:class="{ active: i === 0 }"
 					:id="`homescreen-leftbar-${id}-tab`"
 					data-bs-toggle="tab"
 					:data-bs-target="`#homescreen-leftbar-${id}-tabcontent`"
@@ -179,6 +197,7 @@ const normalizedIndexHeaders = computed((): string[] => {
 					role="tab"
 					:aria-controls="`#homescreen-leftbar-${id}-tabcontent`"
 					aria-selected="true"
+					@click="(ev) => tabClicked(ev)"
 				>
 					{{ getHeaderByIndex(i) }}
 				</button>
@@ -189,7 +208,6 @@ const normalizedIndexHeaders = computed((): string[] => {
 					v-for="(id, i) in normalizedIndexHeaders"
 					:key="id"
 					class="tab-pane fade show"
-					:class="{ active: i === 0 }"
 					:id="`homescreen-leftbar-${id}-tabcontent`"
 					role="tabpanel"
 					:aria-labelledby="`homescreen-leftbar-${id}-tab`"
