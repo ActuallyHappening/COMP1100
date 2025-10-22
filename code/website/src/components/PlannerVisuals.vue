@@ -26,9 +26,8 @@ const placeCourse = (sem_id: SemId, id: number) => {
 		const planState = getCurrentPlanState();
 		plannerAPI(planState.planner).assignNewCourse(
 			[sem_id, id],
-			new RecordId("course", selectedState.value),
+			new RecordId("course", selectedState.value.toLowerCase()),
 		);
-		// preresuisiteCheck(sem_id, _planState.planner, selectedState.value);
 		selectedState.value = undefined;
 	}
 };

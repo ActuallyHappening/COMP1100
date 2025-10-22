@@ -85,30 +85,38 @@ const sems = computed(() => {
 	}
 });
 const selectCourse = () => {
-	if (!course.value) {
-		return;
-	}
-	if (selectedState.value == course.value.code) {
-		// already selected
-		selectedState.value = undefined;
-	} else {
-		console.info(`Selecting course: `, course.value.code);
-		selectedState.value = course.value.code;
+	switch (props.type) {
+		case "default":
+			if (selectedState.value == course.value.id.toString()) {
+				// already selected
+				selectedState.value = undefined;
+			} else {
+				console.info(`Selecting course: `, course.value.id);
+				selectedState.value = course.value.id.id.toString();
+			}
+			break;
+		case "small":
+			selectedState.value = course.value.id.id.toString();
 	}
 };
-const debug_prev_courses = computed(() => {
-	console.info(
-		`DEBUG`,
-		_.cloneDeep(course.value.id),
-		_.cloneDeep(getCurrentPlanState().planner),
-	);
+const prereqChecked = computed(() => {
+	// console.info(
+	// 	`DEBUG`,
+	// 	_.cloneDeep(course.value.id),
+	// 	_.cloneDeep(getCurrentPlanState().planner),
+	// );
 	const planner = plannerAPI(getCurrentPlanState().planner);
 	const sem_index = planner.getIndexOfCourse(course.value.id);
 	if (!sem_index) {
 		return undefined;
 	}
-	const [sem_id, index] = sem_index;
-	return planner.previousCoursesTo([sem_id, index]);
+	const [sem_id, _index] = sem_index;
+	const previous = planner.previousCoursesTo(sem_id, course.value.id);
+	const prereqCheck = planner.prereqCheck({
+		previousCourses: previous,
+		thisCourse: course.value,
+	});
+	return prereqCheck;
 });
 
 // const courseElements = Array.from(document.querySelectorAll<HTMLElement>('[id^=vue-Course-]'));
@@ -133,7 +141,7 @@ const debug_prev_courses = computed(() => {
 				type === 'default' && selectedState === course?.code,
 		}"
 		:id="'vue-Course-' + course?.code"
-		@click="type === 'default' && selectCourse()"
+		@click="selectCourse"
 	>
 		<template v-if="!error">
 			<template v-if="type === 'default'">
@@ -150,10 +158,18 @@ const debug_prev_courses = computed(() => {
 			</template>
 			<template v-else-if="type === 'small'">
 				<h4>{{ course?.code }}</h4>
+				<p class="m-0 p-0">
+					Prereqs passed: {{ prereqChecked ? "YES!" : "NO" }}
+				</p>
 			</template>
 			<template v-else-if="type === 'summary'">
 				<h4>{{ course?.code }}</h4>
-				<pre>{{ debug_prev_courses }}</pre>
+				<p class="m-0 p-0" v-if="prereqs_list">
+					Prerequisites: <i>{{ prereqs_list }}</i>
+				</p>
+				<p class="m-0 p-0" v-if="incompatible_list">
+					Incompatible: <i>{{ incompatible_list }}</i>
+				</p>
 			</template>
 			<template v-else>
 				<ErrorView

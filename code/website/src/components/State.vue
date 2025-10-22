@@ -31,18 +31,6 @@ const defaultPlanner = (): Planner => {
 /** Does mutate original, assumes it is a Vue proxy */
 const plannerAPI = (planner: Planner) =>
 	({
-		getIndexOfCourse(
-			course: RecordId<string>,
-		): [SemId, number] | undefined {
-			for (const _sem_id in planner) {
-				const sem_id = _sem_id as SemId;
-				const index = planner[sem_id].indexOf(course.id.toString());
-				if (index !== -1) {
-					return [sem_id, index];
-				}
-			}
-			return undefined;
-		},
 		assertSemId(sem_id: SemId) {
 			if (sem_ids.indexOf(sem_id) === -1) {
 				throw new TypeError(`${sem_id} not valid`);
@@ -66,6 +54,27 @@ const plannerAPI = (planner: Planner) =>
 			}
 			return this.getSemPlan(sem_id)[index];
 		},
+		getIndexOfCourse(
+			course: RecordId<string>,
+		): [SemId, number] | undefined {
+			assert_id(course);
+			for (const _sem_id in planner) {
+				const sem_id = _sem_id as SemId;
+				const index = this.getSemPlan(sem_id).indexOf(
+					course.id.toString(),
+				);
+				console.info(
+					`REMOVEME get indx of`,
+					index,
+					sem_id,
+					course.id.toString(),
+				);
+				if (index !== -1) {
+					return [sem_id, index];
+				}
+			}
+			return undefined;
+		},
 		/** Doesn't include sem_id */
 		semIdsBefore(sem_id: SemId): SemId[] {
 			this.assertSemId(sem_id);
@@ -77,18 +86,12 @@ const plannerAPI = (planner: Planner) =>
 			}
 			return ret;
 		},
-		previousCoursesTo([sem_id, index]: [SemId, number]): Course[] {
+		/** All courses completed in the previous semester */
+		previousCoursesTo(
+			sem_id: SemId,
+			thisCourse: RecordId<string>,
+		): Course[] {
 			const codes = new Set<string>([]);
-			// this sem_id
-			for (const _i in planner[sem_id]) {
-				const i = Number(_i);
-				if (i < index) {
-					const code = this.getIndex([sem_id, i]);
-					if (code) {
-						codes.add(code);
-					}
-				}
-			}
 			// previous sem_ids
 			for (const prev_sem_id of this.semIdsBefore(sem_id)) {
 				this.getSemPlan(prev_sem_id).forEach((code) => {
@@ -97,6 +100,14 @@ const plannerAPI = (planner: Planner) =>
 					}
 				});
 			}
+			// won't include itself
+			codes.delete(thisCourse.id.toString());
+
+			// console.log(
+			// 	`REMOVEME DEBUG`,
+			// 	`previousCoursesTo(${sem_id}, ${thisCourse.id}) =`,
+			// 	codes,
+			// );
 			return [...codes].map((code) => getCourse(code));
 		},
 		assignNewCourse(
@@ -114,8 +125,29 @@ const plannerAPI = (planner: Planner) =>
 				return;
 			}
 			this.getIndex([sem_id, index]);
-			console.info(`Assigning`, sem_id, id, `to`, selectedState.value);
+			console.info(`Assigning`, sem_id, id, `to`, id.id);
 			planner[sem_id][index] = id.id.toString();
+		},
+		prereqCheck({
+			previousCourses,
+			thisCourse,
+		}: {
+			previousCourses: Course[];
+			thisCourse: Course;
+		}): boolean {
+			// [ course:csse1001, "AND", ...]
+			const thisPrereqs: Prereq = thisCourse.prerequisites;
+			// "comp1100"
+			const thisCode = thisCourse.id.id;
+			// [ "infs1200", "comp2048", ...]
+			const previouslyDone = previousCourses.map(
+				(course) => course.id.id,
+			);
+
+			// recursive comlicated algorithm, probably using
+			// eval();
+
+			return false;
 		},
 	}) as const;
 export type PlannerAPI = ReturnType<typeof plannerAPI>;
