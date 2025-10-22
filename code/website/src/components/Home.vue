@@ -160,34 +160,20 @@ const normalizedIndexHeaders = computed((): string[] => {
 
 	<div class="container-fluid row" id="parent-div">
 		<div class="col-3" v-if="getCurrentProgram()">
-			<!-- Tabs -->
-
 			<div class="nav nav-tabs" id="nav-tab" role="tablist">
-				<!-- <button
-					class="nav-link active"
-					id="core-tab"
-					data-bs-toggle="tab"
-					data-bs-target="#core"
-					type="button"
-					role="tab"
-					aria-controls="core"
-					aria-selected="true"
-				>
-					{{ getHeaderByIndex(0) }}
-				</button> -->
 				<button
 					v-if="getCurrentProgram()"
 					v-for="(id, i) in normalizedIndexHeaders"
-					class="nav-link active"
-					:id="`${id}-tab`"
+					class="nav-link"
+					:class="{ active: i === 0 }"
+					:id="`homescreen-leftbar-${id}-tab`"
 					data-bs-toggle="tab"
-					:data-bs-target="`#${id}`"
+					:data-bs-target="`#homescreen-leftbar-${id}-tabcontent`"
 					type="button"
 					role="tab"
-					:aria-controls="id"
+					:aria-controls="`#homescreen-leftbar-${id}-tabcontent`"
 					aria-selected="true"
 				>
-					<!-- e.g. Core Courses -->
 					{{ getHeaderByIndex(i) }}
 				</button>
 			</div>
@@ -195,13 +181,14 @@ const normalizedIndexHeaders = computed((): string[] => {
 				<div
 					v-if="getCurrentProgram()"
 					v-for="(id, i) in normalizedIndexHeaders"
-					class="tab-pane fade"
-					:id="id"
+					class="tab-pane fade show"
+					:class="{ active: i === 0 }"
+					:id="`homescreen-leftbar-${id}-tabcontent`"
 					role="tabpanel"
-					:aria-labelledby="`${id}-tab`"
+					:aria-labelledby="`homescreen-leftbar-${id}-tab`"
 					tabindex="0"
 				>
-					{{ getHeaderByIndex(i) }} -->
+					{{ getHeaderByIndex(i) }}
 					<ProgramReq :index="i" />
 					<ProgramReqs
 						v-if="getCurrentPlanState().topLevelReqsSelected[i]"
