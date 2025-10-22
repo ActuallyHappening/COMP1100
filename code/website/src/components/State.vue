@@ -4,9 +4,13 @@
  */
 
 import { useStorage } from "@vueuse/core";
-import { computed, provide, onMounted, ref, reactive } from "vue";
+import { computed, provide, onMounted, ref, reactive, watch } from "vue";
 import _ from "lodash";
+import * as semver from "semver";
+import { toast } from "vue3-toastify";
 
+const current_version = "0.0.1";
+const compatible_versions = `=${current_version}`;
 const debug = useStorage("debug", false);
 
 const sem_ids = ["2025 Sem 2", "2026 Sem 1"] as const;
@@ -38,6 +42,7 @@ const defaultPlan = (num: number) =>
 		planner: defaultPlanner(),
 	});
 const defaultState = {
+	version: current_version,
 	current: "Plan 1",
 	plans: {
 		"Plan 1": {
@@ -55,6 +60,31 @@ const localState = _localState;
 const reset = () => {
 	localState.value = _.cloneDeep(defaultState);
 };
+watch(
+	localState,
+	() => {
+		if (
+			!localState.value.version ||
+			!semver.satisfies(localState.value.version, compatible_versions)
+		) {
+			console.warn(
+				`Hard resetting local state because old version ${localState.value.version} doesn't satisfy ${compatible_versions} (currently ${current_version})`,
+			);
+			toast(
+				`Your save has been hard reset because this is still an MVP`,
+				{
+					type: "warning",
+				},
+			);
+			reset();
+		} else {
+			console.info(
+				`Version of ${localState.value.version} is compatible with the current version ${current_version}`,
+			);
+		}
+	},
+	{ deep: true, immediate: true },
+);
 
 const planState = (): PlanState | undefined => {
 	const ret = localState.value?.plans?.[localState.value.current];
@@ -145,6 +175,9 @@ export type ProgramRequirement = {
 	sub_requirements: RecordId<string>[] | undefined;
 	course_options: RecordId<string>[][] | undefined;
 };
+const is_id = (id1): bool => {
+	return id1 instanceof RecordId;
+};
 const id_equal = (id1, id2) => {
 	// TODO
 	// if
@@ -152,17 +185,17 @@ const id_equal = (id1, id2) => {
 const getProgramRequirement = (
 	id: RecordId<string>,
 ): ProgramRequirement | undefined => {
-	console.log(
-		`ERRORING`,
-		_.cloneDeep(id),
-		_.cloneDeep(program_requirements.value),
-	);
+	if (!program_requirements.value || !is_id(id)) {
+		toast(`getProgramRequirement invariant broken`, { type: "warning" });
+		return undefined;
+	}
 	const ret = program_requirements.value.find(
 		(req) => req.id.id.toString() === id.id.toString(),
 	);
 	if (!ret) {
 		const error = new Error(`Couldn't getProgramRequirement(${id})`);
 		console.error(error);
+		toast(error.message, { type: "error" });
 	}
 	return ret;
 };
@@ -283,7 +316,6 @@ const fullyLoaded = () => {
 </script>
 
 <template>
-	<pre v-if="debug">{{ localState }}</pre>
 	<slot v-if="fullyLoaded()" />
 	<button @click="reset">
 		Reset (if not working or updating your version)
@@ -291,4 +323,5 @@ const fullyLoaded = () => {
 
 	<label for="debug"> Enable debugging: </label>
 	<input id="debug" type="checkbox" v-model="debug" />
+	<pre v-if="debug">{{ localState }}</pre>
 </template>

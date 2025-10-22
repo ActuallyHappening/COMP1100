@@ -24,9 +24,9 @@ for (const course in getCurrentProgram().program_requirements[1]) {
 	currentProgramRequirements.push(
 		getCurrentProgram().program_requirements[1][course].id,
 	);
-};
+}
 
-var courseNamePairing: { [id: string]: string} = {};
+var courseNamePairing: { [id: string]: string } = {};
 for (const item of program_requirements.value) {
 	for (const ids of currentProgramRequirements) {
 		var course_name = "";
@@ -35,9 +35,9 @@ for (const item of program_requirements.value) {
 		}
 		if (course_name !== "") {
 			courseNamePairing[ids] = course_name;
-		};
-	};
-};
+		}
+	}
+}
 
 function newPlan() {
 	// "Plan 42069" -> Number(42069) + 1
@@ -47,61 +47,47 @@ function newPlan() {
 	const max = Math.max(...planNums);
 	const newNum = max + 1;
 	const newPlan = `Plan ${newNum}`;
+
 	localState.value.plans[newPlan] = defaultPlan(newNum);
 	localState.value.current = newPlan;
 }
 
-<<<<<<< HEAD
-const top_level_selected = reactive({} as { [key: number]: string });
+// function majorChange(event: Event) {
+// 	const value = (event.target as HTMLSelectElement).value;
+// 	planState().majorId = value;
+// };
 
-function majorChange(event: Event) {
-	const value = (event.target as HTMLSelectElement).value;
-	planState().majorId = value;
-};
+// function courseChange(event: Event) {
+// 	const value = (event.target as HTMLSelectElement).value;
+// 	planState().programId = value;
 
-function courseChange(event: Event) {
-	const value = (event.target as HTMLSelectElement).value;
-	planState().programId = value;
-
-=======
 /** Keys are indicies into `getCurrentProgram().program_requirements` */
 const top_level_selected = reactive({} as { [key: number]: RecordId<string> });
 
-const header_by_index = (index: number): string => {
-	return (
-		(() => {
-			// if this index is already chosen, set the header to the type
-			// of the selected program requirment, e.g. "No Major"
-			if (top_level_selected[index]) {
-				console.info(`ERRORING 2`, _.cloneDeep(top_level_selected));
-				const selectedProgramReq = getProgramRequirement(
-					top_level_selected[index],
-				)?.type;
-				if (!selectedProgramReq) {
-					console.error(
-						`Unusual error`,
-						selectedProgramReq,
-						`index`,
-						index,
-					);
-				} else {
-					// header should be selected program req
-					return requirement_type_to_header(selectedProgramReq);
-				}
-			}
+const header_by_index = (index: number): string | undefined => {
+	// if this index is already chosen, set the header to the type
+	// of the selected program requirment, e.g. "No Major"
+	if (top_level_selected[index]) {
+		const selectedProgramReq = getProgramRequirement(
+			top_level_selected[index],
+		)?.type;
+		if (!selectedProgramReq) {
+			console.error(`Unusual error`, selectedProgramReq, `index`, index);
+		} else {
+			// header should be selected program req
+			return requirement_type_to_header(selectedProgramReq);
+		}
+	}
 
-			// otherwise, a summary e.g. "Major | No Major | Extended Major"
-			const a = getCurrentProgram()
-				?.program_requirements[index]?.map((req_id) =>
-					getProgramRequirement(req_id),
-				)
-				.filter((req) => !!req)
-				.map((req) => req.type);
-			if (!a) return a;
-			return requirement_types_to_header(a);
-		})() ?? "UNKNOWN"
-	);
->>>>>>> b8bcdd5 (cy(wip): In the middle of a bunch of changes)
+	// otherwise, a summary e.g. "Major | No Major | Extended Major"
+	const a = getCurrentProgram()
+		?.program_requirements[index]?.map((req_id) =>
+			getProgramRequirement(req_id),
+		)
+		.filter((req) => !!req)
+		.map((req) => req.type);
+	if (!a) return a;
+	return requirement_types_to_header(a);
 };
 </script>
 
@@ -171,24 +157,10 @@ const header_by_index = (index: number): string => {
 					</option>
 				</select>
 				<span class="input-group-text">Major</span>
-				<select
-					disabled
-					class="form-select"
-					name="course-code"
-					id="major-code"
-					:value="planState().majorId"
-					@input="majorChange"
-				>
-					<option value="" hidden>Please select a major</option>
-					<option
-						v-for="[id, program_requirement] of Object.entries(
-							courseNamePairing,
-						)"
-						:value="id"
-					>
-						{{ program_requirement }}
-					</option>
-				</select>
+				<!-- Hardcoding the first index as the major
+				Trakcking issue: https://github.com/COMP1100-7110-2025-s2/Mon_9am_Team_10/issues/17
+				-->
+				<ProgramReq :index="1" />
 			</div>
 		</form>
 	</div>

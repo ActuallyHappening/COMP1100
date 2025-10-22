@@ -19,7 +19,9 @@ const {
 const props = defineProps({
 	index: { type: Number, required: true },
 });
-const emit = defineEmits(["selected"]);
+const emit = defineEmits<{
+	selected: [id: RecordId<string>];
+}>();
 
 const $debug = (...args) => console.info(props.index, ...args);
 const allOptions = (): RecordId<string>[] | undefined =>
@@ -40,12 +42,14 @@ const allOptionsLoaded = (): ProgramRequirement[] | undefined => {
 };
 const selectedRequirement = ref(undefined as undefined | RecordId<string>);
 watch(selectedRequirement, () => {
-	emit("selected", selectedRequirement.value);
+	if (selectedRequirement.value) {
+		emit("selected", selectedRequirement.value);
+	}
 });
 // TODO: Convert back to record IDs
 const chosenOption = (): string | undefined => {
 	const _allOptions = new Set(
-		allOptions()!.map((id) => id.toString()),
+		allOptions()!.map((id) => id.id.toString()),
 	) as Set<string>;
 	const desiredRequirements = new Set(
 		getCurrentPlanState().programRequirementsSelected,
@@ -121,8 +125,12 @@ watch(selectedRequirement, choseReq);
 	<!-- <pre v-if="debug"> {{ allOptions() }}</pre> -->
 	<!-- <pre v-if="debug"> {{ allOptionsLoaded() }}</pre> -->
 	<template v-if="chosenOption()"> </template>
-	<select v-model="selectedRequirement" id="vue-ProgramReq">
-		<option value="" disabled>Choose your major</option>
+	<select
+		v-model="selectedRequirement"
+		id="vue-ProgramReq"
+		class="form-select"
+	>
+		<option value="" disabled hidden>Choose your major</option>
 		<option
 			v-for="option in allOptionsLoaded()"
 			:key="option.id.toString()"

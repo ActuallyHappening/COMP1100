@@ -4,6 +4,7 @@ import type { Program, ProvidedExport } from "./State.vue";
 import type { ProgramRequirement } from "./State.vue";
 import Course from "./Course.vue";
 import _ from "lodash";
+import { RecordId } from "surrealdb";
 const {
 	debug,
 	localState,
@@ -12,6 +13,7 @@ const {
 	getCurrentProgram,
 	defaultPlan,
 	program_requirements,
+	getProgramRequirement,
 	courses,
 } = inject("state") as ProvidedExport;
 
@@ -27,27 +29,18 @@ const handleError = (err: Err) => {
 };
 
 const $debug = (...args) => console.info(props.index, ...args);
-const this_program_req = computed((): ProgramRequirement => {
-	const ret = program_requirements.value.find(
-		(req) => req.id.toString() == props.requirementId,
+const this_program_req = computed((): ProgramRequirement | undefined => {
+	return getProgramRequirement(
+		new RecordId("program_requirement", props.requirementId),
 	);
-	if (!ret) {
-		console.error(
-			`ProgramReqs failed`,
-			_.cloneDeep(program_requirements),
-			_.cloneDeep(props),
-		);
-		throw new Error(`Couldn't find program_requirement in ProgramReqs.vue`);
-	}
-	return ret;
 });
 const flattened_course_codes = computed((): string[] | undefined => {
-	return this_program_req.value.course_options
+	return this_program_req.value?.course_options
 		?.flat()
 		?.map((course) => course.id.toString());
 });
 const flattened_subreqs = computed((): string[] | undefined => {
-	return this_program_req.value.sub_requirements?.map((req) =>
+	return this_program_req.value?.sub_requirements?.map((req) =>
 		req.toString(),
 	);
 });
