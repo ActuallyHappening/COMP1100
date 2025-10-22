@@ -126,6 +126,7 @@ function courseChange(event: Event) {
 				</select>
 				<span class="input-group-text">Major</span>
 				<select
+					disabled
 					class="form-select"
 					name="course-code"
 					id="major-code"
@@ -183,6 +184,9 @@ function courseChange(event: Event) {
 		<div class="col-7" id="plan">
 			<PlannerVisuals />
 		</div>
+		<!-- <div class="col-1" id="info">
+
+		</div> -->
 	</div>
 
 </template>

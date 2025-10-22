@@ -16,7 +16,7 @@
                 overflow: hidden;
                 height: 100vh;
             }
-			.scroll-list{
+			.scroll-list #core-courses{
 				height: 90vh;
 				overflow-y: auto;
 			}
@@ -38,13 +38,13 @@
 			<!-- select -->
 			<div class="nav nav-tabs" id="nav-tab" role="tablist">
 				<button class="nav-link active" id="core-tab" data-bs-toggle="tab" data-bs-target="#core" type="button" role="tab" aria-controls="core" aria-selected="true">Core Courses</button>
-				<button class="nav-link" id="major-tab" data-bs-toggle="tab" data-bs-target="#major" type="button" role="tab" aria-controls="major-tab" aria-selected="false">Major Courses</button>
-				<button class="nav-link" id="minor-tab" data-bs-toggle="tab" data-bs-target="#minor" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Minor Courses</button>
+				<button class="nav-link" id="major-tab" data-bs-toggle="tab" data-bs-target="#major" type="button" role="tab" aria-controls="major" aria-selected="false">Major Courses</button>
+				<button class="nav-link" id="minor-tab" data-bs-toggle="tab" data-bs-target="#minor" type="button" role="tab" aria-controls="minor" aria-selected="false">Minor Courses</button>
 			</div>
 
 			<div class="tab-content" id="nav-tabContent">
 
-				<div class="tab-pane fade show active" id="core" role="tabpanel" aria-labelledby="core-tab" tabindex="0">
+				<div class="tab-pane fade show active" id="core" role="tabpanel" aria-labelledby="core" tabindex="0">
 					<div id="core courses" class="scroll-list">
 						<h4 class="mt-1">Compulsory courses</h4>
 						<div class="list-group">
@@ -62,7 +62,7 @@
 					</div>
 				</div>
 
-				<div class="tab-pane fade" id="major" role="tabpanel" aria-labelledby="major-tab" tabindex="0">
+				<div class="tab-pane fade" id="major" role="tabpanel" aria-labelledby="major" tabindex="0">
 					<div id="major-courses" class="scroll-list">
 						<div class="input-group p-2">
 							<span class="input-group-text">Major option</span>
@@ -71,26 +71,39 @@
 								<option>Code</option>
 							</select>
 						</div>
-						<h4 class="mt-1">Compulsory courses</h4>
-						<div class="list-group">
-							<button type="button" class="list-group-item list-group-item-action">
-								<h4 class="text-center">TODO0000: Courses go here</h4>
-								<p class="m-0 p-0">Prerequisites: <i>programreq for correct list</i></p>
-								<p class="m-0 p-0">Incompatible: <i>previous solution</i></p>
-							</button>
+						<div class="nav nav-tabs p-2" id="nav-tab" role="tablist">
+							<button class="nav-link active" id="major-core-tab" data-bs-toggle="tab" data-bs-target="#major-core" type="button" role="tab" aria-controls="major-core" aria-selected="true">Compulsory Courses</button>
+							<button class="nav-link" id="major-elect-tab" data-bs-toggle="tab" data-bs-target="#major-elect" type="button" role="tab" aria-controls="major-elect" aria-selected="false">Elective Courses</button>
 						</div>
-						<h4 class="mt-1">Elective courses: choose x?</h4>
-						<div class="list-group">
-							<button type="button" class="list-group-item list-group-item-action">
-								<h4 class="text-center">TODO0000: Courses go here</h4>
-								<p class="m-0 p-0">Prerequisites: <i>programreq for correct list</i></p>
-								<p class="m-0 p-0">Incompatible: <i>previous solution</i></p>
-							</button>
+						<div class="tab-content" id="nav-tabContent">
+							<div class="tab-pane fade show active" id="major-core" role="tabpanel" aria-labelledby="major-core" tabindex="0">
+								<div id="major-courses" class="scroll-list">
+									<div class="list-group">
+										<button type="button" class="list-group-item list-group-item-action">
+											<h4 class="text-center">TODO0000: Major compulsory courses go here</h4>
+											<p class="m-0 p-0">Prerequisites: <i>programreq for correct list</i></p>
+											<p class="m-0 p-0">Incompatible: <i>previous solution</i></p>
+										</button>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane fade show active" id="major-elect" role="tabpanel" aria-labelledby="major-elect" tabindex="0">
+								<div id="major-courses" class="scroll-list">
+									<div class="list-group">
+										<button type="button" class="list-group-item list-group-item-action">
+											<h4 class="text-center">TODO0000: Major elective coursesgo here</h4>
+											<p class="m-0 p-0">Prerequisites: <i>programreq for correct list</i></p>
+											<p class="m-0 p-0">Incompatible: <i>previous solution</i></p>
+										</button>
+									</div>
+								</div>
+							</div>
+
 						</div>
 					</div>
 					
 				</div>
-				<div class="tab-pane fade" id="minor" role="tabpanel" aria-labelledby="minor-tab" tabindex="0">
+				<div class="tab-pane fade" id="minor" role="tabpanel" aria-labelledby="minor" tabindex="0">
 					minor courses
 				</div>
             </div>
@@ -99,11 +112,11 @@
 			<table class="table table-bordered">
 				<thead>
 					<tr>
-						<th scope="col">Sem</th>
-						<th scope="col">Course 1</th>
-						<th scope="col">Course 2</th>
-						<th scope="col">Course 3</th>
-						<th scope="col">Course 4</th>
+						<th scope="col" style="width: 10% !important;">Sem</th>
+						<th scope="col" style="width: 20% !important;">Course 1</th>
+						<th scope="col" style="width: 20% !important;">Course 2</th>
+						<th scope="col" style="width: 20% !important;">Course 3</th>
+						<th scope="col" style="width: 20% !important;">Course 4</th>
 					</tr>
 				</thead>
 				<tbody>
