@@ -6,7 +6,6 @@
 import { useStorage } from "@vueuse/core";
 import { computed, provide, onMounted, ref, reactive } from "vue";
 import _ from "lodash";
-import { Planner } from "./PlannerVisuals.vue";
 
 const debug = useStorage("debug", false);
 
@@ -80,7 +79,7 @@ export type Program = {
 	code: number;
 	name: string;
 	url: string;
-	program_requirements: RecordId<string>[];
+	program_requirements: RecordId<string>[][];
 };
 export type Prereq = ("OR" | "AND" | RecordId<string> | Prereq)[];
 export type Course = {
@@ -107,28 +106,90 @@ const error_course = (msg: string): Course => {
 		sem_summer: false,
 	};
 };
+export type RequirementType =
+	| "core"
+	| "major"
+	| "major-subcomponent"
+	| "nomaj"
+	| "nomaj-subcomponent"
+	| "extmaj"
+	| "extmaj-subcomponent"
+	| "breadth";
+const requirement_type_to_header = (requirement: RequirementType): string => {
+	if (requirement === "core") {
+		return "Core";
+	} else if (requirement === "major") {
+		return "Major";
+	} else if (requirement === "nomaj") {
+		return "No Major";
+	} else if (requirement === "extmaj") {
+		return "Extended Major";
+	} else {
+		// Shouldn't hit currently
+		return requirement.toUpperCase();
+	}
+};
+const requirement_types_to_header = (
+	requirements: RequirementType[],
+): string => {
+	return [...new Set(requirements)]
+		.map((req) => requirement_type_to_header(req))
+		.join(" | ");
+};
 export type ProgramRequirement = {
 	id: RecordId<string>;
 	name: string;
+	type: RequirementType;
 	short_name: string | undefined;
 	required_cp: number | undefined;
 	sub_requirements: RecordId<string>[] | undefined;
 	course_options: RecordId<string>[][] | undefined;
 };
+const id_equal = (id1, id2) => {
+	// TODO
+	// if
+};
+const getProgramRequirement = (
+	id: RecordId<string>,
+): ProgramRequirement | undefined => {
+	console.log(
+		`ERRORING`,
+		_.cloneDeep(id),
+		_.cloneDeep(program_requirements.value),
+	);
+	const ret = program_requirements.value.find(
+		(req) => req.id.id.toString() === id.id.toString(),
+	);
+	if (!ret) {
+		const error = new Error(`Couldn't getProgramRequirement(${id})`);
+		console.error(error);
+	}
+	return ret;
+};
 
 const programs = ref(null! as Program[]);
 const courses = ref(null! as Course[]);
 const program_requirements = ref(null! as ProgramRequirement[]);
+// const programs = useStorage("db-programs", null! as Program[]);
+// const courses = useStorage("db-courses", null! as Course[]);
+// const program_requirements = useStorage(
+// 	"db-program_requirement",
+// 	null! as ProgramRequirement[],
+// );
 
 function getCurrentProgram(): Program | undefined {
+	const _planState = planState();
+	if (!_planState) {
+		return undefined;
+	}
 	const ret = programs.value.find(
-		(program) => program.id.toString() === planState().programId,
+		(program) => program.id.toString() === _planState.programId,
 	);
 	if (!ret) {
 		console.info(
 			`getCurrentProgram returned undefined`,
 			_.cloneDeep(programs.value),
-			planState().programId,
+			_planState.programId,
 		);
 	}
 	return ret;
@@ -200,10 +261,13 @@ const provided_export = {
 	courses,
 	getCourse,
 	program_requirements,
+	getProgramRequirement,
 	refresh,
 	sem_ids,
 	selectedState,
 	error_course,
+	requirement_types_to_header,
+	requirement_type_to_header,
 };
 export type ProvidedExport = typeof provided_export;
 provide("state", provided_export);

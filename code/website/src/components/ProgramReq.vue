@@ -2,6 +2,7 @@
 import { reactive, inject, ref, watch } from "vue";
 import type { ProvidedExport } from "./State.vue";
 import type { ProgramRequirement } from "./State.vue";
+import { RecordId } from "surrealdb";
 import _ from "lodash";
 // import { STATE } from "./State.vue";
 const {
@@ -12,6 +13,7 @@ const {
 	getCurrentProgram,
 	defaultPlan,
 	program_requirements,
+	getProgramRequirement,
 } = inject("state") as ProvidedExport;
 
 const props = defineProps({
@@ -23,20 +25,24 @@ const $debug = (...args) => console.info(props.index, ...args);
 const allOptions = (): RecordId<string>[] | undefined =>
 	getCurrentProgram()?.program_requirements[props.index];
 const allOptionsLoaded = (): ProgramRequirement[] | undefined => {
-	return allOptions()?.map((id) => {
-		const ret = program_requirements.value.find(
-			(req) => req.id.toString() === id.toString(),
-		);
-		if (!ret) {
-			console.error(`Couldn't find a program_requirement with id`, id);
-		}
-		return ret;
-	});
+	return allOptions()
+		?.map((id) => {
+			const ret = getProgramRequirement(id);
+			if (!ret) {
+				console.error(
+					`Couldn't find a program_requirement with id`,
+					id,
+				);
+			}
+			return ret;
+		})
+		.filter((req) => !!req);
 };
-const selectedRequirement = ref("" as string);
+const selectedRequirement = ref(undefined as undefined | RecordId<string>);
 watch(selectedRequirement, () => {
 	emit("selected", selectedRequirement.value);
 });
+// TODO: Convert back to record IDs
 const chosenOption = (): string | undefined => {
 	const _allOptions = new Set(
 		allOptions()!.map((id) => id.toString()),

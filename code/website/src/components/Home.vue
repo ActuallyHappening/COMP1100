@@ -4,6 +4,8 @@ import type { ProvidedExport } from "./State.vue";
 import ProgramReq from "./ProgramReq.vue";
 import ProgramReqs from "./ProgramReqs.vue";
 import PlannerVisuals from "./PlannerVisuals.vue";
+import { RecordId } from "surrealdb";
+import _ from "lodash";
 // import { STATE } from "./State.vue";
 const {
 	localState,
@@ -12,6 +14,9 @@ const {
 	getCurrentProgram,
 	defaultPlan,
 	program_requirements,
+	requirement_types_to_header,
+	requirement_type_to_header,
+	getProgramRequirement,
 } = inject("state") as ProvidedExport;
 
 var currentProgramRequirements = [];
@@ -35,6 +40,7 @@ for (const item of program_requirements.value) {
 };
 
 function newPlan() {
+	// "Plan 42069" -> Number(42069) + 1
 	const planNums = Object.keys(localState.value.plans).map((planString) =>
 		Number(planString.slice(5)),
 	);
@@ -45,6 +51,7 @@ function newPlan() {
 	localState.value.current = newPlan;
 }
 
+<<<<<<< HEAD
 const top_level_selected = reactive({} as { [key: number]: string });
 
 function majorChange(event: Event) {
@@ -56,6 +63,45 @@ function courseChange(event: Event) {
 	const value = (event.target as HTMLSelectElement).value;
 	planState().programId = value;
 
+=======
+/** Keys are indicies into `getCurrentProgram().program_requirements` */
+const top_level_selected = reactive({} as { [key: number]: RecordId<string> });
+
+const header_by_index = (index: number): string => {
+	return (
+		(() => {
+			// if this index is already chosen, set the header to the type
+			// of the selected program requirment, e.g. "No Major"
+			if (top_level_selected[index]) {
+				console.info(`ERRORING 2`, _.cloneDeep(top_level_selected));
+				const selectedProgramReq = getProgramRequirement(
+					top_level_selected[index],
+				)?.type;
+				if (!selectedProgramReq) {
+					console.error(
+						`Unusual error`,
+						selectedProgramReq,
+						`index`,
+						index,
+					);
+				} else {
+					// header should be selected program req
+					return requirement_type_to_header(selectedProgramReq);
+				}
+			}
+
+			// otherwise, a summary e.g. "Major | No Major | Extended Major"
+			const a = getCurrentProgram()
+				?.program_requirements[index]?.map((req_id) =>
+					getProgramRequirement(req_id),
+				)
+				.filter((req) => !!req)
+				.map((req) => req.type);
+			if (!a) return a;
+			return requirement_types_to_header(a);
+		})() ?? "UNKNOWN"
+	);
+>>>>>>> b8bcdd5 (cy(wip): In the middle of a bunch of changes)
 };
 </script>
 
@@ -134,9 +180,12 @@ function courseChange(event: Event) {
 					@input="majorChange"
 				>
 					<option value="" hidden>Please select a major</option>
-					<option 
-						v-for="[id, program_requirement] of Object.entries(courseNamePairing)"
-						:value="id">
+					<option
+						v-for="[id, program_requirement] of Object.entries(
+							courseNamePairing,
+						)"
+						:value="id"
+					>
 						{{ program_requirement }}
 					</option>
 				</select>
@@ -149,18 +198,71 @@ function courseChange(event: Event) {
 			<!-- Tabs -->
 
 			<div class="nav nav-tabs" id="nav-tab" role="tablist">
-				<button class="nav-link active" id="core-tab" data-bs-toggle="tab" data-bs-target="#core" type="button" role="tab" aria-controls="core" aria-selected="true">Core Courses</button>
-				<button class="nav-link" id="major-tab" data-bs-toggle="tab" data-bs-target="#major" type="button" role="tab" aria-controls="major-tab" aria-selected="false">Major Courses</button>
-				<button class="nav-link" id="minor-tab" data-bs-toggle="tab" data-bs-target="#minor" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Minor Courses</button>
+				<button
+					class="nav-link active"
+					id="core-tab"
+					data-bs-toggle="tab"
+					data-bs-target="#core"
+					type="button"
+					role="tab"
+					aria-controls="core"
+					aria-selected="true"
+				>
+					{{ header_by_index(0) }}
+					<!-- Core Courses -->
+				</button>
+				<button
+					class="nav-link"
+					id="major-tab"
+					data-bs-toggle="tab"
+					data-bs-target="#major"
+					type="button"
+					role="tab"
+					aria-controls="major-tab"
+					aria-selected="false"
+				>
+					{{ header_by_index(1) }}
+					Major Courses
+				</button>
+				<button
+					class="nav-link"
+					id="minor-tab"
+					data-bs-toggle="tab"
+					data-bs-target="#minor"
+					type="button"
+					role="tab"
+					aria-controls="nav-contact"
+					aria-selected="false"
+				>
+					Minor Courses
+				</button>
 			</div>
 			<div class="tab-content" id="nav-tabContent">
-				<div class="tab-pane fade show active" id="core" role="tabpanel" aria-labelledby="core-tab" tabindex="0">
+				<div
+					class="tab-pane fade show active"
+					id="core"
+					role="tabpanel"
+					aria-labelledby="core-tab"
+					tabindex="0"
+				>
 					core courses
 				</div>
-				<div class="tab-pane fade" id="major" role="tabpanel" aria-labelledby="major-tab" tabindex="0">
+				<div
+					class="tab-pane fade"
+					id="major"
+					role="tabpanel"
+					aria-labelledby="major-tab"
+					tabindex="0"
+				>
 					major courses
 				</div>
-				<div class="tab-pane fade" id="minor" role="tabpanel" aria-labelledby="minor-tab" tabindex="0">
+				<div
+					class="tab-pane fade"
+					id="minor"
+					role="tabpanel"
+					aria-labelledby="minor-tab"
+					tabindex="0"
+				>
 					minor courses
 				</div>
 			</div>
@@ -176,31 +278,46 @@ function courseChange(event: Event) {
 					@selected="(req) => (top_level_selected[index] = req)"
 				/>
 				<ProgramReqs
-					:requirement-id="top_level_selected[index]"
 					v-if="top_level_selected[index]"
+					:requirement-id="top_level_selected[index]"
 				/>
 			</div>
 		</div>
 		<div class="col-7" id="plan">
 			<PlannerVisuals />
 		</div>
-		<div class="col-2"> <!-- Put this in a new vue file probably -->
-			<a class="mb-2 " href="https://programs-courses.uq.edu.au/course.html?course_code=SCIE1000&offer=53544c554332494e"> <!-- this links to sem 2, 2025. The 5th last character (2) denotes semester #, for different years append &year=2026 etc -->
+		<div class="col-2">
+			<!-- Put this in a new vue file probably -->
+			<a
+				class="mb-2"
+				href="https://programs-courses.uq.edu.au/course.html?course_code=SCIE1000&offer=53544c554332494e"
+			>
+				<!-- this links to sem 2, 2025. The 5th last character (2) denotes semester #, for different years append &year=2026 etc -->
 				<h3 class="text-center">SCIE1000</h3>
 				<p class="text-center">Theory & Practice in Science</p>
 			</a>
 			<ul>
 				<li>
-					<h5><strong>Semesters offered: <span>&#9432;</span></strong>	</h5> <!-- On hover show disclaimer -->
-					<p>SCIE1000 is available in the following semesters: Semester 1, Semester 2</p>
+					<h5>
+						<strong>Semesters offered: <span>&#9432;</span></strong>
+					</h5>
+					<!-- On hover show disclaimer -->
+					<p>
+						SCIE1000 is available in the following semesters:
+						Semester 1, Semester 2
+					</p>
 				</li>
 				<li>
 					<h5><strong>Prerequisites:</strong></h5>
 					<p>SCIE1000 has no prerequisite courses.</p>
-					<p>You have completed all necessary prerequisites to begin this course.</p>
+					<p>
+						You have completed all necessary prerequisites to begin
+						this course.
+					</p>
 				</li>
 				<li>
-					<h5><strong>Incompatibilities:</strong></h5> <!-- shows up optionally? -->
+					<h5><strong>Incompatibilities:</strong></h5>
+					<!-- shows up optionally? -->
 					<p>SCIE1000 is incompatible with SCIE1100.</p>
 					<!-- <p>Please </p> -->
 				</li>
@@ -210,7 +327,7 @@ function courseChange(event: Event) {
 				</li>
 			</ul>
 		</div>
-
+	</div>
 </template>
 
 <style scoped>
@@ -226,12 +343,13 @@ function courseChange(event: Event) {
 	flex-wrap: nowrap;
 	overflow: hidden;
 	mask-image: linear-gradient(
-        to right,
-        transparent,
-        black 20px, /* Start solid black after 20px from left */
-        black calc(100% - 20px), /* End solid black 20px from right */
-        transparent /* Fade to transparent at the right edge */
-    );
+		to right,
+		transparent,
+		black 20px,
+		/* Start solid black after 20px from left */ black calc(100% - 20px),
+		/* End solid black 20px from right */ transparent
+			/* Fade to transparent at the right edge */
+	);
 }
 
 .tababble:hover {
@@ -261,5 +379,4 @@ button.list-group-item {
 #plan {
 	flex-grow: 1;
 }
-
 </style>

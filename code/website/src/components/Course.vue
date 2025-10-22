@@ -18,6 +18,7 @@ const props = defineProps({
 const { getCourse, selectedState, error_course } = inject(
 	"state",
 ) as ProvidedExport;
+
 type Err = any;
 const error = ref(undefined as undefined | Err);
 const handleError = (err: Err) => {
