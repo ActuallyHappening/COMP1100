@@ -3,10 +3,12 @@ import { inject, defineProps, computed, ref } from "vue";
 import ErrorView from "../Error.vue";
 import type { ProvidedExport, Prereq, SemId } from "./State.vue";
 import Course from "./Course.vue";
-import { preresuisiteCheck, errors } from "../prerequisiteChecker.ts"
+import { preresuisiteCheck, errors } from "../prerequisiteChecker.ts";
 
-const { sem_ids, selectedState, planState } = inject("state") as ProvidedExport;
-const slots = ["Course 1", "Course 2", "Course 3", "Course 4"];
+const { sem_ids, selectedState, getCurrentPlanState } = inject(
+	"state",
+) as ProvidedExport;
+const slots = ["Course 1", "Course 2", "Course 3", "Course 4"] as const;
 
 export type SemPlan = [
 	string | undefined,
@@ -19,7 +21,7 @@ export type Planner = {
 };
 const placeCourse = (sem_id: SemId, id: number) => {
 	if (selectedState.value) {
-		const _planState = planState();
+		const _planState = getCurrentPlanState();
 		if (_planState) {
 			console.info(sem_id, id, selectedState.value);
 			_planState.planner[sem_id][id] = selectedState.value;
@@ -28,8 +30,8 @@ const placeCourse = (sem_id: SemId, id: number) => {
 		}
 	}
 };
-const getPlan = (sem_id: SemId, id: number) => {
-	return planState()?.planner?.[sem_id]?.[id];
+const getPlan = (sem_id: SemId, id: number): SemPlan[number] => {
+	return getCurrentPlanState().planner[sem_id][id];
 };
 </script>
 <template>
@@ -42,26 +44,22 @@ const getPlan = (sem_id: SemId, id: number) => {
 		</thead>
 		<tbody>
 			<tr v-for="sem_id in sem_ids">
-				<th scope="row"
-				:id ="`${sem_id}`">{{ sem_id }}</th>
-				<td v-for="id in slots"
-				:id ="`${sem_id}-${id}`">
+				<th scope="row" :id="`${sem_id}`">{{ sem_id }}</th>
+				<td v-for="id in slots.length" :id="`${sem_id}-${id}`">
 					<button
 						@click="placeCourse(sem_id, id)"
 						v-if="!getPlan(sem_id, id)"
 					>
 						Place course here!
 					</button>
-					<Course v-else :code="getPlan(sem_id, id)" small />
+					<Course v-else :code="getPlan(sem_id, id)!" small />
 				</td>
 			</tr>
 		</tbody>
 	</table>
 </template>
 <style scoped>
-
 table {
 	width: 100%;
 }
-
 </style>

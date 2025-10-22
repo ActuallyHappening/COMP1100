@@ -9,11 +9,9 @@ import _ from "lodash";
 // import { STATE } from "./State.vue";
 const {
 	localState,
-	planState,
 	programs,
 	getCurrentProgram,
 	defaultPlan,
-	program_requirements,
 	requirement_types_to_header,
 	requirement_type_to_header,
 	getProgramRequirement,
@@ -41,33 +39,27 @@ function courseChange(event: Event) {
 	}
 }
 
-/** Keys are indicies into `getCurrentProgram().program_requirements` */
-const top_level_selected = reactive({} as { [key: number]: RecordId<string> });
-
-const header_by_index = (index: number): string | undefined => {
-	// if this index is already chosen, set the header to the type
-	// of the selected program requirment, e.g. "No Major"
-	if (top_level_selected[index]) {
-		const selectedProgramReq = getProgramRequirement(
-			top_level_selected[index],
-		)?.type;
-		if (!selectedProgramReq) {
-			console.error(`Unusual error`, selectedProgramReq, `index`, index);
-		} else {
-			// header should be selected program req
-			return requirement_type_to_header(selectedProgramReq);
-		}
+const getHeaderByIndex = (index: number): string | undefined => {
+	const me_req = getCurrentPlanState().topLevelReqsSelected[index];
+	// if a specific req is already selected
+	if (typeof me_req === "string") {
+		return requirement_type_to_header(
+			getProgramRequirement(new RecordId("program_requirement", me_req))
+				.type,
+		);
 	}
-
 	// otherwise, a summary e.g. "Major | No Major | Extended Major"
-	const a = getCurrentProgram()
-		?.program_requirements[index]?.map((req_id) =>
-			getProgramRequirement(req_id),
-		)
-		.filter((req) => !!req)
+	const currentProgram = getCurrentProgram();
+	if (!currentProgram) {
+		return undefined;
+	}
+	const a = currentProgram.program_requirements[index]
+		?.map((req_id) => getProgramRequirement(req_id))
 		.map((req) => req.type);
-	if (!a) return a;
 	return requirement_types_to_header(a);
+};
+const normalize = (str: string | undefined): string => {
+	return (str ?? "UNDEFINED").toLowerCase().replace(" ", "-");
 };
 </script>
 
@@ -83,7 +75,7 @@ const header_by_index = (index: number): string | undefined => {
 					<input
 						type="text"
 						id="plan-name"
-						v-model="planState().name"
+						v-model="getCurrentPlanState().name"
 						class="border-0 purple-bg text-center"
 					/>
 					<!-- Would appreciate if this input could be dynamically scaled -->
@@ -128,7 +120,7 @@ const header_by_index = (index: number): string | undefined => {
 					class="form-select"
 					name="course-code"
 					id="course-code"
-					:value="planState().programId"
+					:value="getCurrentPlanState().programId"
 					@input="courseChange"
 				>
 					<option value="" hidden>Please select a course</option>
@@ -142,10 +134,16 @@ const header_by_index = (index: number): string | undefined => {
 				-->
 				<ProgramReq
 					v-if="
-						getCurrentProgram()?.program_requirements?.length >= 2
+						getCurrentProgram()?.program_requirements?.length !==
+							undefined &&
+						getCurrentProgram()!.program_requirements.length >= 2
 					"
 					:index="1"
-					@selected="(req) => (top_level_selected[1] = req)"
+					@selected="
+						(req) =>
+							(getCurrentPlanState().topLevelReqsSelected[1] =
+								req.id.toString())
+					"
 				/>
 			</div>
 		</form>
@@ -156,7 +154,7 @@ const header_by_index = (index: number): string | undefined => {
 			<!-- Tabs -->
 
 			<div class="nav nav-tabs" id="nav-tab" role="tablist">
-				<button
+				<!-- <button
 					class="nav-link active"
 					id="core-tab"
 					data-bs-toggle="tab"
@@ -166,33 +164,23 @@ const header_by_index = (index: number): string | undefined => {
 					aria-controls="core"
 					aria-selected="true"
 				>
-					{{ header_by_index(0) }}
+					{{ getHeaderByIndex(0) }}
+				</button> -->
+				<button
+					v-if="getCurrentProgram()"
+					v-for="i in getCurrentProgram()!.program_requirements
+						.length"
+					class="nav-link active"
+					:id="`${normalize(getHeaderByIndex(i))}-tab`"
+					data-bs-toggle="tab"
+					:data-bs-target="`#${normalize(getHeaderByIndex(i))}`"
+					type="button"
+					role="tab"
+					:aria-controls="normalize(getHeaderByIndex(i))"
+					aria-selected="true"
+				>
 					<!-- Core Courses -->
-				</button>
-				<button
-					class="nav-link"
-					id="major-tab"
-					data-bs-toggle="tab"
-					data-bs-target="#major"
-					type="button"
-					role="tab"
-					aria-controls="major-tab"
-					aria-selected="false"
-				>
-					{{ header_by_index(1) }}
-					Major Courses
-				</button>
-				<button
-					class="nav-link"
-					id="minor-tab"
-					data-bs-toggle="tab"
-					data-bs-target="#minor"
-					type="button"
-					role="tab"
-					aria-controls="nav-contact"
-					aria-selected="false"
-				>
-					Minor Courses
+					{{ getHeaderByIndex(i) }}
 				</button>
 			</div>
 			<div class="tab-content" id="nav-tabContent">
@@ -203,7 +191,15 @@ const header_by_index = (index: number): string | undefined => {
 					aria-labelledby="core-tab"
 					tabindex="0"
 				>
-					core courses
+					<!-- {{ getHeaderByIndex(0) }} -->
+					<!-- <ProgramReq
+						:index="0"
+						@selected="(req) => (getCurrentPlanState[0] = req)"
+					/>
+					<ProgramReqs
+						v-if="top_level_selected[index]"
+						:requirement-id="top_level_selected[index]"
+					/> -->
 				</div>
 				<div
 					class="tab-pane fade"
@@ -230,16 +226,7 @@ const header_by_index = (index: number): string | undefined => {
 				v-for="(reqlist, index) in getCurrentProgram()
 					?.program_requirements"
 				:key="!reqlist[0] ? undefined : reqlist[0].id.toString()"
-			>
-				<ProgramReq
-					:index="index"
-					@selected="(req) => (top_level_selected[index] = req)"
-				/>
-				<ProgramReqs
-					v-if="top_level_selected[index]"
-					:requirement-id="top_level_selected[index]"
-				/>
-			</div>
+			></div>
 		</div>
 		<div class="col-7" id="plan">
 			<PlannerVisuals />

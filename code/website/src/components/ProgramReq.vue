@@ -65,7 +65,7 @@ const chosenOption = (): string | undefined => {
 		allOptions().map((id) => id.id.toString()),
 	) as Set<string>;
 	const desiredRequirements = new Set(
-		getCurrentPlanState().programRequirementsSelected,
+		getCurrentPlanState().topLevelReqsSelected,
 	);
 	const chosen = _allOptions.intersection(desiredRequirements);
 	if (chosen.size === 0) {
@@ -75,7 +75,7 @@ const chosenOption = (): string | undefined => {
 			const onlyOption = _allOptions.values().next().value!;
 			$debug(`Chosing the only option available`, onlyOption);
 			console.info(`debug value:`, _.cloneDeep(getCurrentPlanState()));
-			getCurrentPlanState().programRequirementsSelected.push(onlyOption);
+			getCurrentPlanState().topLevelReqsSelected.push(onlyOption);
 			selectedRequirement.value = onlyOption;
 			return onlyOption;
 		} else {
@@ -92,7 +92,7 @@ const chosenOption = (): string | undefined => {
 		// chosen too many, remove all choices from user chosen to force them to reselect
 		// this is a UX tradeoff
 		$debug(`removing some choices`, chosen);
-		getCurrentPlanState().programRequirementsSelected = [
+		getCurrentPlanState().topLevelReqsSelected = [
 			...desiredRequirements.difference(chosen),
 		];
 		return undefined;
@@ -118,10 +118,10 @@ const choseReq = () => {
 	if (!_allOptions) throw TypeError();
 
 	const _chosen = new Set([chosen]);
-	const current = new Set(getCurrentPlanState().programRequirementsSelected);
+	const current = new Set(getCurrentPlanState().topLevelReqsSelected);
 
 	// current = current - (allOptions - chosen) + chosen
-	getCurrentPlanState().programRequirementsSelected = [
+	getCurrentPlanState().topLevelReqsSelected = [
 		...current.difference(_allOptions).union(_chosen),
 	];
 	// $debug(

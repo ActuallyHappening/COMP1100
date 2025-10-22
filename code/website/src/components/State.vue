@@ -9,7 +9,7 @@ import _ from "lodash";
 import * as semver from "semver";
 import { toast } from "vue3-toastify";
 
-const current_version = "0.0.1";
+const current_version = "0.0.2";
 const compatible_versions = `=${current_version}`;
 const debug = useStorage("debug", false);
 
@@ -28,17 +28,20 @@ const selectedState = ref(undefined as undefined | string);
 
 export type PlanState = {
 	name: string;
-	programId: string;
-	majorId: string;
-	programRequirementsSelected: string[];
+	programId: string | null;
+	/**
+	 * The program_requirements selected for each required top level slot
+	 * in the user's degree, e.g. their major.
+	 * Uses string id field for serialization
+	 */
+	topLevelReqsSelected: { [key: number]: string | undefined };
 	planner: Planner;
 };
 const defaultPlan = (num: number) =>
 	_.cloneDeep({
 		name: `Plan ${num}`,
 		programId: null,
-		/** An additive list of all program requirements selected by the user, even for irrelevant majors / programs */
-		programRequirementsSelected: [],
+		topLevelReqsSelected: {},
 		planner: defaultPlanner(),
 	});
 const defaultState = {
@@ -60,6 +63,7 @@ const localState = _localState;
 const reset = () => {
 	localState.value = _.cloneDeep(defaultState);
 };
+// Aggressively purge out of date state
 watch(
 	localState,
 	() => {
@@ -86,24 +90,25 @@ watch(
 	{ deep: true, immediate: true },
 );
 
-const planState = (): PlanState | undefined => {
+const getCurrentPlanState = (): PlanState => {
 	const ret = localState.value?.plans?.[localState.value.current];
-	// console.log(`planState`, ret);
-	// if (typeof ret === "undefined") {
-	// 	// REALLY should never hit this but we do?
-	// 	console.info(`Returning default plan`, defaultPlan(-1));
-	// 	return defaultPlan(-1);
-	// }
+	if (!ret) {
+		toast(`Major error, resetting state`, { type: "error" });
+		reset();
+		return getCurrentPlanState();
+	}
 	return ret;
 };
-const getCurrentPlanState = (): PlanState => {
-	const ret = planState();
-	if (!ret) {
-		console.error(`getCurrentPlanState returned undefined`);
-		toast(`getCurrentPlanState() undefined`, { type: "error" });
-	}
-	return ret!;
-};
+// every time the program changes, reset the top level req chosen
+watch(
+	() => getCurrentPlanState().programId,
+	(old, current) => {
+		console.warn(
+			`Resetting topLevelReqsSelected because the programId has changed from ${old} to ${current}`,
+		);
+		getCurrentPlanState().topLevelReqsSelected = {};
+	},
+);
 
 export type Program = {
 	id: RecordId<string>;
@@ -176,19 +181,20 @@ export type ProgramRequirement = {
 	sub_requirements: RecordId<string>[] | undefined;
 	course_options: RecordId<string>[][] | undefined;
 };
-const is_id = (id1): bool => {
-	return id1 instanceof RecordId;
+const assert_id = (id1: RecordId<string> | unknown, msg?: string) => {
+	if (!(id1 instanceof RecordId)) {
+		throw new TypeError(
+			`Not an id (${JSON.stringify(id1)})` + msg ? `: ${msg}` : ``,
+		);
+	}
 };
-const id_equal = (id1, id2) => {
-	// TODO
-	// if
-};
-const getProgramRequirement = (
-	id: RecordId<string>,
-): ProgramRequirement | undefined => {
-	if (!program_requirements.value || !is_id(id)) {
-		toast(`getProgramRequirement invariant broken`, { type: "warning" });
-		return undefined;
+const getProgramRequirement = (id: RecordId<string>): ProgramRequirement => {
+	assert_id(id, `getProgramRequirement`);
+
+	if (!program_requirements.value) {
+		const err = new Error(`program_requirements not loaded yet`);
+		toast(err.message, { type: "warning" });
+		throw err;
 	}
 	const ret = program_requirements.value.find(
 		(req) => req.id.id.toString() === id.id.toString(),
@@ -197,6 +203,7 @@ const getProgramRequirement = (
 		const error = new Error(`Couldn't getProgramRequirement(${id})`);
 		console.error(error);
 		toast(error.message, { type: "error" });
+		throw error;
 	}
 	return ret;
 };
@@ -212,19 +219,18 @@ const program_requirements = ref(null! as ProgramRequirement[]);
 // );
 
 function getCurrentProgram(): Program | undefined {
-	const _planState = planState();
-	if (!_planState) {
-		return undefined;
-	}
+	const planState = getCurrentPlanState();
 	const ret = programs.value.find(
-		(program) => program.id.toString() === _planState.programId,
+		(program) => program.id.toString() === planState.programId,
 	);
 	if (!ret) {
-		console.info(
-			`getCurrentProgram returned undefined`,
-			_.cloneDeep(programs.value),
-			_planState.programId,
-		);
+		// haven't selected program yet
+		return undefined;
+		// const err = new Error(
+		// 	`getCurrentProgram(${planState.programId}) returned undefined`,
+		// );
+		// toast(err.message, { type: "error" });
+		// throw err;
 	}
 	return ret;
 }
@@ -288,7 +294,6 @@ console.log(programs, courses);
 const provided_export = {
 	debug,
 	localState,
-	planState,
 	getCurrentPlanState,
 	programs,
 	getCurrentProgram,
