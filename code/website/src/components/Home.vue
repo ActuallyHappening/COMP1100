@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, inject, computed, useTemplateRef, watch } from "vue";
+import { reactive, inject, computed, useTemplateRef, watch, ref } from "vue";
 import type { ProvidedExport } from "./State.vue";
 import ProgramReq from "./ProgramReq.vue";
 import ProgramReqs from "./ProgramReqs.vue";
@@ -82,6 +82,7 @@ const normalizedIndexHeaders = computed((): string[] => {
 });
 
 // Vue tab impl
+const selectedIndex = ref(0);
 const tabRefs = useTemplateRef("tabs");
 watch(
 	tabRefs,
@@ -93,9 +94,10 @@ watch(
 	},
 	{ immediate: true },
 );
-const tabClicked = (event: Event) => {
+const tabClicked = (event: Event, i: number) => {
 	event.preventDefault();
-	event.target?.bsTabTrigger?.show();
+	selectedIndex.value = i;
+	// event.target?.bsTabTrigger?.show();
 };
 </script>
 
@@ -172,11 +174,7 @@ const tabClicked = (event: Event) => {
 					v-if="getCurrentProgram()?.program_requirements?.[1]"
 					:index="1"
 				/>
-				<select 
-					v-else 
-					class="form-select"
-					disabled
-				></select>
+				<select v-else class="form-select" disabled></select>
 			</div>
 		</form>
 	</div>
@@ -190,6 +188,7 @@ const tabClicked = (event: Event) => {
 					ref="tabs"
 					:key="id"
 					class="nav-link"
+					:class="{ active: i == selectedIndex }"
 					:id="`homescreen-leftbar-${id}-tab`"
 					data-bs-toggle="tab"
 					:data-bs-target="`#homescreen-leftbar-${id}-tabcontent`"
@@ -197,31 +196,32 @@ const tabClicked = (event: Event) => {
 					role="tab"
 					:aria-controls="`#homescreen-leftbar-${id}-tabcontent`"
 					aria-selected="true"
-					@click="(ev) => tabClicked(ev)"
+					@click="(ev) => tabClicked(ev, i)"
 				>
 					{{ getHeaderByIndex(i) }}
 				</button>
 			</div>
 			<div class="tab-content" id="nav-tabContent">
-				<div
-					v-if="getCurrentProgram()"
-					v-for="(id, i) in normalizedIndexHeaders"
-					:key="id"
-					class="tab-pane fade show"
-					:id="`homescreen-leftbar-${id}-tabcontent`"
-					role="tabpanel"
-					:aria-labelledby="`homescreen-leftbar-${id}-tab`"
-					tabindex="0"
-				>
-					{{ getHeaderByIndex(i) }}
-					<ProgramReq :index="i" />
-					<ProgramReqs
-						v-if="getCurrentPlanState().topLevelReqsSelected[i]"
-						:requirement-id="
-							getCurrentPlanState().topLevelReqsSelected[i]!
-						"
-					/>
-				</div>
+				<template v-for="(id, i) in normalizedIndexHeaders" :key="id">
+					<div
+						v-show="i === selectedIndex"
+						class="tab-pane fade show"
+						:class="{ active: i == selectedIndex }"
+						:id="`homescreen-leftbar-${id}-tabcontent`"
+						role="tabpanel"
+						:aria-labelledby="`homescreen-leftbar-${id}-tab`"
+						tabindex="0"
+					>
+						{{ getHeaderByIndex(i) }}
+						<ProgramReq :index="i" />
+						<ProgramReqs
+							v-if="getCurrentPlanState().topLevelReqsSelected[i]"
+							:requirement-id="
+								getCurrentPlanState().topLevelReqsSelected[i]!
+							"
+						/>
+					</div>
+				</template>
 			</div>
 		</div>
 		<div class="col-7" id="plan">
