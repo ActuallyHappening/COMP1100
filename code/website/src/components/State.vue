@@ -43,7 +43,7 @@ const plannerAPI = (planner: Planner) =>
 			}
 			return undefined;
 		},
-		assertSemId(sem_id: SemId | unknown) {
+		assertSemId(sem_id: SemId) {
 			if (sem_ids.indexOf(sem_id) === -1) {
 				throw new TypeError(`${sem_id} not valid`);
 			}
@@ -101,11 +101,8 @@ const plannerAPI = (planner: Planner) =>
 		},
 	}) as const;
 export type PlannerAPI = ReturnType<typeof plannerAPI>;
-const wrapPlannerAPI = (planner: Planner): PlannerAPI => {
-	return plannerAPI;
-};
 
-/** Course code */
+/** Course id (code) lowercase */
 const selectedState = ref(undefined as undefined | string);
 
 export type PlanState = {
@@ -318,6 +315,9 @@ function getCurrentProgram(): Program | undefined {
 }
 
 function getCourse(code: string): Course {
+	if (!code) {
+		throw new TypeError(code);
+	}
 	return courses.value.find(
 		(course) => course.code.toUpperCase() == code.toUpperCase(),
 	);
@@ -383,6 +383,7 @@ const provided_export = {
 	getCurrentProgram,
 	defaultPlan,
 	defaultPlanner,
+	plannerAPI,
 	courses,
 	getCourse,
 	program_requirements,

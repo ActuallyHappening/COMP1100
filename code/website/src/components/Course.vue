@@ -2,6 +2,7 @@
 import { inject, defineProps, computed, ref } from "vue";
 import ErrorView from "../Error.vue";
 import type { Course, ProvidedExport, Prereq } from "./State.vue";
+import _ from "lodash";
 
 const props = defineProps({
 	code: {
@@ -15,9 +16,13 @@ const props = defineProps({
 	},
 });
 
-const { getCourse, selectedState, error_course } = inject(
-	"state",
-) as ProvidedExport;
+const {
+	getCourse,
+	selectedState,
+	error_course,
+	getCurrentPlanState,
+	plannerAPI,
+} = inject("state") as ProvidedExport;
 
 type Err = any;
 const error = ref(undefined as undefined | Err);
@@ -26,7 +31,7 @@ const handleError = (err: Err) => {
 	error.value = err;
 };
 
-const course = computed((): Course | undefined => {
+const course = computed((): Course => {
 	const ret = getCourse(props.code);
 	if (!ret) {
 		handleError(new Error(`Couldn't find course ${props.code}`));
@@ -91,6 +96,20 @@ const selectCourse = () => {
 		selectedState.value = course.value.code;
 	}
 };
+const debug_prev_courses = computed(() => {
+	console.info(
+		`DEBUG`,
+		_.cloneDeep(course.value.id),
+		_.cloneDeep(getCurrentPlanState().planner),
+	);
+	const planner = plannerAPI(getCurrentPlanState().planner);
+	const sem_index = planner.getIndexOfCourse(course.value.id);
+	if (!sem_index) {
+		return undefined;
+	}
+	const [sem_id, index] = sem_index;
+	return planner.previousCoursesTo([sem_id, index]);
+});
 
 // const courseElements = Array.from(document.querySelectorAll<HTMLElement>('[id^=vue-Course-]'));
 // document.addEventListener('click', (event) => {
@@ -109,9 +128,12 @@ const selectCourse = () => {
 	<button
 		type="button"
 		class="list-group-item"
-		:class="{ 'course-selection-active': selectedState === course?.code }"
+		:class="{
+			'course-selection-active':
+				type === 'default' && selectedState === course?.code,
+		}"
 		:id="'vue-Course-' + course?.code"
-		@click="selectCourse"
+		@click="type === 'default' && selectCourse()"
 	>
 		<template v-if="!error">
 			<template v-if="type === 'default'">
@@ -131,6 +153,7 @@ const selectCourse = () => {
 			</template>
 			<template v-else-if="type === 'summary'">
 				<h4>{{ course?.code }}</h4>
+				<pre>{{ debug_prev_courses }}</pre>
 			</template>
 			<template v-else>
 				<ErrorView

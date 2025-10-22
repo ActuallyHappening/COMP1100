@@ -10,6 +10,7 @@ const { sem_ids, selectedState, getCurrentPlanState, defaultPlanner } = inject(
 ) as ProvidedExport;
 const slots = ["Course 1", "Course 2", "Course 3", "Course 4"] as const;
 
+/** Lowercase */
 export type SemPlan = [
 	string | undefined,
 	string | undefined,
@@ -24,7 +25,7 @@ const placeCourse = (sem_id: SemId, id: number) => {
 		const _planState = getCurrentPlanState();
 		if (_planState) {
 			console.info(sem_id, id, selectedState.value);
-			_planState.planner[sem_id][id] = selectedState.value;
+			_planState.planner[sem_id][id] = selectedState.value.toLowerCase();
 			// preresuisiteCheck(sem_id, _planState.planner, selectedState.value);
 			selectedState.value = undefined;
 		}
