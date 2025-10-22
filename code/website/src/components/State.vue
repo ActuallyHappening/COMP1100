@@ -9,7 +9,7 @@ import _ from "lodash";
 import * as semver from "semver";
 import { toast } from "vue3-toastify";
 
-const current_version = "0.0.2";
+const current_version = "0.1.0";
 const compatible_versions = `=${current_version}`;
 const debug = useStorage("debug", false);
 
