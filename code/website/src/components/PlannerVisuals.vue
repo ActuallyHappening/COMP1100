@@ -3,7 +3,6 @@ import { inject, defineProps, computed, ref } from "vue";
 import ErrorView from "../Error.vue";
 import type { ProvidedExport, Prereq, SemId } from "./State.vue";
 import Course from "./Course.vue";
-import { preresuisiteCheck } from "../prerequisiteChecker.ts";
 import { RecordId } from "surrealdb";
 
 const { sem_ids, selectedState, getCurrentPlanState, plannerAPI } = inject(

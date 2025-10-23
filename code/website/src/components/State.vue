@@ -19,6 +19,7 @@ const sem_ids = [
 	"2026 Sem 1",
 	"2026 Sem 2",
 	"2027 Sem 1",
+	"2027 Sem 2"
 ] as const;
 export type SemId = (typeof sem_ids)[number];
 const defaultPlanner = (): Planner => {
@@ -115,6 +116,7 @@ const plannerAPI = (planner: Planner) =>
 			id: RecordId<string>,
 		) {
 			assert_id(id);
+
 			if (this.getIndexOfCourse(id)) {
 				toast(
 					`Not adding course ${id.id} which is already in your plan`,
@@ -154,9 +156,7 @@ const plannerAPI = (planner: Planner) =>
 			// Unpacking prereqs recursively --> must include nesting check
 			var currentPrereqState = true;
 			const evaluatePrereq = (prereq: Array<RecordId<string>|Prereq|"AND"|"OR"|undefined>, previouslyDone: Array<RecordIdValue>): boolean => {
-				console.log(prereq);
 				if (prereq.length = 1 && !(Array.isArray(prereq[0]))) {
-					console.log(prereq[0])
 					return (previouslyDone.includes(prereq[0].id))
 				} else {
 					var firstCourse = prereq[0];
