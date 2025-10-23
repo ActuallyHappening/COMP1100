@@ -137,7 +137,7 @@ const tabClicked = (event: Event, i: number) => {
 				</select>
 			</div>
 			<div class="col-1 align-content-center">
-				<button class="btn btn-primary w-100" @click="newPlan">
+				<button class="btn btn-outline-primary w-100" @click="newPlan">
 					New Plan
 				</button>
 			</div>
@@ -181,7 +181,7 @@ const tabClicked = (event: Event, i: number) => {
 	</div>
 
 	<div class="container-fluid row" id="parent-div">
-		<div class="col-3" v-if="getCurrentProgram()">
+		<div class="col-3 left-panel" v-if="getCurrentProgram()">
 			<div class="nav nav-tabs" id="nav-tab" role="tablist">
 				<button
 					v-if="getCurrentProgram()"
@@ -238,6 +238,7 @@ const tabClicked = (event: Event, i: number) => {
 .purple-bg {
 	background-color: #51247a;
 	color: white;
+	padding: 5px;
 }
 #nav-tab {
 	display: flex;
@@ -283,4 +284,37 @@ button.list-group-item {
 #plan {
 	flex-grow: 1;
 }
+
+.left-panel {
+	height: 100vh;
+	overflow: auto;
+}
+
+.tab-pane {
+	height: 100%;
+}
+
+.left-panel-inner {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.left-panel-inner > div {
+	flex: 1;
+}
+
+.btn-outline-primary {
+	--bs-btn-color: lightgrey;
+  	--bs-btn-border-color: #7F55B5;
+ 	 --bs-btn-hover-bg: #7F55B5;
+	--bs-btn-hover-color: #fff;
+	--bs-btn-hover-border-color: #7F55B5;
+	--bs-btn-active-bg: #7F55B5;
+	--bs-btn-active-border-color: #7F55B5;
+	--bs-btn-focus-shadow-rgb: 81, 36, 122;
+	display: inline-block;
+	white-space: nowrap;
+}
+
 </style>

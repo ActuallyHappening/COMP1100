@@ -63,6 +63,7 @@ const flattened_subreqs = computed((): string[] | undefined => {
 				? `vue-ProgramReqs-${this_program_req.short_name}`
 				: `vue-ProgramReqs`
 		"
+		class="left-panel-inner"
 	>
 		<h5>{{ this_program_req.short_name }}</h5>
 		<div

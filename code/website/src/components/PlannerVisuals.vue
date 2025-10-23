@@ -47,6 +47,7 @@ const getPlan = (sem_id: SemId, id: number): SemPlan[number] => {
 				<th scope="row" :id="`${sem_id}`">{{ sem_id }}</th>
 				<td v-for="(name, id) in slots.length" :id="`${sem_id}-${id}`">
 					<button
+						class="btn btn-outline-primary"
 						@click="placeCourse(sem_id, id)"
 						v-if="!getPlan(sem_id, id)"
 					>
@@ -62,4 +63,21 @@ const getPlan = (sem_id: SemId, id: number): SemPlan[number] => {
 table {
 	width: 100%;
 }
+
+.btn-outline-primary {
+	--bs-btn-color: black;
+	--bs-btn-border-color: #51247A;
+	--bs-btn-hover-bg: #51247A;
+	--bs-btn-hover-color: #fff;
+	--bs-btn-hover-border-color: #51247A;
+	--bs-btn-active-bg: #51247A;
+	--bs-btn-active-border-color: #51247A;
+	--bs-btn-focus-shadow-rgb: 81, 36, 122;
+	width: 100%;
+}
+
+.btn-outline-primary:focus {
+	outline-color: #51247A;
+}
+
 </style>

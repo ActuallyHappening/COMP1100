@@ -186,11 +186,15 @@ const prereqChecked = computed(() => {
 </template>
 
 <style scoped>
+button:hover {
+	background-color: #A082D1;
+}
+
 button.course-selection-active {
-	background-color: #8653b5;
+	background-color: #7F55B5;
 }
 
 button.course-selection-active:hover {
-	background-color: #b478eb;
+	background-color: #A082D1;
 }
 </style>
