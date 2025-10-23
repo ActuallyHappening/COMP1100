@@ -116,7 +116,13 @@ const plannerAPI = (planner: Planner) =>
 			id: RecordId<string>,
 		) {
 			assert_id(id);
-
+			var thisCourse = getCourse(id.id);
+			var relevantSemId = sem_id.split(" ").slice(1).join(" ");
+			var thisCourseSems = {
+				"Sem 1": thisCourse.sem_1,
+				"Sem 2": thisCourse.sem_2,
+				"Sem summer": thisCourse.sem_summer
+			};
 			if (this.getIndexOfCourse(id)) {
 				toast(
 					`Not adding course ${id.id} which is already in your plan`,
@@ -126,6 +132,26 @@ const plannerAPI = (planner: Planner) =>
 				);
 				return;
 			}
+			for (const inc of thisCourse.incompatible) {
+				if (this.getIndexOfCourse(inc)) {
+					toast(
+						`Not adding course ${id.id} due to incompatibilities`,
+						{
+							type: "info",
+						},
+					);
+					return;
+				};
+			};
+			if (!(thisCourseSems[relevantSemId])) {
+				toast(
+					`Not adding course ${id.id} due to not being offered in selected semester`,
+					{
+						type: "info",
+					},
+				);
+				return;
+			};
 			this.getIndex([sem_id, index]);
 			console.info(`Assigning`, sem_id, id, `to`, id.id);
 			planner[sem_id][index] = id.id.toString();
