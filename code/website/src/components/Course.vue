@@ -132,10 +132,9 @@ const prereqChecked = computed(() => {
 </script>
 
 <template>
-	<!-- let me know if these need to be -->
 	<button
 		type="button"
-		class="list-group-item"
+		class="list-group-item w-100"
 		:class="{
 			'course-selection-active':
 				type === 'default' && selectedState === course?.code,
@@ -157,7 +156,14 @@ const prereqChecked = computed(() => {
 				</p>
 			</template>
 			<template v-else-if="type === 'small'">
-				<h4>{{ course?.code }}</h4>
+				<div class="justify-content-end d-flex">
+					<div class="m-auto">
+						<h4>{{ course?.code }}</h4>
+					</div>
+					<div>
+						<button type="button" class="btn-close" aria-label="Close"></button>
+					</div>
+				</div>
 				<p class="m-0 p-0">
 					Prereqs passed: {{ prereqChecked ? "YES!" : "NO" }}
 				</p>
