@@ -116,13 +116,16 @@ const plannerAPI = (planner: Planner) =>
 			id: RecordId<string>,
 		) {
 			assert_id(id);
+			// declaration of variables for checking incompatibilities, sems
 			var thisCourse = getCourse(id.id);
+			// declaration of variables from here only needed for sems
 			var relevantSemId = sem_id.split(" ").slice(1).join(" ");
 			var thisCourseSems = {
 				"Sem 1": thisCourse.sem_1,
 				"Sem 2": thisCourse.sem_2,
 				"Sem summer": thisCourse.sem_summer
 			};
+			// pre-existing code for checking if the course already placed in
 			if (this.getIndexOfCourse(id)) {
 				toast(
 					`Not adding course ${id.id} which is already in your plan`,
@@ -131,7 +134,8 @@ const plannerAPI = (planner: Planner) =>
 					},
 				);
 				return;
-			}
+			};
+			// iterating through incompatibilities, return a message if required
 			for (const inc of thisCourse.incompatible) {
 				if (this.getIndexOfCourse(inc)) {
 					toast(
@@ -143,6 +147,7 @@ const plannerAPI = (planner: Planner) =>
 					return;
 				};
 			};
+			// checking if sem selected is possible in dict
 			if (!(thisCourseSems[relevantSemId])) {
 				toast(
 					`Not adding course ${id.id} due to not being offered in selected semester`,
@@ -152,6 +157,7 @@ const plannerAPI = (planner: Planner) =>
 				);
 				return;
 			};
+			// that's all from me on checking incompatibilities, sems. Toodles!
 			this.getIndex([sem_id, index]);
 			console.info(`Assigning`, sem_id, id, `to`, id.id);
 			planner[sem_id][index] = id.id.toString();
@@ -183,13 +189,12 @@ const plannerAPI = (planner: Planner) =>
 			var currentPrereqState = true;
 			const evaluatePrereq = (prereq: Array<RecordId<string>|Prereq|"AND"|"OR"|undefined>, previouslyDone: Array<RecordIdValue>): boolean => {
 				if (prereq.length = 1 && !(Array.isArray(prereq[0]))) {
-					return (previouslyDone.includes(prereq[0].id))
+					return (previouslyDone.includes(prereq[0].id));
 				} else {
 					var firstCourse = prereq[0];
 					if (!(Array.isArray(firstCourse))) {
 						firstCourse = [firstCourse];
 					};
-					console.log(prereq[1]);
 					if (prereq[1] === "OR") {
 						console.log(evaluatePrereq(firstCourse, previouslyDone), evaluatePrereq(prereq.slice(2), previouslyDone))
 						return (evaluatePrereq(firstCourse, previouslyDone) || evaluatePrereq(prereq.slice(2), previouslyDone));
@@ -200,8 +205,8 @@ const plannerAPI = (planner: Planner) =>
 				return true;
 			};
 			if (thisPrereqs && thisPrereqs[0]) {
-				currentPrereqState = evaluatePrereq(thisPrereqs, previouslyDone)
-			}
+				currentPrereqState = evaluatePrereq(thisPrereqs, previouslyDone);
+			};
 			return currentPrereqState;
 		},
 	}) as const;
