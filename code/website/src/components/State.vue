@@ -143,11 +143,34 @@ const plannerAPI = (planner: Planner) =>
 			const previouslyDone = previousCourses.map(
 				(course) => course.id.id,
 			);
+			// var previousCourses is a dictionary of previously completed courses (full DB return)
+			// var thisCourse is the course currently selected (full DB return)
+			// var thisPrereqs is the prerequisites field of thisCourse (as found in DB)
+			// var thisCode is the course code of thisCourse (string)
+			// var previouslyDone is an array of course codes previously completed (strings)
 
 			// recursive comlicated algorithm, probably using
 			// eval();
-
-			return false;
+			// Unpacking prereqs recursively --> must include nesting check
+			var currentPrereqState = true;
+			const evaluatePrereq = (prereq: Array<RecordId<string>|Prereq|"AND"|"OR"|undefined>, previouslyDone: Array<RecordIdValue>): boolean => {
+				if (prereq.length = 1) {
+					console.log(prereq[0])
+					return (previouslyDone.includes(prereq[0].id))
+				} else {
+					var firstCourse = [prereq[0]]
+					if (prereq[1] === "OR") {
+						return (evaluatePrereq(firstCourse, previouslyDone) || evaluatePrereq(prereq.slice(2), previouslyDone));
+					} else if (prereq[1] === "AND") {
+						return (evaluatePrereq(firstCourse, previouslyDone) && evaluatePrereq(prereq.slice(2), previouslyDone));
+					};
+				};
+				return true;
+			};
+			if (thisPrereqs && thisPrereqs[0]) {
+				currentPrereqState = evaluatePrereq(thisPrereqs, previouslyDone)
+			}
+			return currentPrereqState;
 		},
 	}) as const;
 export type PlannerAPI = ReturnType<typeof plannerAPI>;
@@ -374,7 +397,7 @@ function getCourse(code: string): Course {
 	);
 }
 
-import { RecordId, Surreal, Table } from "surrealdb";
+import { RecordId, Surreal, Table, type RecordIdValue } from "surrealdb";
 import type { Planner } from "./PlannerVisuals.vue";
 
 function refresh() {
