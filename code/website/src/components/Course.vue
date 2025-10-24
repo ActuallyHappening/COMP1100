@@ -155,20 +155,24 @@ const prereqChecked = computed(() => {
 					Incompatible: <i>{{ incompatible_list }}</i>
 				</p>
 			</template>
+
 			<template v-else-if="type === 'small'">
 				<div class="justify-content-end d-flex">
 					<div class="m-auto">
-						<h4>{{ course?.code }}</h4>
+						<h4 class="pb-0 mb-0">{{ course?.code }}</h4>
 					</div>
 					<div>
 						<button type="button" 
 						class="btn-close" aria-label="Close"></button>
 					</div>
 				</div>
+				<i><p class="p-0 m-0">{{ course?.name }}</p></i>
+				<p class="m-0 p-0">Core course</p>
 				<p class="m-0 p-0">
 					Prereqs passed: {{ prereqChecked ? "YES!" : "NO" }}
 				</p>
 			</template>
+
 			<template v-else-if="type === 'summary'">
 				<a class="mb-2 " :href="'https://programs-courses.uq.edu.au/course.html?course_code='+ course?.code" target="_blank">
 					<h3 class="text-center">{{ course?.code }}</h3>
@@ -209,6 +213,7 @@ const prereqChecked = computed(() => {
 					</li>
 				</ul>
 			</template>
+
 			<template v-else>
 				<ErrorView
 					:err="

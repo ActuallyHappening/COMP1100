@@ -38,8 +38,8 @@ const getPlan = (sem_id: SemId, id: number): SemPlan[number] => {
 	<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th scope="col"></th>
-				<th scope="col" v-for="id in slots">{{ id }}</th>
+				<th scope="col" style="width: 10%;"></th>
+				<th scope="col" style="width: 20%;" v-for="id in slots">{{ id }}</th>
 			</tr>
 		</thead>
 		<tbody>
