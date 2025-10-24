@@ -9,7 +9,7 @@ const { selectedState } = inject("state") as ProvidedExport;
 const course = selectedState;
 </script>
 <template>
-	<Course v-if="course" :code="course" type="summary" />
+	<Course class="rhs" v-if="course" :code="course" type="summary" />
 	<!-- Put this in a new vue file probably -->
 	<a
 		class="mb-2"
@@ -50,3 +50,10 @@ const course = selectedState;
 		</li>
 	</ul>
 </template>
+<style>
+
+button.rhs:hover {
+	background-color: inherit;
+}
+
+</style>

@@ -203,4 +203,8 @@ button.course-selection-active {
 button.course-selection-active:hover {
 	background-color: #A082D1;
 }
+
+table button:hover {
+	background-color: inherit;
+}
 </style>
