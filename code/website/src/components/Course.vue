@@ -169,13 +169,32 @@ const prereqChecked = computed(() => {
 				</p>
 			</template>
 			<template v-else-if="type === 'summary'">
-				<h4>{{ course?.code }}</h4>
-				<p class="m-0 p-0" v-if="prereqs_list">
-					Prerequisites: <i>{{ prereqs_list }}</i>
-				</p>
-				<p class="m-0 p-0" v-if="incompatible_list">
-					Incompatible: <i>{{ incompatible_list }}</i>
-				</p>
+				<a class="mb-2 " :href="'https://programs-courses.uq.edu.au/course.html?course_code='+ course?.code" target="_blank">
+					<h3 class="text-center">{{ course?.code }}</h3>
+					<p class="text-center">{{ course?.name }}</p>
+				</a>
+				<ul class="text-start">
+					<li>
+						<h5><strong>Semesters offered: <span>&#9432;</span></strong>	</h5> <!-- On hover show disclaimer -->
+						<p>{{ course?.code }} is available in the following semesters: {{ sems }}</p>
+					</li>
+					<li>
+						<h5><strong>Prerequisites:</strong></h5>
+						<p v-if="prereqs_list && !prereqChecked">{{ course?.code }} has the following prerequisite courses: {{ prereqs_list }}</p>
+						<p v-else-if="!prereqs_list">{{ course?.code }} has no prerequisite courses.</p>
+						<p v-if="prereqChecked && prereqs_list">You have completed all necessary prerequisites to begin this course.</p>
+						<p v-else-if="prereqs_list && !prereqChecked">You need to complete: </p>
+					</li>
+					<li v-if="incompatible_list">
+						<h5><strong>Incompatibilities:</strong></h5> <!-- shows up optionally? -->
+						<p>{{ course?.code }} is incompatible with {{ incompatible_list }}.</p>
+						<!-- <p>Please </p> -->
+					</li>
+					<li>
+						<h5><strong>Credits:</strong></h5>
+						<p>This course counts _ towards _.</p>
+					</li>
+				</ul>
 			</template>
 			<template v-else>
 				<ErrorView
@@ -192,15 +211,11 @@ const prereqChecked = computed(() => {
 </template>
 
 <style scoped>
-button:hover {
-	background-color: #A082D1;
-}
-
 button.course-selection-active {
-	background-color: #7F55B5;
+	background-color: #8653b5;
 }
 
 button.course-selection-active:hover {
-	background-color: #A082D1;
+	background-color: #b478eb;
 }
 </style>
