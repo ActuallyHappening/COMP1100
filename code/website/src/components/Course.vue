@@ -161,7 +161,8 @@ const prereqChecked = computed(() => {
 						<h4>{{ course?.code }}</h4>
 					</div>
 					<div>
-						<button type="button" class="btn-close" aria-label="Close"></button>
+						<button type="button" 
+						class="btn-close" aria-label="Close"></button>
 					</div>
 				</div>
 				<p class="m-0 p-0">
@@ -175,19 +176,31 @@ const prereqChecked = computed(() => {
 				</a>
 				<ul class="text-start">
 					<li>
-						<h5><strong>Semesters offered: <span>&#9432;</span></strong>	</h5> <!-- On hover show disclaimer -->
-						<p>{{ course?.code }} is available in the following semesters: {{ sems }}</p>
+						<h5><strong>Semesters offered: <span 
+							title="Based on previous course offerings. 
+							Information may not be valid in future semesters."
+							>&#9432;</span></strong>	</h5>
+						<p>{{ course?.code }} is available in the following 
+							semesters: {{ sems }}</p>
 					</li>
 					<li>
 						<h5><strong>Prerequisites:</strong></h5>
-						<p v-if="prereqs_list && !prereqChecked">{{ course?.code }} has the following prerequisite courses: {{ prereqs_list }}</p>
-						<p v-else-if="!prereqs_list">{{ course?.code }} has no prerequisite courses.</p>
-						<p v-if="prereqChecked && prereqs_list">You have completed all necessary prerequisites to begin this course.</p>
-						<p v-else-if="prereqs_list && !prereqChecked">You need to complete: </p>
+						<p v-if="prereqs_list && !prereqChecked">
+							{{ course?.code }} has the following prerequisite 
+							courses: {{ prereqs_list }}</p>
+						<p v-else-if="!prereqs_list">{{ course?.code }}
+							 has no prerequisite courses.</p>
+						<p v-if="prereqChecked && prereqs_list">
+							You have completed all necessary prerequisites to 
+							begin this course.</p>
+						<p v-else-if="prereqs_list && !prereqChecked">
+							You need to complete: </p>
 					</li>
 					<li v-if="incompatible_list">
-						<h5><strong>Incompatibilities:</strong></h5> <!-- shows up optionally? -->
-						<p>{{ course?.code }} is incompatible with {{ incompatible_list }}.</p>
+						<h5><strong>Incompatibilities:</strong></h5> 
+						<!-- shows up optionally? -->
+						<p>{{ course?.code }} is incompatible with 
+							{{ incompatible_list }}.</p>
 						<!-- <p>Please </p> -->
 					</li>
 					<li>

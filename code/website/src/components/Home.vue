@@ -179,7 +179,6 @@ const tabClicked = (event: Event, i: number) => {
 			</div>
 		</form>
 	</div>
-
 	<div class="container-fluid row" id="parent-div">
 		<div class="col-3 left-panel" v-if="getCurrentProgram()">
 			<div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -188,7 +187,7 @@ const tabClicked = (event: Event, i: number) => {
 					v-for="(id, i) in normalizedIndexHeaders"
 					ref="tabs"
 					:key="id"
-					class="nav-link"
+					class="nav-link w-25"
 					:class="{ active: i == selectedIndex }"
 					:id="`homescreen-leftbar-${id}-tab`"
 					data-bs-toggle="tab"
@@ -213,8 +212,8 @@ const tabClicked = (event: Event, i: number) => {
 						:aria-labelledby="`homescreen-leftbar-${id}-tab`"
 						tabindex="0"
 					>
-						{{ getHeaderByIndex(i) }}
-						<ProgramReq :index="i" />
+						<!-- {{ getHeaderByIndex(i) }} -->
+						<!-- <ProgramReq :index="i" /> -->
 						<ProgramReqs
 							v-if="getCurrentPlanState().topLevelReqsSelected[i]"
 							:requirement-id="
@@ -286,7 +285,7 @@ button.list-group-item {
 }
 
 .left-panel {
-	height: 100vh;
+	height: 91vh;
 	overflow: auto;
 }
 
