@@ -368,7 +368,8 @@ export type RequirementType =
 	| "nomaj-subcomponent"
 	| "extmaj"
 	| "extmaj-subcomponent"
-	| "breadth";
+	| "breadth"
+	| "gen-elec";
 const requirement_type_to_header = (requirement: RequirementType): string => {
 	if (requirement === "core") {
 		return "Core";
@@ -380,7 +381,9 @@ const requirement_type_to_header = (requirement: RequirementType): string => {
 		return "Extended Major";
 	} else if (requirement === "breadth") {
 		return "Breadth"
-	} else {
+	} else if (requirement === "gen-elec") {
+		return "General Elective" 
+	}else {
 		// Shouldn't hit currently
 		return requirement.toUpperCase();
 	}

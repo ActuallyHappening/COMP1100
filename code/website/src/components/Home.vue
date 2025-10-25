@@ -222,11 +222,16 @@ const tabClicked = (event: Event, i: number) => {
 						<!-- {{ getHeaderByIndex(i) }} -->
 						<ProgramReq :index="i" />
 						<ProgramReqs
-							v-if="getCurrentPlanState().topLevelReqsSelected[i]"
+							v-if="getCurrentPlanState().topLevelReqsSelected[i] && 
+							!(getCurrentPlanState().topLevelReqsSelected[i].includes(`gen-elec`))"
 							:requirement-id="
 								getCurrentPlanState().topLevelReqsSelected[i]!
 							"
 						/>
+						<form role="search" v-if="getCurrentPlanState().topLevelReqsSelected[i] && getCurrentPlanState().topLevelReqsSelected[i]?.includes(`gen-elec`)">
+							<h5>General Elective Courses</h5>
+							<input type="search" class="form-control" placeholder="Search for a course" aria-label="search">
+						</form>
 					</div>
 				</template>
 			</div>
