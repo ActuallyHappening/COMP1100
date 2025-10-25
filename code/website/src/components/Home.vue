@@ -42,7 +42,9 @@ function courseChange(event: Event) {
 	}
 }
 
-const getHeaderByIndex = (index: number): string | undefined => {
+/** e.g. "Core" or "Major" */
+type HumanHeaderIndexName = string;
+const getHeaderByIndex = (index: number): HumanHeaderIndexName | undefined => {
 	const me_req = getCurrentPlanState().topLevelReqsSelected[index];
 	// if a specific req is already selected
 	if (typeof me_req === "string") {
@@ -61,7 +63,11 @@ const getHeaderByIndex = (index: number): string | undefined => {
 		.map((req) => req.type);
 	return requirement_types_to_header(a);
 };
-const normalize = (str: string | undefined): string => {
+/** e.g. "core" or "major-extended-major-no-major" */
+type HTMLHeaderIndexKey = string;
+const normalize = (
+	str: HumanHeaderIndexName | undefined,
+): HTMLHeaderIndexKey => {
 	return (
 		(str ?? "UNDEFINED")
 			.toLowerCase()
@@ -85,17 +91,17 @@ const normalizedIndexHeaders = computed((): string[] => {
 
 // Vue tab impl
 const selectedIndex = ref(0);
-const tabRefs = useTemplateRef("tabs");
-watch(
-	tabRefs,
-	(refs) => {
-		refs?.forEach((el) => {
-			el.bsTabTrigger = new bootstrap.Tab(el);
-			// console.info(el, el.bsTabTrigger);
-		});
-	},
-	{ immediate: true },
-);
+// const tabRefs = useTemplateRef("tabs");
+// watch(
+// 	tabRefs,
+// 	(refs) => {
+// 		refs?.forEach((el) => {
+// 			el.bsTabTrigger = new bootstrap.Tab(el);
+// 			// console.info(el, el.bsTabTrigger);
+// 		});
+// 	},
+// 	{ immediate: true },
+// );
 const tabClicked = (event: Event, i: number) => {
 	event.preventDefault();
 	selectedIndex.value = i;
@@ -214,7 +220,7 @@ const tabClicked = (event: Event, i: number) => {
 						tabindex="0"
 					>
 						<!-- {{ getHeaderByIndex(i) }} -->
-						<!-- <ProgramReq :index="i" /> -->
+						<ProgramReq :index="i" />
 						<ProgramReqs
 							v-if="getCurrentPlanState().topLevelReqsSelected[i]"
 							:requirement-id="
@@ -306,15 +312,14 @@ button.list-group-item {
 
 .btn-outline-primary {
 	--bs-btn-color: lightgrey;
-  	--bs-btn-border-color: #7F55B5;
- 	 --bs-btn-hover-bg: #7F55B5;
+	--bs-btn-border-color: #7f55b5;
+	--bs-btn-hover-bg: #7f55b5;
 	--bs-btn-hover-color: #fff;
-	--bs-btn-hover-border-color: #7F55B5;
-	--bs-btn-active-bg: #7F55B5;
-	--bs-btn-active-border-color: #7F55B5;
+	--bs-btn-hover-border-color: #7f55b5;
+	--bs-btn-active-bg: #7f55b5;
+	--bs-btn-active-border-color: #7f55b5;
 	--bs-btn-focus-shadow-rgb: 81, 36, 122;
 	display: inline-block;
 	white-space: nowrap;
 }
-
 </style>
