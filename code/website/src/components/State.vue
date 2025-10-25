@@ -319,12 +319,22 @@ const getCurrentPlanState = (): PlanState => {
 // every time the program changes, reset the top level req chosen
 watch(
 	() => getCurrentPlanState().programId,
-	(old, current) => {
+	(current, old) => {
 		console.warn(
 			`Resetting topLevelReqsSelected because the programId has changed from ${old} to ${current}`,
 		);
 		getCurrentPlanState().topLevelReqsSelected = {};
 	},
+);
+/** Doesn't really change any behaviour yet */
+watch(
+	() => getCurrentPlanState().name,
+	(current) => {
+		if (typeof current === "string" && current !== "") {
+			router.push({ name: `plan`, params: { id: current } });
+		}
+	},
+	{ deep: true, immediate: true },
 );
 
 export type Program = {
@@ -463,6 +473,7 @@ function getCourse(code: string): Course {
 
 import { RecordId, Surreal, Table, type RecordIdValue } from "surrealdb";
 import type { Planner } from "./PlannerVisuals.vue";
+import { router } from "../routes";
 
 function refresh() {
 	const db = new Surreal();

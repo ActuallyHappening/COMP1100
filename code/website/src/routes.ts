@@ -9,6 +9,7 @@ import {
 const routes = [
 	{ path: `/`, component: Home },
 	{ path: `/home`, component: Home },
+	{ path: `/plan/:id`, name: "plan", component: Home },
 	{ path: `/index.html`, component: Home },
 ];
 
