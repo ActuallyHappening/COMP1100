@@ -39,15 +39,22 @@ const course = computed((): Course => {
 	}
 	return ret;
 });
-const renderPrereq = (arr: Prereq) => {
+const renderPrereq = (
+	arr: Prereq,
+	options?: { course_cb?: (id: string) => string },
+) => {
+	const settings = {
+		course_cb: (id: string) => id.toUpperCase(),
+		...options,
+	};
 	const ret = [];
 	for (const idiom of arr) {
 		if (idiom === "OR" || idiom === "AND") {
 			ret.push(idiom.toLowerCase());
 		} else if (typeof idiom.id === "string") {
-			ret.push(idiom.id.toUpperCase());
+			ret.push(settings.course_cb(idiom.id));
 		} else {
-			ret.push("(" + renderPrereq(idiom) + ")");
+			ret.push("(" + renderPrereq(idiom, settings) + ")");
 		}
 	}
 	return ret.join(" ");
@@ -55,6 +62,16 @@ const renderPrereq = (arr: Prereq) => {
 const prereqs_list = computed(() => {
 	if (course.value?.prerequisites) {
 		return renderPrereq(course.value?.prerequisites);
+	} else {
+		return "";
+	}
+});
+const prereqs_list_html = computed(() => {
+	if (course.value?.prerequisites) {
+		return renderPrereq(course.value?.prerequisites, {
+			course_cb: (id: string) =>
+				`<a href="#${id}">${id.toUpperCase()}</a>`,
+		});
 	} else {
 		return "";
 	}
@@ -215,14 +232,11 @@ const close = () => {
 					</li>
 					<li>
 						<h5><strong>Prerequisites:</strong></h5>
-						<p v-if="prereqs_list && !prereqChecked">
-							{{ course?.code }} has the following prerequisite
-							courses: {{ prereqs_list }}
-						</p>
-						<p v-else-if="!prereqs_list">
+						<p v-if="prereqs_list" v-html="prereqs_list_html"></p>
+						<p v-else>
 							{{ course?.code }} has no prerequisite courses.
 						</p>
-						<p v-if="prereqChecked && prereqs_list">
+						<p v-if="prereqChecked">
 							You have completed all necessary prerequisites to
 							begin this course.
 						</p>

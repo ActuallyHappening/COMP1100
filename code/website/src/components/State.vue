@@ -558,21 +558,36 @@ watch(
 	},
 	{ deep: true, immediate: true },
 );
+// hash <-> selectedState
 watch(
 	() => router.currentRoute.value.hash,
 	(current) => {
 		const hash = current.split("#")[1];
+		if (hash === selectedState.value) {
+			// avoids infinite watch loop
+			return;
+		}
 		if (typeof hash !== "string" && hash === "") {
 			return;
 		}
 		if (!fullyLoaded() || !getCourse(hash, { allowUnknown: true })) {
 			return;
 		}
-		console.info(`REMOVEME updating by hash`, hash);
 		selectedState.value = hash;
 	},
 	{ deep: true, immediate: true },
 );
+watch(selectedState, (current) => {
+	const hash = router.currentRoute.value.hash.split("#")[1];
+	if (hash === current) {
+		return;
+	}
+	if (!current) {
+		return;
+	}
+	router.push({ hash: `#${current}` });
+	// router.currentRoute.value.hash = current;
+});
 </script>
 
 <template>
