@@ -66,12 +66,12 @@ const plannerAPI = (planner: Planner) =>
 				const index = this.getSemPlan(sem_id).indexOf(
 					course.id.toString(),
 				);
-				console.info(
-					`REMOVEME get indx of`,
-					index,
-					sem_id,
-					course.id.toString(),
-				);
+				// console.info(
+				// 	`REMOVEME get indx of`,
+				// 	index,
+				// 	sem_id,
+				// 	course.id.toString(),
+				// );
 				if (index !== -1) {
 					return [sem_id, index];
 				}
@@ -554,5 +554,6 @@ const fullyLoaded = () => {
 
 	<label for="debug"> Enable debugging: </label>
 	<input id="debug" type="checkbox" v-model="debug" />
+	<pre v-if="debug">{{ "Version: " + current_version }} </pre>
 	<pre v-if="debug">{{ localState }}</pre>
 </template>
