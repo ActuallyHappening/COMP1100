@@ -38,6 +38,7 @@ function courseChange(event: Event) {
 	const plan_state = getCurrentPlanState();
 	if (plan_state) {
 		plan_state.programId = value;
+		//plan_state.topLevelReqsSelected[0] = "b"+value.split(":").slice(1)+"-core";
 	}
 }
 
