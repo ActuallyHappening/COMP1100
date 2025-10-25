@@ -239,9 +239,6 @@ const plannerAPI = (planner: Planner) =>
 	}) as const;
 export type PlannerAPI = ReturnType<typeof plannerAPI>;
 
-/** Course id (code) lowercase */
-const selectedState = ref(undefined as undefined | string);
-
 export type PlanState = {
 	name: string;
 	programId: string | null;
@@ -270,6 +267,10 @@ const defaultState = {
 		},
 	},
 };
+
+/** Course id (code) lowercase */
+const selectedState = ref(undefined as undefined | string);
+
 const _localState = useStorage(
 	`student-info`,
 	reactive(_.cloneDeep(defaultState)),
@@ -325,16 +326,6 @@ watch(
 		);
 		getCurrentPlanState().topLevelReqsSelected = {};
 	},
-);
-/** Doesn't really change any behaviour yet */
-watch(
-	() => getCurrentPlanState().name,
-	(current) => {
-		if (typeof current === "string" && current !== "") {
-			router.push({ name: `plan`, params: { id: current } });
-		}
-	},
-	{ deep: true, immediate: true },
 );
 
 export type Program = {
@@ -462,7 +453,7 @@ function getCurrentProgram(): Program | undefined {
 	return ret;
 }
 
-function getCourse(code: string): Course {
+function getCourse(code: string, options: { allowUnknown: boolean }): Course {
 	if (!code) {
 		throw new TypeError(code);
 	}
@@ -555,6 +546,33 @@ const fullyLoaded = () => {
 		!!program_requirements.value
 	);
 };
+
+//** Routing **
+/** Doesn't really change any behaviour yet */
+watch(
+	() => getCurrentPlanState().name,
+	(current) => {
+		if (typeof current === "string" && current !== "") {
+			router.push({ name: `plan`, params: { id: current } });
+		}
+	},
+	{ deep: true, immediate: true },
+);
+watch(
+	() => router.currentRoute.value.hash,
+	(current) => {
+		const hash = current.split("#")[1];
+		if (typeof hash !== "string" && hash === "") {
+			return;
+		}
+		if (!fullyLoaded() || !getCourse(hash, { allowUnknown: true })) {
+			return;
+		}
+		console.info(`REMOVEME updating by hash`, hash);
+		selectedState.value = hash;
+	},
+	{ deep: true, immediate: true },
+);
 </script>
 
 <template>
