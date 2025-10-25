@@ -3,13 +3,15 @@
  * This file manages the network and localStorage state
  */
 
+import package_json from "../../package.json";
 import { useStorage } from "@vueuse/core";
 import { computed, provide, onMounted, ref, reactive, watch } from "vue";
 import _ from "lodash";
 import * as semver from "semver";
 import { toast } from "vue3-toastify";
 
-const current_version = "0.1.0";
+// const current_version = "0.1.0";
+const current_version = package_json.version;
 const compatible_versions = `=${current_version}`;
 const debug = useStorage("debug", false);
 
