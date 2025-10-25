@@ -378,6 +378,8 @@ const requirement_type_to_header = (requirement: RequirementType): string => {
 		return "No Major";
 	} else if (requirement === "extmaj") {
 		return "Extended Major";
+	} else if (requirement === "breadth") {
+		return "Breadth"
 	} else {
 		// Shouldn't hit currently
 		return requirement.toUpperCase();
