@@ -118,6 +118,11 @@ const prereqChecked = computed(() => {
 	});
 	return prereqCheck;
 });
+const close = () => {
+	// remove this from selected and from visual planner
+	const planner = plannerAPI(getCurrentPlanState().planner);
+	planner.removeCourse(course.value.id);
+};
 
 // const courseElements = Array.from(document.querySelectorAll<HTMLElement>('[id^=vue-Course-]'));
 // document.addEventListener('click', (event) => {
@@ -162,11 +167,17 @@ const prereqChecked = computed(() => {
 						<h4 class="pb-0 mb-0">{{ course?.code }}</h4>
 					</div>
 					<div>
-						<button type="button" 
-						class="btn-close" aria-label="Close"></button>
+						<button
+							type="button"
+							class="btn-close"
+							aria-label="Close"
+							@click.prevent="close"
+						></button>
 					</div>
 				</div>
-				<i><p class="p-0 m-0">{{ course?.name }}</p></i>
+				<i
+					><p class="p-0 m-0">{{ course?.name }}</p></i
+				>
 				<p class="m-0 p-0">Core course</p>
 				<p class="m-0 p-0">
 					Prereqs passed: {{ prereqChecked ? "YES!" : "NO" }}
@@ -174,37 +185,58 @@ const prereqChecked = computed(() => {
 			</template>
 
 			<template v-else-if="type === 'summary'">
-				<a class="mb-2 " :href="'https://programs-courses.uq.edu.au/course.html?course_code='+ course?.code" target="_blank">
+				<a
+					class="mb-2"
+					:href="
+						'https://programs-courses.uq.edu.au/course.html?course_code=' +
+						course?.code
+					"
+					target="_blank"
+				>
 					<h3 class="text-center">{{ course?.code }}</h3>
 					<p class="text-center">{{ course?.name }}</p>
 				</a>
 				<ul class="text-start">
 					<li>
-						<h5><strong>Semesters offered: <span 
-							title="Based on previous course offerings. 
+						<h5>
+							<strong
+								>Semesters offered:
+								<span
+									title="Based on previous course offerings.
 							Information may not be valid in future semesters."
-							>&#9432;</span></strong>	</h5>
-						<p>{{ course?.code }} is available in the following 
-							semesters: {{ sems }}</p>
+									>&#9432;</span
+								></strong
+							>
+						</h5>
+						<p>
+							{{ course?.code }} is available in the following
+							semesters: {{ sems }}
+						</p>
 					</li>
 					<li>
 						<h5><strong>Prerequisites:</strong></h5>
 						<p v-if="prereqs_list && !prereqChecked">
-							{{ course?.code }} has the following prerequisite 
-							courses: {{ prereqs_list }}</p>
-						<p v-else-if="!prereqs_list">{{ course?.code }}
-							 has no prerequisite courses.</p>
+							{{ course?.code }} has the following prerequisite
+							courses: {{ prereqs_list }}
+						</p>
+						<p v-else-if="!prereqs_list">
+							{{ course?.code }} has no prerequisite courses.
+						</p>
 						<p v-if="prereqChecked && prereqs_list">
-							You have completed all necessary prerequisites to 
-							begin this course.</p>
+							You have completed all necessary prerequisites to
+							begin this course.
+						</p>
 						<p v-else-if="prereqs_list && !prereqChecked">
-							You need to complete: </p>
+							You need to complete:
+						</p>
 					</li>
 					<li v-if="incompatible_list">
-						<h5><strong>Incompatibilities:</strong></h5> 
+						<h5><strong>Incompatibilities:</strong></h5>
 						<!-- shows up optionally? -->
-						<p>{{ course?.code }} is incompatible with 
-							{{ incompatible_list }}.</p>
+						<p>
+							{{ course?.code }} is incompatible with
+							{{ incompatible_list }}.
+						</p>
 						<!-- <p>Please </p> -->
 					</li>
 					<li>

@@ -21,7 +21,7 @@ const sem_ids = [
 	"2026 Sem 1",
 	"2026 Sem 2",
 	"2027 Sem 1",
-	"2027 Sem 2"
+	"2027 Sem 2",
 ] as const;
 export type SemId = (typeof sem_ids)[number];
 const defaultPlanner = (): Planner => {
@@ -78,6 +78,14 @@ const plannerAPI = (planner: Planner) =>
 			}
 			return undefined;
 		},
+		removeCourse(course: RecordId<string>) {
+			const index = this.getIndexOfCourse(course);
+			if (index) {
+				const [sem_id, i] = index;
+				this.getIndex([sem_id, i]);
+				planner[sem_id][i] = undefined;
+			}
+		},
 		/** Doesn't include sem_id */
 		semIdsBefore(sem_id: SemId): SemId[] {
 			this.assertSemId(sem_id);
@@ -119,13 +127,13 @@ const plannerAPI = (planner: Planner) =>
 		) {
 			assert_id(id);
 			// declaration of variables for checking incompatibilities, sems
-			var thisCourse = getCourse(id.id);
+			var thisCourse = getCourse(id.id.toString());
 			// declaration of variables from here only needed for sems
 			var relevantSemId = sem_id.split(" ").slice(1).join(" ");
 			var thisCourseSems = {
 				"Sem 1": thisCourse.sem_1,
 				"Sem 2": thisCourse.sem_2,
-				"Sem summer": thisCourse.sem_summer
+				"Sem summer": thisCourse.sem_summer,
 			};
 			// pre-existing code for checking if the course already placed in
 			if (this.getIndexOfCourse(id)) {
@@ -136,7 +144,7 @@ const plannerAPI = (planner: Planner) =>
 					},
 				);
 				return;
-			};
+			}
 			// iterating through incompatibilities, return a message if required
 			for (const inc of thisCourse.incompatible) {
 				if (this.getIndexOfCourse(inc)) {
@@ -147,10 +155,10 @@ const plannerAPI = (planner: Planner) =>
 						},
 					);
 					return;
-				};
-			};
+				}
+			}
 			// checking if sem selected is possible in dict
-			if (!(thisCourseSems[relevantSemId])) {
+			if (!thisCourseSems[relevantSemId]) {
 				toast(
 					`Not adding course ${id.id} due to not being offered in selected semester`,
 					{
@@ -158,7 +166,7 @@ const plannerAPI = (planner: Planner) =>
 					},
 				);
 				return;
-			};
+			}
 			// that's all from me on checking incompatibilities, sems. Toodles!
 			this.getIndex([sem_id, index]);
 			console.info(`Assigning`, sem_id, id, `to`, id.id);
@@ -189,26 +197,43 @@ const plannerAPI = (planner: Planner) =>
 			// eval();
 			// Unpacking prereqs recursively --> must include nesting check
 			var currentPrereqState = true;
-			const evaluatePrereq = (prereq: Array<RecordId<string>|Prereq|"AND"|"OR"|undefined>, previouslyDone: Array<RecordIdValue>): boolean => {
-				if (prereq.length = 1 && !(Array.isArray(prereq[0]))) {
-					return (previouslyDone.includes(prereq[0].id));
+			const evaluatePrereq = (
+				prereq: Array<
+					RecordId<string> | Prereq | "AND" | "OR" | undefined
+				>,
+				previouslyDone: Array<RecordIdValue>,
+			): boolean => {
+				if ((prereq.length = 1 && !Array.isArray(prereq[0]))) {
+					return previouslyDone.includes(prereq[0].id);
 				} else {
 					var firstCourse = prereq[0];
-					if (!(Array.isArray(firstCourse))) {
+					if (!Array.isArray(firstCourse)) {
 						firstCourse = [firstCourse];
-					};
+					}
 					if (prereq[1] === "OR") {
-						console.log(evaluatePrereq(firstCourse, previouslyDone), evaluatePrereq(prereq.slice(2), previouslyDone))
-						return (evaluatePrereq(firstCourse, previouslyDone) || evaluatePrereq(prereq.slice(2), previouslyDone));
+						console.log(
+							evaluatePrereq(firstCourse, previouslyDone),
+							evaluatePrereq(prereq.slice(2), previouslyDone),
+						);
+						return (
+							evaluatePrereq(firstCourse, previouslyDone) ||
+							evaluatePrereq(prereq.slice(2), previouslyDone)
+						);
 					} else if (prereq[1] === "AND") {
-						return (evaluatePrereq(firstCourse, previouslyDone) && evaluatePrereq(prereq.slice(2), previouslyDone));
-					};
-				};
+						return (
+							evaluatePrereq(firstCourse, previouslyDone) &&
+							evaluatePrereq(prereq.slice(2), previouslyDone)
+						);
+					}
+				}
 				return true;
 			};
 			if (thisPrereqs && thisPrereqs[0]) {
-				currentPrereqState = evaluatePrereq(thisPrereqs, previouslyDone);
-			};
+				currentPrereqState = evaluatePrereq(
+					thisPrereqs,
+					previouslyDone,
+				);
+			}
 			return currentPrereqState;
 		},
 	}) as const;
