@@ -139,18 +139,9 @@ const close = () => {
 	// remove this from selected and from visual planner
 	const planner = plannerAPI(getCurrentPlanState().planner);
 	planner.removeCourse(course.value.id);
+	// Deleting a course selects it, CY Interview 1 mentinos this isn't desired behaviour
+	selectedState.value = undefined;
 };
-
-// const courseElements = Array.from(document.querySelectorAll<HTMLElement>('[id^=vue-Course-]'));
-// document.addEventListener('click', (event) => {
-// 	const target = event.target as Node;
-// 	const clickedInside = courseElements.some(el => el.contains(target));
-// 	if (!clickedInside) {
-// 		courseElements.forEach(el => {
-// 			el.classList.remove('course-selection-active');
-// 		});
-// 	};
-// });
 </script>
 
 <template>
@@ -180,10 +171,6 @@ const close = () => {
 
 			<template v-else-if="type === 'small'">
 				<div class="justify-content-end d-flex">
-					<div>
-						<span>✅</span>
-						<!-- <span>⚠</span> -->
-					</div>
 					<div class="m-auto">
 						<h4 class="pb-0 mb-0">{{ course?.code }}</h4>
 					</div>
@@ -201,7 +188,10 @@ const close = () => {
 				>
 				<p class="m-0 p-0">Core course</p>
 				<p class="m-0 p-0">
-					Prereqs passed: {{ prereqChecked ? "YES!" : "NO" }}
+					Prereqs passed:
+					<span :class="{ 'text-warning': !prereqChecked }">{{
+						prereqChecked ? "✅" : "⚠"
+					}}</span>
 				</p>
 			</template>
 
@@ -290,8 +280,8 @@ button.course-selection-active:hover {
 table button:hover {
 	background-color: inherit;
 }
-.btn-close:hover{
+.btn-close:hover {
 	filter: invert(100%) sepia(100%) hue-rotate(300deg) saturate(100000%);
-  	opacity: 1;
+	opacity: 1;
 }
 </style>

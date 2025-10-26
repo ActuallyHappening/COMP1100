@@ -109,8 +109,10 @@ const tabClicked = (event: Event, i: number) => {
 };
 
 const navScroll = (event: Event) => {
-	event.preventDefault();
-	event.currentTarget.scrollLeft += event.deltaY;
+	// event.preventDefault();
+	// if (event.currentTarget) {
+	// 	event.currentTarget.scrollLeft += event.deltaY ?? 0 + event.deltaX ?? 0;
+	// }
 };
 </script>
 
@@ -282,8 +284,6 @@ const navScroll = (event: Event) => {
 #nav-tab {
 	display: flex;
 	white-space: nowrap;
-	overflow-y: hidden;
-	overflow-x: hidden;
 	flex-wrap: nowrap;
 	scroll-behavior: smooth;
 	-webkit-overflow-scrolling: touch;
@@ -295,6 +295,18 @@ const navScroll = (event: Event) => {
 		/* End solid black 20px from right */ transparent
 			/* Fade to transparent at the right edge */
 	);
+}
+
+/* Scroll horizontally, but hide scrollbar */
+/* https://www.w3schools.com/howto/howto_css_hide_scrollbars.asp */
+#nav-tab {
+	overflow-y: hidden;
+	overflow-x: scroll;
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+#nav-tab::-webkit-scrollbar {
+	display: none;
 }
 
 .tababble:hover {
