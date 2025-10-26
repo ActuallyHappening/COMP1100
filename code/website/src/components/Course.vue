@@ -169,6 +169,15 @@ const close = () => {
 				</p>
 			</template>
 
+			<template v-else-if="type === 'completed'">
+				<h6 class="text-center gray-text">
+					{{ course?.code }}: {{ course?.name }}
+				</h6>
+				<p class="m-0 p-0 gray-text">
+					<i>Sem 2 2026</i>
+				</p>
+			</template>
+
 			<template v-else-if="type === 'small'">
 				<div class="justify-content-end d-flex">
 					<div class="m-auto">
@@ -283,5 +292,8 @@ table button:hover {
 .btn-close:hover {
 	filter: invert(100%) sepia(100%) hue-rotate(300deg) saturate(100000%);
 	opacity: 1;
+}
+.gray-text{
+	color: gray;
 }
 </style>
