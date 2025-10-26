@@ -55,7 +55,7 @@ export const hardResetLocalState = (errorMessage: string) => {
 };
 // Aggressively purge out of date state
 watch(
-	localState,
+	() => localState.value.version,
 	() => {
 		if (
 			!localState.value.version ||

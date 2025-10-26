@@ -7,9 +7,20 @@ import {
 	debug,
 	current_version,
 } from "../apis/state";
-import { programs } from "../apis/db/program";
-import { courses } from "../apis/db/course";
-import { program_requirements } from "../apis/db/program_requirement";
+import { programs as _programs } from "../apis/db/program";
+import { courses as _courses } from "../apis/db/course";
+import { program_requirements as _program_requirements } from "../apis/db/program_requirement";
+import {
+	localState as _localState,
+	selectedState as _selectedState,
+} from "../apis/state";
+
+// These are here so you can see them in the vue dev tools
+const programs = _programs;
+const courses = _courses;
+const program_requirements = _program_requirements;
+const localState = _localState;
+const selectedState = _selectedState;
 
 onMounted(() => refresh());
 

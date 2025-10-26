@@ -1,7 +1,7 @@
 import { RecordId } from "surrealdb";
 import { ref } from "vue";
 import { toast } from "vue3-toastify";
-import { id_eq } from "../db";
+import { assert_id, id_eq } from "../db";
 import { planAPI } from "../plan";
 import { hardResetLocalState } from "../state";
 
@@ -24,6 +24,7 @@ export const programAPI = {
 		return ret;
 	},
 	get(id: RecordId<string>): Program | undefined {
+		assert_id(id);
 		const all = this.getAll();
 		if (!all) {
 			return;
@@ -53,7 +54,7 @@ export const programAPI = {
 		if (!program) {
 			// TODO: Maybe we should refresh here instead of resetting local state?
 			// https://github.com/COMP1100-7110-2025-s2/Mon_9am_Team_10/issues/29
-			hardResetLocalState(`Program with id ${id} not found in local state`);
+			hardResetLocalState(`Program with id ${id} in localState not found`);
 			return this.getCurrent();
 		}
 		return program;

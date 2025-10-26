@@ -176,7 +176,11 @@ const navScroll = (event: Event) => {
 					@input="courseChange"
 				>
 					<option value="" hidden>Please select a course</option>
-					<option v-for="program in programs" :value="program.id">
+					<option
+						v-for="program in programs"
+						:key="program.id.id.toString()"
+						:value="program.id.id.toString()"
+					>
 						{{ program.name }}
 					</option>
 				</select>

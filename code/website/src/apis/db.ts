@@ -3,12 +3,15 @@ import { programs } from "./db/program";
 import { courses } from "./db/course";
 import { program_requirements } from "./db/program_requirement";
 import _ from "lodash";
+import { toast } from "vue3-toastify";
 
 export const assert_id = (id1: RecordId<string> | unknown, msg?: string) => {
+	msg = msg ? " " + msg : "";
 	if (!(id1 instanceof RecordId)) {
-		throw new TypeError(
-			`Not an id (${JSON.stringify(id1)})` + msg ? `: ${msg}` : ``,
-		);
+		throw new TypeError(`Not an id (${JSON.stringify(id1)})` + msg);
+	}
+	if (!(typeof id1.id === "string")) {
+		throw new TypeError(`Not a string id (${JSON.stringify(id1)})` + msg);
 	}
 };
 export const id_eq = (id1: RecordId<string>, id2: RecordId<string>) => {
