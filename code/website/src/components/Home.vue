@@ -5,6 +5,7 @@ import ProgramReq from "./ProgramReq.vue";
 import ProgramReqs from "./ProgramReqs.vue";
 import PlannerVisuals from "./PlannerVisuals.vue";
 import RightPanel from "./RightPanel.vue";
+import FilterHeader from "./FilterHeader.vue";
 import { RecordId } from "surrealdb";
 import _ from "lodash";
 
@@ -191,6 +192,9 @@ const navScroll = (event: Event) => {
 				<select v-else class="form-select" disabled></select>
 			</div>
 		</form>
+	</div>
+	<div class="container-fluid p-0">
+		<FilterHeader />
 	</div>
 	<div class="container-fluid row" id="parent-div">
 		<div class="col-3 left-panel" v-if="getCurrentProgram()">
