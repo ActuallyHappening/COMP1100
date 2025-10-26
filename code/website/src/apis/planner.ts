@@ -122,7 +122,7 @@ export const plannerAPI = (planner: Planner) =>
 		assignNewCourse([sem_id, index]: [SemId, number], id: RecordId<string>) {
 			assert_id(id);
 			// declaration of variables for checking incompatibilities, sems
-			var thisCourse = courseAPI.getCourseOrErr(id);
+			var thisCourse = courseAPI.getOrError(id);
 			// declaration of variables from here only needed for sems
 			var relevantSemId = sem_id.split(" ").slice(1).join(" ");
 			var thisCourseSems = {

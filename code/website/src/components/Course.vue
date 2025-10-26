@@ -1,8 +1,17 @@
 <script lang="ts" setup>
-import { inject, defineProps, computed, ref } from "vue";
+import { defineProps, computed, ref } from "vue";
 import ErrorView from "../Error.vue";
-import type { Course, ProvidedExport, Prereq } from "./State.vue";
 import _ from "lodash";
+import {
+	courseAPI,
+	type Course,
+	error_course,
+	type Prereq,
+} from "../apis/db/course";
+import { selectedState } from "../apis/state";
+import { planAPI } from "../apis/plan";
+import { plannerAPI } from "../apis/planner";
+import { RecordId } from "surrealdb";
 
 const props = defineProps({
 	code: {
@@ -16,14 +25,6 @@ const props = defineProps({
 	},
 });
 
-const {
-	getCourse,
-	selectedState,
-	error_course,
-	getCurrentPlanState,
-	plannerAPI,
-} = inject("state") as ProvidedExport;
-
 type Err = any;
 const error = ref(undefined as undefined | Err);
 const handleError = (err: Err) => {
@@ -32,7 +33,7 @@ const handleError = (err: Err) => {
 };
 
 const course = computed((): Course => {
-	const ret = getCourse(props.code);
+	const ret = courseAPI.get(courseAPI.code(props.code));
 	if (!ret) {
 		handleError(new Error(`Couldn't find course ${props.code}`));
 		return error_course(`Couldn't find course ${props.code}`);
@@ -42,7 +43,7 @@ const course = computed((): Course => {
 const renderPrereq = (
 	arr: Prereq,
 	options?: { course_cb?: (id: string) => string },
-) => {
+): string => {
 	const settings = {
 		course_cb: (id: string) => id.toUpperCase(),
 		...options,
@@ -51,10 +52,12 @@ const renderPrereq = (
 	for (const idiom of arr) {
 		if (idiom === "OR" || idiom === "AND") {
 			ret.push(idiom.toLowerCase());
-		} else if (typeof idiom.id === "string") {
-			ret.push(settings.course_cb(idiom.id));
-		} else {
+		} else if (idiom instanceof RecordId) {
+			ret.push(settings.course_cb(idiom.id.toString()));
+		} else if (typeof idiom === "object") {
 			ret.push("(" + renderPrereq(idiom, settings) + ")");
+		} else {
+			throw TypeError();
 		}
 	}
 	return ret.join(" ");
@@ -79,7 +82,7 @@ const prereqs_list_html = computed(() => {
 const incompatible_list = computed(() => {
 	if (course.value?.incompatible) {
 		return course.value.incompatible
-			.map((id) => id.id.toUpperCase())
+			.map((id) => id.id.toString().toUpperCase())
 			.join(", ");
 	} else {
 		return "";

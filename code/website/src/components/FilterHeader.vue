@@ -1,19 +1,5 @@
 <script lang="ts" setup>
-import { inject, reactive, ref, provide, watch } from "vue";
-import { router } from "../routes";
-import type { FilterExport } from "./filterAPI";
-
-const { filterAPI } = inject("filter") as FilterExport;
-
-// ** Routing **
-watch(
-	() => filters.value,
-	(current) => {
-		console.log(`REMOVEME updating query to `, current);
-		router.push({ query: _.cloneDeep(filters.value) });
-	},
-	{ deep: true, immediate: true },
-);
+import { filters, filterAPI } from "../apis/filter";
 </script>
 <template>
 	<div class="input-group">

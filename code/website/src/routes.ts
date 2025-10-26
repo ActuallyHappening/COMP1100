@@ -6,6 +6,12 @@ import {
 	createWebHistory,
 	createRouter,
 } from "vue-router";
+import { selectedState } from "./apis/state";
+import { courseAPI } from "./apis/db/course";
+import { RecordId } from "surrealdb";
+import { filters } from "./apis/filter";
+import _ from "lodash";
+import { planAPI } from "./apis/plan";
 
 const routes = [
 	{ path: `/`, component: Home },
@@ -19,9 +25,6 @@ export const router = createRouter({
 	history: createWebHistory(),
 	routes,
 });
-
-// import HomeView from "./HomeView.vue";
-// import AboutView from "./AboutView.vue";
 
 /** Doesn't really change any behaviour yet */
 watch(
@@ -45,7 +48,7 @@ watch(
 		if (typeof hash !== "string" && hash === "") {
 			return;
 		}
-		if (!fullyLoaded() || !getCourse(hash, { allowUnknown: true })) {
+		if (!courseAPI.get(new RecordId("course", hash))) {
 			return;
 		}
 		selectedState.value = hash;
@@ -63,3 +66,11 @@ watch(selectedState, (current) => {
 	router.push({ hash: `#${current}` });
 	// router.currentRoute.value.hash = current;
 });
+watch(
+	() => filters.value,
+	(current) => {
+		console.log(`REMOVEME updating query to `, current);
+		router.push({ query: _.cloneDeep(filters.value) });
+	},
+	{ deep: true, immediate: true },
+);

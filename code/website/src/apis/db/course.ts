@@ -40,7 +40,10 @@ export const courseAPI = {
 		}
 		return ret;
 	},
-	getCourse(id: RecordId<string>): Course | undefined {
+	code(code: string): RecordId<string> {
+		return new RecordId("course", code.toLowerCase());
+	},
+	get(id: RecordId<string>): Course | undefined {
 		assert_id(id);
 		const all = this.getAll();
 		if (!all) {
@@ -54,8 +57,8 @@ export const courseAPI = {
 		}
 		return ret;
 	},
-	getCourseOrErr(id: RecordId<string>): Course {
-		const course = this.getCourse(id);
+	getOrError(id: RecordId<string>): Course {
+		const course = this.get(id);
 		if (!course) {
 			throw new Error(`Course ${id.id} not found in our database yet`);
 		}

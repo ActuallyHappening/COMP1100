@@ -15,6 +15,7 @@ import {
 	requirement_types_to_header,
 } from "../apis/db/program_requirement";
 import { programAPI } from "../apis/db/program";
+import { filters } from "../apis/filter";
 
 function newPlan() {
 	// "Plan 42069" -> Number(42069) + 1
@@ -234,38 +235,28 @@ const navScroll = (event: Event) => {
 					>
 						<!-- {{ getHeaderByIndex(i) }} -->
 						<ProgramReq :index="i" />
-						<ProgramReqs
-							v-if="
-								planAPI.getCurrent().topLevelReqsSelected[i] &&
-								!planAPI
-									.getCurrent()!
-									.topLevelReqsSelected[
-										i
-									]!.includes(`gen-elec`)
-							"
-							:requirement-id="
-								planAPI.getCurrent().topLevelReqsSelected[i]!
-							"
-						/>
 						<form
 							role="search"
-							v-if="
-								planAPI.getCurrent().topLevelReqsSelected[i] &&
-								planAPI
-									.getCurrent()
-									.topLevelReqsSelected[
-										i
-									]?.includes(`gen-elec`)
-							"
+							v-if="planAPI.getCurrent().topLevelReqsSelected[i]"
 						>
-							<h5>General Elective Courses</h5>
+							<!--
+							Hey Patrick, delete this once you have read it.
+							I have rigged up this search bar to always show, thanks!
+						 -->
 							<input
 								type="search"
 								class="form-control"
 								placeholder="Search for a course"
 								aria-label="search"
+								v-model="filters.search"
 							/>
 						</form>
+						<ProgramReqs
+							v-if="planAPI.getCurrent().topLevelReqsSelected[i]"
+							:requirement-id="
+								planAPI.getCurrent().topLevelReqsSelected[i]!
+							"
+						/>
 					</div>
 				</template>
 			</div>
