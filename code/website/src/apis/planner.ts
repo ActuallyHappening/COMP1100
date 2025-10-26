@@ -14,7 +14,7 @@ const sem_ids = [
 
 export type SemId = (typeof sem_ids)[number];
 
-const defaultPlanner = (): Planner => {
+export const defaultPlanner = (): Planner => {
 	const ret = {} as Planner;
 	for (const sem_id of sem_ids) {
 		ret[sem_id] = [undefined, undefined, undefined, undefined];
