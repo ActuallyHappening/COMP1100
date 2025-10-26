@@ -8,18 +8,6 @@ import { RecordId } from "surrealdb";
 const { sem_ids, selectedState, getCurrentPlanState, plannerAPI } = inject(
 	"state",
 ) as ProvidedExport;
-const slots = ["Course 1", "Course 2", "Course 3", "Course 4"] as const;
-
-/** Lowercase */
-export type SemPlan = [
-	string | undefined,
-	string | undefined,
-	string | undefined,
-	string | undefined,
-];
-export type Planner = {
-	[key in SemId]: SemPlan;
-};
 const placeCourse = (sem_id: SemId, id: number) => {
 	if (selectedState.value) {
 		const planState = getCurrentPlanState();

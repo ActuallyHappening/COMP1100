@@ -5,6 +5,7 @@ import type { ProgramRequirement } from "./State.vue";
 import Course from "./Course.vue";
 import _ from "lodash";
 import { RecordId } from "surrealdb";
+import type { FilterExport } from "./FilterHeader.vue";
 const {
 	debug,
 	localState,
@@ -15,7 +16,10 @@ const {
 	program_requirements,
 	getProgramRequirement,
 	courses,
+	courseAPI,
+	getCourse,
 } = inject("state") as ProvidedExport;
+const { filterAPI } = inject("filter") as FilterExport;
 
 const props = defineProps({
 	// id/code part only
@@ -44,11 +48,14 @@ const this_program_req = computed((): ProgramRequirement => {
 		new RecordId("program_requirement", props.requirementId),
 	);
 });
-const flattened_course_codes = computed((): string[] | undefined => {
-	return this_program_req.value?.course_options
+const filtered_courses = computed(() => {
+	const courses = this_program_req.value?.course_options
 		?.flat()
-		?.map((course) => course.id.toString())
-		.sort();
+		?.map((course) => courseAPI.getCourse(course))
+		?.filter((course) => !!course);
+	if (courses) {
+		return filterAPI.filterCourses(courses);
+	}
 });
 const flattened_subreqs = computed((): string[] | undefined => {
 	return this_program_req.value?.sub_requirements?.map((req) =>
@@ -68,12 +75,13 @@ const flattened_subreqs = computed((): string[] | undefined => {
 	>
 		<h5>{{ this_program_req.short_name }}</h5>
 		<div
-			v-if="flattened_course_codes"
-			v-for="code in flattened_course_codes"
+			v-if="filtered_courses"
+			v-for="course in filtered_courses.courses"
 			class="list-group"
 		>
-			<Course :code="code" type="default" />
+			<Course :code="course.code" type="default" />
 		</div>
+		<p v-if="filtered_courses?.message">{{ filtered_courses.message }}</p>
 		<ProgramReqs
 			v-if="flattened_subreqs"
 			v-for="code in flattened_subreqs"
