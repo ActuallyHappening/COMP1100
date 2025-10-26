@@ -1,8 +1,12 @@
 <script lang="ts" setup>
-import { }
-onMounted(() => refresh());
+import { onMounted } from "vue";
+import { refresh } from "../apis/state";
+import { localState, reset, debug, current_version } from "../apis/state";
+import { programs } from "../apis/db/programs";
+import { courses } from "../apis/db/course";
+import { program_requirements } from "../apis/db/program_requirement";
 
-console.log(programs, courses);
+onMounted(() => refresh());
 
 const fullyLoaded = () => {
 	return (

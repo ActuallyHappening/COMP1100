@@ -72,4 +72,11 @@ export const programRequirementAPI = {
 		}
 		return ret;
 	},
+	getOrError(id: RecordId<string>): ProgramRequirement {
+		const ret = this.get(id);
+		if (!ret) {
+			throw new Error(`Couldn't find program_requirement ${id}`);
+		}
+		return ret;
+	},
 };

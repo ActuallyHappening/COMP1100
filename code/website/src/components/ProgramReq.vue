@@ -1,21 +1,24 @@
 <script lang="ts" setup>
-import { reactive, inject, ref, watch, computed, onMounted } from "vue";
-import type { ProvidedExport } from "./State.vue";
-import type { ProgramRequirement } from "./State.vue";
-import { RecordId } from "surrealdb";
+// import { reactive, inject, ref, watch, computed, onMounted } from "vue";
+// import type { ProvidedExport } from "./State.vue";
+// import type { ProgramRequirement } from "./State.vue";
+// import { RecordId } from "surrealdb";
 import _ from "lodash";
-// import { STATE } from "./State.vue";
-const {
-	debug,
-	localState,
-	getCurrentPlanState,
-	programs,
-	getCurrentProgram,
-	defaultPlan,
-	program_requirements,
-	getProgramRequirement,
-} = inject("state") as ProvidedExport;
-import { toast } from "vue3-toastify";
+// // import { STATE } from "./State.vue";
+// const {
+// 	debug,
+// 	localState,
+// 	getCurrentPlanState,
+// 	programs,
+// 	getCurrentProgram,
+// 	defaultPlan,
+// 	program_requirements,
+// 	getProgramRequirement,
+// } = inject("state") as ProvidedExport;
+// import { toast } from "vue3-toastify";
+
+import { computed, watch } from "vue";
+import type { ProgramRequirement } from "../apis/db/program_requirement";
 
 const props = defineProps({
 	index: { type: Number, required: true },

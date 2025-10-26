@@ -1,7 +1,8 @@
 import { toast } from "vue3-toastify";
 import { defaultPlanner, type Planner } from "./planner";
-import { localState, reset } from "./state";
+import { localState, reset, type PlanKey } from "./state";
 import _ from "lodash";
+import { watch } from "vue";
 
 export type PlanState = {
 	name: string;
@@ -24,7 +25,8 @@ export const defaultPlan = (num: number) =>
 	});
 
 export const planAPI = {
-	getAll(): PlanState {
+	/** Returns vue proxy */
+	getAll(): Record<PlanKey, PlanState> {
 		const ret = localState.value?.plans;
 		if (!ret) {
 			toast(`[Internal Error] No plans found?`, { type: "error" });
@@ -33,16 +35,26 @@ export const planAPI = {
 		}
 		return ret;
 	},
-	getCurrent() {},
+	/** Returns vue proxy */
+	getCurrent(): PlanState {
+		const current = localState.value.current;
+		const all = this.getAll();
+		if (!all[current]) {
+			toast(`Find plan ${current}, resetting`, { type: "error" });
+			reset();
+			return this.getCurrent();
+		}
+		return all[current];
+	},
 };
 
 // every time the program changes, reset the top level req chosen
 watch(
-	() => getCurrentPlanState().programId,
+	() => planAPI.getCurrent().programId,
 	(current, old) => {
 		console.warn(
 			`Resetting topLevelReqsSelected because the programId has changed from ${old} to ${current}`,
 		);
-		getCurrentPlanState().topLevelReqsSelected = {};
+		planAPI.getCurrent().topLevelReqsSelected = {};
 	},
 );

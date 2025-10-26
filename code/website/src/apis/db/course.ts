@@ -34,7 +34,7 @@ export const error_course = (msg: string): Course => {
 
 export const courseAPI = {
 	getAll(): Course[] | null {
-		const ret = courses.value;
+		const ret = courses.value as Course[] | null;
 		if (!ret) {
 			toast(`Courses not loaded yet`, { type: "info" });
 		}

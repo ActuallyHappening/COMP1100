@@ -1,15 +1,14 @@
 <script lang="ts" setup>
-import { inject } from "vue";
-import _ from "lodash";
-import type { ProvidedExport } from "./State.vue";
 import Course from "./Course.vue";
-
-const { selectedState } = inject("state") as ProvidedExport;
-
-const course = selectedState;
+import { selectedState } from "../apis/state";
 </script>
 <template>
-	<Course class="rhs" v-if="course" :code="course" type="summary" />
+	<Course
+		class="rhs"
+		v-if="selectedState"
+		:code="selectedState"
+		type="summary"
+	/>
 </template>
 <style>
 button.rhs:hover {

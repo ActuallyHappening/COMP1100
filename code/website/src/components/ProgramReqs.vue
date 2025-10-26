@@ -1,50 +1,43 @@
 <script lang="ts" setup>
-import { reactive, inject, ref, watch, computed } from "vue";
-import type { Program, ProvidedExport } from "./State.vue";
-import type { ProgramRequirement } from "./State.vue";
-import Course from "./Course.vue";
-import _ from "lodash";
+import { ref, computed } from "vue";
+import {
+	programRequirementAPI,
+	type ProgramRequirement,
+} from "../apis/db/program_requirement";
 import { RecordId } from "surrealdb";
-import type { FilterExport } from "./FilterHeader.vue";
-const {
-	debug,
-	localState,
-	getCurrentPlanState,
-	programs,
-	getCurrentProgram,
-	defaultPlan,
-	program_requirements,
-	getProgramRequirement,
-	courses,
-	courseAPI,
-	getCourse,
-} = inject("state") as ProvidedExport;
-const { filterAPI } = inject("filter") as FilterExport;
+import { courseAPI } from "../apis/db/course";
+import { filterAPI } from "../apis/filter";
+// import type { Program, ProvidedExport } from "./State.vue";
+// import type { ProgramRequirement } from "./State.vue";
+// import Course from "./Course.vue";
+// import _ from "lodash";
+// import { RecordId } from "surrealdb";
+// import type { FilterExport } from "./FilterHeader.vue";
+// const {
+// 	debug,
+// 	localState,
+// 	getCurrentPlanState,
+// 	programs,
+// 	getCurrentProgram,
+// 	defaultPlan,
+// 	program_requirements,
+// 	getProgramRequirement,
+// 	courses,
+// 	courseAPI,
+// 	getCourse,
+// } = inject("state") as ProvidedExport;
+// const { filterAPI } = inject("filter") as FilterExport;
 
 const props = defineProps({
 	// id/code part only
 	requirementId: {
 		type: String,
 		required: true,
-		validator(value: string) {
-			if (value.includes(":")) {
-				console.warn(`ProgramReqs passed invalid prop`, value);
-			}
-			return !value.includes(":");
-		},
 	},
 });
 
-type Err = any;
-const error = ref(undefined as undefined | Err);
-const handleError = (err: Err) => {
-	console.error(err);
-	error.value = err;
-};
-
-const $debug = (...args) => console.info(props.index, ...args);
 const this_program_req = computed((): ProgramRequirement => {
-	return getProgramRequirement(
+	return programRequirementAPI.getOrError(
 		new RecordId("program_requirement", props.requirementId),
 	);
 });

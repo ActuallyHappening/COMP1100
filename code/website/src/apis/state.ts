@@ -1,36 +1,42 @@
 import package_json from "../../package.json";
 import { useStorage } from "@vueuse/core";
-import { computed, provide, onMounted, ref, reactive, watch } from "vue";
+import { ref, reactive, watch } from "vue";
 import _ from "lodash";
 import * as semver from "semver";
 import { toast } from "vue3-toastify";
-import { defaultPlanner } from "../apis/planner";
-import { RecordId, Surreal, Table, type RecordIdValue } from "surrealdb";
-import type { Planner } from "./PlannerVisuals.vue";
-import { router } from "../routes";
+import { Surreal, Table } from "surrealdb";
+import { defaultPlan, type PlanState } from "./plan";
+import { programs } from "./db/programs";
+import { courses } from "./db/course";
+import { program_requirements } from "./db/program_requirement";
 
-const current_version = package_json.version;
-const compatible_versions = `=${current_version}`;
-const debug = useStorage("debug", false);
+export const current_version = package_json.version;
+export const compatible_versions = `=${current_version}`;
+export const debug = useStorage("debug", false);
 
-export const defaultState = {
-	version: current_version,
-	current: "Plan 1",
-	plans: {
-		"Plan 1": {
-			...defaultPlan(1),
-			name: "My first plan",
-		},
-	},
+export type PlanKey = string;
+export type State = {
+	version: string;
+	current: PlanKey;
+	plans: Record<PlanKey, PlanState>;
 };
+
+export const defaultState = () =>
+	_.cloneDeep({
+		version: current_version,
+		current: "Plan 1",
+		plans: {
+			"Plan 1": {
+				...defaultPlan(1),
+				name: "My first plan",
+			},
+		},
+	});
 
 /** Course id (code) lowercase */
 export const selectedState = ref(undefined as undefined | string);
 
-const _localState = useStorage(
-	`student-info`,
-	reactive(_.cloneDeep(defaultState)),
-);
+const _localState = useStorage(`student-info`, reactive(defaultState()));
 // export const localState = computed(() => _localState ?? defaultState);
 export const localState = _localState;
 export const reset = () => {
@@ -38,7 +44,7 @@ export const reset = () => {
 	toast(`Your save has been hard reset because this is still an MVP`, {
 		type: "warning",
 	});
-	localState.value = _.cloneDeep(defaultState);
+	localState.value = defaultState();
 };
 // Aggressively purge out of date state
 watch(
@@ -60,16 +66,6 @@ watch(
 	},
 	{ deep: true, immediate: true },
 );
-
-const getCurrentPlanState = (): PlanState => {
-	const ret = localState.value?.plans?.[localState.value.current];
-	if (!ret) {
-		toast(`Major error, resetting state`, { type: "error" });
-		reset();
-		return getCurrentPlanState();
-	}
-	return ret;
-};
 
 export function refresh() {
 	const db = new Surreal();
