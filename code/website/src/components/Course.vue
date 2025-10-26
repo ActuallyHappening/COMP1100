@@ -150,7 +150,8 @@ const close = () => {
 		class="list-group-item w-100"
 		:class="{
 			'course-selection-active':
-				type === 'default' && selectedState === course?.code,
+				type === 'default' &&
+				selectedState === course?.id.id.toString().toLowerCase(),
 		}"
 		:id="'vue-Course-' + course?.code"
 		@click="selectCourse"
@@ -205,17 +206,25 @@ const close = () => {
 			</template>
 
 			<template v-else-if="type === 'summary'">
-				<a
-					class="mb-2"
-					:href="
-						'https://programs-courses.uq.edu.au/course.html?course_code=' +
-						course?.code
-					"
-					target="_blank"
-				>
-					<h3 class="text-center">{{ course?.code }}</h3>
-					<p class="text-center">{{ course?.name }}</p>
-				</a>
+				<div class="d-flex justify-content-center">
+					<a
+						class="mb-2"
+						:href="
+							'https://programs-courses.uq.edu.au/course.html?course_code=' +
+							course?.code
+						"
+						target="_blank"
+					>
+						<h3 class="text-center">{{ course?.code }}</h3>
+						<p class="text-center">{{ course?.name }}</p>
+					</a>
+					<button
+						type="button"
+						class="btn-close align-self-start"
+						aria-label="Close"
+						@click.prevent="close"
+					></button>
+				</div>
 				<ul class="text-start">
 					<li>
 						<h5>

@@ -7,8 +7,7 @@ import PlannerVisuals from "./PlannerVisuals.vue";
 import RightPanel from "./RightPanel.vue";
 import { RecordId } from "surrealdb";
 import _ from "lodash";
-import * as bootstrap from "bootstrap";
-// import { STATE } from "./State.vue";
+
 const {
 	localState,
 	programs,
@@ -109,10 +108,10 @@ const tabClicked = (event: Event, i: number) => {
 };
 
 const navScroll = (event: Event) => {
-	// event.preventDefault();
-	// if (event.currentTarget) {
-	// 	event.currentTarget.scrollLeft += event.deltaY ?? 0 + event.deltaX ?? 0;
-	// }
+	event.preventDefault();
+	if (event.currentTarget) {
+		event.currentTarget.scrollLeft += event.deltaY + event.deltaX;
+	}
 };
 </script>
 
