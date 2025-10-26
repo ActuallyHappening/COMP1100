@@ -47,7 +47,8 @@ const this_program_req = computed((): ProgramRequirement => {
 const flattened_course_codes = computed((): string[] | undefined => {
 	return this_program_req.value?.course_options
 		?.flat()
-		?.map((course) => course.id.toString());
+		?.map((course) => course.id.toString())
+		.sort();
 });
 const flattened_subreqs = computed((): string[] | undefined => {
 	return this_program_req.value?.sub_requirements?.map((req) =>

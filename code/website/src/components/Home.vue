@@ -108,8 +108,6 @@ const tabClicked = (event: Event, i: number) => {
 	// event.target?.bsTabTrigger?.show();
 };
 
-const tabBar = document.getElementById('nav-tab');
-console.log(tabBar);
 const navScroll = (event: Event) => {
 	event.preventDefault();
 	event.currentTarget.scrollLeft += event.deltaY;
@@ -195,7 +193,12 @@ const navScroll = (event: Event) => {
 	</div>
 	<div class="container-fluid row" id="parent-div">
 		<div class="col-3 left-panel" v-if="getCurrentProgram()">
-			<div class="nav nav-tabs" id="nav-tab" role="tablist" @wheel="navScroll">
+			<div
+				class="nav nav-tabs"
+				id="nav-tab"
+				role="tablist"
+				@wheel="navScroll"
+			>
 				<button
 					v-if="getCurrentProgram()"
 					v-for="(id, i) in normalizedIndexHeaders"
@@ -229,15 +232,32 @@ const navScroll = (event: Event) => {
 						<!-- {{ getHeaderByIndex(i) }} -->
 						<ProgramReq :index="i" />
 						<ProgramReqs
-							v-if="getCurrentPlanState().topLevelReqsSelected[i] && 
-							!(getCurrentPlanState().topLevelReqsSelected[i].includes(`gen-elec`))"
+							v-if="
+								getCurrentPlanState().topLevelReqsSelected[i] &&
+								!getCurrentPlanState().topLevelReqsSelected[
+									i
+								].includes(`gen-elec`)
+							"
 							:requirement-id="
 								getCurrentPlanState().topLevelReqsSelected[i]!
 							"
 						/>
-						<form role="search" v-if="getCurrentPlanState().topLevelReqsSelected[i] && getCurrentPlanState().topLevelReqsSelected[i]?.includes(`gen-elec`)">
+						<form
+							role="search"
+							v-if="
+								getCurrentPlanState().topLevelReqsSelected[i] &&
+								getCurrentPlanState().topLevelReqsSelected[
+									i
+								]?.includes(`gen-elec`)
+							"
+						>
 							<h5>General Elective Courses</h5>
-							<input type="search" class="form-control" placeholder="Search for a course" aria-label="search">
+							<input
+								type="search"
+								class="form-control"
+								placeholder="Search for a course"
+								aria-label="search"
+							/>
 						</form>
 					</div>
 				</template>
