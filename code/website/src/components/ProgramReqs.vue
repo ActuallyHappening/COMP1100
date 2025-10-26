@@ -7,26 +7,7 @@ import {
 import { RecordId } from "surrealdb";
 import { courseAPI } from "../apis/db/course";
 import { filterAPI } from "../apis/filter";
-// import type { Program, ProvidedExport } from "./State.vue";
-// import type { ProgramRequirement } from "./State.vue";
-// import Course from "./Course.vue";
-// import _ from "lodash";
-// import { RecordId } from "surrealdb";
-// import type { FilterExport } from "./FilterHeader.vue";
-// const {
-// 	debug,
-// 	localState,
-// 	getCurrentPlanState,
-// 	programs,
-// 	getCurrentProgram,
-// 	defaultPlan,
-// 	program_requirements,
-// 	getProgramRequirement,
-// 	courses,
-// 	courseAPI,
-// 	getCourse,
-// } = inject("state") as ProvidedExport;
-// const { filterAPI } = inject("filter") as FilterExport;
+import Course from "./Course.vue";
 
 const props = defineProps({
 	// id/code part only
@@ -44,7 +25,7 @@ const this_program_req = computed((): ProgramRequirement => {
 const filtered_courses = computed(() => {
 	const courses = this_program_req.value?.course_options
 		?.flat()
-		?.map((course) => courseAPI.getCourse(course))
+		?.map((course) => courseAPI.get(course))
 		?.filter((course) => !!course);
 	if (courses) {
 		return filterAPI.filterCourses(courses);

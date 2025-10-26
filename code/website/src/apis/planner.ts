@@ -1,4 +1,4 @@
-import type { RecordId, RecordIdValue } from "surrealdb";
+import { RecordId, type RecordIdValue } from "surrealdb";
 import { assert_id } from "./db";
 import { courseAPI, type Course, type Prereq } from "./db/course";
 import { toast } from "vue3-toastify";
@@ -117,7 +117,9 @@ export const plannerAPI = (planner: Planner) =>
 			// 	`previousCoursesTo(${sem_id}, ${thisCourse.id}) =`,
 			// 	codes,
 			// );
-			return [...codes].map((code) => getCourse(code));
+			return [...codes]
+				.map((code) => courseAPI.get(courseAPI.code(code)))
+				.filter((course) => !!course);
 		},
 		assignNewCourse([sem_id, index]: [SemId, number], id: RecordId<string>) {
 			assert_id(id);

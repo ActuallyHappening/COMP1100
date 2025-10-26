@@ -69,7 +69,6 @@ watch(selectedState, (current) => {
 watch(
 	() => filters.value,
 	(current) => {
-		console.log(`REMOVEME updating query to `, current);
 		router.push({ query: _.cloneDeep(filters.value) });
 	},
 	{ deep: true, immediate: true },
