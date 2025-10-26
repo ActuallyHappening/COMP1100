@@ -45,8 +45,9 @@ export const selectedState = ref(undefined as undefined | string);
 const _localState = useStorage(`student-info`, reactive(defaultState()));
 // export const localState = computed(() => _localState ?? defaultState);
 export const localState = _localState;
-export const reset = () => {
-	console.warn(`Resetting all local state`);
+export const hardResetLocalState = (errorMessage: string) => {
+	console.warn(`Resetting all local state`, errorMessage);
+	toast(errorMessage, { type: "error" });
 	toast(`Your save has been hard reset because this is still an MVP`, {
 		type: "warning",
 	});
@@ -60,10 +61,9 @@ watch(
 			!localState.value.version ||
 			!semver.satisfies(localState.value.version, compatible_versions)
 		) {
-			console.warn(
-				`Hard resetting local state because old version ${localState.value.version} doesn't satisfy ${compatible_versions} (currently ${current_version})`,
+			hardResetLocalState(
+				`Your previously saved plans aren't compatible anymore (previous version = ${localState.value.version}, current website version = ${current_version})`,
 			);
-			reset();
 		} else {
 			console.info(
 				`Version of ${localState.value.version} is compatible with the current version ${current_version}`,

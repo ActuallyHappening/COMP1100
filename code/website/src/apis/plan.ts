@@ -1,7 +1,12 @@
 import _ from "lodash";
 import { toast } from "vue3-toastify";
 import { defaultPlanner, type Planner } from "./planner";
-import { localState, reset, defaultPlan, type PlanKey } from "./state";
+import {
+	localState,
+	hardResetLocalState,
+	defaultPlan,
+	type PlanKey,
+} from "./state";
 import { watch } from "vue";
 
 export { defaultPlan };
@@ -23,8 +28,7 @@ export const planAPI = {
 	getAll(): Record<PlanKey, PlanState> {
 		const ret = localState.value?.plans;
 		if (!ret) {
-			toast(`[Internal Error] No plans found?`, { type: "error" });
-			reset();
+			hardResetLocalState(`[Internal Error] No plans found?`);
 			return this.getAll();
 		}
 		return ret;
@@ -34,8 +38,7 @@ export const planAPI = {
 		const current = localState.value.current;
 		const all = this.getAll();
 		if (!all[current]) {
-			toast(`Find plan ${current}, resetting`, { type: "error" });
-			reset();
+			hardResetLocalState(`Find plan ${current}, resetting`);
 			return this.getCurrent();
 		}
 		return all[current];

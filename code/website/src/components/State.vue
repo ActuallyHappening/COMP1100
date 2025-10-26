@@ -1,7 +1,12 @@
 <script lang="ts" setup>
 import { onMounted } from "vue";
 import { refresh } from "../apis/db";
-import { localState, reset, debug, current_version } from "../apis/state";
+import {
+	localState,
+	hardResetLocalState,
+	debug,
+	current_version,
+} from "../apis/state";
 import { programs } from "../apis/db/program";
 import { courses } from "../apis/db/course";
 import { program_requirements } from "../apis/db/program_requirement";
@@ -20,7 +25,9 @@ const fullyLoaded = () => {
 
 <template>
 	<slot v-if="fullyLoaded()" />
-	<button @click="reset">
+	<button
+		@click="() => hardResetLocalState(`You pressed the big red button ...`)"
+	>
 		Reset (if not working or updating your version)
 	</button>
 

@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { toast } from "vue3-toastify";
 import { id_eq } from "../db";
 import { planAPI } from "../plan";
-import { reset } from "../state";
+import { hardResetLocalState } from "../state";
 
 export type Program = {
 	id: RecordId<string>;
@@ -51,12 +51,9 @@ export const programAPI = {
 		}
 		const program = this.get(new RecordId("program", id));
 		if (!program) {
-			toast(`Program with id ${id} not found in local state`, {
-				type: "warning",
-			});
 			// TODO: Maybe we should refresh here instead of resetting local state?
 			// https://github.com/COMP1100-7110-2025-s2/Mon_9am_Team_10/issues/29
-			reset();
+			hardResetLocalState(`Program with id ${id} not found in local state`);
 			return this.getCurrent();
 		}
 		return program;
