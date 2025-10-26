@@ -14,7 +14,7 @@ import {
 	requirement_type_to_header,
 	requirement_types_to_header,
 } from "../apis/db/program_requirement";
-import { programAPI } from "../apis/db/program";
+import { programAPI, programs } from "../apis/db/program";
 import { filters } from "../apis/filter";
 
 function newPlan() {
@@ -185,7 +185,7 @@ const navScroll = (event: Event) => {
 				Trakcking issue: https://github.com/COMP1100-7110-2025-s2/Mon_9am_Team_10/issues/17
 				-->
 				<ProgramReq
-					v-if="getCurrentProgram()?.program_requirements?.[1]"
+					v-if="programAPI.getCurrent()?.program_requirements?.[1]"
 					:index="1"
 				/>
 				<select v-else class="form-select" disabled></select>

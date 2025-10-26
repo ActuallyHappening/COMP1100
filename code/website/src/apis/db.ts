@@ -2,6 +2,7 @@ import { Surreal, Table, RecordId } from "surrealdb";
 import { programs } from "./db/program";
 import { courses } from "./db/course";
 import { program_requirements } from "./db/program_requirement";
+import _ from "lodash";
 
 export const assert_id = (id1: RecordId<string> | unknown, msg?: string) => {
 	if (!(id1 instanceof RecordId)) {
