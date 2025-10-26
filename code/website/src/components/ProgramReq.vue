@@ -65,7 +65,10 @@ watch(
 		<pre class="text-danger">Unknown index?</pre>
 	</template>
 	<template v-else>
+		<!-- Patrick TODO please make this look better -->
+		<p v-if="options.length === 1">{{ options[0].name }}</p>
 		<select
+			v-else
 			:value="planAPI.getCurrent()!.topLevelReqsSelected[props.index]"
 			@input="
 				(ev) =>
