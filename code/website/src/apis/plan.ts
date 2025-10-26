@@ -1,7 +1,7 @@
+import _ from "lodash";
 import { toast } from "vue3-toastify";
 import { defaultPlanner, type Planner } from "./planner";
 import { localState, reset, type PlanKey } from "./state";
-import _ from "lodash";
 import { watch } from "vue";
 
 export type PlanState = {
@@ -16,13 +16,14 @@ export type PlanState = {
 	planner: Planner;
 };
 
-export const defaultPlan = (num: number) =>
-	_.cloneDeep({
+export function defaultPlan(num: number) {
+	return _.cloneDeep({
 		name: `Plan ${num}`,
 		programId: null,
 		topLevelReqsSelected: {},
 		planner: defaultPlanner(),
 	});
+}
 
 export const planAPI = {
 	/** Returns vue proxy */

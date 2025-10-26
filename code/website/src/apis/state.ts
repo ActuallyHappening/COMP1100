@@ -1,7 +1,7 @@
+import _ from "lodash";
 import package_json from "../../package.json";
 import { useStorage } from "@vueuse/core";
 import { ref, reactive, watch } from "vue";
-import _ from "lodash";
 import * as semver from "semver";
 import { toast } from "vue3-toastify";
 import { Surreal, Table } from "surrealdb";
