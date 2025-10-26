@@ -180,6 +180,10 @@ const close = () => {
 
 			<template v-else-if="type === 'small'">
 				<div class="justify-content-end d-flex">
+					<div>
+						<span>✅</span>
+						<!-- <span>⚠</span> -->
+					</div>
 					<div class="m-auto">
 						<h4 class="pb-0 mb-0">{{ course?.code }}</h4>
 					</div>
@@ -285,5 +289,9 @@ button.course-selection-active:hover {
 
 table button:hover {
 	background-color: inherit;
+}
+.btn-close:hover{
+	filter: invert(100%) sepia(100%) hue-rotate(300deg) saturate(100000%);
+  	opacity: 1;
 }
 </style>
