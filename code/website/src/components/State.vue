@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { onMounted } from "vue";
-import { refresh } from "../apis/state";
+import { refresh } from "../apis/db";
 import { localState, reset, debug, current_version } from "../apis/state";
 import { programs } from "../apis/db/program";
 import { courses } from "../apis/db/course";
