@@ -66,6 +66,7 @@ watch(
 	</template>
 	<template v-else>
 		<!-- Patrick TODO please make this look better -->
+		<!-- https://github.com/COMP1100-7110-2025-s2/Mon_9am_Team_10/issues/30 -->
 		<p v-if="options.length === 1">{{ options[0].name }}</p>
 		<select
 			v-else
