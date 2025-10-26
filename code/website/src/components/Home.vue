@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { reactive, inject, computed, useTemplateRef, watch, ref } from "vue";
-import type { ProvidedExport } from "./State.vue";
+import { computed, watch, ref } from "vue";
 import ProgramReq from "./ProgramReq.vue";
 import ProgramReqs from "./ProgramReqs.vue";
 import PlannerVisuals from "./PlannerVisuals.vue";
@@ -8,17 +7,14 @@ import RightPanel from "./RightPanel.vue";
 import FilterHeader from "./FilterHeader.vue";
 import { RecordId } from "surrealdb";
 import _ from "lodash";
-
-const {
-	localState,
-	programs,
-	getCurrentProgram,
-	defaultPlan,
-	requirement_types_to_header,
+import { localState } from "../apis/state";
+import { defaultPlan, planAPI } from "../apis/plan";
+import {
+	programRequirementAPI,
 	requirement_type_to_header,
-	getProgramRequirement,
-	getCurrentPlanState,
-} = inject("state") as ProvidedExport;
+	requirement_types_to_header,
+} from "../apis/db/program_requirement";
+import { programAPI } from "../apis/db/program";
 
 function newPlan() {
 	// "Plan 42069" -> Number(42069) + 1
@@ -35,7 +31,7 @@ function newPlan() {
 
 function courseChange(event: Event) {
 	const value = (event.target as HTMLSelectElement).value;
-	const plan_state = getCurrentPlanState();
+	const plan_state = planAPI.getCurrent();
 	if (plan_state) {
 		plan_state.programId = value;
 		//plan_state.topLevelReqsSelected[0] = "b"+value.split(":").slice(1)+"-core";
@@ -45,21 +41,23 @@ function courseChange(event: Event) {
 /** e.g. "Core" or "Major" */
 type HumanHeaderIndexName = string;
 const getHeaderByIndex = (index: number): HumanHeaderIndexName | undefined => {
-	const me_req = getCurrentPlanState().topLevelReqsSelected[index];
+	const me_req = planAPI.getCurrent().topLevelReqsSelected[index];
 	// if a specific req is already selected
 	if (typeof me_req === "string") {
 		return requirement_type_to_header(
-			getProgramRequirement(new RecordId("program_requirement", me_req))
-				.type,
+			programRequirementAPI.getOrError(
+				new RecordId("program_requirement", me_req),
+			).type,
 		);
 	}
 	// otherwise, a summary e.g. "Major | No Major | Extended Major"
-	const currentProgram = getCurrentProgram();
+	const currentProgram = programAPI.getCurrent();
 	if (!currentProgram) {
 		return undefined;
 	}
 	const a = currentProgram.program_requirements[index]
-		?.map((req_id) => getProgramRequirement(req_id))
+		.map((req_id) => programRequirementAPI.get(req_id))
+		.filter((req) => !!req)
 		.map((req) => req.type);
 	return requirement_types_to_header(a);
 };
@@ -78,7 +76,7 @@ const normalize = (
 };
 const normalizedIndexHeaders = computed((): string[] => {
 	const ret: string[] = [];
-	const currentProgram = getCurrentProgram();
+	const currentProgram = programAPI.getCurrent();
 	if (!currentProgram) {
 		return [];
 	}
@@ -128,7 +126,7 @@ const navScroll = (event: Event) => {
 					<input
 						type="text"
 						id="plan-name"
-						v-model="getCurrentPlanState().name"
+						v-model="planAPI.getCurrent().name"
 						class="border-0 purple-bg text-center"
 					/>
 					<!-- Would appreciate if this input could be dynamically scaled -->
@@ -173,7 +171,7 @@ const navScroll = (event: Event) => {
 					class="form-select"
 					name="course-code"
 					id="course-code"
-					:value="getCurrentPlanState().programId"
+					:value="planAPI.getCurrent().programId"
 					@input="courseChange"
 				>
 					<option value="" hidden>Please select a course</option>
@@ -197,7 +195,7 @@ const navScroll = (event: Event) => {
 		<FilterHeader />
 	</div>
 	<div class="container-fluid row" id="parent-div">
-		<div class="col-3 left-panel" v-if="getCurrentProgram()">
+		<div class="col-3 left-panel" v-if="programAPI.getCurrent()">
 			<div
 				class="nav nav-tabs"
 				id="nav-tab"
@@ -205,7 +203,7 @@ const navScroll = (event: Event) => {
 				@wheel="navScroll"
 			>
 				<button
-					v-if="getCurrentProgram()"
+					v-if="programAPI.getCurrent()"
 					v-for="(id, i) in normalizedIndexHeaders"
 					ref="tabs"
 					:key="id"
@@ -238,22 +236,26 @@ const navScroll = (event: Event) => {
 						<ProgramReq :index="i" />
 						<ProgramReqs
 							v-if="
-								getCurrentPlanState().topLevelReqsSelected[i] &&
-								!getCurrentPlanState().topLevelReqsSelected[
-									i
-								].includes(`gen-elec`)
+								planAPI.getCurrent().topLevelReqsSelected[i] &&
+								!planAPI
+									.getCurrent()!
+									.topLevelReqsSelected[
+										i
+									]!.includes(`gen-elec`)
 							"
 							:requirement-id="
-								getCurrentPlanState().topLevelReqsSelected[i]!
+								planAPI.getCurrent().topLevelReqsSelected[i]!
 							"
 						/>
 						<form
 							role="search"
 							v-if="
-								getCurrentPlanState().topLevelReqsSelected[i] &&
-								getCurrentPlanState().topLevelReqsSelected[
-									i
-								]?.includes(`gen-elec`)
+								planAPI.getCurrent().topLevelReqsSelected[i] &&
+								planAPI
+									.getCurrent()
+									.topLevelReqsSelected[
+										i
+									]?.includes(`gen-elec`)
 							"
 						>
 							<h5>General Elective Courses</h5>

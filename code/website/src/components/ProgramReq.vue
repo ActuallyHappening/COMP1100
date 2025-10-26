@@ -3,7 +3,6 @@
 // import type { ProvidedExport } from "./State.vue";
 // import type { ProgramRequirement } from "./State.vue";
 // import { RecordId } from "surrealdb";
-import _ from "lodash";
 // // import { STATE } from "./State.vue";
 // const {
 // 	debug,
@@ -18,14 +17,20 @@ import _ from "lodash";
 // import { toast } from "vue3-toastify";
 
 import { computed, watch } from "vue";
-import type { ProgramRequirement } from "../apis/db/program_requirement";
+import {
+	programRequirementAPI,
+	type ProgramRequirement,
+} from "../apis/db/program_requirement";
+import _ from "lodash";
+import { programAPI } from "../apis/db/program";
+import { planAPI } from "../apis/plan";
 
 const props = defineProps({
 	index: { type: Number, required: true },
 });
 
 const options = computed((): ProgramRequirement[] => {
-	const currentProgram = getCurrentProgram();
+	const currentProgram = programAPI.getCurrent();
 	if (!currentProgram) {
 		return [];
 	}
@@ -38,12 +43,14 @@ const options = computed((): ProgramRequirement[] => {
 		);
 		return [];
 	}
-	return myReqs.map((req) => getProgramRequirement(req));
+	return myReqs
+		.map((req) => programRequirementAPI.get(req))
+		.filter((req) => !!req);
 });
 watch(
-	() => getCurrentProgram()?.program_requirements,
+	() => programAPI.getCurrent()?.program_requirements,
 	() => {
-		const currentProgram = getCurrentProgram();
+		const currentProgram = programAPI.getCurrent();
 		const me = currentProgram?.program_requirements?.[props.index];
 		if (me) {
 			if (me.length === 1) {
@@ -52,7 +59,7 @@ watch(
 					`Choosing the only option available`,
 					_.cloneDeep(me),
 				);
-				getCurrentPlanState().topLevelReqsSelected[props.index] =
+				planAPI.getCurrent().topLevelReqsSelected[props.index] =
 					me[0]!.id.toString();
 			}
 		}
@@ -67,18 +74,19 @@ watch(
 	<!-- <pre v-if="debug"> {{ allOptionsLoaded() }}</pre> -->
 	<template
 		v-if="
-			typeof getCurrentProgram()?.program_requirements?.[props.index] ===
-			'undefined'
+			typeof programAPI.getCurrent()?.program_requirements?.[
+				props.index
+			] === 'undefined'
 		"
 	>
 		<pre class="text-danger">Unknown index?</pre>
 	</template>
 	<template v-else>
 		<select
-			:value="getCurrentPlanState().topLevelReqsSelected[props.index]"
+			:value="planAPI.getCurrent()!.topLevelReqsSelected[props.index]"
 			@input="
 				(ev) =>
-					(getCurrentPlanState().topLevelReqsSelected[props.index] =
+					(planAPI.getCurrent()!.topLevelReqsSelected[props.index] =
 						ev.target?.value)
 			"
 			id="vue-ProgramReq"

@@ -6,7 +6,7 @@ import * as semver from "semver";
 import { toast } from "vue3-toastify";
 import { Surreal, Table } from "surrealdb";
 import { defaultPlan, type PlanState } from "./plan";
-import { programs } from "./db/programs";
+import { programs } from "./db/program";
 import { courses } from "./db/course";
 import { program_requirements } from "./db/program_requirement";
 

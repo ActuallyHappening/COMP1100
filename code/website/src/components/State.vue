@@ -2,7 +2,7 @@
 import { onMounted } from "vue";
 import { refresh } from "../apis/state";
 import { localState, reset, debug, current_version } from "../apis/state";
-import { programs } from "../apis/db/programs";
+import { programs } from "../apis/db/program";
 import { courses } from "../apis/db/course";
 import { program_requirements } from "../apis/db/program_requirement";
 

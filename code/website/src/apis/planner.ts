@@ -3,7 +3,7 @@ import { assert_id } from "./db";
 import { courseAPI, type Course, type Prereq } from "./db/course";
 import { toast } from "vue3-toastify";
 
-const sem_ids = [
+export const sem_ids = [
 	"2025 Sem 1",
 	"2025 Sem 2",
 	"2026 Sem 1",
@@ -22,6 +22,7 @@ export const defaultPlanner = (): Planner => {
 	return ret;
 };
 
+/** Future idea: First two slots are core, and second and third for electives? */
 export const slots = ["Course 1", "Course 2", "Course 3", "Course 4"] as const;
 
 /** Lowercase */

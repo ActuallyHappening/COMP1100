@@ -120,9 +120,9 @@ const prereqChecked = computed(() => {
 	// console.info(
 	// 	`DEBUG`,
 	// 	_.cloneDeep(course.value.id),
-	// 	_.cloneDeep(getCurrentPlanState().planner),
+	// 	_.cloneDeep(planAPI.getCurrent().planner),
 	// );
-	const planner = plannerAPI(getCurrentPlanState().planner);
+	const planner = plannerAPI(planAPI.getCurrent().planner);
 	const sem_index = planner.getIndexOfCourse(course.value.id);
 	if (!sem_index) {
 		return undefined;
@@ -137,7 +137,7 @@ const prereqChecked = computed(() => {
 });
 const close = () => {
 	// remove this from selected and from visual planner
-	const planner = plannerAPI(getCurrentPlanState().planner);
+	const planner = plannerAPI(planAPI.getCurrent().planner);
 	planner.removeCourse(course.value.id);
 	// Deleting a course selects it, CY Interview 1 mentinos this isn't desired behaviour
 	selectedState.value = undefined;

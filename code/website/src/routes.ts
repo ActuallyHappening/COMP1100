@@ -25,7 +25,7 @@ export const router = createRouter({
 
 /** Doesn't really change any behaviour yet */
 watch(
-	() => getCurrentPlanState().name,
+	() => planAPI.getCurrent().name,
 	(current) => {
 		if (typeof current === "string" && current !== "") {
 			router.push({ name: `plan`, params: { id: current } });
