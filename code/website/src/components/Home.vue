@@ -107,6 +107,13 @@ const tabClicked = (event: Event, i: number) => {
 	selectedIndex.value = i;
 	// event.target?.bsTabTrigger?.show();
 };
+
+const tabBar = document.getElementById('nav-tab');
+console.log(tabBar);
+const navScroll = (event: Event) => {
+	event.preventDefault();
+	event.currentTarget.scrollLeft += event.deltaY;
+};
 </script>
 
 <template>
@@ -188,13 +195,13 @@ const tabClicked = (event: Event, i: number) => {
 	</div>
 	<div class="container-fluid row" id="parent-div">
 		<div class="col-3 left-panel" v-if="getCurrentProgram()">
-			<div class="nav nav-tabs" id="nav-tab" role="tablist">
+			<div class="nav nav-tabs" id="nav-tab" role="tablist" @wheel="navScroll">
 				<button
 					v-if="getCurrentProgram()"
 					v-for="(id, i) in normalizedIndexHeaders"
 					ref="tabs"
 					:key="id"
-					class="nav-link w-25"
+					class="nav-link"
 					:class="{ active: i == selectedIndex }"
 					:id="`homescreen-leftbar-${id}-tab`"
 					data-bs-toggle="tab"
@@ -251,13 +258,15 @@ const tabClicked = (event: Event, i: number) => {
 	color: white;
 	padding: 5px;
 }
+
 #nav-tab {
 	display: flex;
 	white-space: nowrap;
 	overflow-y: hidden;
-	overflow-x: auto;
+	overflow-x: hidden;
 	flex-wrap: nowrap;
-	overflow: hidden;
+	scroll-behavior: smooth;
+	-webkit-overflow-scrolling: touch;
 	mask-image: linear-gradient(
 		to right,
 		transparent,
