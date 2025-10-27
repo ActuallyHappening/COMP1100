@@ -1,5 +1,5 @@
 # Business Model Canvas
-## Iteration 1 (Updated in Iteration 2):
+## Iteration 1 (Updated in Iteration 2 & 3):
 **Customer Segments**
 1) We believe that our customers are undergraduate students who need to select courses every semester.
 

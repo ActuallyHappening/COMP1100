@@ -30,6 +30,7 @@ Therefore, we will ask:
 2) Do you prefer having one tab? If so, why?
 3) Do you personally see any benefits in having several tabs open for each course?
 4) What do you find beneficial about having only one tab open at a time?
+5) Would you say this makes it easier to find required information for a course, such as prerequisites etc?
 
 ### Test Card 3:
 **Hypothesis**: We believe students will spend less time selecting courses now that the system is centralised.

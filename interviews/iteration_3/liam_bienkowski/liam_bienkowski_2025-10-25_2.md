@@ -11,7 +11,7 @@ Speaker 1: *So today I just want to ask a few questions about UQ's existing syst
 Speaker 2: 
 >What do you mean by current system?
 
-Speaker 1: *Like, the current system of enrolling intercourses and choosing like major specialisation. It's like choosing how you're going to go through your course in general.* 
+Speaker 1: *Like, the current system of enrolling into courses and choosing like major specialisation. It's like choosing how you're going to go through your course in general.* 
 
 Speaker 2: 
 >Um, I think the problems with the current system are that there's no real guidance to it at all. It's all core specific, as in like, you know, you see a course, like, and like COMP1100. You know, it has certain prereqs, it has certain requirements and times it's offered. Um, and you have to work that out for every single course for your entire degree. Um, by going directly to the course, which can be hard and then figuring it out from there. It's all very clunky. 
