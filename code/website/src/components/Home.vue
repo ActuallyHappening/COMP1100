@@ -192,7 +192,7 @@ const navScroll = (event: Event) => {
 					v-if="programAPI.getCurrent()?.program_requirements?.[1]"
 					:index="1"
 				/>
-				<select v-else class="form-select" disabled></select>
+				<select v-else class="form-select also_styled" disabled></select>
 			</div>
 		</form>
 	</div>
@@ -249,13 +249,13 @@ const navScroll = (event: Event) => {
 							Hey Patrick, delete this once you have read it.
 							I have rigged up this search bar to always show, thanks!
 						 -->
-							<input
+							<!--<input
 								type="search"
 								class="form-control"
 								placeholder="Search for a course"
 								aria-label="search"
 								v-model="filters.search"
-							/>
+							/>-->
 						</form>
 						<!-- Hey caleb, please let me know how you would like me to do this, be it links, buttons, inputs, whatever. -->
 						<form 

@@ -67,7 +67,7 @@ watch(
 	<template v-else>
 		<!-- Patrick TODO please make this look better -->
 		<!-- https://github.com/COMP1100-7110-2025-s2/Mon_9am_Team_10/issues/30 -->
-		<p v-if="options.length === 1">{{ options[0].name }}</p>
+		<h4 v-if="options.length === 1">{{ options[0].name }}</h4>
 		<select
 			v-else
 			:value="planAPI.getCurrent()!.topLevelReqsSelected[props.index]"
@@ -77,7 +77,7 @@ watch(
 						ev.target?.value)
 			"
 			id="vue-ProgramReq"
-			class="form-select"
+			class="form-select styled"
 		>
 			<option value="" disabled hidden>Choose your major</option>
 			<option
@@ -90,3 +90,8 @@ watch(
 		</select>
 	</template>
 </template>
+<style scoped>
+
+
+
+</style>
