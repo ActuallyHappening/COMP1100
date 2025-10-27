@@ -201,7 +201,7 @@ const navScroll = (event: Event) => {
 		<FilterHeader />
 	</div>
 	<!-- Row -->
-	<div class="container-fluid row" id="parent-div">
+	<div class="container-fluid row p-0 m-0" id="parent-div">
 		<div class="col-3 left-panel" v-if="programAPI.getCurrent()">
 			<div
 				class="nav nav-tabs"
@@ -257,6 +257,45 @@ const navScroll = (event: Event) => {
 								v-model="filters.search"
 							/>
 						</form>
+						<!-- Hey caleb, please let me know how you would like me to do this, be it links, buttons, inputs, whatever. -->
+						<form 
+							role="search" 
+							v-if="planAPI.getCurrent().topLevelReqsSelected[i]" 
+							class="input-group"
+							>
+							<input type="search" 
+								class="form-control" 
+								placeholder="Search for a course" 
+								aria-label="search"
+								v-model="filters.search"
+							>
+							<button 
+								type="button" 
+								class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" 
+								data-bs-toggle="dropdown" 
+								aria-expanded="false"
+							>
+							<!-- DROPDOWN FILTERS -->
+								<span class="visually-hidden">
+									Toggle Dropdown
+								</span>
+							</button>
+							<ul class="dropdown-menu" style="">
+								<li><a class="dropdown-item" href="#">
+									Sem 1
+								</a></li>
+								<li><a class="dropdown-item" href="#">
+									Sem 2
+								</a></li>
+								<li><a class="dropdown-item" href="#">
+									Sem 1 &amp; Sem 2
+								</a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="#">
+									Summer semester
+								</a></li>
+							</ul>
+						</form>
 						<ProgramReqs
 							v-if="planAPI.getCurrent().topLevelReqsSelected[i]"
 							:requirement-id="
@@ -269,7 +308,6 @@ const navScroll = (event: Event) => {
 		</div>
 		<div class="col-7" id="plan">
 			<PlannerVisuals />
-			test
 		</div>
 		<div class="col-2">
 			<RightPanel />

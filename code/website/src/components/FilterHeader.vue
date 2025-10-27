@@ -5,10 +5,11 @@ import { filters, filterAPI } from "../apis/filter";
 	<div class="input-group">
 		<span class="input-group-text" for="top-level-search">Search for courses:</span>
 		<input class="form-control" type="search" id="top-level-search" v-model="filters.search" />
-
-		<fieldset>
-			<legend>Semesters offered:</legend>
+		
+		<fieldset class="ps-2 pe-2" style="background-color: var(--bs-tertiary-bg);">
+			<legend class="pb-0">Semesters offered:</legend>
 		</fieldset>
+		
 		<span class="input-group-text" for="top-level-sem-1">Sem 1:</span>
 		<div class="input-group-text">
 			<input class="form-check-input" type="checkbox" v-model="filters.sem_1" />
