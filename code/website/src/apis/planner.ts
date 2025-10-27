@@ -198,10 +198,6 @@ export const plannerAPI = (planner: Planner) =>
 						firstCourse = [firstCourse];
 					}
 					if (prereq[1] === "OR") {
-						console.log(
-							evaluatePrereq(firstCourse, previouslyDone),
-							evaluatePrereq(prereq.slice(2), previouslyDone),
-						);
 						return (
 							evaluatePrereq(firstCourse, previouslyDone) ||
 							evaluatePrereq(prereq.slice(2), previouslyDone)
