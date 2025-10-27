@@ -119,12 +119,7 @@ const selectCourse = () => {
 			selectedState.value = course.value.id.id.toString();
 	}
 };
-const prereqChecked = computed(() => {
-	// console.info(
-	// 	`DEBUG`,
-	// 	_.cloneDeep(course.value.id),
-	// 	_.cloneDeep(planAPI.getCurrent().planner),
-	// );
+const previousCourses = computed((): Course[] | undefined => {
 	const planner = plannerAPI(planAPI.getCurrent().planner);
 	const sem_index = planner.getIndexOfCourse(course.value.id);
 	if (!sem_index) {
@@ -132,12 +127,36 @@ const prereqChecked = computed(() => {
 	}
 	const [sem_id, _index] = sem_index;
 	const previous = planner.previousCoursesTo(sem_id, course.value.id);
+	return previous;
+});
+const prereqChecked = computed(() => {
+	const planner = plannerAPI(planAPI.getCurrent().planner);
+	const previous = previousCourses.value;
+	if (!previous) {
+		return;
+	}
 	const prereqCheck = planner.prereqCheck({
 		previousCourses: previous,
 		thisCourse: course.value,
 	});
 	return prereqCheck;
 });
+const incompatibleCheck = computed(() => {
+	if (!previousCourses.value) {
+		return true;
+	}
+	const previous = new Set(
+		previousCourses.value.map((course) => course.id.id.toString()),
+	);
+	const incompatible = new Set(
+		course.value.incompatible.map((course) => course.id.id.toString()),
+	);
+	if (previous.intersection(incompatible).size > 0) {
+		return false;
+	}
+	return true;
+});
+
 const close = () => {
 	// remove this from selected and from visual planner
 	const planner = plannerAPI(planAPI.getCurrent().planner);
@@ -174,6 +193,7 @@ const deselect = () => {
 				<p class="m-0 p-0" v-if="incompatible_list">
 					Incompatible: <i>{{ incompatible_list }}</i>
 				</p>
+				<i class="fa-solid fa-comet"></i>
 			</template>
 
 			<template v-else-if="type === 'completed'">
