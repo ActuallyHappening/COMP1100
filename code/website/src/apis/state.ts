@@ -27,7 +27,7 @@ export function defaultPlan(num: number): PlanState {
 	});
 }
 
-export const defaultState = () =>
+export const defaultState = (): State =>
 	_.cloneDeep({
 		version: current_version,
 		current: "Plan 1",
@@ -53,6 +53,19 @@ export const hardResetLocalState = (errorMessage: string) => {
 	});
 	localState.value = defaultState();
 };
+
+export const localStateAPI = {
+	/** Returns vue proxy */
+	getAll(): Record<PlanKey, PlanState> {
+		const ret = localState.value?.plans;
+		if (!ret) {
+			hardResetLocalState(`[Internal Error] No plans found?`);
+			return this.getAll();
+		}
+		return ret;
+	},
+};
+
 // Aggressively purge out of date state
 watch(
 	() => localState.value.version,

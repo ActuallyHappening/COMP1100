@@ -25,15 +25,6 @@ export type PlanState = {
 
 export const planAPI = {
 	/** Returns vue proxy */
-	getAll(): Record<PlanKey, PlanState> {
-		const ret = localState.value?.plans;
-		if (!ret) {
-			hardResetLocalState(`[Internal Error] No plans found?`);
-			return this.getAll();
-		}
-		return ret;
-	},
-	/** Returns vue proxy */
 	getCurrent(): PlanState {
 		const current = localState.value.current;
 		const all = this.getAll();
