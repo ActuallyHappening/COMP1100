@@ -22,6 +22,6 @@ import { filters, filterAPI } from "../apis/filter";
 			<input class="form-check-input" type="checkbox" v-model="filters.sem_summer" />
 		</div>
 
-		<button class="btn btn-outline-secondary" cl@click="filterAPI.clear">Clear Filters</button>
+		<button class="btn btn-outline-secondary" @click="filterAPI.clear">Clear Filters</button>
 	</div>
 </template>
