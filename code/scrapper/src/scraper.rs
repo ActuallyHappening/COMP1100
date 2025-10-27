@@ -1,11 +1,36 @@
+use std::{collections::HashSet, rc::Rc};
+
 use html5ever::interface::TreeSink;
+use regex::Regex;
 use tendril::TendrilSink;
 
 mod html;
 
 use crate::{prelude::*, scraper::html::NodeData};
 
-#[derive(Clone, Copy, Debug)]
+/// e.g. COMP1100
+#[derive(Debug, PartialEq, Eq, Hash)]
+pub struct CourseCode(Rc<str>);
+
+impl std::fmt::Display for CourseCode {
+	fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+		write!(f, "{}", self.0)
+	}
+}
+
+impl CourseCode {
+	pub fn new(str: &str) -> color_eyre::Result<CourseCode> {
+		if str.len() != 8 {
+			bail!("Course '{}' has wrong string length", str)
+		}
+		return Ok(CourseCode(Rc::from(str.to_uppercase())));
+	}
+}
+
+#[derive(Default, Debug)]
+pub struct CourseCodeCollection(pub HashSet<CourseCode>);
+
+#[derive(Clone, Copy, Debug, strum::EnumIter)]
 pub enum Bachelor {
 	MathsCompSci = 2497,
 	Maths = 2460,
@@ -26,12 +51,15 @@ impl Bachelor {
 }
 
 impl Bachelor {
-	pub async fn get_related_courses(&self) -> color_eyre::Result<Vec<Course>> {
+	pub async fn get_related_courses(&self) -> color_eyre::Result<Vec<CourseCode>> {
 		todo!()
 	}
 }
 
-pub async fn wip_get_course_json(num: Bachelor) -> color_eyre::Result<()> {
+pub async fn append_relevant_courses(
+	collection: &mut CourseCodeCollection,
+	num: Bachelor,
+) -> color_eyre::Result<()> {
 	let url = num.url();
 	info!("Searching a url: {}", url);
 	let res = reqwest::get(url).await?.text().await?;
@@ -87,6 +115,23 @@ pub async fn wip_get_course_json(num: Bachelor) -> color_eyre::Result<()> {
 		// save to file
 		let path = Utf8PathBuf::from(concat!(env!("CARGO_MANIFEST_DIR"), "/maths.json"));
 		fs::write(path, serde_json::to_string_pretty(&json)?).await?;
+	}
+
+	let re = Regex::new("\"([A-Z]{4}\\d{4})\"")?;
+	let json = json.to_string();
+
+	let codes: Vec<&str> = re
+		.find_iter(&json)
+		.map(|m| m.as_str())
+		.map(|str| &str[1..=8])
+		.collect();
+	let course_codes: Vec<CourseCode> = codes
+		.iter()
+		.map(|code| CourseCode::new(code))
+		.collect::<Result<_, _>>()?;
+
+	for code in course_codes {
+		collection.0.insert(code);
 	}
 
 	Ok(())
