@@ -49,7 +49,6 @@ const flattened_subreqs = computed((): string[] | undefined => {
 	>
 		<!--<h5>{{ this_program_req.short_name }}</h5>-->
 		<div
-			v-if="filtered_courses"
 			v-for="course in filtered_courses.courses"
 			class="list-group"
 		>
