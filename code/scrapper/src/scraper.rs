@@ -4,6 +4,7 @@ use html5ever::interface::TreeSink;
 use regex::Regex;
 use tendril::TendrilSink;
 
+pub mod course;
 mod html;
 
 use crate::{prelude::*, scraper::html::NodeData};

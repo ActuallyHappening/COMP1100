@@ -1,4 +1,4 @@
-use comp1100::scraper::{Bachelor, CourseCodeCollection};
+use comp1100::scraper::{Bachelor, CourseCode, CourseCodeCollection, course::scrape_course};
 use strum::IntoEnumIterator;
 use ystd::prelude::*;
 
@@ -15,9 +15,13 @@ async fn main() -> color_eyre::Result<()> {
 
 	let bachelours = Bachelor::iter();
 
-	for bachelour in bachelours {
-		comp1100::scraper::append_relevant_courses(&mut collection, bachelour).await?;
-	}
+	// for bachelour in bachelours {
+	// 	comp1100::scraper::append_relevant_courses(&mut collection, bachelour).await?;
+	// }
+
+	let comp1100 = CourseCode::new("COMP1100")?;
+
+	let course_data = scrape_course(comp1100).await?;
 
 	info!(?collection, "Found courses");
 
