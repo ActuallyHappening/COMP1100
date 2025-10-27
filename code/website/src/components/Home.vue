@@ -156,7 +156,7 @@ const navScroll = (event: Event) => {
 			</div>
 		</div>
 	</div>
-
+	<!-- Top bar selections -->
 	<div class="container-fluid p-0">
 		<form action="#" @submit.prevent="() => {}">
 			<div class="input-group">
@@ -196,9 +196,11 @@ const navScroll = (event: Event) => {
 			</div>
 		</form>
 	</div>
+	<!-- Under top bar bar -->
 	<div class="container-fluid p-0">
 		<FilterHeader />
 	</div>
+	<!-- Row -->
 	<div class="container-fluid row" id="parent-div">
 		<div class="col-3 left-panel" v-if="programAPI.getCurrent()">
 			<div
@@ -267,6 +269,7 @@ const navScroll = (event: Event) => {
 		</div>
 		<div class="col-7" id="plan">
 			<PlannerVisuals />
+			test
 		</div>
 		<div class="col-2">
 			<RightPanel />
@@ -329,9 +332,9 @@ button.list-group-item {
 	cursor: pointer;
 }
 
-#parent-div {
+/* #parent-div {
 	display: flex;
-}
+} */
 
 #plan {
 	flex-grow: 1;
