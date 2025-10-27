@@ -14,7 +14,9 @@
 Therefore, we will accept this hypothesis. 
 
 Evidence:
-[INSERT_EVIDENCE_HERE]
+- "Yeah, I just I like it. It's just all there. Like, again, biggest issue is, you got to find a course planner. Yeah. Then you got to go put your courses in. You gotta have your own planner to figure out what you're doing past the first semester, two semesters a year. Like, if you could trying to play in year two, year three, year four, on top, you don't you don't get to. Whereas this makes it easier and yeah, I think that's. I think that's a great tool." - [Rafael Chase, interview 1, iteration 3](../../interviews/iteration_3/rafael_chase/rafael_chase_2025-10-27_1.md)
+
+- "Yeah, 100%. I think it just addresses like basically all the concern I had. Like, 1st of all, it's all in one place, which is helpful." - [Liam Bienkowski, interview 1, iteration 3](../../interviews/iteration_3/liam_bienkowski/liam_bienkowski_2025-10-20_1.md)
 
 ### Hypothesis two: We believe students will find it easier to obtain course information such as prerequisites and incompatibilities when selecting courses
 
@@ -29,7 +31,9 @@ Evidence:
 Therefore, we will accept this hypothesis.
 
 Evidence:
-[INSERT_EVIDENCE_HERE]
+- "You can see prerequisites, compatibility, in the same place where you actually apply for the courses, right? And you can set out your whole plan and everything. And then I think on top of that as well, it shows you core, breadth, like program electives, general electives, all of that." - [Liam Bienkowski, interview 1, iteration 3](../../interviews/iteration_3/liam_bienkowski/liam_bienkowski_2025-10-20_1.md)
+
+- "Yeah, I just I like it. It's just all there." - [Rafael Chase, interview 1, iteration 3](../../interviews/iteration_3/rafael_chase/rafael_chase_2025-10-27_1.md)
 
 ### Hypothesis three: We believe students will spend less time selecting courses now that the system is centralised.
 
@@ -44,7 +48,9 @@ Evidence:
 Therefore, we will accept this hypothesis.
 
 Evidence:
-[INSERT_EVIDENCE_HERE]
+- "So I think it takes me longer than it should. But me personally, I try and get it done in the least amount of effort as possible. So, like this sort of program would make that a lot easier. And definitely help me out quite a bit." - [Liam Bienkowski, interview 1, iteration 3](../../interviews/iteration_3/liam_bienkowski/liam_bienkowski_2025-10-20_1.md)
+
+- "Again, it takes the whole issue of going through the big list of courses being like, oh, is this fun, the one I'm digging over, is it this? Or like, and then having them all the through, whereas, you know, abbreviated just to make sure you put in the right person, but also, like, the link, the proper link to the actual subject itself, on my, really weirdly hard to find. It's not made to just be something quick to do. It's like, oh, it's a whole activity. You gotta go through it. Okay. So, yeah, 100%. That's great." - [Rafael Chase, interview 1, iteration 3](../../interviews/iteration_3/rafael_chase/rafael_chase_2025-10-27_1.md)
 
 ### Hypothesis four: We believe students will use our solution over their current methods of course selection.
 
@@ -59,4 +65,4 @@ Evidence:
 Therefore, we will accept this hypothesis.
 
 Evidence:
-[INSERT_EVIDENCE_HERE]
+- "Oh, yeah. Easily. I barely know what I'm doing in year two, year three, year four, so, I mean, it'd be good" [Rafael Chase, interview 1, iteration 3](../../interviews/iteration_3/rafael_chase/rafael_chase_2025-10-27_1.md)
