@@ -145,6 +145,9 @@ const close = () => {
 	// Deleting a course selects it, CY Interview 1 mentinos this isn't desired behaviour
 	selectedState.value = undefined;
 };
+const deselect = () => {
+	selectedState.value = undefined;
+};
 </script>
 
 <template>
@@ -226,9 +229,9 @@ const close = () => {
 					</a>
 					<button
 						type="button"
-						class="btn-close align-self-start"
+						class="btn-close btn-deselect align-self-start"
 						aria-label="Close"
-						@click.prevent="close"
+						@click.prevent="deselect"
 					></button>
 				</div>
 				<ul class="text-start">
@@ -304,11 +307,15 @@ button.course-selection-active:hover {
 table button:hover {
 	background-color: inherit;
 }
-.btn-close:hover {
+.btn-close:hover :not(.btn-deselect) {
 	filter: invert(100%) sepia(100%) hue-rotate(300deg) saturate(100000%);
 	opacity: 1;
 }
-.gray-text{
+.btn-deselect:hover {
+	filter: invert(100%) sepia(100%) hue-rotate(300deg) saturate(100000%);
+	opacity: 1;
+}
+.gray-text {
 	color: gray;
 }
 </style>

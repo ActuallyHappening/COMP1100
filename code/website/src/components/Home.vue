@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { computed, watch, ref } from "vue";
+import _ from "lodash";
+import { computed, ref } from "vue";
 import ProgramReq from "./ProgramReq.vue";
 import ProgramReqs from "./ProgramReqs.vue";
 import PlannerVisuals from "./PlannerVisuals.vue";
 import RightPanel from "./RightPanel.vue";
 import FilterHeader from "./FilterHeader.vue";
 import { RecordId } from "surrealdb";
-import _ from "lodash";
 import { localState } from "../apis/state";
 import { defaultPlan, planAPI } from "../apis/plan";
 import {
