@@ -5,16 +5,18 @@ import { toast } from "vue3-toastify";
 
 export const program_requirements = ref(null as ProgramRequirement[] | null);
 
-export type RequirementType =
-	| "core"
-	| "major"
-	| "major-subcomponent"
-	| "nomaj"
-	| "nomaj-subcomponent"
-	| "extmaj"
-	| "extmaj-subcomponent"
-	| "breadth"
-	| "gen-elec";
+export const requirementTypes = [
+	"core",
+	"major",
+	"major-subcomponent",
+	"nomaj",
+	"nomaj-subcomponent",
+	"extmaj",
+	"extmaj-subcomponent",
+	"breadth",
+	"gen-elec",
+] as const;
+export type RequirementType = (typeof requirementTypes)[number];
 export const requirement_type_to_header = (
 	requirement: RequirementType,
 ): string => {
