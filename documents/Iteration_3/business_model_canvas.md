@@ -99,7 +99,7 @@ This hypothesis was accepted for reasons found in [Iteration 2 Learning Card 4](
 
 ## Iteration 3:
 
-Assume all other channels, customer relationships etc from iterations one & two
+Building on the proven assumptions from iterations 1 and 2
 
 1) We believe students find it more seamless now that there exists only one central tab to select courses [Test Card 1](../iteration_3/test_cards.md)
 
