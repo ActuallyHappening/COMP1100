@@ -14,6 +14,8 @@ export type Filter = {
 const defaultFilter = (): Filter =>
 	_.cloneDeep({
 		search: "",
+		placedCourse: "",
+		removedCourse: "",
 		sem_1: false,
 		sem_2: false,
 		sem_summer: false,
