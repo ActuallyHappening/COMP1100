@@ -190,7 +190,7 @@ export const plannerAPI = (planner: Planner) =>
 				prereq: Array<RecordId<string> | Prereq | "AND" | "OR" | undefined>,
 				previouslyDone: Array<RecordIdValue>,
 			): boolean => {
-				if ((prereq.length = 1 && !Array.isArray(prereq[0]))) {
+				if (prereq.length == 1 && !Array.isArray(prereq[0])) {
 					return previouslyDone.includes(prereq[0].id);
 				} else {
 					var firstCourse = prereq[0];
