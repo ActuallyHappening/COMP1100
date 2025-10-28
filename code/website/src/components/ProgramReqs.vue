@@ -36,6 +36,7 @@ const flattened_subreqs = computed((): string[] | undefined => {
 		req.id.toString(),
 	);
 });
+console.log(filtered_courses)
 </script>
 
 <template>
@@ -48,11 +49,14 @@ const flattened_subreqs = computed((): string[] | undefined => {
 		class="left-panel-inner"
 	>
 		<!--<h5>{{ this_program_req.short_name }}</h5>-->
-		<div
+		
+		<div v-if="filtered_courses">
+			<div
 			v-for="course in filtered_courses.courses"
 			class="list-group"
 		>
-			<Course :code="course.code" type="default" />
+				<Course :code="course.code" type="default" />
+			</div>
 		</div>
 		<p v-if="filtered_courses?.message">{{ filtered_courses.message }}</p>
 		<ProgramReqs
