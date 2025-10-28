@@ -241,10 +241,10 @@ const navScroll = (event: Event) => {
 					>
 						<!-- {{ getHeaderByIndex(i) }} -->
 						<ProgramReq :index="i" />
-						<form
+						<!--<form
 							role="search"
 							v-if="planAPI.getCurrent().topLevelReqsSelected[i]"
-						>
+						>-->
 							<!--
 							Hey Patrick, delete this once you have read it.
 							I have rigged up this search bar to always show, thanks!
@@ -256,7 +256,7 @@ const navScroll = (event: Event) => {
 								aria-label="search"
 								v-model="filters.search"
 							/>-->
-						</form>
+						<!--</form>-->
 						<!-- Hey caleb, please let me know how you would like me to do this, be it links, buttons, inputs, whatever. -->
 						<form 
 							role="search" 
@@ -268,6 +268,12 @@ const navScroll = (event: Event) => {
 								placeholder="Search for a course" 
 								aria-label="search"
 								v-model="filters.search"
+							>
+							<input type="search"
+								class="form-control d-none"
+								placeholder="null"
+								aria-label="search"
+								v-model="filters.placedCourse"
 							>
 							<button 
 								type="button" 

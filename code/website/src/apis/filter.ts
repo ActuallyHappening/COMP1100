@@ -5,6 +5,7 @@ import type { Course } from "./db/course";
 
 export type Filter = {
 	search: string;
+	placedCourse: string;
 	sem_1: boolean;
 	sem_2: boolean;
 	sem_summer: boolean;
@@ -20,12 +21,26 @@ const defaultFilter = (): Filter =>
 export const filters = ref(defaultFilter());
 
 export const filterAPI = {
-	filterCourses(courses: Course[]): {
+	filterCourses(courses: Course[], coursesInPlan: string[]): {
 		courses: Course[];
 		message: string | undefined;
 	} {
 		// TODO
 		let remaining_courses = courses
+			.filter((course) => {
+				if (coursesInPlan.includes(course.code.toLowerCase())) {
+					return false;
+				}
+				return true;
+			})
+			.filter((course) => {
+				if (filters.value.placedCourse) {
+					if (filters.value.placedCourse === course.code.toLowerCase()) {
+						return false;
+					};
+				};
+				return true;
+			})
 			.filter((course) => {
 				if (filters.value.sem_1 && course.sem_1 === false) {
 					return false;

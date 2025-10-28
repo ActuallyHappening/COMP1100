@@ -7,7 +7,18 @@ import {
 import { RecordId } from "surrealdb";
 import { courseAPI } from "../apis/db/course";
 import { filterAPI } from "../apis/filter";
+import { planAPI } from "../apis/plan";
 import Course from "./Course.vue";
+
+const coursesInPlanArray: { [key: string]: { [key: string]: any } } = planAPI.getCurrent().planner;
+var coursesInPlan = [] as string[];
+for (const course in coursesInPlanArray) {
+	for (const c in coursesInPlanArray[course]) {
+		if (coursesInPlanArray[course][c]) {
+			coursesInPlan.push(coursesInPlanArray[course][c]);
+		};
+	};
+};
 
 const props = defineProps({
 	// id/code part only
@@ -28,7 +39,7 @@ const filtered_courses = computed(() => {
 		?.map((course) => courseAPI.get(course))
 		?.filter((course) => !!course);
 	if (courses) {
-		return filterAPI.filterCourses(courses);
+		return filterAPI.filterCourses(courses, coursesInPlan);
 	}
 });
 const flattened_subreqs = computed((): string[] | undefined => {
