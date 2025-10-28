@@ -96,3 +96,31 @@ This hypothesis was accepted for reasons found in [Iteration 2 Learning Card 1](
 4) We believe students don’t understand how their major affects how credit points are counted towards their degree [Iteration 2 Test Card 4](../iteration_2/test_cards.md)
 
 This hypothesis was accepted for reasons found in [Iteration 2 Learning Card 4](../iteration_2/learning_cards.md).
+
+## Iteration 3:
+
+Assume all other channels, customer relationships etc from iterations one & two
+
+1) We believe students find it more seamless now that there exists only one central tab to select courses [Test Card 1](../iteration_3/test_cards.md)
+
+This hypothesis was accepted for reasons found in [Iteration 3 Learning Card 1](../iteration_3/learning_cards.md)
+
+Our potential customers were thrilled at the prospect of one-tab course planning, as this provides a more seamles and intuitive system to effectively plan for future years. We also found that our potential customers were genuinely disappointed in the current methods of course planning. Whilst it doesn't necessarily move some customers as compared to others, it was unanimously agreed that one-tab is a more effective, and efficient method of course planning. 
+
+2) We believe students will find it easier to obtain course information such as prerequisites and incompatibilities when selecting courses [Test Card 2](../iteration_3/test_cards.md)
+
+This hypothesis was accepted for reasons found in [Iteration 3 Learning Card 2](../iteration_3/learning_cards.md)
+
+As well, students we interviewed agreed that most of the tabs they have open in course planning is to first keep track of which courses they are considering, but also in an attempt to locate the relavent information for a course. This includes, but is not limited to: course prerequisites, incompatibilities, which semesters a course is offered, etc. 
+
+3) We believe students will spend less time selecting courses now that the system is centralised. [Test Card 3](../iteration_3/test_cards.md)
+
+This hypothesis was accepted for reasons found in [Iteration 3 learning card 3](../iteration_3/learning_cards.md)
+
+Our potential customers likewise agreed that the current system is more time consuming than strictly necessary. Many students do not want to spend a lot of time in course planning, and so typically leave it to the last minute. Our more modular, seamless and integrated design allows for quick course planning by providing all relavent courses in one place, and allowing to modify and customise their plan as opposed to the static course planner. 
+
+4) We believe students will use our solution over their current methods of course selection. [Test Card 4](../iteration_3/test_cards.md)
+
+this hypothesis was accepted for reasons found in [Iteration 3 Learning Card 4](../iteration_3/learning_cards.md)
+
+This was found to be a unanimously agreed upon prospect by our future potential customers. Reasons for this change to be made were cited mainly as previous pains as explained by the previous test / learning cards. This was highly informative, as students essentially revealed that the more simple, and well-integrated system is far more effective and usable than the current system. As such, our product has value to the students of UQ.
