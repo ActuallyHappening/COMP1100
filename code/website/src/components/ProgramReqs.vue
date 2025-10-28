@@ -47,7 +47,6 @@ const flattened_subreqs = computed((): string[] | undefined => {
 		req.id.toString(),
 	);
 });
-console.log(filtered_courses)
 </script>
 
 <template>

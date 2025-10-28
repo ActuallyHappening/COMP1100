@@ -12,6 +12,7 @@ import { selectedState } from "../apis/state";
 import { planAPI } from "../apis/plan";
 import { plannerAPI } from "../apis/planner";
 import { RecordId } from "surrealdb";
+import { filters } from "../apis/filter"
 
 const props = defineProps({
 	code: {
@@ -216,6 +217,7 @@ const deselect = () => {
 							class="btn-close"
 							aria-label="Close"
 							@click.prevent="close"
+							@click="filters.removedCourse=course.code"
 						></button>
 					</div>
 				</div>
