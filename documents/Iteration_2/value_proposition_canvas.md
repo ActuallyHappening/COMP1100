@@ -145,3 +145,8 @@ After testing the hypotheses in the business model canvas and the value proposit
 4) Being able to review comments made by other students on the courses being done
 5) Once all of the above is done, being able to save and refence back to the chosen course plan
 6) Being able to do all of the above with reference to friends
+
+## Evaluation of Hypothesis (Iteration three):
+
+### Accepted Hypotheses (Iteration three):
+"We believe students find it more seamless now that there exists only one central tab to select courses". It was found on the whole that many studetns would prefer our system of using one tab at a time, and believe that this is a major 'customer gain', in the sense that this fixes, and fixes well, the main issue when it comes to choosing courses. 
