@@ -35,7 +35,7 @@ const getPlan = (sem_id: SemId, id: number): SemPlan[number] => {
 };
 </script>
 <template>
-	<table class="table table-bordered">
+	<table class="table table-bordered" id="mainTable">
 		<thead>
 			<tr>
 				<th scope="col" style="width: 10%"></th>
@@ -71,6 +71,10 @@ table {
 }
 
 .prereq-fail {
+	background-color: red;
+}
+
+.incompatible-true {
 	background-color: red;
 }
 

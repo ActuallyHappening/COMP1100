@@ -128,6 +128,13 @@ const selectCourse = () => {
 						divItem.classList.remove('prereq-fail');
 					};
 				};
+				const nowTable = document.getElementById('mainTable');
+				const classNameToRemove = 'incompatible-true';
+				if (nowTable) {
+  					const elements = nowTable.querySelectorAll<HTMLElement>(`.${classNameToRemove}`);
+  					elements.forEach(el => el.classList.remove(classNameToRemove));
+				};
+
 
 				//Filter out to only required semsters
 				sems = sems.filter((semester) => {
@@ -170,6 +177,43 @@ const selectCourse = () => {
 						} else {
 							semDiv.classList.add('prereq-fail');
 						};
+					};
+				};
+
+				// Demonstrating that a course is incompatible
+				
+				// Getting all courses in the plan so far
+				let allCourses: string[] = [];
+				const plan = (planAPI.getCurrent().planner);
+				for (const c in plan) {
+					for (const b in plan[c]) {
+						if (plan[c][b]) {
+							allCourses.push(plan[c][b]).toString();
+						};
+					};
+				};
+
+				//Filtering out to only get incompatible courses
+				allCourses = allCourses.filter((c) => {
+					for (const i in course.value.incompatible) {
+						const j = course.value.incompatible[i]?.id.toString();
+						if (c === j) {
+							return true;
+						};
+					};
+					return false;
+				});
+
+				//Get all of the appropiate id's, apply class 
+				for (const a in allCourses) {
+					const existingTable = document.getElementById('mainTable');
+					console.log(allCourses[a])
+					if (existingTable) {
+						const existingIncompatible = existingTable.querySelectorAll<HTMLElement>(`[id*="${allCourses[a]?.toUpperCase()}"]`)
+						existingIncompatible.forEach(el => {
+							console.log(el)
+							el.classList.add('incompatible-true');
+						});
 					};
 				};
 			};
