@@ -195,7 +195,7 @@ const deselect = () => {
 <template>
 	<button
 		type="button"
-		class="list-group-item w-100"
+		class="list-group-item w-100 course-selection"
 		:class="{
 			'course-selection-active':
 				type === 'default' &&
@@ -336,12 +336,19 @@ const deselect = () => {
 </template>
 
 <style scoped>
+
 button.course-selection-active {
+	background-color: #51247A;
+	color: #ffffff
+}
+
+button.course-selection:hover {
 	background-color: #7f55b5;
-	color: #D3D3D3
+	color: #F8F8F8
 }
 
 button.course-selection-active:hover {
+	background-color: #51247A;
 	color: #ffffff
 }
 
