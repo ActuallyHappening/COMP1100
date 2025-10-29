@@ -195,11 +195,13 @@ const deselect = () => {
 <template>
 	<button
 		type="button"
-		class="list-group-item w-100 course-selection"
+		class="list-group-item w-100"
 		:class="{
 			'course-selection-active':
 				type === 'default' &&
 				selectedState === course?.id.id.toString().toLowerCase(),
+			'course-selection':
+				type === 'default',
 		}"
 		:id="'vue-Course-' + course?.code"
 		@click="selectCourse"
