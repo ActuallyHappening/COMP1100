@@ -10,7 +10,6 @@ import {
 	slots,
 	sem_ids,
 } from "../apis/planner";
-import { filters } from "../apis/filter";
 
 const placeCourse = (sem_id: SemId, id: number) => {
 	if (selectedState.value) {
@@ -20,7 +19,16 @@ const placeCourse = (sem_id: SemId, id: number) => {
 			new RecordId("course", selectedState.value.toLowerCase()),
 		);
 		selectedState.value = undefined;
-	}
+		let sems = Object.keys(planAPI.getCurrent().planner)
+		for (const c in sems) {
+			const divName = sems[c]?.toString();
+			const divItem = document.getElementById(divName);
+			if (divItem) {
+				divItem.classList.remove('prereq-success');
+				divItem.classList.remove('prereq-fail');
+			};
+		};
+	};
 };
 const getPlan = (sem_id: SemId, id: number): SemPlan[number] => {
 	return plannerAPI(planAPI.getCurrent().planner).getIndex([sem_id, id]);
@@ -56,6 +64,14 @@ const getPlan = (sem_id: SemId, id: number): SemPlan[number] => {
 <style scoped>
 table {
 	width: 100%;
+}
+
+.prereq-success {
+	background-color: green;
+}
+
+.prereq-fail {
+	background-color: red;
 }
 
 .btn-outline-primary {

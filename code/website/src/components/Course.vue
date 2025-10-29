@@ -114,7 +114,65 @@ const selectCourse = () => {
 			} else {
 				console.info(`Selecting course: `, course.value.id);
 				selectedState.value = course.value.id.id.toString();
-			}
+
+				//Code to highlight th's for prerequisites. May need to be moved
+				//Code to find eligible semesters
+				let sems = Object.keys(planAPI.getCurrent().planner);
+
+				//Remove existing styling if applicable
+				for (const c in sems) {
+					const divName = sems[c]?.toString();
+					const divItem = document.getElementById(divName);
+					if (divItem) {
+						divItem.classList.remove('prereq-success');
+						divItem.classList.remove('prereq-fail');
+					};
+				};
+
+				//Filter out to only required semsters
+				sems = sems.filter((semester) => {
+					if (semester.includes("Sem 1")) {
+						if (course.value.sem_1) {
+							return true;
+						} else {
+							return false;
+						};
+					} else if (semester.includes("Sem 2")) {
+						if (course.value.sem_2) {
+							return true;
+						} else {
+							return false;
+						};
+					} else {
+						if (course.value.sem_summer) {
+							return true;
+						} else {
+							return false;
+						};
+					};
+				});
+
+				// Getting all the previous courses for each of the sems available
+				let semsBeforeLists: { [key: SemId]: Course[] } = {}
+				for (const c in sems) {
+					semsBeforeLists[sems[c]] = plannerAPI(planAPI.getCurrent().planner).prereqCheck({
+						previousCourses: plannerAPI(planAPI.getCurrent().planner).previousCoursesTo(sems[c], course.value), 
+						thisCourse: course.value
+					});
+				};
+
+				// Updating classes of table th's to show available sems
+				for (const c in sems) {
+					const semDiv = document.getElementById(sems[c]?.toString())
+					if (semDiv) {
+						if (semsBeforeLists[sems[c]]) {
+							semDiv.classList.add('prereq-success');
+						} else {
+							semDiv.classList.add('prereq-fail');
+						};
+					};
+				};
+			};
 			break;
 		case "small":
 			selectedState.value = course.value.id.id.toString();
