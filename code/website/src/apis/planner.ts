@@ -185,7 +185,7 @@ export const plannerAPI = (planner: Planner) =>
 			// recursive comlicated algorithm, probably using
 			// eval();
 			// Unpacking prereqs recursively --> must include nesting check
-			var currentPrereqState = true;
+			let currentPrereqState = true;
 			const evaluatePrereq = (
 				prereq: Array<RecordId<string> | Prereq | "AND" | "OR" | undefined>,
 				previouslyDone: Array<RecordIdValue>,
@@ -193,7 +193,7 @@ export const plannerAPI = (planner: Planner) =>
 				if (prereq.length == 1 && !Array.isArray(prereq[0])) {
 					return previouslyDone.includes(prereq[0].id);
 				} else {
-					var firstCourse = prereq[0];
+					let firstCourse = prereq[0];
 					if (!Array.isArray(firstCourse)) {
 						firstCourse = [firstCourse];
 					}
