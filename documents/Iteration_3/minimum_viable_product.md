@@ -1,89 +1,155 @@
-# MVP prototype features:
-- Saves all your information based on your student number so you can access it from any device easily
-- Records your program, major and minor (you must pick your major and minor)
+# MVP features:
+- Saves all course plans that have been created by the user (tab can be closed and still saves etc).
+- Keep track of course and major, providing you with relevant courses to that particular pathway / degree
 - Tracks what classes you have already finished (marked as green with tick)
 - Tracks what classes you are doing currently (marked as yellow)
-- Allows you to experiment with multiple plans for future courses, including which semester each class is done (marked as blue)
+- Allows you to experiment with multiple plans for future courses, including which semester each class is done
 - Gives an overview of all courses in your major
-- All courses are organised by the earliest semester you can do it, while completing pre-requisites
+- calculates whether a courses prerequisites have been completed when added to the plan
+- stricly prohibits a course being added to a plan if it is incompatible, or taken in the wrong semester
+- detailed course information is provided via a link to the course profile when selected (RHS of website)
+- can edit names of courses and save them accordingly. 
+- filter between core courses, major courses, and breadth electives. 
 
-## MVP Spec (Figma):
-- Step 1: Collects student number (to save)
-- Step 2: You enter your program / degree
-- Step 3: You enter your major (have to pick one, can change later)
-- Step 4: You enter your minor (have to pick one, can change later)
-- Home screen: Shows five columns
-	- First is done courses in green (and failed courses in red below)
-	- Second is doing courses in yellow
-	- Third is next semester courses planned, with a green pin on planned courses
-	- Fourth is two semesters ahead, with a green pin on planned courses
-	- Fifth column is for whatever course is selected, empty by default
-	- For all courses show a friend icon for classes your friend is doing
-	- Fifth column is empty if nothing is selected. If a course is selected:
+## MVP Spec:
+- Step 1: You enter your program / degree
+- Step 2: You enter your major (have to pick one, can change later)
+- Home screen: three distinct sections
+	- LHS is all courses that need / can be taken as part of a degree
+	- the centre of the screen is the actual planner (4 courses x however many years)
+	- RHS (only shows when courses are selected) extra details and link to course profile
 		- Shows at top the course code
 		- Then course name underneath
 		- Then pre-requisites listed underneath
-		- Then the link to SI-Net
-		- List friends doing the same course
-		- Then a (scrollable) list of comments making the available space,
-		- And on the bottom a bar to post your own comment
+		- semesters the course is offered
+		- any course incompatibilities
+		- Then the link to course profile
 
-[Figma presentation link](https://www.figma.com/proto/PnW2aTLoTMUzGnjrT3GJhi/COMP1100-Example-Prototype)
+[Figma Prototype of MVP](https://www.figma.com/design/Yb9IH8Shsnvece29JBb0xT/Figma--V2?node-id=0-1&t=lfZCIs3N9kiiBgM5-1)
+
+***INSERT ACTUAL WEBSITE LINK HERE***
 
 # MVP Test Cards
-Hypothesis: Students would benefit from one place with many classes in the same place, with each course conveniently showing course information
+Hypothesis: We hypothesise students find it more seamless now that there exists only one central tab to select courses
 
-Test: We will ask students if the above MVP shows course information in the same place well
+Test: To test this, we will interview students to see if they believe our new system is more efficient. 
 
-Metric: If students believe they could see all necessary information for the courses
+Metric: We will measure the response provided by students as to their preferential system
 
-Criteria: If all students believed they could see all necessary information for their course plan, then this hypothesis will be achieved
-
-Therefore, we will ask:
-Does our solution show all the relevant information for courses?
-Do you like the comments section being listed for each course next to its information?
-Did you want any other links for each course?
-
-
-Hypothesis: Students would benefit from a multi-user incorporation where they can interact with other students who have previously completed courses they are to take, as well as basing decisions off of what friends are doing, as implemented by us (in-house)
-
-Test: We will show/explain a simple in-house solution and see their thoughts
-
-Metric: If our in-house solution is liked and would be used by students
-
-Criteria: If all students liked our in-house solution, we will consider this hypothesis achieved
+Criteria: If we are correct, over half of interviewed students will agree that the UQ Plan It system is more efficient. 
 
 Therefore, we will ask:
-Would you feel it useful to comment on courses for future students in that manner?
-Would you like a badge for users based on if they are a tutor or lecturer?
-Do you want all people who give a review to be verified UQ students?
+1) What about the current system is so sluggish?
+2) Do you believe our solution is more effective than the current system?
+3) Do you prefer the system of singular tab course selections? If so, why?
+
+Hypothesis: We believe students will find it easier to obtain course information such as prerequisites and incompatibilities when selecting courses
+
+Test: To test this we will interview students with our MVP to see if they find the new solution to have more accessible vital course information. 
+
+Metric: We will measure if students prefer to have a system where all relevant course information for planning is preferred.
+
+Criteria: If we are correct, over half of the interviewed students will prefer having a central, solitary tab for course selections.
+
+Therefore, we will ask:
+1) Is the one-tab system more effective than having several open at once?
+2) Do you prefer having one tab? If so, why?
+3) Do you personally see any benefits in having several tabs open for each course?
+4) What do you find beneficial about having only one tab open at a time?
+5) Would you say this makes it easier to find required information for a course, such as prerequisites etc?
+
+Hypothesis: We believe students will spend less time selecting courses now that the system is centralised.
+
+Test: To test this, we will interview students to gather information as to whether or not the new system will reduce time spent on course selections. 
+
+Metric: We will measure if a majority of students believe our solution will reduce time on course selections. 
+
+Criteria: If we are correct, then a majority of the students interviewed will agree with the idea that course selections will be a less time consuming system. 
+
+Therefore, we will ask:
+1) How much time do you currently spend on course selections?
+2) Do you think this new system will significantly reduce that time?
+3) At the very least, do you believe this system will reduce the hassle of the current system?
+4) Which factor do you believe saves you the most time?
+
+Hypothesis: We believe students will use our solution over their current methods of course selection.
+
+Test: To test this, we will interview students to see whether or not students will actually use our solution over the current methods of course selection.
+
+Metric: We will measure if most students believe this system is superior, and will therefore use it in future semesters.
+
+Criteria: If we are correct, then most students will opt to use our solution over the previous status quo. 
+
+Therefore, we will ask:
+1) If our system were to be available, would you use it over whichever method you currently practise?
+2) What about our solution do you find better than what you do now?
+3) Is there anything in particular that you think could be better, or that your personal method does better?
+4) On the whole, what are the strengths that would influence the shift?
 
 # MVP Learning Cards
-Hypothesis: Students would benefit from one place with many classes in the same place, with each course conveniently showing course information
 
-Observation: Students really liked how many courses were laid out all in one place. All students recommended colour coding. One student with insight recommended a badge system for courses contributing to your major or minor
+Hypothesis one: We hypothesise students find it more seamless now that there exists one central tab to select courses
 
-Learning and insights: Students benefit from colour coding their classes
+*Test:* To test this, we will interview students to see if they believe our new system is more efficient.
 
-Therefore, we will accept this hypothesis as true
+*Metric:* We will measure the response provided by students as to their preferential system
 
-Evidence:
-- Caleb Interview 4 & 5
-- "Yeah, I think that would be very helpful. Being able to just have all that information there rather than search around for it, probably would help. Especially like people who don't really understand how to navigate, courses and uni stuff. It would really help them with finding information on stuff that's important to them." - [Liam Bienkowski Iteration 2 Interview 5](../../interviews/iteration_2/liam_bienkowski/liam_bienkowski_2025-09-23_5.md)
-- Himanshu MVP Interview
-- https://github.com/COMP1100-7110-2025-s2/Mon_9am_Team_10/blob/master/interviews/iteration_2/himanshu/Himanshu_2025_9_24_.md
-  
--    
+*Observations:* On the whole, students find that the current system results in far too many tabs open at a time, and overall agree that it is an unintuitive system. It was also observated that, following a demo of our MVP, students agreed that UQ planit's one tab solution to course planning would be a far more effective way to plan, and select courses. 
 
+*Learning and Insights:* We learned that students are strongly dissatisfied with the current system of planning, especiaily for first years. We also learned that students would by far prefer our current system given the proof of concept, should it be widely implemented. 
 
-Hypothesis: Students would benefit from a multi-user incorporation where they can interact with other students who have previously completed courses they are to take, as well as basing decisions off of what friends are doing, as implemented by us (in-house)
-
-Observation: The simple leave a comment system was sufficient. Students wanted accountability (so that not anybody could comment on every course) but preferred anonymity. Comments should be identified to be from tutors or lecturers if possible
-
-Learning and insights: The simple leave a comment system achieved all the goals students wanted
-
-Therefore, we will accept this hypothesis as true
+Therefore, we will accept this hypothesis. 
 
 Evidence:
-- Caleb Interview 4 & 5
-- "Um, yeah, I think it would be. Commenting on courses could also give some coordinators some feedback. So they'd understand what the general consensus is around their courses are at the moment and then they can use that feedback to change certain things about courses." - [Liam Bienkowski Iteration 2 Interview 5](../../interviews/iteration_2/liam_bienkowski/liam_bienkowski_2025-09-23_5.md) 
+- "Yeah, I just I like it. It's just all there. Like, again, biggest issue is, you got to find a course planner. Yeah. Then you got to go put your courses in. You gotta have your own planner to figure out what you're doing past the first semester, two semesters a year. Like, if you could trying to play in year two, year three, year four, on top, you don't you don't get to. Whereas this makes it easier and yeah, I think that's. I think that's a great tool." - [Rafael Chase, interview 1, iteration 3](../../interviews/iteration_3/rafael_chase/rafael_chase_2025-10-27_1.md)
+
+- "Yeah, 100%. I think it just addresses like basically all the concern I had. Like, 1st of all, it's all in one place, which is helpful." - [Liam Bienkowski, interview 1, iteration 3](../../interviews/iteration_3/liam_bienkowski/liam_bienkowski_2025-10-20_1.md)
+
+Hypothesis two: We believe students will find it easier to obtain course information such as prerequisites and incompatibilities when selecting courses
+
+*Test:* To test this we will interview students with our MVP to see if they find the new solution to have more accessible vital course information. 
+
+*Metric:* We will measure if students prefer to have a system where all relevant course information for planning is preferred.
+
+*Observations:* Students believe that having a centralised and consolidated course planning, like the one provided in UQ planit, will aid them in choosing the correct, and preferable courses as opposed to arbitrary and ill informed decisions. This is a result of students now having all required information provided on the one website, with a singular page, and the option to read more indepth about specific courses with a simple redirection. 
+
+*Learning and Insights:* We learned that students current find it difficult, and overwhelming to plan ahead, as they are too bogged down on focusing on what courses they have to choose for the time being. This also pertains to a lack of clear direction and pointers to relavent and necessary information for course planning. 
+
+Therefore, we will accept this hypothesis.
+
+Evidence:
+- "You can see prerequisites, compatibility, in the same place where you actually apply for the courses, right? And you can set out your whole plan and everything. And then I think on top of that as well, it shows you core, breadth, like program electives, general electives, all of that." - [Liam Bienkowski, interview 1, iteration 3](../../interviews/iteration_3/liam_bienkowski/liam_bienkowski_2025-10-20_1.md)
+
+- "Yeah, I just I like it. It's just all there." - [Rafael Chase, interview 1, iteration 3](../../interviews/iteration_3/rafael_chase/rafael_chase_2025-10-27_1.md)
+
+Hypothesis three: We believe students will spend less time selecting courses now that the system is centralised.
+
+*Test:* To test this, we will interview students to gather information as to whether or not the new system will reduce time spent on course selections. 
+
+*Metric:* We will measure if a majority of students believe our solution will reduce time on course selections. 
+
+*Observations:* We observed students were struggling to find the time to allocate towards cours planning, as the current system is lacking in proper direction. As such, students aren't willing to plan due to the system being far too time consuming than feels necessary. Students did agree that the UQ plan it solution would greatly reduce time spent on course planning as it provides all necesary information in one place, and an option to effectively plan, and move around courses for dynamic and streamlined planning. 
+
+*Learning and Insights:* We learned students genuienly struggle from this process, and gained an important insight into our own usability in that it is a far more effective *visual* tool for physically seeing what a plan might look like. 
+
+Therefore, we will accept this hypothesis.
+
+Evidence:
+- "So I think it takes me longer than it should. But me personally, I try and get it done in the least amount of effort as possible. So, like this sort of program would make that a lot easier. And definitely help me out quite a bit." - [Liam Bienkowski, interview 1, iteration 3](../../interviews/iteration_3/liam_bienkowski/liam_bienkowski_2025-10-20_1.md)
+
+- "Again, it takes the whole issue of going through the big list of courses being like, oh, is this fun, the one I'm digging over, is it this? Or like, and then having them all the through, whereas, you know, abbreviated just to make sure you put in the right person, but also, like, the link, the proper link to the actual subject itself, on my, really weirdly hard to find. It's not made to just be something quick to do. It's like, oh, it's a whole activity. You gotta go through it. Okay. So, yeah, 100%. That's great." - [Rafael Chase, interview 1, iteration 3](../../interviews/iteration_3/rafael_chase/rafael_chase_2025-10-27_1.md)
+
+Hypothesis four: We believe students will use our solution over their current methods of course selection.
+
+*Test:* To test this, we will interview students to see whether or not students will actually use our solution over the current methods of course selection.
+
+*Metric:* We will measure if most students believe this system is superior, and will therefore use it in future semesters.
+
+*Observations:* When prompted, we observed students unanimously agreed that they would use our system, should it be available, over the current system of course planning. 
+
+*Learning and Insights:* This series of questions revealed students hold the current system with a strong sense of disdain, and wish for something better. As such, they were happy to inform us our solution of UQ plan it would be an effective solution, and a usable one. 
+
+Therefore, we will accept this hypothesis.
+
+Evidence:
+- "Oh, yeah. Easily. I barely know what I'm doing in year two, year three, year four, so, I mean, it'd be good" [Rafael Chase, interview 1, iteration 3](../../interviews/iteration_3/rafael_chase/rafael_chase_2025-10-27_1.md)
