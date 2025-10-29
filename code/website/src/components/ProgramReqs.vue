@@ -11,7 +11,7 @@ import { planAPI } from "../apis/plan";
 import Course from "./Course.vue";
 
 const coursesInPlanArray: { [key: string]: { [key: string]: any } } = planAPI.getCurrent().planner;
-var coursesInPlan = [] as string[];
+let coursesInPlan = [] as string[];
 for (const course in coursesInPlanArray) {
 	for (const c in coursesInPlanArray[course]) {
 		if (coursesInPlanArray[course][c]) {

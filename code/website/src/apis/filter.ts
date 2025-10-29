@@ -5,8 +5,8 @@ import type { Course } from "./db/course";
 
 export type Filter = {
 	search: string;
-	placedCourse: string;
-	removedCourse: string;
+	// placedCourse: string;
+	// removedCourse: string;
 	sem_1: boolean;
 	sem_2: boolean;
 	sem_summer: boolean;
@@ -14,20 +14,20 @@ export type Filter = {
 const defaultFilter = (): Filter =>
 	_.cloneDeep({
 		search: "",
-		placedCourse: "",
-		removedCourse: "",
+		// placedCourse: "",
+		// removedCourse: "",
 		sem_1: false,
 		sem_2: false,
 		sem_summer: false,
 	});
 
 export const filters = ref(defaultFilter());
-var activeAdd = undefined;
-var activeRemove = undefined;
-var newActiveAdd = undefined;
-var newActiveRemove = undefined;
-var adding = false;
-var removing = false;
+let activeAdd = undefined;
+let activeRemove = undefined;
+let newActiveAdd = undefined;
+let newActiveRemove = undefined;
+let adding = false;
+let removing = false;
 
 export const filterAPI = {
 	filterCourses(courses: Course[], coursesInPlan: string[]): {
@@ -35,38 +35,40 @@ export const filterAPI = {
 		message: string | undefined;
 	} {
 		// TODO
-		newActiveAdd = filters.value.placedCourse
-		newActiveRemove = filters.value.removedCourse
-		//new course is being added
-		if (!(activeAdd === newActiveAdd)) {
-			adding = true;
-			removing = false;
-			activeAdd = newActiveAdd;
-		} else if (!(activeRemove === newActiveRemove)) {
-			adding = false;
-			removing = true;
-			activeRemove = newActiveRemove;
-		}
+		// newActiveAdd = filters.value.placedCourse
+		// newActiveRemove = filters.value.removedCourse
+		// adding = false;
+		// removing = false;
+		// //new course is being added
+		// if (!(activeAdd === newActiveAdd)) {
+		// 	adding = true;
+		// 	removing = false;
+		// 	activeAdd = newActiveAdd;
+		// } else if (!(activeRemove === newActiveRemove)) {
+		// 	adding = false;
+		// 	removing = true;
+		// 	activeRemove = newActiveRemove;
+		// }
 		let remaining_courses = courses
-			.filter((course) => {
-				if (coursesInPlan.includes(course.code.toLowerCase())) {
-					if (filters.value.removedCourse) {
-						if (filters.value.removedCourse === course.code) {
-							return true;
-						};
-					};
-					return false;
-				};
-				return true;
-			})
-			.filter((course) => {
-				if (filters.value.placedCourse && adding) {
-					if (filters.value.placedCourse === course.code.toLowerCase()) {
-						return false;
-					};
-				};
-				return true;
-			})
+			// .filter((course) => {
+			// 	if (coursesInPlan.includes(course.code.toLowerCase())) {
+			// 		if (filters.value.removedCourse) {
+			// 			if (filters.value.removedCourse === course.code) {
+			// 				return true;
+			// 			};
+			// 		};
+			// 		return false;
+			// 	};
+			// 	return true;
+			// })
+			// .filter((course) => {
+			// 	if (filters.value.placedCourse && adding) {
+			// 		if (filters.value.placedCourse === course.code.toLowerCase()) {
+			// 			return false;
+			// 		};
+			// 	};
+			// 	return true;
+			// })
 			.filter((course) => {
 				if (filters.value.sem_1 && course.sem_1 === false) {
 					return false;

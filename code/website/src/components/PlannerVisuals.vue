@@ -42,7 +42,7 @@ const getPlan = (sem_id: SemId, id: number): SemPlan[number] => {
 				<td v-for="(_name, id) in slots.length" :id="`${sem_id}-${id}`">
 					<button
 						class="btn btn-outline-primary pt-5 pb-5"
-						@click="placeCourse(sem_id, id); filters.placedCourse=(plannerAPI(planAPI.getCurrent().planner).getIndex([sem_id, id]))"
+						@click="placeCourse(sem_id, id)"
 						v-if="!getPlan(sem_id, id)"
 					>
 						Place course here!

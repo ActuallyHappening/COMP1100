@@ -158,6 +158,17 @@ const incompatibleCheck = computed(() => {
 	return true;
 });
 
+const isInPlanner = computed(() => {
+	const rawPlan = planAPI.getCurrent().planner;
+	const planner = plannerAPI(rawPlan);
+	const inPlanner = planner.getIndexOfCourse(course.value.id);
+	if (!inPlanner) {
+		return false;
+	} else {
+		return true;
+	};
+});
+
 const close = () => {
 	// remove this from selected and from visual planner
 	const planner = plannerAPI(planAPI.getCurrent().planner);
@@ -183,7 +194,7 @@ const deselect = () => {
 		@click="selectCourse"
 	>
 		<template v-if="!error">
-			<template v-if="type === 'default'">
+			<template v-if="type === 'default' && !isInPlanner">
 				<h4 class="text-center">
 					{{ course?.code }}: {{ course?.name }} (<i>{{ sems }}</i
 					>)
@@ -197,7 +208,7 @@ const deselect = () => {
 				<i class="fa-solid fa-comet"></i>
 			</template>
 
-			<template v-else-if="type === 'completed'">
+			<template v-else-if="type === 'default' && isInPlanner">
 				<h6 class="text-center gray-text">
 					{{ course?.code }}: {{ course?.name }}
 				</h6>
@@ -217,7 +228,6 @@ const deselect = () => {
 							class="btn-close"
 							aria-label="Close"
 							@click.prevent="close"
-							@click="filters.removedCourse=course.code"
 						></button>
 					</div>
 				</div>
