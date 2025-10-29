@@ -149,4 +149,39 @@ After testing the hypotheses in the business model canvas and the value proposit
 ## Evaluation of Hypothesis (Iteration three):
 
 ### Accepted Hypotheses (Iteration three):
-"We believe students find it more seamless now that there exists only one central tab to select courses". It was found on the whole that many studetns would prefer our system of using one tab at a time, and believe that this is a major 'customer gain', in the sense that this fixes, and fixes well, the main issue when it comes to choosing courses. 
+"We believe students find it more seamless now that there exists only one central tab to select courses". It was found on the whole that many studetns would prefer our system of using one tab at a time, and believe that this is a major 'customer gain', in the sense that this fixes, and fixes well, the main issue when it comes to choosing courses. Students unanimously agreed that this system, as presented in UQ plan-it is on the whole more presentable and more seamless than the current system.  
+
+Evidence:
+- "Yeah, I just I like it. It's just all there. Like, again, biggest issue is, you got to find a course planner. Yeah. Then you got to go put your courses in. You gotta have your own planner to figure out what you're doing past the first semester, two semesters a year. Like, if you could trying to play in year two, year three, year four, on top, you don't you don't get to. Whereas this makes it easier and yeah, I think that's. I think that's a great tool." - [Rafael Chase, interview 1, iteration 3](../../interviews/iteration_3/rafael_chase/rafael_chase_2025-10-27_1.md)
+
+- "Yeah, 100%. I think it just addresses like basically all the concern I had. Like, 1st of all, it's all in one place, which is helpful." - [Liam Bienkowski, interview 1, iteration 3](../../interviews/iteration_3/liam_bienkowski/liam_bienkowski_2025-10-20_1.md)
+
+"We believe students find it easier to obtain course information such as prerequisites and incompatibilities when selecting courses." It was found students believed that the system, as implemented by UQ plan-it, that information is more easily accessible. This information is strictly limited to semester restrictions, prerequisite courses, and incompaitble courses. All other information is provided in a link to the course profile of any given course once selected. Students believed that this was a better system as everything is now centrally located, and the information is easy to find from one website instead of many. 
+
+Evidence:
+- "You can see prerequisites, compatibility, in the same place where you actually apply for the courses, right? And you can set out your whole plan and everything. And then I think on top of that as well, it shows you core, breadth, like program electives, general electives, all of that." - [Liam Bienkowski, interview 1, iteration 3](../../interviews/iteration_3/liam_bienkowski/liam_bienkowski_2025-10-20_1.md)
+
+- "Yeah, I just I like it. It's just all there." - [Rafael Chase, interview 1, iteration 3](../../interviews/iteration_3/rafael_chase/rafael_chase_2025-10-27_1.md)
+
+"We believe students will spend less time selecting courses now that the system is centralised." Students did agree on the whole that the solution will aid them in selecting courses. Students were content with the prospect that the UQ planner was no longer static, in that now a similar mould is provided, with customisable aspects. This was found to be a significant motivating factor in students wanting to use our solution as opposed to what is currently being provided. 
+
+Evidence:
+- "So I think it takes me longer than it should. But me personally, I try and get it done in the least amount of effort as possible. So, like this sort of program would make that a lot easier. And definitely help me out quite a bit." - [Liam Bienkowski, interview 1, iteration 3](../../interviews/iteration_3/liam_bienkowski/liam_bienkowski_2025-10-20_1.md)
+
+- "Again, it takes the whole issue of going through the big list of courses being like, oh, is this fun, the one I'm digging over, is it this? Or like, and then having them all the through, whereas, you know, abbreviated just to make sure you put in the right person, but also, like, the link, the proper link to the actual subject itself, on my, really weirdly hard to find. It's not made to just be something quick to do. It's like, oh, it's a whole activity. You gotta go through it. Okay. So, yeah, 100%. That's great." - [Rafael Chase, interview 1, iteration 3](../../interviews/iteration_3/rafael_chase/rafael_chase_2025-10-27_1.md)
+
+
+"We believe students will use our solution over their current methods of course selection." This was found to be true amongst all students. Even though there was some 'uncertainty' when someones degree is mostly planned to begin with, students still agreed that even if this were to be the case, the solution would be helpful. Even so, amongst the students who hadn't planned very far in advance, students agreed that the UQ plan-it solution would be there go-to system for course planning, due to it's seamless, incorporated and centralised design. 
+
+Evidence:
+- "Oh, yeah. Easily. I barely know what I'm doing in year two, year three, year four, so, I mean, it'd be good" [Rafael Chase, interview 1, iteration 3](../../interviews/iteration_3/rafael_chase/rafael_chase_2025-10-27_1.md)
+
+## Job prioritisation (Iteration three):
+After testing the hypotheses in the business model canvas and the value proposition canvas, we have decided to reprioritise the following jobs when moving forward with solution development:
+1) Choosing subjects
+2) Choosing subjects based off of having done the prerequisites
+3) Choosing subjects based off of which semesters they are offered by the university
+4) Being able to review comments made by other students on the courses being done
+5) Once all of the above is done, being able to save and refence back to the chosen course plan
+6) Being able to do all of the above with reference to friends
+7) #6 was disregarded. Instead, we decided and focus on making a nice mould for students to plan courses. 
