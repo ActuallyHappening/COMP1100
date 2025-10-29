@@ -117,7 +117,7 @@ const navScroll = (event: Event) => {
 
 <template>
 	<!-- Top bars for plans  -->
-	<div id="header" class="container-fluid m-auto">
+	<div id="header" class="container-fluid m-auto" >
 		<div class="row purple-bg">
 			<div class="col-3">
 				<h1>UQ Planit</h1>
@@ -159,7 +159,7 @@ const navScroll = (event: Event) => {
 	<!-- Top bar selections -->
 	<div class="container-fluid p-0">
 		<form action="#" @submit.prevent="() => {}">
-			<div class="input-group">
+			<div class="input-group input-group-lg">
 				<span class="input-group-text">Year</span>
 				<input
 					type="number"
@@ -197,12 +197,12 @@ const navScroll = (event: Event) => {
 		</form>
 	</div>
 	<!-- Under top bar bar -->
-	<div class="container-fluid p-0">
+	<div class="container-fluid p-0" v-if="programAPI.getCurrent()">
 		<FilterHeader />
 	</div>
 	<!-- Row -->
-	<div class="container-fluid row p-0 m-0" id="parent-div">
-		<div class="col-3 left-panel" v-if="programAPI.getCurrent()">
+	<div class="container-fluid row p-0 m-0" id="parent-div"  v-if="programAPI.getCurrent()">
+		<div class="col-3 left-panel">
 			<div
 				class="nav nav-tabs"
 				id="nav-tab"
@@ -317,6 +317,38 @@ const navScroll = (event: Event) => {
 		</div>
 		<div class="col-2">
 			<RightPanel />
+		</div>
+	</div>
+	<!-- Onboarding -->
+	<div class="container-fluid d-flex align-items-center justify-content-center" style="min-height: 50vh; font-size: 150%;" v-else>
+		<div>
+			<form action="#" @submit.prevent="() => {}">
+				<!-- <div class="input-group"> -->
+					<label class="form-label">Year</label>
+					<input
+						type="number"
+						class="form-control form-control-lg"
+						placeholder="2025"
+						disabled
+					/>
+					<label for="course-code" class="form-label">Course</label>
+					<select
+						class="form-select form-select-lg"
+						name="course-code"
+						id="course-code"
+						:value="planAPI.getCurrent().programId"
+						@input="courseChange"
+					>
+						<option value="" hidden>Please select a course</option>
+						<option
+							v-for="program in programs"
+							:key="program.id.id.toString()"
+							:value="program.id.id.toString()"
+						>
+							{{ program.name }}
+						</option>
+					</select>
+			</form>
 		</div>
 	</div>
 </template>
