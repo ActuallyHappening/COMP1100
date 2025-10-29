@@ -10,7 +10,7 @@ import {
 } from "../apis/db/course";
 import { selectedState } from "../apis/state";
 import { planAPI } from "../apis/plan";
-import { plannerAPI } from "../apis/planner";
+import { plannerAPI, type SemId } from "../apis/planner";
 import { RecordId } from "surrealdb";
 import { filters } from "../apis/filter"
 
@@ -158,7 +158,7 @@ const incompatibleCheck = computed(() => {
 	return true;
 });
 
-const isInPlanner = computed(() => {
+const isInPlanner = computed((): boolean => {
 	const rawPlan = planAPI.getCurrent().planner;
 	const planner = plannerAPI(rawPlan);
 	const inPlanner = planner.getIndexOfCourse(course.value.id);
@@ -168,6 +168,17 @@ const isInPlanner = computed(() => {
 		return true;
 	};
 });
+
+const semesterOfCourseInPlannerWhichThePersonIsTaking = computed((): SemId | undefined => {
+	const rawPlan = planAPI.getCurrent().planner;
+	const planner = plannerAPI(rawPlan);
+	const inPlanner = planner.getIndexOfCourse(course.value.id);
+	if (inPlanner) {
+		return inPlanner[0];
+	} else {
+		return undefined;
+	}
+})
 
 const close = () => {
 	// remove this from selected and from visual planner
@@ -210,11 +221,8 @@ const deselect = () => {
 
 			<template v-else-if="type === 'default' && isInPlanner">
 				<h6 class="text-center gray-text">
-					{{ course?.code }}: {{ course?.name }}
+					{{ course?.code }}: <i>{{ semesterOfCourseInPlannerWhichThePersonIsTaking }}</i>
 				</h6>
-				<p class="m-0 p-0 gray-text">
-					<i>Sem 2 2026</i>
-				</p>
 			</template>
 
 			<template v-else-if="type === 'small'">
