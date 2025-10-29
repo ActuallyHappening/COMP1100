@@ -47,6 +47,14 @@ const flattened_subreqs = computed((): string[] | undefined => {
 		req.id.toString(),
 	);
 });
+
+function getComponentName (id: string) {
+	for (const a in programRequirementAPI.getAll()) {
+		if (id === programRequirementAPI.getAll()[a].id.id) {
+			return programRequirementAPI.getAll()[a].short_name;
+		};
+	};
+};
 </script>
 
 <template>
@@ -69,10 +77,15 @@ const flattened_subreqs = computed((): string[] | undefined => {
 			</div>
 		</div>
 		<p v-if="filtered_courses?.message">{{ filtered_courses.message }}</p>
-		<ProgramReqs
-			v-if="flattened_subreqs"
-			v-for="code in flattened_subreqs"
-			:requirement-id="code"
-		/>
+		<template v-if="flattened_subreqs">
+			<template v-for="code in flattened_subreqs">
+				<br>
+				<br>
+				<h5>{{ getComponentName(code) }}</h5>
+				<ProgramReqs
+					:requirement-id="code"
+				/>
+			</template>
+		</template>
 	</div>
 </template>
