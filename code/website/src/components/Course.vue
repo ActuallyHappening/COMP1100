@@ -337,11 +337,12 @@ const deselect = () => {
 
 <style scoped>
 button.course-selection-active {
-	background-color: #8653b5;
+	background-color: #7f55b5;
+	color: #D3D3D3
 }
 
 button.course-selection-active:hover {
-	background-color: #b478eb;
+	color: #ffffff
 }
 
 table button:hover {
