@@ -354,6 +354,10 @@ button.course-selection-active:hover {
 	color: #ffffff
 }
 
+button.course-selection {
+	transition: background-color 0.3s ease-in-out;
+}
+
 table button:hover {
 	background-color: inherit;
 }
