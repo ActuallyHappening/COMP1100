@@ -291,6 +291,23 @@ const close = () => {
 };
 const deselect = () => {
 	selectedState.value = undefined;
+	let sems = Object.keys(planAPI.getCurrent().planner);
+
+	//Remove existing styling if applicable
+	for (const c in sems) {
+		const divName = sems[c]?.toString();
+		const divItem = document.getElementById(divName);
+		if (divItem) {
+			divItem.classList.remove('prereq-success');
+			divItem.classList.remove('prereq-fail');
+		};
+	};
+	const nowTable = document.getElementById('mainTable');
+	const classNameToRemove = 'incompatible-true';
+	if (nowTable) {
+		const elements = nowTable.querySelectorAll<HTMLElement>(`.${classNameToRemove}`);
+		elements.forEach(el => el.classList.remove(classNameToRemove));
+	};
 };
 </script>
 
