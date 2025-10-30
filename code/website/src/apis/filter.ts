@@ -22,12 +22,12 @@ const defaultFilter = (): Filter =>
 	});
 
 export const filters = ref(defaultFilter());
-let activeAdd = undefined;
-let activeRemove = undefined;
-let newActiveAdd = undefined;
-let newActiveRemove = undefined;
-let adding = false;
-let removing = false;
+// let activeAdd = undefined;
+// let activeRemove = undefined;
+// let newActiveAdd = undefined;
+// let newActiveRemove = undefined;
+// let adding = false;
+// let removing = false;
 
 export const filterAPI = {
 	filterCourses(courses: Course[], coursesInPlan: string[]): {

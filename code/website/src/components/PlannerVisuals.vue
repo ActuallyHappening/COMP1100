@@ -66,12 +66,24 @@ table {
 	width: 100%;
 }
 
+th, td {
+	border: none;
+}
+
+thead th {
+	text-align: center;
+}
+
+th {
+	text-align: right;
+}
+
 .prereq-success {
-	background-color: green;
+	background: linear-gradient(to right, green, transparent);
 }
 
 .prereq-fail {
-	background-color: red;
+	background: linear-gradient(to right, red, transparent);
 }
 
 .incompatible-true {
