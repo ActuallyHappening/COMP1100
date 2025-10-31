@@ -272,7 +272,12 @@ const selectCourse = () => {
 			}
 			break;
 		case "small":
-			selectedState.value = course.value.id.id.toString();
+			for (const a in planAPI.getCurrent().planner) {
+				if (planAPI.getCurrent().planner[a].includes(course.value.id.id.toString())) {
+					selectedState.value = course.value.id.id.toString();
+				}
+			}
+			
 	}
 };
 const previousCourses = computed((): Course[] | undefined => {
@@ -343,6 +348,27 @@ const close = () => {
 	planner.removeCourse(course.value.id);
 	// Deleting a course selects it, CY Interview 1 mentinos this isn't desired behaviour
 	selectedState.value = undefined;
+	for (const c in sems) {
+		const divName = sems[c]?.toString();
+		const divItem = document.getElementById(divName);
+		if (divItem) {
+			divItem.classList.remove("prereq-success");
+			divItem.classList.remove("prereq-fail");
+			divItem.classList.remove("prereq-unavailable");
+			const headerRow = divItem.parentElement;
+			const tds = Array.from(
+				headerRow?.querySelectorAll("td"),
+			);
+			for (const td in tds) {
+				const buttons = Array.from(
+					tds[td]?.querySelectorAll("button"),
+				);
+				for (const button in buttons) {
+					buttons[button]?.classList.remove("disabled");
+				}
+			}
+		}
+	}
 };
 const deselect = () => {
 	selectedState.value = undefined;
@@ -355,6 +381,19 @@ const deselect = () => {
 		if (divItem) {
 			divItem.classList.remove("prereq-success");
 			divItem.classList.remove("prereq-fail");
+			divItem.classList.remove("prereq-unavailable");
+			const headerRow = divItem.parentElement;
+			const tds = Array.from(
+				headerRow?.querySelectorAll("td"),
+			);
+			for (const td in tds) {
+				const buttons = Array.from(
+					tds[td]?.querySelectorAll("button"),
+				);
+				for (const button in buttons) {
+					buttons[button]?.classList.remove("disabled");
+				}
+			}
 		}
 	}
 	const nowTable = document.getElementById("mainTable");
