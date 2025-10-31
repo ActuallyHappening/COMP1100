@@ -26,6 +26,15 @@ const placeCourse = (sem_id: SemId, id: number) => {
 			if (divItem) {
 				divItem.classList.remove('prereq-success');
 				divItem.classList.remove('prereq-fail');
+				divItem.classList.remove('prereq-unavailable')
+				const headerRow = divItem.parentElement;
+				const tds = Array.from(headerRow?.querySelectorAll('td'));
+				for (const td in tds) {
+					const buttons = Array.from(tds[td]?.querySelectorAll('button'));
+					for (const button in buttons) {
+						buttons[button]?.classList.remove('disabled');
+					};
+				};
 			};
 		};
 	};
@@ -84,6 +93,10 @@ th {
 
 .prereq-fail {
 	background: linear-gradient(to right, red, transparent);
+}
+
+.prereq-unavailable {
+	background: linear-gradient(to right, gray, transparent);
 }
 
 .incompatible-true {

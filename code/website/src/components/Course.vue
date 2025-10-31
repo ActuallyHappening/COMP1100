@@ -118,6 +118,7 @@ const selectCourse = () => {
 				//Code to highlight th's for prerequisites. May need to be moved
 				//Code to find eligible semesters
 				let sems = Object.keys(planAPI.getCurrent().planner);
+				let oppSems = sems;
 
 				//Remove existing styling if applicable
 				for (const c in sems) {
@@ -126,6 +127,15 @@ const selectCourse = () => {
 					if (divItem) {
 						divItem.classList.remove('prereq-success');
 						divItem.classList.remove('prereq-fail');
+						divItem.classList.remove('prereq-unavailable')
+						const headerRow = divItem.parentElement;
+						const tds = Array.from(headerRow?.querySelectorAll('td'));
+						for (const td in tds) {
+							const buttons = Array.from(tds[td]?.querySelectorAll('button'));
+							for (const button in buttons) {
+								buttons[button]?.classList.remove('disabled');
+							};
+						};
 					};
 				};
 				const nowTable = document.getElementById('mainTable');
@@ -159,6 +169,13 @@ const selectCourse = () => {
 					};
 				});
 
+				oppSems = oppSems.filter((semester) => {
+					if (sems.includes(semester)) {
+						return false;
+					};
+					return true;
+				});
+
 				// Getting all the previous courses for each of the sems available
 				let semsBeforeLists: { [key: SemId]: Course[] } = {}
 				for (const c in sems) {
@@ -176,6 +193,22 @@ const selectCourse = () => {
 							semDiv.classList.add('prereq-success');
 						} else {
 							semDiv.classList.add('prereq-fail');
+						};
+					};
+				};
+
+				// Making the rest of the divs unavailable
+				for (const c in oppSems) {
+					const semDiv = document.getElementById(oppSems[c]?.toString())
+					if (semDiv) {
+						semDiv.classList.add('prereq-unavailable');
+						const headerRow = semDiv.parentElement;
+						const tds = Array.from(headerRow?.querySelectorAll('td'));
+						for (const td in tds) {
+							const buttons = Array.from(tds[td]?.querySelectorAll('button'));
+							for (const button in buttons) {
+								buttons[button]?.classList.add('disabled');
+							};
 						};
 					};
 				};
