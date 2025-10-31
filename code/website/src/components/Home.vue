@@ -117,7 +117,7 @@ const navScroll = (event: Event) => {
 
 <template>
 	<!-- Top bars for plans  -->
-	<div id="header" class="container-fluid m-auto" >
+	<div id="header" class="container-fluid m-auto">
 		<div class="row purple-bg">
 			<div class="col-3">
 				<h1>UQ Planit</h1>
@@ -192,7 +192,11 @@ const navScroll = (event: Event) => {
 					v-if="programAPI.getCurrent()?.program_requirements?.[1]"
 					:index="1"
 				/>
-				<select v-else class="form-select also_styled" disabled></select>
+				<select
+					v-else
+					class="form-select also_styled"
+					disabled
+				></select>
 			</div>
 		</form>
 	</div>
@@ -201,8 +205,12 @@ const navScroll = (event: Event) => {
 		<FilterHeader />
 	</div>
 	<!-- Row -->
-	 <br>
-	<div class="container-fluid row p-0 m-0" id="parent-div"  v-if="programAPI.getCurrent()">
+	<br />
+	<div
+		class="container-fluid row p-0 m-0"
+		id="parent-div"
+		v-if="programAPI.getCurrent()"
+	>
 		<div class="col-3 panel">
 			<div
 				class="nav nav-tabs"
@@ -246,11 +254,11 @@ const navScroll = (event: Event) => {
 							role="search"
 							v-if="planAPI.getCurrent().topLevelReqsSelected[i]"
 						>-->
-							<!--
+						<!--
 							Hey Patrick, delete this once you have read it.
 							I have rigged up this search bar to always show, thanks!
 						 -->
-							<!--<input
+						<!--<input
 								type="search"
 								class="form-control"
 								placeholder="Search for a course"
@@ -259,48 +267,59 @@ const navScroll = (event: Event) => {
 							/>-->
 						<!--</form>-->
 						<!-- Hey caleb, please let me know how you would like me to do this, be it links, buttons, inputs, whatever. -->
-						<form 
-							role="search" 
-							v-if="planAPI.getCurrent().topLevelReqsSelected[i]" 
+						<form
+							role="search"
+							v-if="planAPI.getCurrent().topLevelReqsSelected[i]"
 							class="input-group"
-							>
-							<input type="search" 
-								class="form-control" 
-								placeholder="Search for a course" 
+						>
+							<input
+								type="search"
+								class="form-control"
+								placeholder="Search for a course"
 								aria-label="search"
+								autocomplete="off"
 								v-model="filters.search"
-							>
-							<input type="search"
+							/>
+							<input
+								type="search"
 								class="form-control d-none"
 								placeholder="null"
 								aria-label="search"
 								v-model="filters.placedCourse"
-							>
-							<button 
-								type="button" 
-								class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" 
-								data-bs-toggle="dropdown" 
+							/>
+							<button
+								type="button"
+								class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+								data-bs-toggle="dropdown"
 								aria-expanded="false"
 							>
-							<!-- DROPDOWN FILTERS -->
+								<!-- DROPDOWN FILTERS -->
 								<span class="visually-hidden">
 									Toggle Dropdown
 								</span>
 							</button>
 							<ul class="dropdown-menu" style="">
-								<li><a class="dropdown-item" href="#">
-									Sem 1
-								</a></li>
-								<li><a class="dropdown-item" href="#">
-									Sem 2
-								</a></li>
-								<li><a class="dropdown-item" href="#">
-									Sem 1 &amp; Sem 2
-								</a></li>
-								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="#">
-									Summer semester
-								</a></li>
+								<li>
+									<a class="dropdown-item" href="#">
+										Sem 1
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="#">
+										Sem 2
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="#">
+										Sem 1 &amp; Sem 2
+									</a>
+								</li>
+								<li><hr class="dropdown-divider" /></li>
+								<li>
+									<a class="dropdown-item" href="#">
+										Summer semester
+									</a>
+								</li>
 							</ul>
 						</form>
 						<ProgramReqs
@@ -321,34 +340,38 @@ const navScroll = (event: Event) => {
 		</div>
 	</div>
 	<!-- Onboarding -->
-	<div class="container-fluid d-flex align-items-center justify-content-center" style="min-height: 50vh; font-size: 150%;" v-else>
+	<div
+		class="container-fluid d-flex align-items-center justify-content-center"
+		style="min-height: 50vh; font-size: 150%"
+		v-else
+	>
 		<div>
 			<form action="#" @submit.prevent="() => {}">
 				<!-- <div class="input-group"> -->
-					<label class="form-label">Year</label>
-					<input
-						type="number"
-						class="form-control form-control-lg"
-						placeholder="2025"
-						disabled
-					/>
-					<label for="course-code" class="form-label">Course</label>
-					<select
-						class="form-select form-select-lg"
-						name="course-code"
-						id="course-code"
-						:value="planAPI.getCurrent().programId"
-						@input="courseChange"
+				<label class="form-label">Year</label>
+				<input
+					type="number"
+					class="form-control form-control-lg"
+					placeholder="2025"
+					disabled
+				/>
+				<label for="course-code" class="form-label">Course</label>
+				<select
+					class="form-select form-select-lg"
+					name="course-code"
+					id="course-code"
+					:value="planAPI.getCurrent().programId"
+					@input="courseChange"
+				>
+					<option value="" hidden>Please select a course</option>
+					<option
+						v-for="program in programs"
+						:key="program.id.id.toString()"
+						:value="program.id.id.toString()"
 					>
-						<option value="" hidden>Please select a course</option>
-						<option
-							v-for="program in programs"
-							:key="program.id.id.toString()"
-							:value="program.id.id.toString()"
-						>
-							{{ program.name }}
-						</option>
-					</select>
+						{{ program.name }}
+					</option>
+				</select>
 			</form>
 		</div>
 	</div>

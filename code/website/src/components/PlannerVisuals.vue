@@ -19,25 +19,27 @@ const placeCourse = (sem_id: SemId, id: number) => {
 			new RecordId("course", selectedState.value.toLowerCase()),
 		);
 		selectedState.value = undefined;
-		let sems = Object.keys(planAPI.getCurrent().planner)
+		let sems = Object.keys(planAPI.getCurrent().planner);
 		for (const c in sems) {
 			const divName = sems[c]?.toString();
 			const divItem = document.getElementById(divName);
 			if (divItem) {
-				divItem.classList.remove('prereq-success');
-				divItem.classList.remove('prereq-fail');
-				divItem.classList.remove('prereq-unavailable')
+				divItem.classList.remove("prereq-success");
+				divItem.classList.remove("prereq-fail");
+				divItem.classList.remove("prereq-unavailable");
 				const headerRow = divItem.parentElement;
-				const tds = Array.from(headerRow?.querySelectorAll('td'));
+				const tds = Array.from(headerRow?.querySelectorAll("td"));
 				for (const td in tds) {
-					const buttons = Array.from(tds[td]?.querySelectorAll('button'));
+					const buttons = Array.from(
+						tds[td]?.querySelectorAll("button"),
+					);
 					for (const button in buttons) {
-						buttons[button]?.classList.remove('disabled');
-					};
-				};
-			};
-		};
-	};
+						buttons[button]?.classList.remove("disabled");
+					}
+				}
+			}
+		}
+	}
 };
 const getPlan = (sem_id: SemId, id: number): SemPlan[number] => {
 	return plannerAPI(planAPI.getCurrent().planner).getIndex([sem_id, id]);
@@ -75,7 +77,8 @@ table {
 	width: 100%;
 }
 
-th, td {
+th,
+td {
 	border: none;
 }
 

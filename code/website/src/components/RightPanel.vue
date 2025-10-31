@@ -11,23 +11,23 @@ function panelNotVisible() {
 		return true;
 	}
 	return false;
-};
+}
 
 function getProgramReqName(id: string) {
 	for (const a in programRequirementAPI.getAll()) {
 		if (id === programRequirementAPI.getAll()[a].id.id) {
 			return programRequirementAPI.getAll()[a].short_name;
-		};
-	};
-};
+		}
+	}
+}
 
 function getFullProgram(id: string) {
 	for (const a in programRequirementAPI.getAll()) {
 		if (id === programRequirementAPI.getAll()[a].id.id) {
 			return programRequirementAPI.getAll()[a];
-		};
-	};
-};
+		}
+	}
+}
 </script>
 <template>
 	<Course
@@ -40,17 +40,33 @@ function getFullProgram(id: string) {
 	<template v-if="panelNotVisible()" class="rhs">
 		<div class="justify-content-center">
 			<h3>{{ programAPI.getCurrent()?.name }}</h3>
-			<br>
+			<br />
 			<p>Commencing {{ Object.keys(planAPI.getCurrent().planner)[0] }}</p>
 		</div>
-		<br>
+		<br />
 		<template v-if="planAPI.getCurrent().topLevelReqsSelected">
 			<h4>Program Requirements</h4>
 			<template v-for="req in planAPI.getCurrent().topLevelReqsSelected">
-				<h5>{{ getProgramReqName(req) }}: {{ cpAPI.getCourseAssignments()[req].achieved_cp }}/{{ cpAPI.getCourseAssignments()[req].required_cp }}</h5>
+				<h5>
+					{{ getProgramReqName(req) }}:
+					{{ cpAPI.getCourseAssignments()[req].achieved_cp }}/{{
+						cpAPI.getCourseAssignments()[req].required_cp
+					}}
+				</h5>
 				<template v-if="getFullProgram(req).sub_requirements">
-					<template v-for="subreq in getFullProgram(req).sub_requirements">
-						<p>{{ getProgramReqName(subreq.id) }}: {{ cpAPI.getCourseAssignments()[subreq.id].achieved_cp }}/{{ cpAPI.getCourseAssignments()[subreq.id].required_cp }}</p>
+					<template
+						v-for="subreq in getFullProgram(req).sub_requirements"
+					>
+						<p>
+							{{ getProgramReqName(subreq.id) }}:
+							{{
+								cpAPI.getCourseAssignments()[subreq.id]
+									.achieved_cp
+							}}/{{
+								cpAPI.getCourseAssignments()[subreq.id]
+									.required_cp
+							}}
+						</p>
 					</template>
 				</template>
 			</template>

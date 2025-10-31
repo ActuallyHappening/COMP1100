@@ -30,7 +30,10 @@ export const filters = ref(defaultFilter());
 // let removing = false;
 
 export const filterAPI = {
-	filterCourses(courses: Course[], coursesInPlan: string[]): {
+	filterCourses(
+		courses: Course[],
+		coursesInPlan: string[],
+	): {
 		courses: Course[];
 		message: string | undefined;
 	} {
