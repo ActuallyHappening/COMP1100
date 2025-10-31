@@ -4,6 +4,7 @@ import { selectedState } from "../apis/state";
 import { planAPI } from "../apis/plan";
 import { programAPI } from "../apis/db/program";
 import { programRequirementAPI } from "../apis/db/program_requirement";
+import { cpAPI } from "../apis/cpallocation";
 
 function panelNotVisible() {
 	if (!selectedState.value) {
