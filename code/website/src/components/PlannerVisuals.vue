@@ -25,9 +25,9 @@ const placeCourse = (sem_id: SemId, id: number) => {
 				const divName = sems[c]?.toString() + "-empty" + i;
 				const divItem = document.getElementById(divName);
 				if (divItem) {
-					// divItem.classList.remove('prereq-success'); // need fix
+					// divItem.classList.remove('prereq-success');
 					divItem.classList.remove('prereq-fail');
-					divItem.disabled = false;
+					// divItem.disabled = false;
 				};
 			};
 		};

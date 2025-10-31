@@ -127,7 +127,7 @@ const selectCourse = () => {
 						if (divItem) {
 							// divItem.classList.remove('prereq-success');
 							divItem.classList.remove('prereq-fail');
-							divItem.disabled = false;
+							// divItem.disabled = false;
 						};
 					};
 				};
@@ -178,7 +178,7 @@ const selectCourse = () => {
 						if (planDiv) {
 							if (!semsBeforeLists[sems[c]]) {
 								planDiv.classList.add('prereq-fail');
-								planDiv.disabled = true;
+								// planDiv.disabled = true;
 							};
 						};
 					};
