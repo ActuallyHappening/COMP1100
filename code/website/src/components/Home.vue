@@ -417,7 +417,7 @@ button.list-group-item {
 }
 
 .left-panel {
-	height: 91vh;
+	height: calc(100vh - 11rem);
 	overflow: auto;
 }
 
