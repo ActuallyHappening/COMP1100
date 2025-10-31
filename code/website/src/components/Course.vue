@@ -10,7 +10,7 @@ import {
 } from "../apis/db/course";
 import { selectedState } from "../apis/state";
 import { planAPI } from "../apis/plan";
-import { plannerAPI, type SemId, slots } from "../apis/planner";
+import { plannerAPI, type SemId } from "../apis/planner";
 import { RecordId } from "surrealdb";
 import { filters } from "../apis/filter"
 
@@ -121,14 +121,11 @@ const selectCourse = () => {
 
 				//Remove existing styling if applicable
 				for (const c in sems) {
-					for (let i in slots) {
-						const divName = sems[c]?.toString() + "-empty" + i;
-						const divItem = document.getElementById(divName);
-						if (divItem) {
-							// divItem.classList.remove('prereq-success');
-							divItem.classList.remove('prereq-fail');
-							// divItem.disabled = false;
-						};
+					const divName = sems[c]?.toString();
+					const divItem = document.getElementById(divName);
+					if (divItem) {
+						divItem.classList.remove('prereq-success');
+						divItem.classList.remove('prereq-fail');
 					};
 				};
 				const nowTable = document.getElementById('mainTable');
@@ -173,13 +170,12 @@ const selectCourse = () => {
 
 				// Updating classes of table th's to show available sems
 				for (const c in sems) {
-					for (let i in slots) {
-						const planDiv = document.getElementById(sems[c]?.toString() + "-empty" + i)
-						if (planDiv) {
-							if (!semsBeforeLists[sems[c]]) {
-								planDiv.classList.add('prereq-fail');
-								// planDiv.disabled = true;
-							};
+					const semDiv = document.getElementById(sems[c]?.toString())
+					if (semDiv) {
+						if (semsBeforeLists[sems[c]]) {
+							semDiv.classList.add('prereq-success');
+						} else {
+							semDiv.classList.add('prereq-fail');
 						};
 					};
 				};

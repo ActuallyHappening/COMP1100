@@ -21,14 +21,11 @@ const placeCourse = (sem_id: SemId, id: number) => {
 		selectedState.value = undefined;
 		let sems = Object.keys(planAPI.getCurrent().planner)
 		for (const c in sems) {
-			for (let i in slots) {
-				const divName = sems[c]?.toString() + "-empty" + i;
-				const divItem = document.getElementById(divName);
-				if (divItem) {
-					// divItem.classList.remove('prereq-success');
-					divItem.classList.remove('prereq-fail');
-					// divItem.disabled = false;
-				};
+			const divName = sems[c]?.toString();
+			const divItem = document.getElementById(divName);
+			if (divItem) {
+				divItem.classList.remove('prereq-success');
+				divItem.classList.remove('prereq-fail');
 			};
 		};
 	};
@@ -52,10 +49,9 @@ const getPlan = (sem_id: SemId, id: number): SemPlan[number] => {
 				<th scope="row" :id="`${sem_id}`">{{ sem_id }}</th>
 				<td v-for="(_name, id) in slots.length" :id="`${sem_id}-${id}`">
 					<button
-						class="btn btn-outline-secondary pt-5 pb-5"
+						class="btn btn-outline-primary pt-5 pb-5"
 						@click="placeCourse(sem_id, id)"
 						v-if="!getPlan(sem_id, id)"
-						:id="`${sem_id}-empty${id}`"
 					>
 						Place course here!
 					</button>
@@ -82,23 +78,19 @@ th {
 	text-align: right;
 }
 
-/* .prereq-success {
-	background: linear-gradient(to right, green, transparent); 
-	background-color: lightgray;
-	border-radius: 10px !important;
-} */
+.prereq-success {
+	background: linear-gradient(to right, green, transparent);
+}
 
 .prereq-fail {
-	/* background: linear-gradient(to right, red, transparent); */
-	background-color: var(--bs-secondary-bg);
-	color: 
+	background: linear-gradient(to right, red, transparent);
 }
 
 .incompatible-true {
 	background-color: red;
 }
 
-.btn-outline-secondary {
+.btn-outline-primary {
 	--bs-btn-color: black;
 	--bs-btn-border-color: #51247a;
 	--bs-btn-hover-bg: #51247a;
@@ -110,11 +102,7 @@ th {
 	width: 100%;
 }
 
-.btn-outline-secondary:focus {
+.btn-outline-primary:focus {
 	outline-color: #51247a;
-}
-
-.btn-outline-secondary:disabled {
-	--bs-btn-border-color: #51247a;
 }
 </style>
