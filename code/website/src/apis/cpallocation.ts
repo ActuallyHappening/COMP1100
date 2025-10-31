@@ -105,15 +105,22 @@ export const cpAPI = {
                 for (const b in flattenedSubReqs) {
                     if (flattenedSubReqs[b]?.required_cp) {
                         requiredCp += flattenedSubReqs[b].required_cp;
+                        const innerReqCp = flattenedSubReqs[b].required_cp;
+                        let innerAchCp = 0;
                         for (const course in flattenedCourses) {
                             for (const c in flattenedSubReqs[b].course_options) {
                                 if (Object.values(flattenedSubReqs[b].course_options[c]).some(innerDict => 
                                     innerDict.id && innerDict.id === flattenedCourses[course]?.id.id
                                 )) {
                                     achievedCp += flattenedCourses[course]?.cp;
+                                    innerAchCp += flattenedCourses[course]?.cp;
                                     arrayRemoval.push(course);
                                 };
                             };
+                        };
+                        levelReqs[flattenedSubReqs[b].id.id] = {
+                            'required_cp': innerReqCp,
+                            'achieved_cp': innerAchCp
                         };
                     };
                 };
@@ -137,7 +144,7 @@ export const cpAPI = {
             };
             InnerDict['required_cp'] = requiredCp;
             InnerDict['achieved_cp'] = achievedCp;
-            levelReqs[filteredReqs[a].id.id] = InnerDict
+            levelReqs[filteredReqs[a].id.id] = InnerDict;
         };
         return levelReqs
     }

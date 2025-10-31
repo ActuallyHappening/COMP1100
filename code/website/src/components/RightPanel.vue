@@ -20,6 +20,14 @@ function getProgramReqName(id: string) {
 		};
 	};
 };
+
+function getFullProgram(id: string) {
+	for (const a in programRequirementAPI.getAll()) {
+		if (id === programRequirementAPI.getAll()[a].id.id) {
+			return programRequirementAPI.getAll()[a];
+		};
+	};
+};
 </script>
 <template>
 	<Course
@@ -37,9 +45,14 @@ function getProgramReqName(id: string) {
 		</div>
 		<br>
 		<template v-if="planAPI.getCurrent().topLevelReqsSelected">
-			<h5>Program Requirements</h5>
+			<h4>Program Requirements</h4>
 			<template v-for="req in planAPI.getCurrent().topLevelReqsSelected">
-				<p>{{ getProgramReqName(req) }}: 0/0</p>
+				<h5>{{ getProgramReqName(req) }}: {{ cpAPI.getCourseAssignments()[req].achieved_cp }}/{{ cpAPI.getCourseAssignments()[req].required_cp }}</h5>
+				<template v-if="getFullProgram(req).sub_requirements">
+					<template v-for="subreq in getFullProgram(req).sub_requirements">
+						<p>{{ getProgramReqName(subreq.id) }}: {{ cpAPI.getCourseAssignments()[subreq.id].achieved_cp }}/{{ cpAPI.getCourseAssignments()[subreq.id].required_cp }}</p>
+					</template>
+				</template>
 			</template>
 		</template>
 	</template>
