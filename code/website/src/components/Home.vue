@@ -201,8 +201,9 @@ const navScroll = (event: Event) => {
 		<FilterHeader />
 	</div>
 	<!-- Row -->
+	 <br>
 	<div class="container-fluid row p-0 m-0" id="parent-div"  v-if="programAPI.getCurrent()">
-		<div class="col-3 left-panel">
+		<div class="col-3 panel">
 			<div
 				class="nav nav-tabs"
 				id="nav-tab"
@@ -312,10 +313,10 @@ const navScroll = (event: Event) => {
 				</template>
 			</div>
 		</div>
-		<div class="col-7" id="plan">
+		<div class="col-7 panel" id="plan">
 			<PlannerVisuals />
 		</div>
-		<div class="col-2">
+		<div class="col-2 panel">
 			<RightPanel />
 		</div>
 	</div>
@@ -416,7 +417,7 @@ button.list-group-item {
 	flex-grow: 1;
 }
 
-.left-panel {
+.panel {
 	height: calc(100vh - 11rem);
 	overflow: auto;
 }
