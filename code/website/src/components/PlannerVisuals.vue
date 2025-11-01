@@ -12,7 +12,6 @@ import {
 } from "../apis/planner";
 
 const placeCourse = (sem_id: SemId, id: number) => {
-	console.log('here2')
 	if (selectedState.value) {
 		const planState = planAPI.getCurrent();
 		plannerAPI(planState.planner).assignNewCourse(
