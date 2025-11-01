@@ -13,6 +13,8 @@ import { planAPI } from "../apis/plan";
 import { plannerAPI, type SemId } from "../apis/planner";
 import { RecordId } from "surrealdb";
 import { filters } from "../apis/filter";
+import { cpAPI } from "../apis/cpallocation";
+import { programRequirementAPI } from "../apis/db/program_requirement";
 
 const props = defineProps({
 	code: {
@@ -117,12 +119,12 @@ const selectCourse = () => {
 
 				//Code to highlight th's for prerequisites. May need to be moved
 				//Code to find eligible semesters
-				let sems = Object.keys(planAPI.getCurrent().planner);
-				let oppSems = sems;
+				let semss = Object.keys(planAPI.getCurrent().planner);
+				let oppSems = semss;
 
 				//Remove existing styling if applicable
-				for (const c in sems) {
-					const divName = sems[c]?.toString();
+				for (const c in semss) {
+					const divName = semss[c]?.toString();
 					const divItem = document.getElementById(divName);
 					if (divItem) {
 						divItem.classList.remove("prereq-success");
@@ -152,127 +154,160 @@ const selectCourse = () => {
 						el.classList.remove(classNameToRemove),
 					);
 				}
-
-				//Filter out to only required semsters
-				sems = sems.filter((semester) => {
-					if (semester.includes("Sem 1")) {
-						if (course.value.sem_1) {
-							return true;
-						} else {
-							return false;
-						}
-					} else if (semester.includes("Sem 2")) {
-						if (course.value.sem_2) {
-							return true;
-						} else {
-							return false;
-						}
-					} else {
-						if (course.value.sem_summer) {
-							return true;
-						} else {
-							return false;
-						}
+				let in_planner = false;
+				for (const c in planAPI.getCurrent().planner) {
+					if ((planAPI.getCurrent().planner[c].includes(course.value.id.id.toString().toLowerCase()))) {
+						in_planner = true;
 					}
-				});
-
-				oppSems = oppSems.filter((semester) => {
-					if (sems.includes(semester)) {
-						return false;
-					}
-					return true;
-				});
-
-				// Getting all the previous courses for each of the sems available
-				let semsBeforeLists: { [key: SemId]: Course[] } = {};
-				for (const c in sems) {
-					semsBeforeLists[sems[c]] = plannerAPI(
-						planAPI.getCurrent().planner,
-					).prereqCheck({
-						previousCourses: plannerAPI(
-							planAPI.getCurrent().planner,
-						).previousCoursesTo(sems[c], course.value),
-						thisCourse: course.value,
+				}
+				if (!in_planner) {
+					//Filter out to only required semsters
+					semss = semss.filter((semester) => {
+						if (semester.includes("Sem 1")) {
+							if (course.value.sem_1) {
+								return true;
+							} else {
+								return false;
+							}
+						} else if (semester.includes("Sem 2")) {
+							if (course.value.sem_2) {
+								return true;
+							} else {
+								return false;
+							}
+						} else {
+							if (course.value.sem_summer) {
+								return true;
+							} else {
+								return false;
+							}
+						}
 					});
-				}
 
-				// Updating classes of table th's to show available sems
-				for (const c in sems) {
-					const semDiv = document.getElementById(sems[c]?.toString());
-					if (semDiv) {
-						if (semsBeforeLists[sems[c]]) {
-							semDiv.classList.add("prereq-success");
-						} else {
-							semDiv.classList.add("prereq-fail");
+					oppSems = oppSems.filter((semester) => {
+						if (semss.includes(semester)) {
+							return false;
 						}
-					}
-				}
+						return true;
+					});
 
-				// Making the rest of the divs unavailable
-				for (const c in oppSems) {
-					const semDiv = document.getElementById(
-						oppSems[c]?.toString(),
-					);
-					if (semDiv) {
-						semDiv.classList.add("prereq-unavailable");
-						const headerRow = semDiv.parentElement;
-						const tds = Array.from(
-							headerRow?.querySelectorAll("td"),
-						);
-						for (const td in tds) {
-							const buttons = Array.from(
-								tds[td]?.querySelectorAll("button"),
-							);
-							for (const button in buttons) {
-								buttons[button]?.classList.add("disabled");
+					// Getting all the previous courses for each of the sems available
+					let semsBeforeLists: { [key: SemId]: Course[] } = {};
+					for (const c in semss) {
+						semsBeforeLists[semss[c]] = plannerAPI(
+							planAPI.getCurrent().planner,
+						).prereqCheck({
+							previousCourses: plannerAPI(
+								planAPI.getCurrent().planner,
+							).previousCoursesTo(semss[c], course.value),
+							thisCourse: course.value,
+						});
+					}
+
+					// Updating classes of table th's to show available sems
+					for (const c in semss) {
+						const semDiv = document.getElementById(semss[c]?.toString());
+						if (semDiv) {
+							if (semsBeforeLists[semss[c]]) {
+								semDiv.classList.add("prereq-success");
+							} else {
+								semDiv.classList.add("prereq-fail");
 							}
 						}
 					}
-				}
 
-				// Demonstrating that a course is incompatible
-
-				// Getting all courses in the plan so far
-				let allCourses: string[] = [];
-				const plan = planAPI.getCurrent().planner;
-				for (const c in plan) {
-					for (const b in plan[c]) {
-						if (plan[c][b]) {
-							allCourses.push(plan[c][b]).toString();
-						}
-					}
-				}
-
-				//Filtering out to only get incompatible courses
-				allCourses = allCourses.filter((c) => {
-					for (const i in course.value.incompatible) {
-						const j = course.value.incompatible[i]?.id.toString();
-						if (c === j) {
-							return true;
-						}
-					}
-					return false;
-				});
-
-				//Get all of the appropiate id's, apply class
-				for (const a in allCourses) {
-					const existingTable = document.getElementById("mainTable");
-					console.log(allCourses[a]);
-					if (existingTable) {
-						const existingIncompatible =
-							existingTable.querySelectorAll<HTMLElement>(
-								`[id*="${allCourses[a]?.toUpperCase()}"]`,
+					// Making the rest of the divs unavailable
+					for (const c in oppSems) {
+						const semDiv = document.getElementById(
+							oppSems[c]?.toString(),
+						);
+						if (semDiv) {
+							semDiv.classList.add("prereq-unavailable");
+							const headerRow = semDiv.parentElement;
+							const tds = Array.from(
+								headerRow?.querySelectorAll("td"),
 							);
-						existingIncompatible.forEach((el) => {
-							console.log(el);
-							el.classList.add("incompatible-true");
-						});
+							for (const td in tds) {
+								const buttons = Array.from(
+									tds[td]?.querySelectorAll("button"),
+								);
+								for (const button in buttons) {
+									buttons[button]?.classList.add("disabled");
+								}
+							}
+						}
 					}
-				}
+
+					// Demonstrating that a course is incompatible
+
+					// Getting all courses in the plan so far
+					let allCourses: string[] = [];
+					const plan = planAPI.getCurrent().planner;
+					for (const c in plan) {
+						for (const b in plan[c]) {
+							if (plan[c][b]) {
+								allCourses.push(plan[c][b]).toString();
+							}
+						}
+					}
+
+					//Filtering out to only get incompatible courses
+					allCourses = allCourses.filter((c) => {
+						for (const i in course.value.incompatible) {
+							const j = course.value.incompatible[i]?.id.toString();
+							if (c === j) {
+								return true;
+							}
+						}
+						return false;
+					});
+
+					//Get all of the appropiate id's, apply class
+					for (const a in allCourses) {
+						const existingTable = document.getElementById("mainTable");
+						console.log(allCourses[a]);
+						if (existingTable) {
+							const existingIncompatible =
+								existingTable.querySelectorAll<HTMLElement>(
+									`[id*="${allCourses[a]?.toUpperCase()}"]`,
+								);
+							existingIncompatible.forEach((el) => {
+								console.log(el);
+								el.classList.add("incompatible-true");
+							});
+						}
+					}
+				}		
 			}
 			break;
 		case "small":
-			selectedState.value = course.value.id.id.toString();
+			for (const a in planAPI.getCurrent().planner) {
+				if (planAPI.getCurrent().planner[a].includes(course.value.id.id.toString())) {
+					selectedState.value = course.value.id.id.toString();
+				}
+			}
+			let semss = Object.keys(planAPI.getCurrent().planner);
+			for (const c in semss) {
+				const divName = semss[c]?.toString();
+				const divItem = document.getElementById(divName);
+				if (divItem) {
+					divItem.classList.remove("prereq-success");
+					divItem.classList.remove("prereq-fail");
+					divItem.classList.remove("prereq-unavailable");
+					const headerRow = divItem.parentElement;
+					const tds = Array.from(
+						headerRow?.querySelectorAll("td"),
+					);
+					for (const td in tds) {
+						const buttons = Array.from(
+							tds[td]?.querySelectorAll("button"),
+						);
+						for (const button in buttons) {
+							buttons[button]?.classList.remove("disabled");
+						}
+					}
+				}
+			}
 	}
 };
 const previousCourses = computed((): Course[] | undefined => {
@@ -343,6 +378,27 @@ const close = () => {
 	planner.removeCourse(course.value.id);
 	// Deleting a course selects it, CY Interview 1 mentinos this isn't desired behaviour
 	selectedState.value = undefined;
+	for (const c in sems) {
+		const divName = sems[c]?.toString();
+		const divItem = document.getElementById(divName);
+		if (divItem) {
+			divItem.classList.remove("prereq-success");
+			divItem.classList.remove("prereq-fail");
+			divItem.classList.remove("prereq-unavailable");
+			const headerRow = divItem.parentElement;
+			const tds = Array.from(
+				headerRow?.querySelectorAll("td"),
+			);
+			for (const td in tds) {
+				const buttons = Array.from(
+					tds[td]?.querySelectorAll("button"),
+				);
+				for (const button in buttons) {
+					buttons[button]?.classList.remove("disabled");
+				}
+			}
+		}
+	}
 };
 const deselect = () => {
 	selectedState.value = undefined;
@@ -355,6 +411,19 @@ const deselect = () => {
 		if (divItem) {
 			divItem.classList.remove("prereq-success");
 			divItem.classList.remove("prereq-fail");
+			divItem.classList.remove("prereq-unavailable");
+			const headerRow = divItem.parentElement;
+			const tds = Array.from(
+				headerRow?.querySelectorAll("td"),
+			);
+			for (const td in tds) {
+				const buttons = Array.from(
+					tds[td]?.querySelectorAll("button"),
+				);
+				for (const button in buttons) {
+					buttons[button]?.classList.remove("disabled");
+				}
+			}
 		}
 	}
 	const nowTable = document.getElementById("mainTable");
@@ -365,6 +434,23 @@ const deselect = () => {
 		);
 		elements.forEach((el) => el.classList.remove(classNameToRemove));
 	}
+};
+
+function allocated(course: Course) {
+	const allCp = cpAPI.getCourseAssignments()
+	for (const a in allCp) {
+		for (const b in allCp[a].courses) {
+			if (allCp[a].courses[b].id.id === course.id.id) {
+				for (const b in programRequirementAPI.getAll()) {
+					if (programRequirementAPI.getAll()[b].id.id === a) {
+						return programRequirementAPI.getAll()[b].short_name.toLowerCase()
+					}
+				}
+				return false;
+			}
+		}
+	}
+	return false;
 };
 </script>
 
@@ -494,7 +580,14 @@ const deselect = () => {
 					</li>
 					<li>
 						<h5><strong>Credits:</strong></h5>
-						<p>This course counts _ towards _.</p>
+						<template v-if="allocated(course)">
+							<p>This course counts {{ course.cp }} points towards {{ allocated(course) }}.</p>
+						</template>
+						<template v-if="!(allocated(course))">
+							<template v-if="cpAPI.getHighestOrderLevel(course)">
+								<p>This course counts {{ course.cp }} points towards {{ cpAPI.getHighestOrderLevel(course).short_name.toLowerCase() }}.</p>
+							</template>
+						</template>
 					</li>
 				</ul>
 			</template>
