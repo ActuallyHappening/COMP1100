@@ -106,6 +106,7 @@ export const cpAPI = {
 			// Getting info from subrequirements
 			let requiredCp = 0;
 			let achievedCp = 0;
+			let courses_included: Course[] = []
 			let arrayRemoval: number[] = [];
 			if (filteredReqs[a].sub_requirements) {
 				const flattenedSubReqs = flattenSubReqs(filteredReqs[a]);
@@ -126,6 +127,7 @@ export const cpAPI = {
 									achievedCp += flattenedCourses[course]?.cp;
 									innerAchCp += flattenedCourses[course]?.cp;
 									arrayRemoval.push(course);
+									courses_included.push(flattenedCourses[course]);
 								}
 							}
 						}
@@ -148,6 +150,7 @@ export const cpAPI = {
 						) {
 							achievedCp += flattenedCourses[course]?.cp;
 							arrayRemoval.push(course);
+							courses_included.push(flattenedCourses[course]);
 						}
 					}
 				}
@@ -159,8 +162,76 @@ export const cpAPI = {
 			}
 			InnerDict["required_cp"] = requiredCp;
 			InnerDict["achieved_cp"] = achievedCp;
+			InnerDict["courses"] = courses_included;
 			levelReqs[filteredReqs[a].id.id] = InnerDict;
 		}
 		return levelReqs;
 	},
+	getHighestOrderLevel(course: Course) {
+		let allCourseReqs = programRequirementAPI.getAll();
+		let program = programAPI.getCurrent()?.program_requirements;
+		let flattenedProgram = flattenProgram(program);
+		let currentReqs = planAPI.getCurrent().topLevelReqsSelected;
+		flattenedProgram = flattenedProgram.filter((req) => {
+			for (const a in currentReqs) {
+				if (currentReqs[a] === req.id) {
+					return true;
+				}
+			}
+			return false;
+		});
+		allCourseReqs = allCourseReqs?.filter((req) => {
+			for (const a in flattenedProgram) {
+				if (req.id.id === flattenedProgram[a].id) {
+					return true;
+				}
+			}
+			return false;
+		});
+		let filteredReqs = {};
+		let counter = 0;
+		for (const a in priorities) {
+			for (const b in allCourseReqs) {
+				if (priorities[a].includes(allCourseReqs[b].type)) {
+					filteredReqs[counter] = allCourseReqs[b];
+					counter += 1;
+				}
+			}
+		}
+		const currentCondition = this.getCourseAssignments();
+		console.log(currentCondition)
+		for (const a in filteredReqs) {
+			if (((currentCondition[filteredReqs[a].id.id].required_cp > 
+				currentCondition[filteredReqs[a].id.id].achieved_cp) && 
+				!(currentCondition[filteredReqs[a].id.id].required_cp === 0)) || 
+				(currentCondition[filteredReqs[a].id.id].required_cp === 0)) {
+				if (filteredReqs[a].sub_requirements) {
+					const flattenedSubReqs = flattenSubReqs(filteredReqs[a]);
+					for (const b in flattenedSubReqs) {
+						if (flattenedSubReqs[b]?.course_options) {
+							for (const c in flattenedSubReqs[b].course_options){
+								for (const d in flattenedSubReqs[b].course_options[c]) {
+									if (flattenedSubReqs[b].course_options[c][d].id === (course.id.id)) {
+										return filteredReqs[a];
+									}
+								}
+							}
+						}
+					}
+				} else {
+					console.log('here2')
+					for (const b in filteredReqs[a].course_options) {
+						console.log(filteredReqs[a].course_options[b])
+						console.log(course.id.id)
+						for (const c in filteredReqs[a].course_options[b]) {
+							if (filteredReqs[a].course_options[b][c].id === (course.id.id)) {
+								return filteredReqs[a];
+							}
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
 };
