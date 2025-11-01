@@ -14,3 +14,4 @@ backup_table "course"
 backup_table "program"
 
 git commit -am `chore(backup)`
+git push
