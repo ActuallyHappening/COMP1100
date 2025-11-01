@@ -22,7 +22,14 @@ impl CourseCode {
 pub async fn scrape_course(course: CourseCode) -> color_eyre::Result<Course> {
 	let url = course.url();
 
-	let res = reqwest::get(url).await?.text().await?;
+	let client = reqwest::Client::new();
+	let res = client
+		.get(url)
+		.header("Accept", "text/html")
+		.send()
+		.await?
+		.text()
+		.await?;
 
 	{
 		// save to file

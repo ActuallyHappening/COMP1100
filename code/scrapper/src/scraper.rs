@@ -63,7 +63,14 @@ pub async fn append_relevant_courses(
 ) -> color_eyre::Result<()> {
 	let url = num.url();
 	info!("Searching a url: {}", url);
-	let res = reqwest::get(url).await?.text().await?;
+	let client = reqwest::Client::new();
+	let res = client
+		.get(url)
+		.header("Accept", "text/html")
+		.send()
+		.await?
+		.text()
+		.await?;
 
 	{
 		// save to file
