@@ -48,6 +48,10 @@ function getFullProgram(id: string) {
 			<h4>Program Requirements</h4>
 			<template v-for="req in planAPI.getCurrent().topLevelReqsSelected">
 				<h5>
+					<i class="fa-solid fa-triangle-exclamation" 
+						v-if="cpAPI.getCourseAssignments()[req].achieved_cp < 
+							cpAPI.getCourseAssignments()[req].required_cp"
+					></i>
 					{{ getProgramReqName(req) }}:
 					{{ cpAPI.getCourseAssignments()[req].achieved_cp }}/{{
 						cpAPI.getCourseAssignments()[req].required_cp
@@ -58,6 +62,10 @@ function getFullProgram(id: string) {
 						v-for="subreq in getFullProgram(req).sub_requirements"
 					>
 						<p>
+							<i class="fa-solid fa-triangle-exclamation" 
+								v-if="cpAPI.getCourseAssignments()[req].achieved_cp < 
+									cpAPI.getCourseAssignments()[req].required_cp"
+							></i>
 							{{ getProgramReqName(subreq.id) }}:
 							{{
 								cpAPI.getCourseAssignments()[subreq.id]
@@ -76,5 +84,8 @@ function getFullProgram(id: string) {
 <style>
 button.rhs:hover {
 	background-color: inherit;
+}
+.fa-triangle-exclamation {
+	color:goldenrod;
 }
 </style>
