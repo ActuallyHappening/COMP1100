@@ -124,10 +124,12 @@ export const cpAPI = {
 											innerDict.id === flattenedCourses[course]?.id.id,
 									)
 								) {
-									achievedCp += flattenedCourses[course]?.cp;
-									innerAchCp += flattenedCourses[course]?.cp;
-									arrayRemoval.push(course);
-									courses_included.push(flattenedCourses[course]);
+									if (innerReqCp > innerAchCp) {
+										achievedCp += flattenedCourses[course]?.cp;
+										innerAchCp += flattenedCourses[course]?.cp;
+										arrayRemoval.push(course);
+										courses_included.push(flattenedCourses[course]);
+									}
 								}
 							}
 						}
@@ -148,16 +150,22 @@ export const cpAPI = {
 									innerDict.id === flattenedCourses[course]?.id.id,
 							)
 						) {
-							achievedCp += flattenedCourses[course]?.cp;
-							arrayRemoval.push(course);
-							courses_included.push(flattenedCourses[course]);
+							if ((requiredCp > achievedCp) && !(requiredCp === 0)) {
+								achievedCp += flattenedCourses[course]?.cp;
+								arrayRemoval.push(course);
+								courses_included.push(flattenedCourses[course]);
+							} else if (requiredCp === 0) {
+								achievedCp += flattenedCourses[course]?.cp;
+								arrayRemoval.push(course);
+								courses_included.push(flattenedCourses[course]);
+							}
 						}
 					}
 				}
 			}
 			if (arrayRemoval) {
 				for (const a in arrayRemoval) {
-					flattenedCourses.splice(arrayRemoval[a], 1);
+					flattenedCourses.splice(arrayRemoval[arrayRemoval.length -  (a + 1)], 1);
 				}
 			}
 			InnerDict["required_cp"] = requiredCp;
