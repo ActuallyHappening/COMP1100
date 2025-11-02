@@ -28,6 +28,11 @@ function getFullProgram(id: string) {
 		}
 	}
 }
+
+for (const req in cpAPI.getCourseAssignments()) {
+	console.log(cpAPI.getCourseAssignments()[req].achieved_cp)
+	console.log(cpAPI.getCourseAssignments()[req].required_cp)
+}
 </script>
 <template>
 	<Course
@@ -60,11 +65,11 @@ function getFullProgram(id: string) {
 				<template v-if="getFullProgram(req).sub_requirements">
 					<template
 						v-for="subreq in getFullProgram(req).sub_requirements"
-					>
+					>	
 						<p>
 							<i class="fa-solid fa-triangle-exclamation" 
-								v-if="cpAPI.getCourseAssignments()[req].achieved_cp < 
-									cpAPI.getCourseAssignments()[req].required_cp"
+								v-if="cpAPI.getCourseAssignments()[subreq.id].achieved_cp < 
+									cpAPI.getCourseAssignments()[subreq.id].required_cp"
 							></i>
 							{{ getProgramReqName(subreq.id) }}:
 							{{

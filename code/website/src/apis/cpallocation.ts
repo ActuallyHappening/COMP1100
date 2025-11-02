@@ -207,7 +207,6 @@ export const cpAPI = {
 			}
 		}
 		const currentCondition = this.getCourseAssignments();
-		console.log(currentCondition)
 		for (const a in filteredReqs) {
 			if (((currentCondition[filteredReqs[a].id.id].required_cp > 
 				currentCondition[filteredReqs[a].id.id].achieved_cp) && 
@@ -217,17 +216,21 @@ export const cpAPI = {
 					const flattenedSubReqs = flattenSubReqs(filteredReqs[a]);
 					for (const b in flattenedSubReqs) {
 						if (flattenedSubReqs[b]?.course_options) {
-							for (const c in flattenedSubReqs[b].course_options){
-								for (const d in flattenedSubReqs[b].course_options[c]) {
-									if (flattenedSubReqs[b].course_options[c][d].id === (course.id.id)) {
-										return filteredReqs[a];
+							if (((flattenedSubReqs[b].required_cp > 0 &&
+								currentCondition[flattenedSubReqs[b].id.id].achieved_cp) &&
+								!(currentCondition[flattenedSubReqs[b].id.id].required_cp === 0)) ||
+								(currentCondition[flattenedSubReqs[b].id.id].required_cp === 0)) {
+								for (const c in flattenedSubReqs[b].course_options){
+									for (const d in flattenedSubReqs[b].course_options[c]) {
+										if (flattenedSubReqs[b].course_options[c][d].id === (course.id.id)) {
+											return filteredReqs[a];
+										}
 									}
 								}
 							}
 						}
 					}
 				} else {
-					console.log('here2')
 					for (const b in filteredReqs[a].course_options) {
 						console.log(filteredReqs[a].course_options[b])
 						console.log(course.id.id)
