@@ -28,6 +28,11 @@ function getFullProgram(id: string) {
 		}
 	}
 }
+
+for (const req in cpAPI.getCourseAssignments()[0]) {
+	console.log(cpAPI.getCourseAssignments()[0][req].achieved_cp)
+	console.log(cpAPI.getCourseAssignments()[0][req].required_cp)
+}
 </script>
 <template>
 	<Course
@@ -49,35 +54,39 @@ function getFullProgram(id: string) {
 			<template v-for="req in planAPI.getCurrent().topLevelReqsSelected">
 				<h5>
 					<i class="fa-solid fa-triangle-exclamation" 
-						v-if="cpAPI.getCourseAssignments()[req].achieved_cp < 
-							cpAPI.getCourseAssignments()[req].required_cp"
+						v-if="cpAPI.getCourseAssignments()[0][req].achieved_cp < 
+							cpAPI.getCourseAssignments()[0][req].required_cp"
 					></i>
 					{{ getProgramReqName(req) }}:
-					{{ cpAPI.getCourseAssignments()[req].achieved_cp }}/{{
-						cpAPI.getCourseAssignments()[req].required_cp
+					{{ cpAPI.getCourseAssignments()[0][req].achieved_cp }}/{{
+						cpAPI.getCourseAssignments()[0][req].required_cp
 					}}
 				</h5>
 				<template v-if="getFullProgram(req).sub_requirements">
 					<template
 						v-for="subreq in getFullProgram(req).sub_requirements"
-					>
+					>	
 						<p>
 							<i class="fa-solid fa-triangle-exclamation" 
-								v-if="cpAPI.getCourseAssignments()[req].achieved_cp < 
-									cpAPI.getCourseAssignments()[req].required_cp"
+								v-if="cpAPI.getCourseAssignments()[0][subreq.id].achieved_cp < 
+									cpAPI.getCourseAssignments()[0][subreq.id].required_cp"
 							></i>
 							{{ getProgramReqName(subreq.id) }}:
 							{{
-								cpAPI.getCourseAssignments()[subreq.id]
+								cpAPI.getCourseAssignments()[0][subreq.id]
 									.achieved_cp
 							}}/{{
-								cpAPI.getCourseAssignments()[subreq.id]
+								cpAPI.getCourseAssignments()[0][subreq.id]
 									.required_cp
 							}}
 						</p>
 					</template>
 				</template>
 			</template>
+		</template>
+		<br>
+		<template v-if="cpAPI.getCourseAssignments()[1] || cpAPI.getCourseAssignments()[1] === 0">
+			<h5>Total points: {{ cpAPI.getCourseAssignments()[1] }}/{{ programAPI.getCurrent().required_cp }}</h5>
 		</template>
 	</template>
 </template>
