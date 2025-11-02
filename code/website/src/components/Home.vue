@@ -157,6 +157,83 @@ const navScroll = (event: Event) => {
 		</div>
 	</div>
 	<!-- Top bar selections -->
+	<div class="w-100 container-fluid purple-bg ps-3 pe-3">
+	<form action="#" @submit.prevent="() => {}">
+		<div class="row">
+			<div class="col-md-2 col">
+				<div class="col">
+					<div class="row">
+						<label 
+							class="col-form-label-lg col-form-label col-auto"
+						>Year</label>
+						<div class="col">
+							<input 
+								type="number" 
+								placeholder="2025" 
+								disabled 
+								class="form-control-lg form-control"
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-5 col">
+				<div class="col">
+					<div class="row">
+						<label 
+							class="col-form-label-lg col-form-label col-auto"
+						>Course</label>
+						<div class="col">
+							<select 
+								name="course-code" 
+								id="course-code" 
+								class="form-select-lg form-select"
+								:value="planAPI.getCurrent().programId"
+								@input="courseChange"
+							>
+								<option value="" hidden>
+									Please select a course</option>
+								<option
+									v-for="program in programs"
+									:key="program.id.id.toString()"
+									:value="program.id.id.toString()"
+								>
+									{{ program.name }}
+								</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-5 col">
+				<div class="col">
+					<div class="row">
+						<label 
+							class="col-form-label-lg col-form-label col-auto"
+						>Major</label>
+						<div class="col">
+							<!-- Hardcoding the first index as the major
+							Trakcking issue: https://github.com/COMP1100-7110-2025-s2/Mon_9am_Team_10/issues/17
+							-->
+							<ProgramReq
+								v-if="programAPI.getCurrent()
+									?.program_requirements?.[1]"
+								:index="1"
+							/>
+							<select
+								v-else
+								class="form-select form-select-lg"
+								disabled
+							></select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	</div>
+	
+	<!--
 	<div class="container-fluid p-0">
 		<form action="#" @submit.prevent="() => {}">
 			<div class="input-group input-group-lg">
@@ -185,9 +262,7 @@ const navScroll = (event: Event) => {
 					</option>
 				</select>
 				<span class="input-group-text">Major</span>
-				<!-- Hardcoding the first index as the major
-				Trakcking issue: https://github.com/COMP1100-7110-2025-s2/Mon_9am_Team_10/issues/17
-				-->
+				
 				<ProgramReq
 					v-if="programAPI.getCurrent()?.program_requirements?.[1]"
 					:index="1"
@@ -200,6 +275,7 @@ const navScroll = (event: Event) => {
 			</div>
 		</form>
 	</div>
+	-->
 	<!-- Under top bar bar -->
 	<div class="container-fluid p-0" v-if="programAPI.getCurrent()">
 		<FilterHeader />
@@ -441,7 +517,7 @@ button.list-group-item {
 }
 
 .panel {
-	height: calc(100vh - 11rem);
+	height: calc(100vh - 12.5rem);
 	overflow: auto;
 }
 
