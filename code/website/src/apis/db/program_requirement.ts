@@ -47,6 +47,7 @@ export const requirement_types_to_header = (
 export type ProgramRequirement = {
 	id: RecordId<string>;
 	name: string;
+	cp: Array<Record<string, number>> | undefined;
 	type: RequirementType;
 	short_name: string | undefined;
 	required_cp: number | undefined;

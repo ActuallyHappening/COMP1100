@@ -28,11 +28,6 @@ function getFullProgram(id: string) {
 		}
 	}
 }
-
-for (const req in cpAPI.getCourseAssignments()[0]) {
-	console.log(cpAPI.getCourseAssignments()[0][req].achieved_cp)
-	console.log(cpAPI.getCourseAssignments()[0][req].required_cp)
-}
 </script>
 <template>
 	<Course
@@ -60,7 +55,7 @@ for (const req in cpAPI.getCourseAssignments()[0]) {
 					{{ getProgramReqName(req) }}:
 					{{ cpAPI.getCourseAssignments()[0][req].achieved_cp }}/{{
 						cpAPI.getCourseAssignments()[0][req].required_cp
-					}}
+					}} (Max {{ cpAPI.getCourseAssignments()[0][req].max_cp }})
 				</h5>
 				<template v-if="getFullProgram(req).sub_requirements">
 					<template
@@ -78,7 +73,7 @@ for (const req in cpAPI.getCourseAssignments()[0]) {
 							}}/{{
 								cpAPI.getCourseAssignments()[0][subreq.id]
 									.required_cp
-							}}
+							}} (Max {{ cpAPI.getCourseAssignments()[0][subreq.id].max_cp }})
 						</p>
 					</template>
 				</template>
