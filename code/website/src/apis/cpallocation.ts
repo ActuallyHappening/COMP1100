@@ -101,6 +101,7 @@ export const cpAPI = {
 			}
 		}
 		let levelReqs = {};
+		let totalCp = 0;
 		for (const a in filteredReqs) {
 			let InnerDict = {};
 			// Getting info from subrequirements
@@ -168,12 +169,13 @@ export const cpAPI = {
 					flattenedCourses.splice(arrayRemoval[arrayRemoval.length -  (a + 1)], 1);
 				}
 			}
+			totalCp += achievedCp
 			InnerDict["required_cp"] = requiredCp;
 			InnerDict["achieved_cp"] = achievedCp;
 			InnerDict["courses"] = courses_included;
 			levelReqs[filteredReqs[a].id.id] = InnerDict;
 		}
-		return levelReqs;
+		return [levelReqs, totalCp];
 	},
 	getHighestOrderLevel(course: Course) {
 		let allCourseReqs = programRequirementAPI.getAll();
@@ -206,7 +208,7 @@ export const cpAPI = {
 				}
 			}
 		}
-		const currentCondition = this.getCourseAssignments();
+		const currentCondition = this.getCourseAssignments()[0];
 		for (const a in filteredReqs) {
 			if (((currentCondition[filteredReqs[a].id.id].required_cp > 
 				currentCondition[filteredReqs[a].id.id].achieved_cp) && 
