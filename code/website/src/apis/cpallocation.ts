@@ -133,7 +133,6 @@ export const cpAPI = {
 					if (flattenedSubReqs[b]?.cp['required']) {
 						const innerReqCp = flattenedSubReqs[b].cp['required'];
 						const innerMaxCp = flattenedSubReqs[b].cp['max'];
-						console.log(innerMaxCp)
 						let innerAchCp = 0;
 						for (const course in flattenedCourses) {
 							for (const c in flattenedSubReqs[b].course_options) {
@@ -215,7 +214,6 @@ export const cpAPI = {
 					const reqTwoSliced = reqtwo.split('-')
 					if (req.includes(reqtwo) && reqSliced.length === (reqTwoSliced.length + 1)) {
 						levelReqs[req].max_cp -= extraCp;
-						console.log(req)
 					}
 				}
 			}
@@ -240,16 +238,12 @@ export const cpAPI = {
 							}
 						}
 					}
-					//console.log(adjuctedCp)
-					//console.log(levelReqs[flattenedSubReqs[reqtwo]?.id.id].max_cp)
 					if (adjuctedCp < levelReqs[flattenedSubReqs[reqtwo]?.id.id].max_cp) {
-						//console.log(levelReqs[flattenedSubReqs[reqtwo]?.id.id].max_cp)
 						levelReqs[flattenedSubReqs[reqtwo]?.id.id].max_cp = adjuctedCp
 					}
 				}
 			}
 		}
-		console.log(levelReqs)
 		for (const req in levelReqs) {
 			for (const reqtwo in scalable) {
 				if (req.includes(reqtwo)) {
