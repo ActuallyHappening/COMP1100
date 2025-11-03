@@ -348,55 +348,84 @@ const navScroll = (event: Event) => {
 							v-if="planAPI.getCurrent().topLevelReqsSelected[i]"
 							class="input-group"
 						>
-							<input
-								type="search"
-								class="form-control"
-								placeholder="Search for a course"
-								aria-label="search"
-								autocomplete="off"
-								v-model="filters.search"
-							/>
-							<input
-								type="search"
-								class="form-control d-none"
-								placeholder="null"
-								aria-label="search"
-								v-model="filters.placedCourse"
-							/>
-							<button
-								type="button"
-								class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
-								data-bs-toggle="dropdown"
-								aria-expanded="false"
-							>
-								<!-- DROPDOWN FILTERS -->
-								<span class="visually-hidden">
-									Toggle Dropdown
-								</span>
-							</button>
-							<ul class="dropdown-menu" style="">
-								<li>
-									<a class="dropdown-item" href="#">
-										Sem 1
-									</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="#">
-										Sem 2
-									</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="#">
-										Sem 1 &amp; Sem 2
-									</a>
-								</li>
-								<li><hr class="dropdown-divider" /></li>
-								<li>
-									<a class="dropdown-item" href="#">
-										Summer semester
-									</a>
-								</li>
-							</ul>
+							<p class="w-100 d-flex mb-0">
+								<input
+									type="search"
+									class="form-control"
+									placeholder="Search for a course"
+									aria-label="search"
+									autocomplete="off"
+									v-model="filters.search"
+								/>
+								<input
+									type="search"
+									class="form-control d-none"
+									placeholder="null"
+									aria-label="search"
+									v-model="filters.placedCourse"
+								/>
+								<button 
+									class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+									type="button"
+									data-bs-toggle="collapse"
+									data-bs-target="#semFilter"
+									aria-expanded="false"
+									aria-controls="semFilter"
+								>
+									<span class="visually-hidden">
+										Toggle Dropdown
+									</span>
+								</button>
+							</p>
+							<div class="collapse w-100" id="semFilter">
+								<div 
+									class="card card-body d-flex flex-row justify-content-between"
+								>
+									<div>
+										<h4>Semesters Offered</h4>
+										<div class="form-check">
+											<input 
+												type="checkbox" 
+												class="form-check-input" 
+												id="sem1check" 
+												checked
+											>
+											<label 
+												class="form-check-label" 
+												for="sem1check"
+											>Semester 1</label>
+										</div>
+										<div class="form-check">
+											<input 
+												type="checkbox" 
+												class="form-check-input" 
+												id="sem2check" 
+												checked
+											>
+											<label 
+												class="form-check-label" 
+												for="sem2check"
+											>Semester 2</label>
+										</div>
+										<div class="form-check">
+											<input 
+												type="checkbox" 
+												class="form-check-input" 
+												id="sem3check" 
+												checked
+											>
+											<label 
+												class="form-check-label" 
+												for="sem3check"
+											>Summer Semester</label>
+										</div>
+									</div>
+									<div>
+										<button class="btn btn-outline-secondary h-100"> Clear Filters </button>
+									</div>
+								</div>
+								
+							</div>
 						</form>
 						<ProgramReqs
 							v-if="planAPI.getCurrent().topLevelReqsSelected[i]"
