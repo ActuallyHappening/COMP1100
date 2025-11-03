@@ -7,6 +7,7 @@ import { planAPI } from "./plan";
 import { plannerAPI } from "./planner";
 import { programAPI } from "./db/program";
 import { RecordId } from "surrealdb";
+import { extractIdentifiers } from "vue/compiler-sfc";
 
 function flattenProgram(
 	program: RecordId<string>[][] | undefined,
@@ -54,12 +55,12 @@ const priorities = {
 };
 
 const scalable = {
-	"core": false,
-	"major": false,
-	"extmaj": false,
-	"nomaj": false,
-	"breadth": true,
-	"gen-elec": true,
+	"core": 0,
+	"major": 0,
+	"extmaj": 0,
+	"nomaj": 1,
+	"breadth": 2,
+	"gen-elec": 2,
 };
 
 function getFilteredReqs() {
@@ -132,6 +133,7 @@ export const cpAPI = {
 					if (flattenedSubReqs[b]?.cp['required']) {
 						const innerReqCp = flattenedSubReqs[b].cp['required'];
 						const innerMaxCp = flattenedSubReqs[b].cp['max'];
+						console.log(innerMaxCp)
 						let innerAchCp = 0;
 						for (const course in flattenedCourses) {
 							for (const c in flattenedSubReqs[b].course_options) {
@@ -183,21 +185,44 @@ export const cpAPI = {
 					}
 				}
 			}
+			arrayRemoval = arrayRemoval.sort((a, b) => a - b);
 			if (arrayRemoval) {
 				for (const a in arrayRemoval) {
-					flattenedCourses.splice(arrayRemoval[arrayRemoval.length -  (a + 1)], 1);
+					flattenedCourses.splice(arrayRemoval[arrayRemoval.length -  (Number(a) + 1)], 1);
 				}
 			}
 			totalCp += achievedCp
 			InnerDict["required_cp"] = requiredCp;
 			InnerDict["achieved_cp"] = achievedCp;
-			InnerDict['max_cp'] = maxCp
+			InnerDict['max_cp'] = maxCp;
 			InnerDict["courses"] = courses_included;
 			levelReqs[filteredReqs[a].id.id] = InnerDict;
 		}
+		let extraCp = 0;
+		for (const req in levelReqs) {
+			for (const reqtwo in scalable) {
+				if (scalable[reqtwo] === 2) {
+					if (req.includes(reqtwo)) {
+						extraCp += levelReqs[req].achieved_cp;
+					}
+				}
+			}
+		}
+		for (const req in levelReqs) {
+			for (const reqtwo in scalable) {
+				if (scalable[reqtwo] === 1) {
+					const reqSliced = req.split('-'	)
+					const reqTwoSliced = reqtwo.split('-')
+					if (req.includes(reqtwo) && reqSliced.length === (reqTwoSliced.length + 1)) {
+						levelReqs[req].max_cp -= extraCp;
+						console.log(req)
+					}
+				}
+			}
+		}
 		for (const req in filteredReqs) {
 			if (filteredReqs[req].sub_requirements) {
-				const mainMaxCp = filteredReqs[req].cp['max'];
+				const mainMaxCp = levelReqs[filteredReqs[req].id.id].max_cp;
 				const flattenedSubReqs = flattenSubReqs(filteredReqs[req]).filter((requirement) => {
 					if (requirement === filteredReqs[req]) {
 						return false;
@@ -215,16 +240,20 @@ export const cpAPI = {
 							}
 						}
 					}
+					//console.log(adjuctedCp)
+					//console.log(levelReqs[flattenedSubReqs[reqtwo]?.id.id].max_cp)
 					if (adjuctedCp < levelReqs[flattenedSubReqs[reqtwo]?.id.id].max_cp) {
+						//console.log(levelReqs[flattenedSubReqs[reqtwo]?.id.id].max_cp)
 						levelReqs[flattenedSubReqs[reqtwo]?.id.id].max_cp = adjuctedCp
 					}
 				}
 			}
 		}
+		console.log(levelReqs)
 		for (const req in levelReqs) {
 			for (const reqtwo in scalable) {
 				if (req.includes(reqtwo)) {
-					if (scalable[reqtwo]) {
+					if (scalable[reqtwo] === 2) {
 						let greatestCp = programAPI.getCurrent().required_cp
 						for (const reqthree in levelReqs) {
 							let is_superreq = false;
