@@ -4,10 +4,8 @@ import {
 	type ProgramRequirement,
 } from "./db/program_requirement";
 import { planAPI } from "./plan";
-import { plannerAPI } from "./planner";
 import { programAPI } from "./db/program";
 import { RecordId } from "surrealdb";
-import { extractIdentifiers } from "vue/compiler-sfc";
 
 function flattenProgram(
 	program: RecordId<string>[][] | undefined,
