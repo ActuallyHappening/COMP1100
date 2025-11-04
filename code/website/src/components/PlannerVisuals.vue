@@ -91,19 +91,19 @@ th {
 }
 
 .prereq-success {
-	background: linear-gradient(to right, green, transparent);
+	background: linear-gradient(to right, #B2FBA5, transparent);
 }
 
 .prereq-fail {
-	background: linear-gradient(to right, red, transparent);
+	background: linear-gradient(to right, #ff746c, transparent);
 }
 
 .prereq-unavailable {
-	background: linear-gradient(to right, gray, transparent);
+	background: linear-gradient(to right, #ff746c, transparent);
 }
 
 .incompatible-true {
-	background-color: red;
+	background-color: #ff746c;
 }
 
 .btn-outline-secondary {
