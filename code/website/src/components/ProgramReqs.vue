@@ -9,6 +9,7 @@ import { courseAPI } from "../apis/db/course";
 import { filterAPI } from "../apis/filter";
 import { planAPI } from "../apis/plan";
 import Course from "./Course.vue";
+import { advCoursesAPI } from "../apis/db/adv_courses";
 
 const coursesInPlanArray: { [key: string]: { [key: string]: any } } =
 	planAPI.getCurrent().planner;
@@ -55,6 +56,20 @@ function getComponentName(id: string) {
 			return programRequirementAPI.getAll()[a].short_name;
 		}
 	}
+};
+
+function advAdvCourse(course) {
+	const advancedCourses = advCoursesAPI.getCurrent();
+	for (const c in advancedCourses) {
+		for (const a in advancedCourses[c]) {
+			if (a === "adv_course") {
+				if (advancedCourses[c][a].id === course.id.id) {
+					return true;
+				}
+			}
+		}
+	}
+	return false;
 }
 </script>
 
@@ -71,7 +86,9 @@ function getComponentName(id: string) {
 
 		<div v-if="filtered_courses">
 			<div v-for="course in filtered_courses.courses" class="list-group">
-				<Course :code="course.code" type="default" />
+				<div v-if="!advAdvCourse(course)">
+					<Course :code="course.code" type="default" />
+				</div>
 			</div>
 		</div>
 		<p v-if="filtered_courses?.message">{{ filtered_courses.message }}</p>

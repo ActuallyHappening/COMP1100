@@ -1,6 +1,7 @@
 import { Surreal, Table, RecordId } from "surrealdb";
 import { programs } from "./db/program";
 import { courses } from "./db/course";
+import { adv_courses } from "./db/adv_courses";
 import { program_requirements } from "./db/program_requirement";
 import _ from "lodash";
 import { toast } from "vue3-toastify";
@@ -44,6 +45,9 @@ export function refresh() {
 				db
 					.select(new Table("program_requirement"))
 					.then((data) => (program_requirements.value = data as any)),
+				db
+					.select(new Table("adv_courses"))
+					.then((data) => (adv_courses.value = data as any)),
 			]),
 		)
 		.catch((err) => {
@@ -61,5 +65,6 @@ export function refresh() {
 				`program_requirement`,
 				_.cloneDeep(program_requirements.value),
 			);
+			console.info(`adv_courses`, _.cloneDeep(adv_courses.value));
 		});
 }
