@@ -88,18 +88,27 @@ thead th {
 
 th {
 	text-align: right;
+	border-radius: 10px;
+	transition: background-color 0.5s ease-in-out;
+	background-color: white;
 }
 
 .prereq-success {
-	background: linear-gradient(to right, #B2FBA5, transparent);
+	background-color: #B2FBA5;
 }
 
 .prereq-fail {
-	background: linear-gradient(to right, #ff746c, transparent);
+	background-color: #ff746c;
+	color: white;
+}
+
+table {
+	border-color: white;
 }
 
 .prereq-unavailable {
-	background: linear-gradient(to right, #ff746c, transparent);
+	background-color: firebrick;
+	color: white;
 }
 
 .incompatible-true {

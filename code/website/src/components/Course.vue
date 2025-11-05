@@ -774,6 +774,7 @@ button.course-selection-active:hover {
 
 button.course-selection {
 	transition: background-color 0.3s ease-in-out;
+	border-radius: 10px;
 }
 
 table button:hover {
