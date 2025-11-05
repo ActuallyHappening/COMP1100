@@ -46,6 +46,9 @@ function getFullProgram(id: string) {
 		<br />
 		<template v-if="planAPI.getCurrent().topLevelReqsSelected">
 			<h4>Program Requirements</h4>
+			<template v-if="!planAPI.getCurrent().topLevelReqsSelected[1]">
+				<h5><strong><i class="fa-solid fa-triangle-exclamation"></i>No major selected</strong></h5>
+			</template>
 			<template v-for="req in planAPI.getCurrent().topLevelReqsSelected">
 				<h5>
 					<i class="fa-solid fa-triangle-exclamation" 
