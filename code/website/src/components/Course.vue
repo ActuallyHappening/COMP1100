@@ -662,9 +662,8 @@ function allocated(course: Course) {
 				<p class="m-0 p-0">Core course</p>
 				<p class="m-0 p-0">
 					Prereqs passed:
-					<span :class="{ 'text-warning': !prereqChecked }">{{
-						prereqChecked ? "✅" : "⚠"
-					}}</span>
+					<span v-if="prereqChecked"><i class="fa-solid fa-circle-check fa-lg" style="color: #0ce100;"></i></span>
+					<span v-else><i class="fa-solid fa-triangle-exclamation text-warning fa-lg"></i></span>
 				</p>
 			</template>
 
