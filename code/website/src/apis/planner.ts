@@ -3,6 +3,7 @@ import { assert_id } from "./db";
 import { courseAPI, type Course, type Prereq } from "./db/course";
 import { toast } from "vue3-toastify";
 
+console.log();
 export const sem_ids = [
 	"2025 Sem 1",
 	"2025 Sem 2",
@@ -10,6 +11,10 @@ export const sem_ids = [
 	"2026 Sem 2",
 	"2027 Sem 1",
 	"2027 Sem 2",
+	"2028 Sem 1",
+	"2028 Sem 2",
+	"2029 Sem 1",
+	"2029 Sem 2",
 ] as const;
 
 export type SemId = (typeof sem_ids)[number];

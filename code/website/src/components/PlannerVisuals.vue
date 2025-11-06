@@ -10,6 +10,17 @@ import {
 	slots,
 	sem_ids,
 } from "../apis/planner";
+import { programAPI } from "../apis/db/program";
+
+let counter = 0;
+const required = (programAPI.getCurrent().required_cp)/8;
+let sem_idss = sem_ids.filter((sem_id) => {
+	if (counter < required) {
+		counter += 1
+		return true;
+	}
+	return false;
+});
 
 const placeCourse = (sem_id: SemId, id: number) => {
 	if (selectedState.value) {
@@ -56,7 +67,7 @@ const getPlan = (sem_id: SemId, id: number): SemPlan[number] => {
 			</tr>
 		</thead>
 		<tbody>
-			<tr v-for="sem_id in sem_ids">
+			<tr v-for="sem_id in sem_idss">
 				<th scope="row" :id="`${sem_id}`">{{ sem_id }}</th>
 				<td v-for="(_name, id) in slots.length" :id="`${sem_id}-${id}`">
 					<button
