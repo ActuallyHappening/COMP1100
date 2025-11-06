@@ -95,7 +95,7 @@ function progress(){
 		</template>
 		<br>
 		<template v-if="cpAPI.getCourseAssignments()[1] || cpAPI.getCourseAssignments()[1] === 0">
-			<h5>Total points: {{ cpAPI.getCourseAssignments()[1] }}/{{ programAPI.getCurrent().required_cp }} ({{ progress() }})</h5>
+			<h5 class="text-center">Total points: {{ cpAPI.getCourseAssignments()[1] }}/{{ programAPI.getCurrent().required_cp }}</h5>
 			<div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="{{ progress() }}" aria-valuemin="0" aria-valuemax="100">
 				<div class="progress-bar" v-bind:style="{ width: progress() + '%'}">{{ progress() }}%</div>
 			</div>

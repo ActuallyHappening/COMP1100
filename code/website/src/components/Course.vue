@@ -641,6 +641,10 @@ function allocated(course: Course) {
 
 			<template v-else-if="type === 'small'">
 				<div class="justify-content-end d-flex">
+					<div title="Core Course">
+						<i class="fa-solid fa-meteor"></i> <!-- Core course example -->
+						<!-- Up to you to implement, idk what you want -->
+					</div>
 					<div class="m-auto">
 						<h4 class="pb-0 mb-0">{{ course?.code }}</h4>
 					</div>
@@ -720,12 +724,10 @@ function allocated(course: Course) {
 					</li>
 					<li v-if="incompatible_list">
 						<h5><strong>Incompatibilities:</strong></h5>
-						<!-- shows up optionally? -->
 						<p>
 							{{ course?.code }} is incompatible with
 							{{ incompatible_list }}.
 						</p>
-						<!-- <p>Please </p> -->
 					</li>
 					<li>
 						<h5><strong>Credits:</strong></h5>
