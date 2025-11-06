@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { defineProps, computed, ref } from "vue";
+import { defineProps, computed, ref, toRaw } from "vue";
 import ErrorView from "../Error.vue";
 import _ from "lodash";
 import {
@@ -71,6 +71,116 @@ const prereqs_list = computed(() => {
 		return renderPrereq(course.value?.prerequisites);
 	} else {
 		return "";
+	}
+});
+function removePrereq(prereqs: Prereq, parser: boolean, course: RecordId<string>) {
+	let counter = -1;
+	const inPlan = plannerAPI(planAPI.getCurrent().planner).getIndexOfCourse(course);
+	let flattenedCourses: Course[] = [];
+	if (!inPlan) {
+		for (const a in planAPI.getCurrent().planner) {
+			for (const b in planAPI.getCurrent().planner[a]) {
+				if (planAPI.getCurrent().planner[a][b]) {
+					const cCode = courseAPI.code(planAPI.getCurrent().planner[a][b]);
+					flattenedCourses.push(cCode.id);
+				}
+			}
+		}
+	} else {
+		let planObject= plannerAPI(planAPI.getCurrent().planner).previousCoursesTo(inPlan[0], course);
+		for (const p of planObject) {
+			flattenedCourses.push(p.id.id);
+		}
+	};
+	let ors = false;
+	let ands = false;
+	if (prereqs[1] === "OR") {
+		ors = true;
+	} else {
+		ands = true;
+	}
+	let ultimateQuit = false;
+	for (const prereq in prereqs) {
+		if (Array.isArray(prereqs[prereq]) && !(prereqs[prereq].length === 0)) {
+			prereqs[prereq] = removePrereq(prereqs[prereq], true, course)
+		}
+	}
+	prereqs = prereqs.filter((prereq) => {
+		counter += 1;
+		if (counter % 2 === 0) {
+			if (prereq) {
+				if (flattenedCourses.includes(prereq.id)) {
+					if (ors) {
+						ultimateQuit = true;
+					};
+					return false;
+				}
+			} else {
+				return false;
+			}
+		}
+		return true;
+	});
+	if (ands) {
+		counter = -1;
+		prereqs = prereqs.filter((prereq) => {
+			if (prereq.length === 0) {
+				return false;
+			};
+			return true;
+		});
+		let preLen = prereqs.length
+		prereqs = prereqs.filter((prereq) => {
+			counter += 1;
+			if (((counter + 1) < preLen) && (prereqs[counter] === prereqs[counter + 1])) {
+				return false;
+			} else if (((counter + 1) === preLen) && (prereq === "AND")) {
+				return false;
+			} else if ((counter === 0) && (prereq === "AND")) {
+				return false;
+			};
+			return true;
+		});
+	};
+	if (ultimateQuit) {
+		return undefined;
+	} else if (parser) {
+		return prereqs;
+	} else {
+		if (prereqs && !(prereqs.length === 0)) {
+			return newRenderPrereq(prereqs);
+		} else {
+			return "All prerequisites are currently in the plan";
+		}
+	}
+}
+function newRenderPrereq (prereqs: any[]) {
+	let finalString = "";
+	console.log(prereqs)
+	if (Array.isArray(prereqs[0])) {
+		if (prereqs.length === 1) {
+			finalString += "(" + newRenderPrereq(prereqs[0]) + ")";
+		} else {
+			finalString += "(" + newRenderPrereq(prereqs[0]) + ") " + prereqs[1].toLowerCase() + " " + newRenderPrereq(prereqs.slice(2));
+		}
+		return finalString;
+	} else if (prereqs.length === 1) {
+		finalString += (prereqs[0].id).toUpperCase();
+		return finalString;
+	}
+	console.log(prereqs.slice(2))
+	finalString = (prereqs[0].id).toUpperCase() + " " + prereqs[1].toLowerCase() + " " + newRenderPrereq(prereqs.slice(2));
+	return finalString;
+};
+const prereqs_list_modified = computed(() => {
+	if (course.value?.prerequisites) {
+		let answer = removePrereq(structuredClone(toRaw(course.value?.prerequisites)), false, course.value.id);
+		if (!answer) {
+			return "All prerequisites are currently in the plan";
+		}
+		return answer;
+	} else {
+		return "All prerequisites are currently in the plan";
 	}
 });
 const prereqs_list_html = computed(() => {
@@ -719,7 +829,7 @@ function allocated(course: Course) {
 							begin this course.
 						</p>
 						<p v-else-if="prereqs_list && !prereqChecked">
-							You need to complete:
+							You need to complete: {{ prereqs_list_modified }}
 						</p>
 					</li>
 					<li v-if="incompatible_list">

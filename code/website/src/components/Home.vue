@@ -113,6 +113,18 @@ const navScroll = (event: Event) => {
 		event.currentTarget.scrollLeft += event.deltaY + event.deltaX;
 	}
 };
+
+function checker () {
+	let notPossible = document.getElementsByClassName('Toastify');
+	for (let i = 0; i < notPossible.length; i++) {
+		let button = notPossible[i]?.querySelector('button');
+		if (button) {
+			button.remove()
+		};
+	};
+};
+checker();
+
 </script>
 
 <template>
