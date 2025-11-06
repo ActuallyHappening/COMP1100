@@ -18,6 +18,7 @@ import { programAPI, programs } from "../apis/db/program";
 import { filters } from "../apis/filter";
 
 function newPlan() {
+	checker();
 	// "Plan 42069" -> Number(42069) + 1
 	const planNums = Object.keys(localState.value.plans).map((planString) =>
 		Number(planString.slice(5)),
@@ -31,6 +32,7 @@ function newPlan() {
 }
 
 function courseChange(event: Event) {
+	checker();
 	const value = (event.target as HTMLSelectElement).value;
 	const plan_state = planAPI.getCurrent();
 	if (plan_state) {
@@ -42,6 +44,7 @@ function courseChange(event: Event) {
 /** e.g. "Core" or "Major" */
 type HumanHeaderIndexName = string;
 const getHeaderByIndex = (index: number): HumanHeaderIndexName | undefined => {
+	checker();
 	const me_req = planAPI.getCurrent().topLevelReqsSelected[index];
 	// if a specific req is already selected
 	if (typeof me_req === "string") {
@@ -67,6 +70,7 @@ type HTMLHeaderIndexKey = string;
 const normalize = (
 	str: HumanHeaderIndexName | undefined,
 ): HTMLHeaderIndexKey => {
+	checker();
 	return (
 		(str ?? "UNDEFINED")
 			.toLowerCase()
@@ -76,6 +80,7 @@ const normalize = (
 	);
 };
 const normalizedIndexHeaders = computed((): string[] => {
+	checker();
 	const ret: string[] = [];
 	const currentProgram = programAPI.getCurrent();
 	if (!currentProgram) {
@@ -102,12 +107,14 @@ const selectedIndex = ref(0);
 // 	{ immediate: true },
 // );
 const tabClicked = (event: Event, i: number) => {
+	checker();
 	event.preventDefault();
 	selectedIndex.value = i;
 	// event.target?.bsTabTrigger?.show();
 };
 
 const navScroll = (event: Event) => {
+	checker();
 	event.preventDefault();
 	if (event.currentTarget) {
 		event.currentTarget.scrollLeft += event.deltaY + event.deltaX;
@@ -123,8 +130,6 @@ function checker () {
 		};
 	};
 };
-checker();
-
 </script>
 
 <template>
