@@ -120,7 +120,7 @@ th {
 }
 
 .prereq-fail {
-	background-color: #B2FBA5;
+	background-color: orange;
 }
 
 table {
