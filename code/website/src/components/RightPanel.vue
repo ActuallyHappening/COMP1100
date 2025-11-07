@@ -37,11 +37,12 @@ function progress(){
 	<Course
 		id="rhs"
 		class="rhs"
+		style="border-radius: 20px; overflow: hidden;"
 		v-if="selectedState"
 		:code="selectedState"
 		type="summary"
 	/>
-	<template v-if="panelNotVisible()" class="rhs">
+	<div v-if="panelNotVisible()" class="rhs">
 		<div class="justify-content-center text-center">
 			<h3>{{ programAPI.getCurrent()?.name }}</h3>
 			<p>Commencing {{ Object.keys(planAPI.getCurrent().planner)[0] }}</p>
@@ -97,16 +98,32 @@ function progress(){
 		<template v-if="cpAPI.getCourseAssignments()[1] || cpAPI.getCourseAssignments()[1] === 0">
 			<h5 class="text-center">Total points: {{ cpAPI.getCourseAssignments()[1] }}/{{ programAPI.getCurrent().required_cp }}</h5>
 			<div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="{{ progress() }}" aria-valuemin="0" aria-valuemax="100">
-				<div class="progress-bar" v-bind:style="{ width: progress() + '%'}">{{ progress() }}%</div>
+				<div class="progress-bar" v-bind:style="{ width: progress() + '%', backgroundColor: '#7f55b5'}">{{ progress() }}%</div>
 			</div>
 		</template>
-	</template>
+	</div>
 </template>
+
 <style>
-button.rhs:hover {
-	background-color: inherit;
-}
+
 .fa-triangle-exclamation {
 	color:goldenrod;
 }
+
+.rhs {
+	background-color: #51247a;
+	color: white;
+	border-radius: 20px;
+	padding: 15px;
+	overflow: hidden;
+}
+
+.rhs a {
+	color: #4dd0e1;
+}
+
+.rhs a:hover {
+	color: #80dee8;
+}
+
 </style>
