@@ -60,6 +60,8 @@ const applyClass = (sem_id: SemId) => {
 	let semester = sem_id.split(" ");
 	if (semester[2] === "2") {
 		return "gray-row";
+	} if (semester[2] === "1") {
+		return "dark-gray-row";
 	} else {
 		return;
 	};
@@ -150,7 +152,13 @@ table {
 	outline-color: #51247a;
 }
 
+tr.dark-gray-row td {
+	background-color: #cdc4e3;
+	border-radius: 10px;
+}
+
 tr.gray-row td {
 	background-color: lavender;
+	border-radius: 10px;
 }
 </style>
