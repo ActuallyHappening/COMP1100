@@ -196,7 +196,7 @@ export const plannerAPI = (planner: Planner) =>
 				previouslyDone: Array<RecordIdValue>,
 			): boolean => {
 				if (prereq.length == 1 && !Array.isArray(prereq[0])) {
-					return previouslyDone.includes(prereq[0].id);
+					return previouslyDone.includes(prereq[0].id.toLowerCase()) || previouslyDone.includes(prereq[0].id.toUpperCase());
 				} else {
 					let firstCourse = prereq[0];
 					if (!Array.isArray(firstCourse)) {

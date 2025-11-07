@@ -55,6 +55,15 @@ const placeCourse = (sem_id: SemId, id: number) => {
 const getPlan = (sem_id: SemId, id: number): SemPlan[number] => {
 	return plannerAPI(planAPI.getCurrent().planner).getIndex([sem_id, id]);
 };
+
+const applyClass = (sem_id: SemId) => {
+	let semester = sem_id.split(" ");
+	if (semester[2] === "2") {
+		return "gray-row";
+	} else {
+		return;
+	};
+};
 </script>
 <template>
 	<table class="table table-bordered" id="mainTable">
@@ -67,7 +76,7 @@ const getPlan = (sem_id: SemId, id: number): SemPlan[number] => {
 			</tr>
 		</thead>
 		<tbody>
-			<tr v-for="sem_id in sem_idss">
+			<tr v-for="sem_id in sem_idss" :id="`row-${sem_id}`" :class="applyClass(sem_id)">
 				<th scope="row" :id="`${sem_id}`">{{ sem_id }}</th>
 				<td v-for="(_name, id) in slots.length" :id="`${sem_id}-${id}`">
 					<button
@@ -140,5 +149,9 @@ table {
 
 .btn-outline-secondary:focus {
 	outline-color: #51247a;
+}
+
+tr.gray-row td {
+	background-color: lavender;
 }
 </style>
