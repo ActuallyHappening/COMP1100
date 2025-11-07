@@ -118,8 +118,7 @@ th {
 }
 
 .prereq-fail {
-	background-color: #ff746c;
-	color: white;
+	background-color: #B2FBA5;
 }
 
 table {
@@ -127,7 +126,7 @@ table {
 }
 
 .prereq-unavailable {
-	background-color: firebrick;
+	background-color: #ff746c;
 	color: white;
 }
 
