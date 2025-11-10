@@ -15,7 +15,7 @@ import {
 	requirement_types_to_header,
 } from "../apis/db/program_requirement";
 import { programAPI, programs } from "../apis/db/program";
-import { filters } from "../apis/filter";
+import { filters, filterAPI } from "../apis/filter";
 
 function newPlan() {
 	checker();
@@ -121,15 +121,15 @@ const navScroll = (event: Event) => {
 	}
 };
 
-function checker () {
-	let notPossible = document.getElementsByClassName('Toastify');
+function checker() {
+	let notPossible = document.getElementsByClassName("Toastify");
 	for (let i = 0; i < notPossible.length; i++) {
-		let button = notPossible[i]?.querySelector('button');
+		let button = notPossible[i]?.querySelector("button");
 		if (button) {
-			button.remove()
-		};
-	};
-};
+			button.remove();
+		}
+	}
+}
 </script>
 
 <template>
@@ -175,81 +175,87 @@ function checker () {
 	</div>
 	<!-- Top bar selections -->
 	<div class="w-100 container-fluid purple-bg ps-3 pe-3">
-	<form action="#" @submit.prevent="() => {}">
-		<div class="row">
-			<div class="col-md-2 col">
-				<div class="col">
-					<div class="row">
-						<label 
-							class="col-form-label-lg col-form-label col-auto"
-						>Year</label>
-						<div class="col">
-							<input 
-								type="number" 
-								placeholder="2025" 
-								disabled 
-								class="form-control-lg form-control"
-							/>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-5 col">
-				<div class="col">
-					<div class="row">
-						<label 
-							class="col-form-label-lg col-form-label col-auto"
-						>Course</label>
-						<div class="col">
-							<select 
-								name="course-code" 
-								id="course-code" 
-								class="form-select-lg form-select"
-								:value="planAPI.getCurrent().programId"
-								@input="courseChange"
+		<form action="#" @submit.prevent="() => {}">
+			<div class="row">
+				<div class="col-md-2 col">
+					<div class="col">
+						<div class="row">
+							<label
+								class="col-form-label-lg col-form-label col-auto"
+								>Year</label
 							>
-								<option value="" hidden>
-									Please select a course</option>
-								<option
-									v-for="program in programs"
-									:key="program.id.id.toString()"
-									:value="program.id.id.toString()"
-								>
-									{{ program.name }}
-								</option>
-							</select>
+							<div class="col">
+								<input
+									type="number"
+									placeholder="2025"
+									disabled
+									class="form-control-lg form-control"
+								/>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-5 col">
-				<div class="col">
-					<div class="row">
-						<label 
-							class="col-form-label-lg col-form-label col-auto"
-						>Major</label>
-						<div class="col">
-							<!-- Hardcoding the first index as the major
+				<div class="col-md-5 col">
+					<div class="col">
+						<div class="row">
+							<label
+								class="col-form-label-lg col-form-label col-auto"
+								>Course</label
+							>
+							<div class="col">
+								<select
+									name="course-code"
+									id="course-code"
+									class="form-select-lg form-select"
+									:value="planAPI.getCurrent().programId"
+									@input="courseChange"
+								>
+									<option value="" hidden>
+										Please select a course
+									</option>
+									<option
+										v-for="program in programs"
+										:key="program.id.id.toString()"
+										:value="program.id.id.toString()"
+									>
+										{{ program.name }}
+									</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-5 col">
+					<div class="col">
+						<div class="row">
+							<label
+								class="col-form-label-lg col-form-label col-auto"
+								>Major</label
+							>
+							<div class="col">
+								<!-- Hardcoding the first index as the major
 							Trakcking issue: https://github.com/COMP1100-7110-2025-s2/Mon_9am_Team_10/issues/17
 							-->
-							<ProgramReq
-								v-if="programAPI.getCurrent()
-									?.program_requirements?.[1]"
-								:index="1"
-							/>
-							<select
-								v-else
-								class="form-select form-select-lg"
-								disabled
-							></select>
+								<ProgramReq
+									v-if="
+										programAPI.getCurrent()
+											?.program_requirements?.[1]
+									"
+									:index="1"
+								/>
+								<select
+									v-else
+									class="form-select form-select-lg"
+									disabled
+								></select>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</form>
+		</form>
 	</div>
-	
+
 	<!--
 	<div class="container-fluid p-0">
 		<form action="#" @submit.prevent="() => {}">
@@ -279,7 +285,7 @@ function checker () {
 					</option>
 				</select>
 				<span class="input-group-text">Major</span>
-				
+
 				<ProgramReq
 					v-if="programAPI.getCurrent()?.program_requirements?.[1]"
 					:index="1"
@@ -379,9 +385,8 @@ function checker () {
 									class="form-control d-none"
 									placeholder="null"
 									aria-label="search"
-									v-model="filters.placedCourse"
 								/>
-								<button 
+								<button
 									class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
 									type="button"
 									data-bs-toggle="collapse"
@@ -395,53 +400,59 @@ function checker () {
 								</button>
 							</p>
 							<div class="collapse w-100" id="semFilter">
-								<div 
+								<div
 									class="card card-body d-flex flex-row justify-content-between"
 								>
 									<div>
 										<h4>Semesters Offered</h4>
 										<div class="form-check">
-											<input 
-												type="checkbox" 
-												class="form-check-input" 
-												id="sem1check" 
-												checked
-											>
-											<label 
-												class="form-check-label" 
+											<input
+												type="checkbox"
+												class="form-check-input"
+												id="sem1check"
+												v-model="filters.sem_1"
+											/>
+											<label
+												class="form-check-label"
 												for="sem1check"
-											>Semester 1</label>
+												>Semester 1</label
+											>
 										</div>
 										<div class="form-check">
-											<input 
-												type="checkbox" 
-												class="form-check-input" 
-												id="sem2check" 
-												checked
-											>
-											<label 
-												class="form-check-label" 
+											<input
+												type="checkbox"
+												class="form-check-input"
+												id="sem2check"
+												v-model="filters.sem_2"
+											/>
+											<label
+												class="form-check-label"
 												for="sem2check"
-											>Semester 2</label>
+												>Semester 2</label
+											>
 										</div>
 										<div class="form-check">
-											<input 
-												type="checkbox" 
-												class="form-check-input" 
-												id="sem3check" 
-												checked
-											>
-											<label 
-												class="form-check-label" 
+											<input
+												type="checkbox"
+												class="form-check-input"
+												id="sem3check"
+												v-model="filters.sem_summer"
+											/>
+											<label
+												class="form-check-label"
 												for="sem3check"
-											>Summer Semester</label>
+												>Summer Semester</label
+											>
 										</div>
 									</div>
 									<div>
-										<button class="btn btn-outline-secondary h-100"> Clear Filters </button>
+										<button
+											class="btn btn-outline-secondary h-100"
+										>
+											Clear Filters
+										</button>
 									</div>
 								</div>
-								
 							</div>
 						</form>
 						<ProgramReqs
