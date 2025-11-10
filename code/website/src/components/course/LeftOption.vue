@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { defineProps, computed, ref, toRaw } from "vue";
+import { computed, ref, toRaw } from "vue";
 import ErrorView from "../../Error.vue";
 import _ from "lodash";
 import {

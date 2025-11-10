@@ -5,5 +5,7 @@ const props = defineProps({
 });
 </script>
 <template>
-	<p class="text-danger">{{ props.err }}</p>
+  <p class="text-danger">
+    {{ props.err }}
+  </p>
 </template>

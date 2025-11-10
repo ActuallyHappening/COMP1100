@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import Course from "./Course.vue";
+// import Course from "./Course.vue";
+import VisualPlannerCourse from "./course/VisualPlanner.vue";
 import { RecordId } from "surrealdb";
 import { selectedState } from "../apis/state";
 import { planAPI } from "../apis/plan";
@@ -13,10 +14,10 @@ import {
 import { programAPI } from "../apis/db/program";
 
 let counter = 0;
-const required = (programAPI.getCurrent().required_cp)/8;
+const required = programAPI.getCurrent().required_cp / 8;
 let sem_idss = sem_ids.filter((sem_id) => {
 	if (counter < required) {
-		counter += 1
+		counter += 1;
 		return true;
 	}
 	return false;
@@ -60,11 +61,12 @@ const applyClass = (sem_id: SemId) => {
 	let semester = sem_id.split(" ");
 	if (semester[2] === "2") {
 		return "gray-row";
-	} if (semester[2] === "1") {
+	}
+	if (semester[2] === "1") {
 		return "dark-gray-row";
 	} else {
 		return;
-	};
+	}
 };
 </script>
 <template>
@@ -78,7 +80,11 @@ const applyClass = (sem_id: SemId) => {
 			</tr>
 		</thead>
 		<tbody>
-			<tr v-for="sem_id in sem_idss" :id="`row-${sem_id}`" :class="applyClass(sem_id)">
+			<tr
+				v-for="sem_id in sem_idss"
+				:id="`row-${sem_id}`"
+				:class="applyClass(sem_id)"
+			>
 				<th scope="row" :id="`${sem_id}`">{{ sem_id }}</th>
 				<td v-for="(_name, id) in slots.length" :id="`${sem_id}-${id}`">
 					<button
@@ -88,7 +94,11 @@ const applyClass = (sem_id: SemId) => {
 					>
 						Place course here!
 					</button>
-					<Course v-else :code="getPlan(sem_id, id)!" type="small" />
+					<VisualPlannerCourse
+						v-else
+						:code="getPlan(sem_id, id)!"
+						type="small"
+					/>
 				</td>
 			</tr>
 		</tbody>
@@ -116,7 +126,7 @@ th {
 }
 
 .prereq-success {
-	background-color: #B2FBA5;
+	background-color: #b2fba5;
 }
 
 .prereq-fail {
