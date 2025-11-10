@@ -73,25 +73,35 @@ const prereqs_list = computed(() => {
 		return "";
 	}
 });
-function removePrereq(prereqs: Prereq, parser: boolean, course: RecordId<string>) {
+function removePrereq(
+	prereqs: Prereq,
+	parser: boolean,
+	course: RecordId<string>,
+) {
 	let counter = -1;
-	const inPlan = plannerAPI(planAPI.getCurrent().planner).getIndexOfCourse(course);
+	const inPlan = plannerAPI(planAPI.getCurrent().planner).getIndexOfCourse(
+		course,
+	);
 	let flattenedCourses: Course[] = [];
 	if (!inPlan) {
 		for (const a in planAPI.getCurrent().planner) {
 			for (const b in planAPI.getCurrent().planner[a]) {
 				if (planAPI.getCurrent().planner[a][b]) {
-					const cCode = courseAPI.code(planAPI.getCurrent().planner[a][b]);
+					const cCode = courseAPI.code(
+						planAPI.getCurrent().planner[a][b],
+					);
 					flattenedCourses.push(cCode.id);
 				}
 			}
 		}
 	} else {
-		let planObject= plannerAPI(planAPI.getCurrent().planner).previousCoursesTo(inPlan[0], course);
+		let planObject = plannerAPI(
+			planAPI.getCurrent().planner,
+		).previousCoursesTo(inPlan[0], course);
 		for (const p of planObject) {
 			flattenedCourses.push(p.id.id);
 		}
-	};
+	}
 	let ors = false;
 	let ands = false;
 	if (prereqs[1] === "OR") {
@@ -102,7 +112,7 @@ function removePrereq(prereqs: Prereq, parser: boolean, course: RecordId<string>
 	let ultimateQuit = false;
 	for (const prereq in prereqs) {
 		if (Array.isArray(prereqs[prereq]) && !(prereqs[prereq].length === 0)) {
-			prereqs[prereq] = removePrereq(prereqs[prereq], true, course)
+			prereqs[prereq] = removePrereq(prereqs[prereq], true, course);
 		}
 	}
 	prereqs = prereqs.filter((prereq) => {
@@ -112,7 +122,7 @@ function removePrereq(prereqs: Prereq, parser: boolean, course: RecordId<string>
 				if (flattenedCourses.includes(prereq.id)) {
 					if (ors) {
 						ultimateQuit = true;
-					};
+					}
 					return false;
 				}
 			} else {
@@ -126,22 +136,25 @@ function removePrereq(prereqs: Prereq, parser: boolean, course: RecordId<string>
 		prereqs = prereqs.filter((prereq) => {
 			if (prereq.length === 0) {
 				return false;
-			};
+			}
 			return true;
 		});
-		let preLen = prereqs.length
+		let preLen = prereqs.length;
 		prereqs = prereqs.filter((prereq) => {
 			counter += 1;
-			if (((counter + 1) < preLen) && (prereqs[counter] === prereqs[counter + 1])) {
+			if (
+				counter + 1 < preLen &&
+				prereqs[counter] === prereqs[counter + 1]
+			) {
 				return false;
-			} else if (((counter + 1) === preLen) && (prereq === "AND")) {
+			} else if (counter + 1 === preLen && prereq === "AND") {
 				return false;
-			} else if ((counter === 0) && (prereq === "AND")) {
+			} else if (counter === 0 && prereq === "AND") {
 				return false;
-			};
+			}
 			return true;
 		});
-	};
+	}
 	if (ultimateQuit) {
 		return undefined;
 	} else if (parser) {
@@ -154,27 +167,42 @@ function removePrereq(prereqs: Prereq, parser: boolean, course: RecordId<string>
 		}
 	}
 }
-function newRenderPrereq (prereqs: any[]) {
+function newRenderPrereq(prereqs: any[]) {
 	let finalString = "";
-	console.log(prereqs)
+	console.log(prereqs);
 	if (Array.isArray(prereqs[0])) {
 		if (prereqs.length === 1) {
 			finalString += "(" + newRenderPrereq(prereqs[0]) + ")";
 		} else {
-			finalString += "(" + newRenderPrereq(prereqs[0]) + ") " + prereqs[1].toLowerCase() + " " + newRenderPrereq(prereqs.slice(2));
+			finalString +=
+				"(" +
+				newRenderPrereq(prereqs[0]) +
+				") " +
+				prereqs[1].toLowerCase() +
+				" " +
+				newRenderPrereq(prereqs.slice(2));
 		}
 		return finalString;
 	} else if (prereqs.length === 1) {
-		finalString += (prereqs[0].id).toUpperCase();
+		finalString += prereqs[0].id.toUpperCase();
 		return finalString;
 	}
-	console.log(prereqs.slice(2))
-	finalString = (prereqs[0].id).toUpperCase() + " " + prereqs[1].toLowerCase() + " " + newRenderPrereq(prereqs.slice(2));
+	console.log(prereqs.slice(2));
+	finalString =
+		prereqs[0].id.toUpperCase() +
+		" " +
+		prereqs[1].toLowerCase() +
+		" " +
+		newRenderPrereq(prereqs.slice(2));
 	return finalString;
-};
+}
 const prereqs_list_modified = computed(() => {
 	if (course.value?.prerequisites) {
-		let answer = removePrereq(structuredClone(toRaw(course.value?.prerequisites)), false, course.value.id);
+		let answer = removePrereq(
+			structuredClone(toRaw(course.value?.prerequisites)),
+			false,
+			course.value.id,
+		);
 		if (!answer) {
 			return "All prerequisites are currently in the plan";
 		}
@@ -219,22 +247,30 @@ const sems = computed(() => {
 	}
 });
 const selectCourse = (obCourse: Course) => {
-	let dCourse = course.value
+	let dCourse = course.value;
 	switch (props.type) {
 		case "default":
 			if (selectedState.value == dCourse.id.toString()) {
 				// already selected
 				selectedState.value = undefined;
 			} else {
-				const masterHeader = document.getElementById('vue-Upper-'+obCourse.code);
+				const masterHeader = document.getElementById(
+					"vue-Upper-" + obCourse.code,
+				);
 				if (masterHeader) {
-					if (masterHeader.querySelector('.gray-text')?.innerHTML.includes(obCourse.code)) {
-						dCourse = getAdvancedCourse(obCourse)
+					if (
+						masterHeader
+							.querySelector(".gray-text")
+							?.innerHTML.includes(obCourse.code)
+					) {
+						dCourse = getAdvancedCourse(obCourse);
 					}
 				}
-				const masterHeaderTwo = document.getElementById('vue-Unav-'+dCourse.code);
+				const masterHeaderTwo = document.getElementById(
+					"vue-Unav-" + dCourse.code,
+				);
 				if (masterHeaderTwo) {
-					if(!(masterHeaderTwo.innerHTML.includes(dCourse.code))) {
+					if (!masterHeaderTwo.innerHTML.includes(dCourse.code)) {
 						dCourse = getAdvancedCourse(dCourse);
 					}
 				}
@@ -280,7 +316,13 @@ const selectCourse = (obCourse: Course) => {
 				}
 				let in_planner = false;
 				for (const c in planAPI.getCurrent().planner) {
-					if ((planAPI.getCurrent().planner[c].includes(dCourse.id.id.toString().toLowerCase()))) {
+					if (
+						planAPI
+							.getCurrent()
+							.planner[
+								c
+							].includes(dCourse.id.id.toString().toLowerCase())
+					) {
 						in_planner = true;
 					}
 				}
@@ -330,7 +372,9 @@ const selectCourse = (obCourse: Course) => {
 
 					// Updating classes of table th's to show available sems
 					for (const c in semss) {
-						const semDiv = document.getElementById(semss[c]?.toString());
+						const semDiv = document.getElementById(
+							semss[c]?.toString(),
+						);
 						if (semDiv) {
 							if (semsBeforeLists[semss[c]]) {
 								semDiv.classList.add("prereq-success");
@@ -388,7 +432,8 @@ const selectCourse = (obCourse: Course) => {
 
 					//Get all of the appropiate id's, apply class
 					for (const a in allCourses) {
-						const existingTable = document.getElementById("mainTable");
+						const existingTable =
+							document.getElementById("mainTable");
 						console.log(allCourses[a]);
 						if (existingTable) {
 							const existingIncompatible =
@@ -401,12 +446,16 @@ const selectCourse = (obCourse: Course) => {
 							});
 						}
 					}
-				}		
+				}
 			}
 			break;
 		case "small":
 			for (const a in planAPI.getCurrent().planner) {
-				if (planAPI.getCurrent().planner[a].includes(dCourse.id.id.toString())) {
+				if (
+					planAPI
+						.getCurrent()
+						.planner[a].includes(dCourse.id.id.toString())
+				) {
 					selectedState.value = dCourse.id.id.toString();
 				}
 			}
@@ -419,9 +468,7 @@ const selectCourse = (obCourse: Course) => {
 					divItem.classList.remove("prereq-fail");
 					divItem.classList.remove("prereq-unavailable");
 					const headerRow = divItem.parentElement;
-					const tds = Array.from(
-						headerRow?.querySelectorAll("td"),
-					);
+					const tds = Array.from(headerRow?.querySelectorAll("td"));
 					for (const td in tds) {
 						const buttons = Array.from(
 							tds[td]?.querySelectorAll("button"),
@@ -478,11 +525,16 @@ const isInPlanner = computed((): boolean => {
 	let inPlanner = planner.getIndexOfCourse(course.value.id);
 	if (!inPlanner) {
 		for (const a in advCoursesAPI.getCurrent()) {
-			if (advCoursesAPI.getCurrent()[a]['course'].id === course.value.id.id) {
-				inPlanner = planner.getIndexOfCourse(getAdvancedCourse(course.value).id);
-			};
-		};
-	};
+			if (
+				advCoursesAPI.getCurrent()[a]["course"].id ===
+				course.value.id.id
+			) {
+				inPlanner = planner.getIndexOfCourse(
+					getAdvancedCourse(course.value).id,
+				);
+			}
+		}
+	}
 	if (!inPlanner) {
 		return false;
 	} else {
@@ -504,43 +556,43 @@ const advancedCourse = computed((): boolean => {
 
 function getAdvancedCourse(course: Course) {
 	const advancedCourses = advCoursesAPI.getCurrent();
-	let advCourse = ""
+	let advCourse = "";
 	for (const c in advancedCourses) {
 		for (const a in advancedCourses[c]) {
-			if (a === "course"){
+			if (a === "course") {
 				if (advancedCourses[c][a].id === course.id.id) {
-					advCourse = advancedCourses[c]['adv_course'];
+					advCourse = advancedCourses[c]["adv_course"];
 					advCourse = courseAPI.get(advCourse);
 				}
 			}
 		}
 	}
 	return advCourse;
-};
+}
 
 function toggle_adv(basicCourse: Course, course: Course) {
-	const basicSpan = document.getElementById('vue-Span-'+basicCourse.code);
-	let topCourse = ""
+	const basicSpan = document.getElementById("vue-Span-" + basicCourse.code);
+	let topCourse = "";
 	if (basicCourse === course) {
 		topCourse = getAdvancedCourse(course).code;
 	} else {
 		topCourse = course.code;
 	}
-	const advSpan = document.getElementById('vue-Span-'+topCourse);
-	basicSpan?.classList.remove('gray-text');
-	advSpan?.classList.remove('gray-text');
+	const advSpan = document.getElementById("vue-Span-" + topCourse);
+	basicSpan?.classList.remove("gray-text");
+	advSpan?.classList.remove("gray-text");
 	if (basicCourse.code === course.code) {
-		advSpan?.classList.add('gray-text');
+		advSpan?.classList.add("gray-text");
 	} else {
-		basicSpan?.classList.add('gray-text');
-	};
+		basicSpan?.classList.add("gray-text");
+	}
 
-	const title = document.getElementById('vue-Title-'+basicCourse.code);
-	const prereq = document.getElementById('vue-Prereq-'+basicCourse.code);
-	const incomp = document.getElementById('vue-Incomp-'+basicCourse.code);
+	const title = document.getElementById("vue-Title-" + basicCourse.code);
+	const prereq = document.getElementById("vue-Prereq-" + basicCourse.code);
+	const incomp = document.getElementById("vue-Incomp-" + basicCourse.code);
 	if (title) {
 		const summer = course.sem_summer ? " + Summer" : "";
-		let semss = ""
+		let semss = "";
 		if (course.sem_1 && course.sem_2) {
 			semss = "Sem 1 & 2" + summer;
 		} else if (course.sem_1) {
@@ -550,48 +602,54 @@ function toggle_adv(basicCourse: Course, course: Course) {
 		} else {
 			handleError("Unknown semesters");
 			semss = "Unknown" + summer;
-		};
+		}
 		title.innerHTML = `${course.name} <i>(${semss})</i>`;
-	};
+	}
 	if (prereq) {
 		let prereqs = "";
 		if (course.prerequisites) {
 			prereqs = renderPrereq(course.prerequisites);
-		};
+		}
 		prereq.innerHTML = `Prerequisites: <i>${prereqs}</i>`;
-	};
+	}
 	if (incomp) {
 		let incompetent = "";
 		if (course.incompatible) {
 			incompetent = course.incompatible
 				.map((id) => id.id.toString().toUpperCase())
 				.join(", ");
-		};
+		}
 		incomp.innerHTML = `Incompatible: <i>${incompetent}</i>`;
-	};
-};
+	}
+}
 
-
-function getCourseCode (course: Course) {
+function getCourseCode(course: Course) {
 	if (plannerAPI(planAPI.getCurrent().planner).getIndexOfCourse(course.id)) {
 		return course.code;
-	} else if (plannerAPI(planAPI.getCurrent().planner).getIndexOfCourse(getAdvancedCourse(course).id)) {
+	} else if (
+		plannerAPI(planAPI.getCurrent().planner).getIndexOfCourse(
+			getAdvancedCourse(course).id,
+		)
+	) {
 		return getAdvancedCourse(course).code;
 	} else {
 		return undefined;
 	}
-};
+}
 
-function checkAdvanced (course: Course) {
+function checkAdvanced(course: Course) {
 	for (const a in advCoursesAPI.getCurrent()) {
 		if (advCoursesAPI.getCurrent()[a].course.id === course.id.id) {
-			if (selectedState.value === advCoursesAPI.getCurrent()[a].adv_course.id) {
+			if (
+				selectedState.value ===
+				advCoursesAPI.getCurrent()[a].adv_course.id
+			) {
 				return true;
 			}
 		}
 	}
 	return false;
-};
+}
 
 const semesterOfCourseInPlannerWhichThePersonIsTaking = computed(
 	(): SemId | undefined => {
@@ -600,8 +658,12 @@ const semesterOfCourseInPlannerWhichThePersonIsTaking = computed(
 		const inPlanner = planner.getIndexOfCourse(course.value.id);
 		if (inPlanner) {
 			return inPlanner[0];
-		} else if (planner.getIndexOfCourse(getAdvancedCourse(course.value).id)) {
-			return planner.getIndexOfCourse(getAdvancedCourse(course.value).id)[0];
+		} else if (
+			planner.getIndexOfCourse(getAdvancedCourse(course.value).id)
+		) {
+			return planner.getIndexOfCourse(
+				getAdvancedCourse(course.value).id,
+			)[0];
 		} else {
 			return undefined;
 		}
@@ -622,13 +684,9 @@ const close = () => {
 			divItem.classList.remove("prereq-fail");
 			divItem.classList.remove("prereq-unavailable");
 			const headerRow = divItem.parentElement;
-			const tds = Array.from(
-				headerRow?.querySelectorAll("td"),
-			);
+			const tds = Array.from(headerRow?.querySelectorAll("td"));
 			for (const td in tds) {
-				const buttons = Array.from(
-					tds[td]?.querySelectorAll("button"),
-				);
+				const buttons = Array.from(tds[td]?.querySelectorAll("button"));
 				for (const button in buttons) {
 					buttons[button]?.classList.remove("disabled");
 				}
@@ -649,13 +707,9 @@ const deselect = () => {
 			divItem.classList.remove("prereq-fail");
 			divItem.classList.remove("prereq-unavailable");
 			const headerRow = divItem.parentElement;
-			const tds = Array.from(
-				headerRow?.querySelectorAll("td"),
-			);
+			const tds = Array.from(headerRow?.querySelectorAll("td"));
 			for (const td in tds) {
-				const buttons = Array.from(
-					tds[td]?.querySelectorAll("button"),
-				);
+				const buttons = Array.from(tds[td]?.querySelectorAll("button"));
 				for (const button in buttons) {
 					buttons[button]?.classList.remove("disabled");
 				}
@@ -673,13 +727,15 @@ const deselect = () => {
 };
 
 function allocated(course: Course) {
-	const allCp = cpAPI.getCourseAssignments()
+	const allCp = cpAPI.getCourseAssignments();
 	for (const a in allCp) {
 		for (const b in allCp[a].courses) {
 			if (allCp[a].courses[b].id.id === course.id.id) {
 				for (const b in programRequirementAPI.getAll()) {
 					if (programRequirementAPI.getAll()[b].id.id === a) {
-						return programRequirementAPI.getAll()[b].short_name.toLowerCase()
+						return programRequirementAPI
+							.getAll()
+							[b].short_name.toLowerCase();
 					}
 				}
 				return false;
@@ -687,7 +743,7 @@ function allocated(course: Course) {
 		}
 	}
 	return false;
-};
+}
 </script>
 
 <template>
@@ -697,14 +753,17 @@ function allocated(course: Course) {
 		:class="{
 			'course-selection-active':
 				type === 'default' &&
-				(selectedState === course?.id.id.toString().toLowerCase() || checkAdvanced(course)),
+				(selectedState === course?.id.id.toString().toLowerCase() ||
+					checkAdvanced(course)),
 			'course-selection': type === 'default',
 		}"
 		:id="'vue-Course-' + course?.code"
 		@click="selectCourse(course)"
 	>
 		<template v-if="!error">
-			<template v-if="type === 'default' && !isInPlanner && !advancedCourse">
+			<template
+				v-if="type === 'default' && !isInPlanner && !advancedCourse"
+			>
 				<h4 class="text-center">
 					{{ course?.code }}: {{ course?.name }} (<i>{{ sems }}</i
 					>)
@@ -715,27 +774,47 @@ function allocated(course: Course) {
 				<p class="m-0 p-0" v-if="incompatible_list">
 					Incompatible: <i>{{ incompatible_list }}</i>
 				</p>
-				<i class="fa-solid fa-comet"></i>
 			</template>
-			<template v-else-if="type === 'default' && !isInPlanner && advancedCourse">
-				<h4 class="text-center" :id="'vue-Upper-'+course?.code">
-					<span @click="toggle_adv(course, course)" :id="'vue-Span-' + course?.code">{{ course?.code }}</span>
-					 | 
-					<span class="gray-text" @click="toggle_adv(course, getAdvancedCourse(course))" :id="'vue-Span-' + getAdvancedCourse(course)?.code">{{ getAdvancedCourse(course).code }}</span>
+			<template
+				v-else-if="type === 'default' && !isInPlanner && advancedCourse"
+			>
+				<h4 class="text-center" :id="'vue-Upper-' + course?.code">
+					<span
+						@click="toggle_adv(course, course)"
+						:id="'vue-Span-' + course?.code"
+						>{{ course?.code }}</span
+					>
+					|
+					<span
+						class="gray-text"
+						@click="toggle_adv(course, getAdvancedCourse(course))"
+						:id="'vue-Span-' + getAdvancedCourse(course)?.code"
+						>{{ getAdvancedCourse(course).code }}</span
+					>
 				</h4>
-				<h4 class="text-center" :id="'vue-Title-' + course?.code"> 
+				<h4 class="text-center" :id="'vue-Title-' + course?.code">
 					{{ course?.name }} (<i>{{ sems }}</i
 					>)
 				</h4>
-				<p class="m-0 p-0" v-if="prereqs_list" :id="'vue-Prereqs-' + course?.code">
+				<p
+					class="m-0 p-0"
+					v-if="prereqs_list"
+					:id="'vue-Prereqs-' + course?.code"
+				>
 					Prerequisites: <i>{{ prereqs_list }}</i>
 				</p>
-				<p class="m-0 p-0" v-if="incompatible_list" :id="'vue-Incomp-' + course?.code">
+				<p
+					class="m-0 p-0"
+					v-if="incompatible_list"
+					:id="'vue-Incomp-' + course?.code"
+				>
 					Incompatible: <i>{{ incompatible_list }}</i>
 				</p>
 				<i class="fa-solid fa-comet"></i>
 			</template>
-			<template v-else-if="type === 'default' && isInPlanner && !advancedCourse">
+			<template
+				v-else-if="type === 'default' && isInPlanner && !advancedCourse"
+			>
 				<h6 class="text-center gray-text">
 					{{ course?.code }}:
 					<i>{{ semesterOfCourseInPlannerWhichThePersonIsTaking }}</i>
@@ -744,7 +823,10 @@ function allocated(course: Course) {
 
 			<template v-else-if="type === 'default' && isInPlanner">
 				<h6 class="text-center gray-text">
-					<span :id="`vue-Unav-` + course.code">{{ getCourseCode(course) }}</span>:
+					<span :id="`vue-Unav-` + course.code">{{
+						getCourseCode(course)
+					}}</span
+					>:
 					<i>{{ semesterOfCourseInPlannerWhichThePersonIsTaking }}</i>
 				</h6>
 			</template>
@@ -752,7 +834,8 @@ function allocated(course: Course) {
 			<template v-else-if="type === 'small'">
 				<div class="justify-content-end d-flex">
 					<div title="Core Course">
-						<i class="fa-solid fa-meteor"></i> <!-- Core course example -->
+						<i class="fa-solid fa-meteor"></i>
+						<!-- Core course example -->
 						<!-- Up to you to implement, idk what you want -->
 					</div>
 					<div class="m-auto">
@@ -776,8 +859,17 @@ function allocated(course: Course) {
 				<p class="m-0 p-0">Core course</p>
 				<p class="m-0 p-0">
 					Prereqs passed:
-					<span v-if="prereqChecked"><i class="fa-solid fa-circle-check fa-lg" style="color: #0ce100;"></i></span>
-					<span v-else><i class="fa-solid fa-triangle-exclamation text-warning fa-lg"></i></span>
+					<span v-if="prereqChecked"
+						><i
+							class="fa-solid fa-circle-check fa-lg"
+							style="color: #0ce100"
+						></i
+					></span>
+					<span v-else
+						><i
+							class="fa-solid fa-triangle-exclamation text-warning fa-lg"
+						></i
+					></span>
 				</p>
 			</template>
 
@@ -842,11 +934,22 @@ function allocated(course: Course) {
 					<li>
 						<h5><strong>Credits:</strong></h5>
 						<template v-if="allocated(course)">
-							<p>This course counts {{ course.cp }} points towards {{ allocated(course) }}.</p>
+							<p>
+								This course counts {{ course.cp }} points
+								towards {{ allocated(course) }}.
+							</p>
 						</template>
-						<template v-if="!(allocated(course))">
+						<template v-if="!allocated(course)">
 							<template v-if="cpAPI.getHighestOrderLevel(course)">
-								<p>This course counts {{ course.cp }} points towards {{ cpAPI.getHighestOrderLevel(course).short_name.toLowerCase() }}.</p>
+								<p>
+									This course counts {{ course.cp }} points
+									towards
+									{{
+										cpAPI
+											.getHighestOrderLevel(course)
+											.short_name.toLowerCase()
+									}}.
+								</p>
 							</template>
 						</template>
 					</li>
@@ -910,5 +1013,4 @@ span.gray-text:hover {
 span {
 	transition: color 0.3s ease-in-out;
 }
-
 </style>
