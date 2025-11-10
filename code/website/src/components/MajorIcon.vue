@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { computed } from "vue";
 
 const props = defineProps({
 	type: {
@@ -10,7 +10,6 @@ const props = defineProps({
 
 const type = computed(() => {
 	if (props.type) {
-		
 	}
-})
+});
 </script>

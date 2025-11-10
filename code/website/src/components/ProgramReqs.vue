@@ -10,15 +10,16 @@ import { filterAPI } from "../apis/filter";
 import { planAPI } from "../apis/plan";
 import Course from "./Course.vue";
 
-const coursesInPlanArray: { [key: string]: { [key: string]: any } } = planAPI.getCurrent().planner;
+const coursesInPlanArray: { [key: string]: { [key: string]: any } } =
+	planAPI.getCurrent().planner;
 let coursesInPlan = [] as string[];
 for (const course in coursesInPlanArray) {
 	for (const c in coursesInPlanArray[course]) {
 		if (coursesInPlanArray[course][c]) {
 			coursesInPlan.push(coursesInPlanArray[course][c]);
-		};
-	};
-};
+		}
+	}
+}
 
 const props = defineProps({
 	// id/code part only
@@ -59,12 +60,9 @@ const flattened_subreqs = computed((): string[] | undefined => {
 		class="left-panel-inner"
 	>
 		<!--<h5>{{ this_program_req.short_name }}</h5>-->
-		
+
 		<div v-if="filtered_courses">
-			<div
-			v-for="course in filtered_courses.courses"
-			class="list-group"
-		>
+			<div v-for="course in filtered_courses.courses" class="list-group">
 				<Course :code="course.code" type="default" />
 			</div>
 		</div>
