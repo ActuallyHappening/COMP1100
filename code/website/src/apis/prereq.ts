@@ -146,19 +146,22 @@ export class PrereqAPI {
 		this.getPrereq().forEach((idiom, i) => {
 			ret[i] = this.reduceIdiom(idiom);
 		});
+		console.log(`REDUCE`, ret);
+		// handle base 'base' case of one length array
+		if (ret.length === 1 && _.isArray(ret[0])) {
+			return new PrereqAPI(ret[0]);
+		}
 		return new PrereqAPI(ret);
 	}
 
+	/** [[[course:123]]] -> course:123 */
 	reduceIdiom(idiom: Idiom): Idiom {
 		if (_.isArray(idiom)) {
 			if (idiom.length === 1) {
 				return this.reduceIdiom(idiom[0]);
-			} else {
-				return this.reduceIdiom(idiom);
 			}
-		} else {
-			return idiom;
 		}
+		return idiom;
 	}
 
 	/**
@@ -182,7 +185,7 @@ export class PrereqAPI {
 		prereq = this.reduce({ prereq }).getPrereq();
 
 		const courses = new Set(
-			...withCourses.map((course) => courseAPI.codeFrom(course)),
+			withCourses.map((course) => courseAPI.codeFrom(course)),
 		);
 
 		const filledPrereq: (true | Idiom)[] = prereq.map((idiom) => {
@@ -231,12 +234,12 @@ export class PrereqAPI {
 				const non_logical_idioms = filledPrereq.filter(
 					(idiom) => idiom !== "AND" && idiom !== "OR",
 				);
+				// filter out all `true`s
 				const removed_filled_courses = non_logical_idioms.filter((idiom) => {
-					// remove all `true`s
 					if (idiom === true) return false;
 					return true;
-				});
-				console.log(`REMOVED FILLED`, removed_filled_courses);
+				}) as (RecordId<string> | Prereq)[];
+
 				const remaining_idioms = removed_filled_courses;
 				if (remaining_idioms.length === 0) {
 					// case where all courses were filled with no junk
@@ -247,11 +250,13 @@ export class PrereqAPI {
 					// some leftover
 					// withCourses: [course:123]
 					// prereq: [course:123, "AND", course:abc]
-					non_logical_idioms
+					console.log(`REMOVED FILLED`, removed_filled_courses);
+					const ret = removed_filled_courses
 						.reduce<Prereq>((acc, val) => {
 							return acc.concat("AND", val);
 						}, [] as Prereq)
 						.slice(1);
+					return new PrereqAPI(ret);
 				}
 			}
 		} else {

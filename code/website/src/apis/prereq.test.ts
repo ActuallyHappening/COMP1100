@@ -54,6 +54,39 @@ test("prereqAPI clean works", () => {
 	expect(prereqAPI(prereq).reduce().render()).to.be.eq("1 or 2 or 6");
 });
 
+test("PrereqAPI reduceIdiom works", () => {
+	const examples = [{ prereq: [[course(1)]], reduced: course(1) }];
+	for (const example of examples) {
+		const res = new PrereqAPI(example.prereq).reduceIdiom(example.prereq);
+		expect(res).to.deep.eq(example.reduced);
+	}
+});
+
+test("PrereqAPI reduce works", () => {
+	const examples = [
+		{
+			prereq: [[course(1)]],
+			rendered: "1",
+		},
+		{
+			prereq: [[[course(1)]]],
+			rendered: "1",
+		},
+		{
+			prereq: [[course(1), "AND", course(2)], "OR", course(3)],
+			rendered: "(1 and 2) or 3",
+		},
+		{
+			prereq: [[course(1), "OR", course(2)]],
+			rendered: "1 or 2",
+		},
+	] as { prereq: Prereq; rendered: string }[];
+
+	for (const example of examples) {
+		expect(prereqAPI(example.prereq).reduce().render()).to.eq(example.rendered);
+	}
+});
+
 test("PrereqAPI fillKnownCourses works", () => {
 	const unsuccessExamples = [
 		{
@@ -92,11 +125,15 @@ test("PrereqAPI fillKnownCourses works", () => {
 			knownCourses: [course(1), course(2)],
 			prereq: [course(1), "AND", course(2)],
 		},
+		{
+			knownCourses: [course(1), course(2)],
+			prereq: [[course(1), "AND", course(2)]],
+		},
 	] satisfies { knownCourses: RecordId<string>[]; prereq: Prereq }[];
 	for (const example of successExamples) {
 		const res = prereqAPI(example.prereq).fillKnownCourses(
 			example.knownCourses,
 		);
-		expect(res).to.eq(true);
+		expect(res, JSON.stringify(example)).to.eq(true);
 	}
 });
