@@ -11,10 +11,6 @@ import {
 import { selectedState } from "../../apis/state";
 import { planAPI } from "../../apis/plan";
 import { plannerAPI, type SemId } from "../../apis/planner";
-import { RecordId } from "surrealdb";
-import { filters } from "../../apis/filter";
-import { cpAPI } from "../../apis/cpallocation";
-import { programRequirementAPI } from "../../apis/db/program_requirement";
 import { advCoursesAPI } from "../../apis/db/adv_courses";
 import { prereqAPI } from "../../apis/prereq";
 

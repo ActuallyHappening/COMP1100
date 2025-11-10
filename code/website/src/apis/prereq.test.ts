@@ -137,3 +137,11 @@ test("PrereqAPI fillKnownCourses works", () => {
 		expect(res, JSON.stringify(example)).to.eq(true);
 	}
 });
+
+test("PrereqAPI relevantCourses", () => {
+	const prereq: Prereq = [course(1), "AND", course(2)];
+	const courses = [course(2), course(3)];
+
+	const res = new PrereqAPI(prereq).relevantCourses(courses);
+	expect(res).to.deep.eq([course(2)]);
+});

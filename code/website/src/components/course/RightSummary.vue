@@ -2,21 +2,14 @@
 import { defineProps, computed, ref, toRaw } from "vue";
 import ErrorView from "../../Error.vue";
 import _ from "lodash";
-import {
-	courseAPI,
-	type Course,
-	error_course,
-	type Prereq,
-} from "../../apis/db/course";
+import { courseAPI, type Course, error_course } from "../../apis/db/course";
 import { selectedState } from "../../apis/state";
 import { planAPI } from "../../apis/plan";
 import { plannerAPI, type SemId } from "../../apis/planner";
-import { RecordId } from "surrealdb";
-import { filters } from "../../apis/filter";
 import { cpAPI } from "../../apis/cpallocation";
 import { programRequirementAPI } from "../../apis/db/program_requirement";
 import { advCoursesAPI } from "../../apis/db/adv_courses";
-import { prereqAPI } from "../../apis/prereq";
+import { prereqAPI, PrereqAPI } from "../../apis/prereq";
 
 const props = defineProps({
 	code: {
@@ -39,6 +32,18 @@ const course = computed((): Course => {
 		return error_course(`Couldn't find course ${props.code}`);
 	}
 	return ret;
+});
+
+const course_cb = (id: string) => `<a href="#${id}">${id.toUpperCase()}</a>`;
+
+const inPlanner = computed((): boolean => {
+	const planner = plannerAPI(planAPI.getCurrent().planner);
+	const sem_index = planner.getIndexOfCourse(course.value.id);
+	if (!sem_index) {
+		return false;
+	} else {
+		return true;
+	}
 });
 
 const previousCourses = computed((): Course[] | undefined => {
@@ -97,6 +102,36 @@ const prereqChecked = computed(() => {
 	return prereqCheck;
 });
 
+const outOfPlannerPrereqs = computed(
+	():
+		| { relevantPrereqsAlreadyCompletedHtml: string; prereqHtml: string }
+		| undefined => {
+		if (inPlanner.value) {
+			return undefined;
+		}
+		const _previousCourses = previousCourses.value;
+		if (!_previousCourses) {
+			return undefined;
+		}
+		const prereqs = course.value.prerequisites;
+		if (!prereqs) {
+			return undefined;
+		}
+		const relevantCourses = prereqAPI(prereqs).relevantCourses(
+			_previousCourses.map((course) => course.id),
+		);
+
+		// TODO use HTML links
+		const relevantPrereqsAlreadyCompletedHtml = relevantCourses.join(", ");
+		const prereq = new PrereqAPI(prereqs).fillKnownCourses(relevantCourses);
+		if (prereq === true) {
+			throw Error();
+		}
+		const prereqHtml = prereq.render({ course_cb });
+		return { relevantPrereqsAlreadyCompletedHtml, prereqHtml };
+	},
+);
+
 const prereqs_list = computed(() => {
 	if (course.value?.prerequisites) {
 		return prereqAPI(course.value?.prerequisites).render();
@@ -108,13 +143,28 @@ const prereqs_list = computed(() => {
 const prereqs_list_html = computed(() => {
 	if (course.value?.prerequisites) {
 		return prereqAPI(course.value?.prerequisites).render({
-			course_cb: (id: string) =>
-				`<a href="#${id}">${id.toUpperCase()}</a>`,
+			course_cb,
 		});
 	} else {
 		return "";
 	}
 });
+
+function getAdvancedCourse(course: Course) {
+	const advancedCourses = advCoursesAPI.getCurrent();
+	let advCourse = "";
+	for (const c in advancedCourses) {
+		for (const a in advancedCourses[c]) {
+			if (a === "course") {
+				if (advancedCourses[c][a].id === course.id.id) {
+					advCourse = advancedCourses[c]["adv_course"];
+					advCourse = courseAPI.get(advCourse);
+				}
+			}
+		}
+	}
+	return advCourse;
+}
 
 const semesterOfCourseInPlannerWhichThePersonIsTaking = computed(
 	(): SemId | undefined => {
@@ -153,6 +203,38 @@ const allocated = (course: Course) => {
 	}
 	return false;
 };
+
+const deselect = () => {
+	selectedState.value = undefined;
+	let sems = Object.keys(planAPI.getCurrent().planner);
+
+	//Remove existing styling if applicable
+	for (const c in sems) {
+		const divName = sems[c]?.toString();
+		const divItem = document.getElementById(divName);
+		if (divItem) {
+			divItem.classList.remove("prereq-success");
+			divItem.classList.remove("prereq-fail");
+			divItem.classList.remove("prereq-unavailable");
+			const headerRow = divItem.parentElement;
+			const tds = Array.from(headerRow?.querySelectorAll("td"));
+			for (const td in tds) {
+				const buttons = Array.from(tds[td]?.querySelectorAll("button"));
+				for (const button in buttons) {
+					buttons[button]?.classList.remove("disabled");
+				}
+			}
+		}
+	}
+	const nowTable = document.getElementById("mainTable");
+	const classNameToRemove = "incompatible-true";
+	if (nowTable) {
+		const elements = nowTable.querySelectorAll<HTMLElement>(
+			`.${classNameToRemove}`,
+		);
+		elements.forEach((el) => el.classList.remove(classNameToRemove));
+	}
+};
 </script>
 
 <template>
@@ -160,7 +242,6 @@ const allocated = (course: Course) => {
 		type="button"
 		class="list-group-item w-100"
 		:id="'vue-RightSummaryCourse-' + course?.code"
-		@click="selectCourse(course)"
 	>
 		<template v-if="!error">
 			<div class="d-flex justify-content-center">

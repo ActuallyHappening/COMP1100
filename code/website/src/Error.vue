@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { defineProps } from "vue";
 const props = defineProps({
-	err: Object,
+	err: { type: Object, default: undefined },
 });
 </script>
 <template>

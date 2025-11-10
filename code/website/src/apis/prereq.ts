@@ -45,6 +45,7 @@ export class PrereqAPI {
 		}
 		return this.prereq;
 	}
+
 	render(options?: { course_cb?: (id: string) => string }): string {
 		const settings = {
 			course_cb: (id: string) => id.toUpperCase(),
@@ -146,7 +147,6 @@ export class PrereqAPI {
 		this.getPrereq().forEach((idiom, i) => {
 			ret[i] = this.reduceIdiom(idiom);
 		});
-		console.log(`REDUCE`, ret);
 		// handle base 'base' case of one length array
 		if (ret.length === 1 && _.isArray(ret[0])) {
 			return new PrereqAPI(ret[0]);
@@ -162,6 +162,43 @@ export class PrereqAPI {
 			}
 		}
 		return idiom;
+	}
+
+	immutableRecursive(
+		cb: (idiom: Idiom) => undefined,
+		options?: { prereq?: Prereq },
+	) {
+		const prereqs = options?.prereq ?? this.getPrereq();
+		prereqs.forEach((idiom) => {
+			cb(idiom);
+			if (_.isArray(idiom)) {
+				idiom.forEach((subIdiom) => {
+					cb(subIdiom);
+				});
+			}
+		});
+	}
+
+	relevantCourses(courses: RecordId<string>[]): RecordId<string>[] {
+		const prereq = this.getPrereq();
+
+		const mentions = new Set();
+		this.immutableRecursive(
+			(idiom) => {
+				const course = idiomDiscriminant(idiom).course;
+				if (course) {
+					mentions.add(courseAPI.codeFrom(course));
+				}
+			},
+			{ prereq },
+		);
+
+		const coursesSet = new Set(
+			courses.map((course) => courseAPI.codeFrom(course)),
+		);
+		return [...mentions.intersection(coursesSet)].map((code) =>
+			courseAPI.code(code),
+		);
 	}
 
 	/**
