@@ -294,14 +294,16 @@ const deselect = () => {
 					<p v-else>
 						{{ course?.code }} has no prerequisite courses.
 					</p>
-					<!-- <p v-if="inPlanner && prereqChecked === true">
+					<p v-if="inPlanner && prereqChecked === true">
 						You have completed all necessary prerequisites to begin
 						this course.
 					</p>
 					<p v-else-if="inPlanner && prereqChecked === false">
-						You need to complete: {{ prereqs_list_modified }}
-					</p> -->
-					<p v-if="prereqsHTML" v-html="prereqsHTML"></p>
+						<!-- You need to complete: {{ prereqs_list_modified }} -->
+						You still need to complete some courses to meet the
+						prerequisite criteria!
+					</p>
+					<!-- <p v-if="prereqsHTML" v-html="prereqsHTML"></p> -->
 				</li>
 				<li v-if="incompatible_list">
 					<h5><strong>Incompatibilities:</strong></h5>
