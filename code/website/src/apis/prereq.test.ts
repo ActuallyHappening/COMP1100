@@ -13,12 +13,12 @@ function course(num?: number) {
 	);
 }
 
-test("prereqAPI works", () => {
+test("prereqAPI render works", () => {
 	const examplePass = [course(1), "OR", course(2)] satisfies Prereq;
 	expect(prereqAPI(examplePass).render()).to.be.eq("1 or 2");
 });
 
-test("prereqAPI fails with good err", () => {
+test("prereqAPI render fails with good err", () => {
 	const failing = [[course(1), course(2)], ["OR"]] satisfies Prereq[];
 	for (const failingExample of failing) {
 		// checks that the error message contains the correct needle
@@ -35,4 +35,15 @@ test("prereqAPI fails with good err", () => {
 		}
 		expect(threw);
 	}
+});
+
+test("prereqAPI clean works", () => {
+	const prereq = [
+		course(1),
+		"OR",
+		[course(2)],
+		"AND",
+		[[[course(6)]]],
+	] satisfies Prereq;
+	expect(prereqAPI(prereq).reduce().render()).to.be.eq("1 or 2 and 6");
 });

@@ -4,6 +4,19 @@ import _ from "lodash";
 type Idiom = "OR" | "AND" | RecordId<string> | Prereq;
 export type Prereq = Idiom[];
 
+export const idiomDiscriminant = (idiom: Idiom) => {
+	if (idiom === "OR" || idiom === "AND") {
+		return { logicalConjunction: idiom };
+	} else if (idiom instanceof RecordId) {
+		return { course: idiom };
+	} else if (_.isArray(idiom)) {
+		return { prereq: idiom };
+	} else {
+		const error = new TypeError(`Unrecognised idiom: ${JSON.stringify(idiom)}`);
+		throw error;
+	}
+};
+
 export function isLogicalConjunction(idiom: Idiom): idiom is "AND" | "OR" {
 	return idiom === "AND" || idiom === "OR";
 }
@@ -11,25 +24,37 @@ export function isLogicalConjunction(idiom: Idiom): idiom is "AND" | "OR" {
 export const DIDNT_EXPECT_LOGICAL_CONJUNCTION =
 	"https://github.com/ActuallyHappening/COMP1100/blob/master/code/website/src/apis/prereq.md#did-not-expect-a-logical-conjunction";
 
-export type PrereqAPI = ReturnType<typeof prereqAPI>;
-export const prereqAPI = (prereq: Prereq) => ({
-	getPrereq() {
-		return prereq;
-	},
-	render(options?: { course_cb?: (id: string) => string }) {
+export const prereqAPI = (prereq: Prereq) => {
+	return new PrereqAPI(prereq);
+};
+
+export class PrereqAPI {
+	prereq: Prereq;
+
+	constructor(prereq: Prereq) {
+		this.prereq = prereq;
+	}
+
+	getPrereq(): Prereq {
+		if (!this.prereq) {
+			throw new TypeError();
+		}
+		return this.prereq;
+	}
+	render(options?: { course_cb?: (id: string) => string }): string {
 		const settings = {
 			course_cb: (id: string) => id.toUpperCase(),
 			...options,
 		};
 
-		this.checkSelf();
+		this.check();
 
 		const ret = [];
-		for (const idiom of prereq) {
+		for (const idiom of this.getPrereq()) {
 			ret.push(this.renderIdiom(idiom, settings));
 		}
 		return ret.join(" ");
-	},
+	}
 	renderIdiom(
 		idiom: Idiom,
 		options?: {
@@ -53,26 +78,46 @@ export const prereqAPI = (prereq: Prereq) => ({
 			}
 			ret = "(" + arr.join(" ") + ")";
 		} else {
-			throw TypeError();
+			throw TypeError(`Unrecognised idiom: ${JSON.stringify(idiom)}`);
 		}
 		return ret;
-	},
-	checkSelf(options?: { prereq?: Prereq }) {
+	}
+	check(options?: { prereq?: Prereq }): PrereqAPI {
 		const settings = {
 			prereq: undefined,
 			...options,
 		};
-		const idiom = settings.prereq ?? prereq;
+		const prereq = settings.prereq || this.getPrereq();
+
 		let expectingLogicalConjunction = false;
-		if (isLogicalConjunction(idiom) && !expectingLogicalConjunction) {
-			throw new Error(
-				`Didn't expect a logical conjunction but got ${subIdiom} one anyway, in prereq: ${prereq}\n${DIDNT_EXPECT_LOGICAL_CONJUNCTION}`,
-			);
+		for (const idiom of prereq) {
+			if (isLogicalConjunction(idiom) && !expectingLogicalConjunction) {
+				throw new Error(
+					`Didn't expect a logical conjunction but got "${idiom}" anyway, in prereq: ${prereq}\n${DIDNT_EXPECT_LOGICAL_CONJUNCTION}`,
+				);
+			}
+			expectingLogicalConjunction = !expectingLogicalConjunction;
 		}
-		expectingLogicalConjunction = !expectingLogicalConjunction;
-	},
-	cleanSelf() {
-		// pass 1: arrays with only one item may be propogated up
-	},
-	fillInPrereqs(options: {}): PrereqPI {},
-});
+
+		return this;
+	}
+	reduce(): PrereqAPI {
+		const ret = [...this.getPrereq()];
+		this.getPrereq().forEach((idiom, i) => {
+			ret[i] = this.reduceIdiom(idiom);
+		});
+		return new PrereqAPI(ret);
+	}
+	reduceIdiom(idiom: Idiom): Idiom {
+		if (_.isArray(idiom)) {
+			if (idiom.length === 1) {
+				return this.reduceIdiom(idiom[0]);
+			} else {
+				return this.reduceIdiom(idiom);
+			}
+		} else {
+			return idiom;
+		}
+	}
+	fillInPrereqs(options: {}) {}
+}
