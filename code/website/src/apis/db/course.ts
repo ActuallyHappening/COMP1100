@@ -11,7 +11,7 @@ export type Course = {
 	code: string;
 	cp: number;
 	name: string;
-	prerequisites: Prereq;
+	prerequisites: Prereq[];
 	incompatible: RecordId<string>[];
 	sem_1: boolean;
 	sem_2: boolean;
