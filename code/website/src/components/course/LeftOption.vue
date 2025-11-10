@@ -487,10 +487,22 @@ const selectCourse = (obCourse: Course) => {
 
 			<template v-else-if="isInPlanner">
 				<h6 class="text-center gray-text">
-					<span :id="`vue-Unav-` + course.code">{{
-						getCourseCode(course)
-					}}</span
-					>:
+					<template v-for="c in advCoursesAPI.getCurrent()">
+						<template v-if="c.course.toString() === course.id.toString()">
+							<template v-if="plannerAPI(planAPI.getCurrent().planner).getIndexOfCourse(course.id)">
+								<span :id="`vue-Unav-` + course.code">{{
+									course?.code
+								}}</span
+								>
+							</template>
+							<template v-else>
+								<span :id="`vue-Unav-` + course.code">{{
+									courseAPI.get(c.adv_course)?.code
+								}}</span
+								>
+							</template>
+						</template>
+					</template>:
 					<i>{{ semesterOfCourseInPlannerWhichThePersonIsTaking }}</i>
 				</h6>
 			</template>

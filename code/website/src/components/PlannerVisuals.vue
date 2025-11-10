@@ -13,15 +13,18 @@ import {
 } from "../apis/planner";
 import { programAPI } from "../apis/db/program";
 
-let counter = 0;
-const required = programAPI.getCurrent().required_cp / 8;
-let sem_idss = sem_ids.filter((sem_id) => {
-	if (counter < required) {
-		counter += 1;
-		return true;
-	}
-	return false;
-});
+function change_board_len() {
+	let counter = 0;
+	const required = programAPI.getCurrent().required_cp / 8;
+	let sem_idss = sem_ids.filter((sem_id) => {
+		if (counter < required) {
+			counter += 1;
+			return true;
+		}
+		return false;
+	});
+	return sem_idss;
+}
 
 const placeCourse = (sem_id: SemId, id: number) => {
 	if (selectedState.value) {
@@ -81,7 +84,7 @@ const applyClass = (sem_id: SemId) => {
 		</thead>
 		<tbody>
 			<tr
-				v-for="sem_id in sem_idss"
+				v-for="sem_id in change_board_len()"
 				:id="`row-${sem_id}`"
 				:class="applyClass(sem_id)"
 			>
