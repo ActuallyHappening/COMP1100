@@ -16,6 +16,7 @@ import { filters } from "../apis/filter";
 import { cpAPI } from "../apis/cpallocation";
 import { programRequirementAPI } from "../apis/db/program_requirement";
 import { advCoursesAPI } from "../apis/db/adv_courses";
+import { prereqAPI } from "../apis/prereq";
 
 const props = defineProps({
 	code: {
@@ -46,7 +47,7 @@ const course = computed((): Course => {
 });
 const prereqs_list = computed(() => {
 	if (course.value?.prerequisites) {
-		return renderPrereq(course.value?.prerequisites);
+		return prereqAPI(course.value?.prerequisites).renderPrereq();
 	} else {
 		return "";
 	}
@@ -191,7 +192,7 @@ const prereqs_list_modified = computed(() => {
 });
 const prereqs_list_html = computed(() => {
 	if (course.value?.prerequisites) {
-		return renderPrereq(course.value?.prerequisites, {
+		return prereqAPI(course.value?.prerequisites).renderPrereq({
 			course_cb: (id: string) =>
 				`<a href="#${id}">${id.toUpperCase()}</a>`,
 		});

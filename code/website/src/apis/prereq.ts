@@ -1,4 +1,4 @@
-import type { RecordId } from "surrealdb";
+import { RecordId } from "surrealdb";
 import _ from "lodash";
 
 export type Prereq = "OR" | "AND" | RecordId<string> | Prereq[];
@@ -19,8 +19,14 @@ export const prereqAPI = (prereq: Prereq) => ({
 			ret = idiom.toLowerCase();
 		} else if (idiom instanceof RecordId) {
 			ret = settings.course_cb(idiom.id.toString());
-		} else if (typeof idiom === "object" && _.idArray(idiom)) {
-			ret.push("(" + renderPrereq(idiom, settings) + ")");
+		} else if (typeof idiom === "object" && _.isArray(idiom)) {
+			const arr = [];
+			for (const subIdiom of idiom) {
+				arr.push(
+					this.renderPrereq({ ...settings, prereq: subIdiom }),
+				);
+			}
+			ret = "(" + arr.join(" ") + ")";
 		} else {
 			throw TypeError();
 		}
