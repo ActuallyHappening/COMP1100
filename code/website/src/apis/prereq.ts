@@ -7,14 +7,19 @@ export function isLogicalConjunction(idiom: Prereq): idiom is "AND" | "OR" {
 	return idiom === "AND" || idiom === "OR";
 }
 
+export const DIDNT_EXPECT_LOGICAL_CONJUNCTION =
+	"https://github.com/ActuallyHappening/COMP1100/blob/master/code/website/src/apis/prereq.md#did-not-expect-a-logical-conjunction";
+
 export const prereqAPI = (prereq: Prereq) => ({
 	renderPrereq(options?: {
 		course_cb?: (id: string) => string;
 		prereq?: Prereq;
+		nested?: boolean;
 	}): string {
 		const settings = {
 			course_cb: (id: string) => id.toUpperCase(),
 			prereq: undefined,
+			nested: false,
 			...options,
 		};
 		const idiom = settings.prereq ?? prereq;
@@ -29,13 +34,19 @@ export const prereqAPI = (prereq: Prereq) => ({
 			for (const subIdiom of idiom) {
 				if (isLogicalConjunction(subIdiom) && !expectedLogicalConjunction) {
 					throw new Error(
-						`Didn't expect a logical conjunction but got ${subIdiom} one anyway, in prereq: ${prereq}`,
+						`Didn't expect a logical conjunction but got ${subIdiom} one anyway, in prereq: ${prereq}\n${DIDNT_EXPECT_LOGICAL_CONJUNCTION}`,
 					);
 				}
 				expectedLogicalConjunction = !expectedLogicalConjunction;
-				arr.push(this.renderPrereq({ ...settings, prereq: subIdiom }));
+				arr.push(
+					this.renderPrereq({ ...settings, prereq: subIdiom, nested: true }),
+				);
 			}
-			ret = "(" + arr.join(" ") + ")";
+			if (settings.nested) {
+				ret = "(" + arr.join(" ") + ")";
+			} else {
+				ret = arr.join(" ");
+			}
 		} else {
 			throw TypeError();
 		}
