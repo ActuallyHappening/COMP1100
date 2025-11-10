@@ -15,7 +15,7 @@ import {
 	requirement_types_to_header,
 } from "../apis/db/program_requirement";
 import { programAPI, programs } from "../apis/db/program";
-import { filters } from "../apis/filter";
+import { filters, filterAPI } from "../apis/filter";
 
 function newPlan() {
 	// "Plan 42069" -> Number(42069) + 1
@@ -297,25 +297,53 @@ const navScroll = (event: Event) => {
 							</button>
 							<ul class="dropdown-menu" style="">
 								<li>
-									<a class="dropdown-item" href="#">
+									<button
+										class="dropdown-item"
+										:class="{
+											active: filterAPI.sem1Active(),
+										}"
+										@click.prevent="filterAPI.sem1Pressed()"
+									>
 										Sem 1
-									</a>
+									</button>
 								</li>
 								<li>
-									<a class="dropdown-item" href="#">
+									<button
+										class="dropdown-item"
+										:class="{
+											active: filterAPI.sem2Active(),
+										}"
+										@click.prevent="filterAPI.sem2Pressed()"
+									>
 										Sem 2
-									</a>
+									</button>
 								</li>
 								<li>
-									<a class="dropdown-item" href="#">
+									<button
+										class="dropdown-item"
+										:class="{
+											active: filterAPI.sem1AndSem2Active(),
+										}"
+										@click.prevent="
+											filterAPI.sem1AndSem2Pressed()
+										"
+									>
 										Sem 1 &amp; Sem 2
-									</a>
+									</button>
 								</li>
 								<li><hr class="dropdown-divider" /></li>
 								<li>
-									<a class="dropdown-item" href="#">
+									<button
+										class="dropdown-item"
+										:class="{
+											active: filterAPI.semSummerActive(),
+										}"
+										@click.prevent="
+											filterAPI.semSummerPressed()
+										"
+									>
 										Summer semester
-									</a>
+									</button>
 								</li>
 							</ul>
 						</form>
