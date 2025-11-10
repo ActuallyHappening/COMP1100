@@ -612,7 +612,7 @@ const close = () => {
 	// remove this from selected and from visual planner
 	const planner = plannerAPI(planAPI.getCurrent().planner);
 	planner.removeCourse(course.value.id);
-	// Deleting a course selects it, CY Interview 1 mentinos this isn't desired behaviour
+	// Deleting a course selects it, CY Interview 1 mentions this isn't desired behaviour
 	selectedState.value = undefined;
 	for (const c in sems) {
 		const divName = sems[c]?.toString();
