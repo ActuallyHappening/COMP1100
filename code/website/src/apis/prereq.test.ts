@@ -19,7 +19,11 @@ test("prereqAPI render works", () => {
 });
 
 test("prereqAPI render fails with good err", () => {
-	const failing = [[course(1), course(2)], ["OR"]] satisfies Prereq[];
+	const failing = [
+		[course(1), course(2)],
+		["OR"],
+		[course(1), "OR", course(2), "AND", course(3)],
+	] satisfies Prereq[];
 	for (const failingExample of failing) {
 		// checks that the error message contains the correct needle
 		let threw = false;
@@ -42,8 +46,8 @@ test("prereqAPI clean works", () => {
 		course(1),
 		"OR",
 		[course(2)],
-		"AND",
+		"OR",
 		[[[course(6)]]],
 	] satisfies Prereq;
-	expect(prereqAPI(prereq).reduce().render()).to.be.eq("1 or 2 and 6");
+	expect(prereqAPI(prereq).reduce().render()).to.be.eq("1 or 2 or 6");
 });

@@ -1,5 +1,6 @@
 import { RecordId } from "surrealdb";
 import _ from "lodash";
+import { assert_id } from "./db";
 
 type Idiom = "OR" | "AND" | RecordId<string> | Prereq;
 export type Prereq = Idiom[];
@@ -89,14 +90,43 @@ export class PrereqAPI {
 		};
 		const prereq = settings.prereq || this.getPrereq();
 
-		let expectingLogicalConjunction = false;
+		let history = undefined as undefined | "OR expected" | "AND expected";
+		let expectingLogicalConjunction = false as
+			| false
+			| "either OR or AND, unknown at this point"
+			| "OR expected"
+			| "AND expected";
 		for (const idiom of prereq) {
-			if (isLogicalConjunction(idiom) && !expectingLogicalConjunction) {
-				throw new Error(
-					`Didn't expect a logical conjunction but got "${idiom}" anyway, in prereq: ${prereq}\n${DIDNT_EXPECT_LOGICAL_CONJUNCTION}`,
-				);
+			if (isLogicalConjunction(idiom)) {
+				if (!expectingLogicalConjunction) {
+					throw new Error(
+						`Didn't expect a logical conjunction but got "${idiom}" anyway, in prereq: ${prereq}\n${DIDNT_EXPECT_LOGICAL_CONJUNCTION}`,
+					);
+				}
+				if (idiom === "OR") {
+					if (history === "AND expected") {
+						throw new Error(
+							`Expected "OR" but got "AND" as logical conjunction, in prereq: ${prereq}\n${DIDNT_EXPECT_LOGICAL_CONJUNCTION}`,
+						);
+					} else {
+						history = "OR expected";
+						expectingLogicalConjunction = false;
+					}
+				}
+				if (idiom === "AND") {
+					if (history === "OR expected") {
+						throw new Error(
+							`Expected "AND" but got "OR" as logical conjunction, in prereq: ${prereq}\n${DIDNT_EXPECT_LOGICAL_CONJUNCTION}`,
+						);
+					} else {
+						history = "AND expected";
+						expectingLogicalConjunction = false;
+					}
+				}
+			} else {
+				expectingLogicalConjunction =
+					history ?? "either OR or AND, unknown at this point";
 			}
-			expectingLogicalConjunction = !expectingLogicalConjunction;
 		}
 
 		return this;
@@ -119,5 +149,26 @@ export class PrereqAPI {
 			return idiom;
 		}
 	}
-	fillInPrereqs(options: {}) {}
+
+	/** Replaces all known courses */
+	replace(
+		withCourses: RecordId<string>[],
+		options?: {
+			prereq?: Prereq;
+		},
+	): PrereqAPI {
+		withCourses.forEach((id) => assert_id(id));
+		const settings = {
+			prereq: undefined,
+			...options,
+		};
+		const prereq = settings.prereq || this.getPrereq();
+
+		prereq.forEach((idiom, i) => {
+			if (isLogicalConjunction(idiom)) {
+				prereq[i] = withCourses;
+			}
+		});
+		return new PrereqAPI(prereq);
+	}
 }
