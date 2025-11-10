@@ -102,35 +102,43 @@ const prereqChecked = computed(() => {
 	return prereqCheck;
 });
 
-const outOfPlannerPrereqs = computed(
-	():
-		| { relevantPrereqsAlreadyCompletedHtml: string; prereqHtml: string }
-		| undefined => {
-		if (inPlanner.value) {
-			return undefined;
-		}
+const prereqsHTML = computed((): undefined | string => {
+	let alreadyDoneCourses = undefined as Course[] | undefined;
+	if (inPlanner.value) {
 		const _previousCourses = previousCourses.value;
 		if (!_previousCourses) {
-			return undefined;
-		}
-		const prereqs = course.value.prerequisites;
-		if (!prereqs) {
-			return undefined;
-		}
-		const relevantCourses = prereqAPI(prereqs).relevantCourses(
-			_previousCourses.map((course) => course.id),
-		);
-
-		// TODO use HTML links
-		const relevantPrereqsAlreadyCompletedHtml = relevantCourses.join(", ");
-		const prereq = new PrereqAPI(prereqs).fillKnownCourses(relevantCourses);
-		if (prereq === true) {
 			throw Error();
 		}
-		const prereqHtml = prereq.render({ course_cb });
-		return { relevantPrereqsAlreadyCompletedHtml, prereqHtml };
-	},
-);
+		alreadyDoneCourses = _previousCourses;
+	} else {
+		// get all courses in planner
+		alreadyDoneCourses = plannerAPI(planAPI.getCurrent().planner)
+			.getAllCourses()
+			.map((course) => courseAPI.getOrError(course));
+	}
+	const prereqs = course.value.prerequisites;
+	if (!prereqs) {
+		return undefined;
+	}
+	const relevantCourses = prereqAPI(prereqs).relevantCourses(
+		alreadyDoneCourses.map((course) => course.id),
+	);
+
+	// TODO use HTML links
+	const relevantPrereqsAlreadyCompletedHtml =
+		"Assuming you do/have done these courses: " +
+		relevantCourses
+			.map((course) => course_cb(courseAPI.codeFrom(course)))
+			.join(", ");
+	const prereq = new PrereqAPI(prereqs).fillKnownCourses(relevantCourses);
+	if (prereq === true) {
+		throw Error();
+	}
+	const prereqHtml =
+		" ... you only need to satisfy these conditions: " +
+		prereq.render({ course_cb });
+	return relevantPrereqsAlreadyCompletedHtml + prereqHtml;
+});
 
 const prereqs_list = computed(() => {
 	if (course.value?.prerequisites) {
@@ -286,13 +294,14 @@ const deselect = () => {
 					<p v-else>
 						{{ course?.code }} has no prerequisite courses.
 					</p>
-					<p v-if="prereqChecked === true">
+					<!-- <p v-if="inPlanner && prereqChecked === true">
 						You have completed all necessary prerequisites to begin
 						this course.
 					</p>
-					<p v-else-if="prereqChecked === false">
+					<p v-else-if="inPlanner && prereqChecked === false">
 						You need to complete: {{ prereqs_list_modified }}
-					</p>
+					</p> -->
+					<p v-if="prereqsHTML" v-html="prereqsHTML"></p>
 				</li>
 				<li v-if="incompatible_list">
 					<h5><strong>Incompatibilities:</strong></h5>

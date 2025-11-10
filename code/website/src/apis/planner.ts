@@ -1,9 +1,8 @@
 import { RecordId, type RecordIdValue } from "surrealdb";
 import { assert_id } from "./db";
-import { courseAPI, type Course, type Prereq } from "./db/course";
+import { courseAPI, type Course } from "./db/course";
 import { toast } from "vue3-toastify";
 
-console.log();
 export const sem_ids = [
 	"2025 Sem 1",
 	"2025 Sem 2",
@@ -19,6 +18,7 @@ export const sem_ids = [
 
 export type SemId = (typeof sem_ids)[number];
 
+/** Fresh object */
 export const defaultPlanner = (): Planner => {
 	const ret = {} as Planner;
 	for (const sem_id of sem_ids) {
@@ -91,6 +91,18 @@ export const plannerAPI = (planner: Planner) =>
 				this.getIndex([sem_id, i]);
 				planner[sem_id][i] = undefined;
 			}
+		},
+		getAllCourses(): RecordId<string>[] {
+			const allCourses = [] as RecordId<string>[];
+			for (const _sem_id in planner) {
+				const sem_id = _sem_id as SemId;
+				planner[sem_id].forEach((courseId) => {
+					if (courseId) {
+						allCourses.push(courseAPI.code(courseId));
+					}
+				});
+			}
+			return allCourses;
 		},
 		/** Doesn't include sem_id */
 		semIdsBefore(sem_id: SemId): SemId[] {
@@ -196,7 +208,10 @@ export const plannerAPI = (planner: Planner) =>
 				previouslyDone: Array<RecordIdValue>,
 			): boolean => {
 				if (prereq.length == 1 && !Array.isArray(prereq[0])) {
-					return previouslyDone.includes(prereq[0].id.toLowerCase()) || previouslyDone.includes(prereq[0].id.toUpperCase());
+					return (
+						previouslyDone.includes(prereq[0].id.toLowerCase()) ||
+						previouslyDone.includes(prereq[0].id.toUpperCase())
+					);
 				} else {
 					let firstCourse = prereq[0];
 					if (!Array.isArray(firstCourse)) {
