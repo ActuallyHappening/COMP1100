@@ -1,6 +1,6 @@
 import { RecordId } from "surrealdb";
 import _ from "lodash";
-import { assert_id } from "./db";
+import { assert_course_id, courseAPI } from "./db/course";
 
 type Idiom = "OR" | "AND" | RecordId<string> | Prereq;
 export type Prereq = Idiom[];
@@ -38,6 +38,9 @@ export class PrereqAPI {
 
 	getPrereq(): Prereq {
 		if (!this.prereq) {
+			throw new TypeError();
+		}
+		if (!_.isArray(this.prereq)) {
 			throw new TypeError();
 		}
 		return this.prereq;
@@ -131,13 +134,21 @@ export class PrereqAPI {
 
 		return this;
 	}
-	reduce(): PrereqAPI {
-		const ret = [...this.getPrereq()];
+
+	/** Keeps references, not deep clone */
+	reduce(options?: { prereq?: Prereq }): PrereqAPI {
+		const settings = {
+			prereq: undefined,
+			...options,
+		};
+		const prereq = settings.prereq ?? this.getPrereq();
+		const ret = [...prereq];
 		this.getPrereq().forEach((idiom, i) => {
 			ret[i] = this.reduceIdiom(idiom);
 		});
 		return new PrereqAPI(ret);
 	}
+
 	reduceIdiom(idiom: Idiom): Idiom {
 		if (_.isArray(idiom)) {
 			if (idiom.length === 1) {
@@ -150,25 +161,102 @@ export class PrereqAPI {
 		}
 	}
 
-	/** Replaces all known courses */
-	replace(
+	/**
+	 * Replaces all known courses.
+	 * Checks and reduces before and after
+	 */
+	fillKnownCourses(
 		withCourses: RecordId<string>[],
 		options?: {
 			prereq?: Prereq;
 		},
-	): PrereqAPI {
-		withCourses.forEach((id) => assert_id(id));
+	): PrereqAPI | true {
+		withCourses.forEach((id) => assert_course_id(id));
 		const settings = {
 			prereq: undefined,
 			...options,
 		};
-		const prereq = settings.prereq || this.getPrereq();
+		let prereq = settings.prereq || this.getPrereq();
+		// normalize
+		this.check({ prereq });
+		prereq = this.reduce({ prereq }).getPrereq();
 
-		prereq.forEach((idiom, i) => {
-			if (isLogicalConjunction(idiom)) {
-				prereq[i] = withCourses;
+		const courses = new Set(
+			...withCourses.map((course) => courseAPI.codeFrom(course)),
+		);
+
+		const filledPrereq: (true | Idiom)[] = prereq.map((idiom) => {
+			if (_.isArray(idiom)) {
+				// start recursively working at the leaves first
+				const idiomResult = this.fillKnownCourses(withCourses, {
+					...settings,
+					prereq: idiom,
+				});
+				if (idiomResult === true) {
+					return true;
+				} else {
+					return idiomResult.getPrereq();
+				}
+			} else if (
+				idiom instanceof RecordId &&
+				courses.has(courseAPI.codeFrom(idiom))
+			) {
+				// fill in courses given
+				return true;
+			} else {
+				return idiom;
 			}
 		});
-		return new PrereqAPI(prereq);
+
+		// a one length must be trivially resolvable
+		if (filledPrereq.length === 1) {
+			if (filledPrereq[0] === true) {
+				// [true] -> true
+				return true;
+			} else {
+				// [course:notdone] -> [course:notdone]
+				return new PrereqAPI(filledPrereq as Idiom[]);
+			}
+		} else if (filledPrereq.some((idiom) => idiom === true)) {
+			// at least one course can be filled
+			// and since the length is one, this is either an OR or AND chain
+			if (filledPrereq[1] === "OR") {
+				// OR chain
+				// since we know one of these must be true, the whole prereqs must be passed
+				return true;
+			} else if (filledPrereq[1] === "AND") {
+				// AND chain, more complicated
+				// ignoring the logical conjunctions, we can remove all idioms that
+				// aren't a course already filled, then check length cases
+				const non_logical_idioms = filledPrereq.filter(
+					(idiom) => idiom !== "AND" && idiom !== "OR",
+				);
+				const removed_filled_courses = non_logical_idioms.filter((idiom) => {
+					// remove all `true`s
+					if (idiom === true) return false;
+					return true;
+				});
+				console.log(`REMOVED FILLED`, removed_filled_courses);
+				const remaining_idioms = removed_filled_courses;
+				if (remaining_idioms.length === 0) {
+					// case where all courses were filled with no junk
+					// withCourses: [course:123, course:abc]
+					// prereq: [course:123, "AND", course:abc]
+					return true;
+				} else {
+					// some leftover
+					// withCourses: [course:123]
+					// prereq: [course:123, "AND", course:abc]
+					non_logical_idioms
+						.reduce<Prereq>((acc, val) => {
+							return acc.concat("AND", val);
+						}, [] as Prereq)
+						.slice(1);
+				}
+			}
+		} else {
+			// no courses or simplifications in this layer, give back to parent as is
+			return new PrereqAPI(filledPrereq as Prereq);
+		}
 	}
 }

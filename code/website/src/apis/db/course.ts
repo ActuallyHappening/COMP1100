@@ -32,6 +32,13 @@ export const error_course = (msg: string): Course => {
 	};
 };
 
+export const assert_course_id = (id: RecordId<string>) => {
+	assert_id(id);
+	if (id.tb !== "course") {
+		throw new Error(`Expected id = "course" got "${id.id}" instead`);
+	}
+};
+
 export const courseAPI = {
 	getAll(): Course[] | null {
 		const ret = courses.value as Course[] | null;
@@ -43,8 +50,12 @@ export const courseAPI = {
 	code(code: string): RecordId<string> {
 		return new RecordId("course", code.toLowerCase());
 	},
+	codeFrom(id: RecordId<string>): string {
+		assert_course_id(id);
+		return id.id.toString().toUpperCase();
+	},
 	get(id: RecordId<string>): Course | undefined {
-		assert_id(id);
+		assert_course_id(id);
 		const all = this.getAll();
 		if (!all) {
 			return;

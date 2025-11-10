@@ -4,12 +4,13 @@ import {
 	prereqAPI,
 	type Prereq,
 	DIDNT_EXPECT_LOGICAL_CONJUNCTION,
+	PrereqAPI,
 } from "./prereq";
 
 function course(num?: number) {
 	return new RecordId(
 		"course",
-		num ?? Math.random().toString(36).substring(2, 15),
+		String(num ?? Math.random().toString(36).substring(2, 15)),
 	);
 }
 
@@ -23,6 +24,7 @@ test("prereqAPI render fails with good err", () => {
 		[course(1), course(2)],
 		["OR"],
 		[course(1), "OR", course(2), "AND", course(3)],
+		[[[course(1), course(2)]]],
 	] satisfies Prereq[];
 	for (const failingExample of failing) {
 		// checks that the error message contains the correct needle
@@ -50,4 +52,51 @@ test("prereqAPI clean works", () => {
 		[[[course(6)]]],
 	] satisfies Prereq;
 	expect(prereqAPI(prereq).reduce().render()).to.be.eq("1 or 2 or 6");
+});
+
+test("PrereqAPI fillKnownCourses works", () => {
+	const unsuccessExamples = [
+		{
+			knownCourses: [],
+			prereq: [course(1)],
+			rendered: "1",
+		},
+	] satisfies {
+		knownCourses: RecordId<string>[];
+		prereq: Prereq;
+		rendered: string;
+	}[];
+	for (const example of unsuccessExamples) {
+		const res = prereqAPI(example.prereq).fillKnownCourses(
+			example.knownCourses,
+		);
+		expect(res).to.not.eq(true);
+		const rendered = (res as PrereqAPI).render();
+		expect(rendered).to.eq(example.rendered);
+	}
+
+	const successExamples = [
+		{
+			knownCourses: [course(1)],
+			prereq: [course(1)],
+		},
+		{
+			knownCourses: [course(1)],
+			prereq: [course(1), "OR", course(69)],
+		},
+		{
+			knownCourses: [course(1)],
+			prereq: [course(69), "OR", course(1)],
+		},
+		{
+			knownCourses: [course(1), course(2)],
+			prereq: [course(1), "AND", course(2)],
+		},
+	] satisfies { knownCourses: RecordId<string>[]; prereq: Prereq }[];
+	for (const example of successExamples) {
+		const res = prereqAPI(example.prereq).fillKnownCourses(
+			example.knownCourses,
+		);
+		expect(res).to.eq(true);
+	}
 });
