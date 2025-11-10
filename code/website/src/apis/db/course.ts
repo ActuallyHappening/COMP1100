@@ -2,10 +2,10 @@ import { RecordId } from "surrealdb";
 import { ref } from "vue";
 import { assert_id, id_eq } from "../db";
 import { toast } from "vue3-toastify";
+import type { Prereq } from "../prereq";
 
 export const courses = ref(null as Course[] | null);
 
-export type Prereq = ("OR" | "AND" | RecordId<string> | Prereq)[];
 export type Course = {
 	id: RecordId<string>;
 	code: string;

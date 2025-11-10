@@ -44,28 +44,6 @@ const course = computed((): Course => {
 	}
 	return ret;
 });
-const renderPrereq = (
-	arr: Prereq,
-	options?: { course_cb?: (id: string) => string },
-): string => {
-	const settings = {
-		course_cb: (id: string) => id.toUpperCase(),
-		...options,
-	};
-	const ret = [];
-	for (const idiom of arr) {
-		if (idiom === "OR" || idiom === "AND") {
-			ret.push(idiom.toLowerCase());
-		} else if (idiom instanceof RecordId) {
-			ret.push(settings.course_cb(idiom.id.toString()));
-		} else if (typeof idiom === "object") {
-			ret.push("(" + renderPrereq(idiom, settings) + ")");
-		} else {
-			throw TypeError();
-		}
-	}
-	return ret.join(" ");
-};
 const prereqs_list = computed(() => {
 	if (course.value?.prerequisites) {
 		return renderPrereq(course.value?.prerequisites);
