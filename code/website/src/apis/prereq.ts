@@ -263,5 +263,7 @@ export class PrereqAPI {
 			// no courses or simplifications in this layer, give back to parent as is
 			return new PrereqAPI(filledPrereq as Prereq);
 		}
+
+		throw new Error(`Tell calebyates42@proton.me`);
 	}
 }
