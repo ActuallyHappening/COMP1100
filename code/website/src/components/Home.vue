@@ -174,7 +174,7 @@ function checker() {
 		</div>
 	</div>
 	<!-- Top bar selections -->
-	<div class="w-100 container-fluid purple-bg ps-3 pe-3">
+	<div class="w-100 container-fluid purple-bg ps-3 pe-3 pb-3">
 		<form action="#" @submit.prevent="() => {}">
 			<div class="row">
 				<div class="col-md-2 col">
@@ -256,57 +256,9 @@ function checker() {
 		</form>
 	</div>
 
-	<!--
-	<div class="container-fluid p-0">
-		<form action="#" @submit.prevent="() => {}">
-			<div class="input-group input-group-lg">
-				<span class="input-group-text">Year</span>
-				<input
-					type="number"
-					class="input-group-text"
-					placeholder="2025"
-					disabled
-				/>
-				<span class="input-group-text">Course</span>
-				<select
-					class="form-select"
-					name="course-code"
-					id="course-code"
-					:value="planAPI.getCurrent().programId"
-					@input="courseChange"
-				>
-					<option value="" hidden>Please select a course</option>
-					<option
-						v-for="program in programs"
-						:key="program.id.id.toString()"
-						:value="program.id.id.toString()"
-					>
-						{{ program.name }}
-					</option>
-				</select>
-				<span class="input-group-text">Major</span>
-
-				<ProgramReq
-					v-if="programAPI.getCurrent()?.program_requirements?.[1]"
-					:index="1"
-				/>
-				<select
-					v-else
-					class="form-select also_styled"
-					disabled
-				></select>
-			</div>
-		</form>
-	</div>
-	-->
-	<!-- Under top bar bar -->
-	<div class="container-fluid p-0" v-if="programAPI.getCurrent()">
-		<FilterHeader />
-	</div>
 	<!-- Row -->
-	<br />
 	<div
-		class="container-fluid row p-0 m-0"
+		class="container-fluid row p-0 me-0 ms-0 mt-2"
 		id="parent-div"
 		v-if="programAPI.getCurrent()"
 	>
@@ -349,23 +301,7 @@ function checker() {
 					>
 						<!-- {{ getHeaderByIndex(i) }} -->
 						<ProgramReq :index="i" />
-						<!--<form
-							role="search"
-							v-if="planAPI.getCurrent().topLevelReqsSelected[i]"
-						>-->
-						<!--
-							Hey Patrick, delete this once you have read it.
-							I have rigged up this search bar to always show, thanks!
-						 -->
-						<!--<input
-								type="search"
-								class="form-control"
-								placeholder="Search for a course"
-								aria-label="search"
-								v-model="filters.search"
-							/>-->
-						<!--</form>-->
-						<!-- Hey caleb, please let me know how you would like me to do this, be it links, buttons, inputs, whatever. -->
+						<!-- Filters/Search -->
 						<form
 							role="search"
 							v-if="planAPI.getCurrent().topLevelReqsSelected[i]"
@@ -447,7 +383,9 @@ function checker() {
 									</div>
 									<div>
 										<button
+											type="button"
 											class="btn btn-outline-secondary h-100"
+											@click="filterAPI.clear"
 										>
 											Clear Filters
 										</button>
@@ -574,7 +512,7 @@ button.list-group-item {
 }
 
 .panel {
-	height: calc(100vh - 12.5rem);
+	height: calc(100vh - 9.5rem);
 	overflow: auto;
 }
 
