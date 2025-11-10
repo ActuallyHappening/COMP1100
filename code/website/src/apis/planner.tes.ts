@@ -9,6 +9,8 @@ function course(num?: number) {
 	);
 }
 
+// wtf why is this failing for some random other reason
+
 test("plannerAPI getAllCourses works", () => {
 	const planner = plannerAPI(defaultPlanner());
 

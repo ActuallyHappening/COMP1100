@@ -94,6 +94,21 @@ test("PrereqAPI fillKnownCourses works", () => {
 			prereq: [course(1)],
 			rendered: "1",
 		},
+		{
+			knownCourses: [course(1)],
+			prereq: [course(1), "AND", course(2)],
+			rendered: "2",
+		},
+		{
+			knownCourses: [course(1)],
+			prereq: [course(2), "AND", course(1), "AND", [course(1)]],
+			rendered: "2",
+		},
+		{
+			knownCourses: [course(1)],
+			prereq: [course(4), "OR", [course(3), "OR", course(2)]],
+			rendered: "3 and 4",
+		},
 	] satisfies {
 		knownCourses: RecordId<string>[];
 		prereq: Prereq;
