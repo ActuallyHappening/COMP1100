@@ -15,7 +15,7 @@ function course(num?: number) {
 
 test("prereqAPI works", () => {
 	const examplePass = [course(1), "OR", course(2)] satisfies Prereq;
-	expect(prereqAPI(examplePass).renderPrereq()).to.be.eq("1 or 2");
+	expect(prereqAPI(examplePass).render()).to.be.eq("1 or 2");
 });
 
 test("prereqAPI fails with good err", () => {
@@ -24,7 +24,7 @@ test("prereqAPI fails with good err", () => {
 		// checks that the error message contains the correct needle
 		let threw = false;
 		try {
-			prereqAPI(failingExample).renderPrereq();
+			prereqAPI(failingExample).render();
 		} catch (err) {
 			err = err as Error;
 			threw = true;

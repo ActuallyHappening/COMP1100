@@ -47,7 +47,7 @@ const course = computed((): Course => {
 });
 const prereqs_list = computed(() => {
 	if (course.value?.prerequisites) {
-		return prereqAPI(course.value?.prerequisites).renderPrereq();
+		return prereqAPI(course.value?.prerequisites).render();
 	} else {
 		return "";
 	}
@@ -192,7 +192,7 @@ const prereqs_list_modified = computed(() => {
 });
 const prereqs_list_html = computed(() => {
 	if (course.value?.prerequisites) {
-		return prereqAPI(course.value?.prerequisites).renderPrereq({
+		return prereqAPI(course.value?.prerequisites).render({
 			course_cb: (id: string) =>
 				`<a href="#${id}">${id.toUpperCase()}</a>`,
 		});
@@ -587,7 +587,7 @@ function toggle_adv(basicCourse: Course, course: Course) {
 	if (prereq) {
 		let prereqs = "";
 		if (course.prerequisites) {
-			prereqs = renderPrereq(course.prerequisites);
+			prereqs = prereqAPI(course.prerequisites).render();
 		}
 		prereq.innerHTML = `Prerequisites: <i>${prereqs}</i>`;
 	}
