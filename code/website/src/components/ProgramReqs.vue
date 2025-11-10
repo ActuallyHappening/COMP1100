@@ -9,7 +9,7 @@ import { courseAPI } from "../apis/db/course";
 import { filterAPI } from "../apis/filter";
 import { planAPI } from "../apis/plan";
 // import Course from "./Course.vue";
-import CourseLeftOption from "./course/LeftOption.vue";
+import LeftOptionCourse from "./course/LeftOption.vue";
 import { advCoursesAPI } from "../apis/db/adv_courses";
 
 const coursesInPlanArray: { [key: string]: { [key: string]: any } } =
@@ -88,7 +88,7 @@ function advAdvCourse(course) {
 		<div v-if="filtered_courses">
 			<div v-for="course in filtered_courses.courses" class="list-group">
 				<div v-if="!advAdvCourse(course)">
-					<CourseLeftOption :code="course.code" />
+					<LeftOptionCourse :code="course.code" />
 				</div>
 			</div>
 		</div>

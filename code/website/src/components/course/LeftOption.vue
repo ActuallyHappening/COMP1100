@@ -431,7 +431,7 @@ const selectCourse = (obCourse: Course) => {
 				selectedState === courseAPI.codeFrom(course?.id) ||
 				checkAdvanced(course),
 		}"
-		:id="'vue-Course-' + course?.code"
+		:id="'vue-LeftOptionCourse-' + course?.code"
 		@click="selectCourse(course)"
 	>
 		<template v-if="!error">
