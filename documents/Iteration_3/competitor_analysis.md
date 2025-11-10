@@ -11,6 +11,7 @@ Our project UQ Plan It aims to solve current UI issues, so that UI will be easy 
 | EdStem Discussion Boards | Indirect | classmates | Q&A | Immediate | disorganized | [interviews](../../interviews/iteration_2/liam_bienkowski/liam_bienkowski_2025-09-20_3.md) attest that the edstem board can get cluttered and full of unnesecary informatation very quickly. |
 | Campusvue | Direct | students | scheduling | combines schedule, tasks, grade in one personal view | not tailored to specific uni degree prerequisites | can provide a good base model, but as it tries to tailor to many different prerequisites it can be restricted by its own success |
 | UQ Plan It | Direct | students | unified student profile,visual progress tracker,multi-scenario planning | adaptable,efficient | Data dependent, university reliance, moderation need| Overall, seeks to condense many of the above website's core functions into one coherent solution.|
+| UQ Course Planner (Depreciated) | Direct | students | UQ-based solution | reliable, some enforced requirements | No longer exists, did not enforce prerequisites | Was a relied upon solution by many in UQ until it was depreciated at the start of 2023. It allowed courses to be planned and students enjoyed the fact that it would allow them to verify the integrity of their course.|
 
 ## SWOT Analysis
 
