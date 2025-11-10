@@ -11,6 +11,7 @@ import {
 import { selectedState } from "../../apis/state";
 import { planAPI } from "../../apis/plan";
 import { plannerAPI, type SemId } from "../../apis/planner";
+import { programRequirementAPI } from "../../apis/db/program_requirement";
 
 const props = defineProps({
 	code: {
@@ -146,6 +147,34 @@ const close = () => {
 		}
 	}
 };
+
+
+function coreCourseChecker(course: Course) {
+	let reqs = planAPI.getCurrent().topLevelReqsSelected;
+	let filteredReqs = [];
+	for (const req in reqs) {
+		if (reqs[req]?.includes('core') && !(reqs[req]?.includes('flexcore'))) {
+			filteredReqs.push(reqs[req]);
+		}
+	}
+	let realReqs = []
+	for (const req in filteredReqs) {
+		let requirement = programRequirementAPI.getAll()
+		for (const r in requirement) {
+			if (requirement[r].id.id === filteredReqs[req]) {
+				realReqs.push(requirement[r])
+			}
+		}
+	}
+	for (const req in realReqs) {
+		for (const a in realReqs[req].course_options) {
+			if (realReqs[req].course_options[a][0].id === course.id.id) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
 </script>
 
 <template>
@@ -157,7 +186,7 @@ const close = () => {
 	>
 		<template v-if="!error">
 			<div class="justify-content-end d-flex">
-				<div title="Core Course">
+				<div title="Core Course" v-if="coreCourseChecker(course)">
 					<i class="fa-solid fa-meteor"></i>
 					<!-- Core course example -->
 					<!-- Up to you to implement, idk what you want -->

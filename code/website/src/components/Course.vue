@@ -723,6 +723,12 @@ function allocated(course: Course) {
 	}
 	return false;
 }
+
+function coreCourseChecker(course: Course) {
+	console.log('here')
+	console.log(planAPI.getCurrent().topLevelReqsSelected)
+	return true;
+}
 </script>
 
 <template>
@@ -812,7 +818,7 @@ function allocated(course: Course) {
 
 			<template v-else-if="type === 'small'">
 				<div class="justify-content-end d-flex">
-					<div title="Core Course">
+					<div title="Core Course" v-if="coreCourseChecker(course)">
 						<i class="fa-solid fa-meteor"></i>
 						<!-- Core course example -->
 						<!-- Up to you to implement, idk what you want -->
