@@ -12,7 +12,7 @@ import { selectedState } from "../apis/state";
 import { planAPI } from "../apis/plan";
 import { plannerAPI, type SemId } from "../apis/planner";
 import { RecordId } from "surrealdb";
-import { filters } from "../apis/filter"
+import { filters } from "../apis/filter";
 
 const props = defineProps({
 	code: {
@@ -166,19 +166,21 @@ const isInPlanner = computed((): boolean => {
 		return false;
 	} else {
 		return true;
-	};
+	}
 });
 
-const semesterOfCourseInPlannerWhichThePersonIsTaking = computed((): SemId | undefined => {
-	const rawPlan = planAPI.getCurrent().planner;
-	const planner = plannerAPI(rawPlan);
-	const inPlanner = planner.getIndexOfCourse(course.value.id);
-	if (inPlanner) {
-		return inPlanner[0];
-	} else {
-		return undefined;
-	}
-})
+const semesterOfCourseInPlannerWhichThePersonIsTaking = computed(
+	(): SemId | undefined => {
+		const rawPlan = planAPI.getCurrent().planner;
+		const planner = plannerAPI(rawPlan);
+		const inPlanner = planner.getIndexOfCourse(course.value.id);
+		if (inPlanner) {
+			return inPlanner[0];
+		} else {
+			return undefined;
+		}
+	},
+);
 
 const close = () => {
 	// remove this from selected and from visual planner
@@ -200,8 +202,7 @@ const deselect = () => {
 			'course-selection-active':
 				type === 'default' &&
 				selectedState === course?.id.id.toString().toLowerCase(),
-			'course-selection':
-				type === 'default',
+			'course-selection': type === 'default',
 		}"
 		:id="'vue-Course-' + course?.code"
 		@click="selectCourse"
@@ -218,12 +219,12 @@ const deselect = () => {
 				<p class="m-0 p-0" v-if="incompatible_list">
 					Incompatible: <i>{{ incompatible_list }}</i>
 				</p>
-				<i class="fa-solid fa-comet"></i>
 			</template>
 
 			<template v-else-if="type === 'default' && isInPlanner">
 				<h6 class="text-center gray-text">
-					{{ course?.code }}: <i>{{ semesterOfCourseInPlannerWhichThePersonIsTaking }}</i>
+					{{ course?.code }}:
+					<i>{{ semesterOfCourseInPlannerWhichThePersonIsTaking }}</i>
 				</h6>
 			</template>
 
@@ -338,20 +339,19 @@ const deselect = () => {
 </template>
 
 <style scoped>
-
 button.course-selection-active {
-	background-color: #51247A;
-	color: #ffffff
+	background-color: #51247a;
+	color: #ffffff;
 }
 
 button.course-selection:hover {
 	background-color: #7f55b5;
-	color: #F8F8F8
+	color: #f8f8f8;
 }
 
 button.course-selection-active:hover {
-	background-color: #51247A;
-	color: #ffffff
+	background-color: #51247a;
+	color: #ffffff;
 }
 
 button.course-selection {
