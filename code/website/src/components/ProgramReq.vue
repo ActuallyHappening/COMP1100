@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import _ from "lodash";
+import _, { update } from "lodash";
 import { computed, watch } from "vue";
 import {
 	programRequirementAPI,
@@ -49,6 +49,16 @@ watch(
 	},
 	{ deep: true, immediate: true },
 );
+
+function updateHeader(value: string) {
+	let newReq = programRequirementAPI.getAll();
+	for (const req in newReq) {
+		if (newReq[req].id.id === value) {
+			const el = document.getElementById('homescreen-leftbar-major-tab');
+			el.innerHTML = newReq[req].short_name;
+		}
+	}
+}
 </script>
 
 <template>
@@ -70,9 +80,11 @@ watch(
 			v-else
 			:value="planAPI.getCurrent()!.topLevelReqsSelected[props.index]"
 			@input="
-				(ev) =>
+				(ev) => {
 					(planAPI.getCurrent()!.topLevelReqsSelected[props.index] =
-						ev.target?.value)
+						ev.target?.value);
+					updateHeader(ev.target?.value);
+				}
 			"
 			id="vue-ProgramReq"
 			class="form-select form-select-lg"
