@@ -262,7 +262,7 @@ function checker() {
 		id="parent-div"
 		v-if="programAPI.getCurrent()"
 	>
-		<div class="col-3 left-panel">
+		<div class="col-3 panel">
 			<div
 				class="nav nav-tabs"
 				id="nav-tab"
