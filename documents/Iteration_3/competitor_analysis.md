@@ -6,7 +6,7 @@ Our project UQ Plan It aims to solve current UI issues, so that UI will be easy 
 | Competitor | Direct/Indirect | Target | Key Features | Strengths | Weaknesses | Other Notes |
 |------------|-----------------|--------|--------------|-----------|------------|-------------|
 | Student VIP | Indirect | students | marketplace, textbooks, notes | Network, large active user base | focus is on commerce, not on academic | Solution is not well known and its features are not as built out as they could be |
-| UQ My Course Planner | Direct | students | validation | authoritative | inflexible | as it is found in a PDF form for most students, it does provide a very good way of viewing courses but falls down due to the inability to manipulate it |
+| UQ My Course Planner (PDF) | Direct | students | validation | authoritative | inflexible | as it is found in a PDF form for most students, it does provide a very good way of viewing courses but falls down due to the inability to manipulate it |
 | Uni of Melb My Course Planner | Direct | students (uni-specific) | official, accurate | inflexible, isolated | Uni of Melb course planner is most similar to the solution that we propose, but comments from other users regarding courses cannot be viewed |
 | EdStem Discussion Boards | Indirect | classmates | Q&A | Immediate | disorganized | [interviews](../../interviews/iteration_2/liam_bienkowski/liam_bienkowski_2025-09-20_3.md) attest that the edstem board can get cluttered and full of unnesecary informatation very quickly. |
 | Campusvue | Direct | students | scheduling | combines schedule, tasks, grade in one personal view | not tailored to specific uni degree prerequisites | can provide a good base model, but as it tries to tailor to many different prerequisites it can be restricted by its own success |
@@ -15,7 +15,7 @@ Our project UQ Plan It aims to solve current UI issues, so that UI will be easy 
 
 ## SWOT Analysis
 
-### UQ My course planner 
+### UQ My course Planner (PDF)
 Strength: *It is the Official university website and authority,accurate, institution-approved data and mandatory use for degree planning.*
 
 Weaknesses: *Inflexible planning capabilities, poor user experience and interface design, limited to single-path planning.*
@@ -32,6 +32,15 @@ Weaknesses: *Generic approach not tailored to specific degrees, limited long-ter
 Opportunities: *Deeper integration with university degree requirements,expansion into long-term planning features and specialization for specific academic programs.*
 
 Threats: *Features becoming standard in other student apps, competition from specialized degree planners and limited differentiation in crowded market.*
+
+### UQ Course Planner (depreciated)
+Strength: *It has been used by UQ students prior to it being taken offline. Students commented on how they used to enjoy having this planner. The planner enforced semester restrictions, counted course points and validated course requirements.*
+
+Weaknesses: *It is no longer used. It did not also enforce such criteria such as incompatible courses or prerequisite courses. This could lead some users into error when using the course planner*
+
+Opportunities: *Could use the course planner as a basis of appeal to existing UQ students who may miss the course planner, as well as building on its features to provide a better, more refined solution*
+
+Threats: *The failures that people may have encountered with the old UQ Course Planner could give a poor first impression of existing UQ students onto our planner. Therefore, efforts must be taken to establish this as a 'new solution'*
 
 # Insights and Strategy
 | Insights | Strategy |
