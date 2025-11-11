@@ -15,7 +15,7 @@ Our project UQ Plan It aims to solve current UI issues, so that UI will be easy 
 
 ## SWOT Analysis
 
-### UQ My course Planner (PDF)
+### UQ My Course Planner (PDF)
 Strength: *It is the Official university website and authority,accurate, institution-approved data and mandatory use for degree planning.*
 
 Weaknesses: *Inflexible planning capabilities, poor user experience and interface design, limited to single-path planning.*
