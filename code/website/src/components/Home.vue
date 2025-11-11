@@ -86,11 +86,21 @@ const normalizedIndexHeaders = computed((): string[] => {
 	if (!currentProgram) {
 		return [];
 	}
+	let dict = {};
 	for (const idx in currentProgram.program_requirements) {
+		if (dict[programRequirementAPI.get(currentProgram.program_requirements[idx][0])?.name.split(" ")[0]]) {
+			let currentValue = dict[programRequirementAPI.get(currentProgram.program_requirements[idx][0])?.name.split(" ")[0]];
+			currentValue.push([idx, programRequirementAPI.get(currentProgram.program_requirements[idx][0])]);
+			dict[programRequirementAPI.get(currentProgram.program_requirements[idx][0])?.name.split(" ")[0]] = currentValue;
+		} else {
+			dict[programRequirementAPI.get(currentProgram.program_requirements[idx][0])?.name.split(" ")[0]] = [[idx, programRequirementAPI.get(currentProgram.program_requirements[idx][0])]];
+		}
+		console.log(dict)
 		const i = Number(idx);
 		ret[i] = normalize(getHeaderByIndex(i));
 	}
-	return ret;
+	console.log(dict)
+	return [ret, dict];
 });
 
 // Vue tab impl
@@ -129,6 +139,24 @@ function checker() {
 			button.remove();
 		}
 	}
+}
+
+function including(ob: any[], ind: number) {
+	for (const o in ob) {
+		if (Number(ob[o][0]) === ind) {
+			return true;
+		}
+	}
+	return false;
+}
+
+function getName(ob: any[], ind: number) {
+	for (const o in ob) {
+		if (Number(ob[o][0]) === ind) {
+			return (ob[o][1].short_name);
+		}
+	}
+	return;
 }
 </script>
 
@@ -263,33 +291,38 @@ function checker() {
 		v-if="programAPI.getCurrent()"
 	>
 		<div class="col-3 panel">
-			<div
-				class="nav nav-tabs"
-				id="nav-tab"
-				role="tablist"
-				@wheel="navScroll"
-			>
-				<button
-					v-if="programAPI.getCurrent()"
-					v-for="(id, i) in normalizedIndexHeaders"
-					ref="tabs"
-					:key="id"
-					class="nav-link"
-					:class="{ active: i == selectedIndex }"
-					:id="`homescreen-leftbar-${id}-tab`"
-					data-bs-toggle="tab"
-					:data-bs-target="`#homescreen-leftbar-${id}-tabcontent`"
-					type="button"
-					role="tab"
-					:aria-controls="`#homescreen-leftbar-${id}-tabcontent`"
-					aria-selected="true"
-					@click="(ev) => tabClicked(ev, i)"
+			<div class="nav nav-tabs" id="nav-tab" role="tablist" @wheel="navScroll" v-if="programAPI.getCurrent()">
+				<div
+					v-for="(c, index) in normalizedIndexHeaders[1]"
+					:key="index"
 				>
-					{{ getHeaderByIndex(i) }}
-				</button>
+    				<p class="fw-bold text-center mb-3">{{ index }}</p>
+					<div class="d-flex overflow-auto flex-nowrap">
+						<div v-for="(id, i) in normalizedIndexHeaders[0]" :key="id" class="mb-2">
+							<div v-if="including(c, i)">
+								<button
+									ref="tabs"
+									:key="id"
+									class="nav-link"
+									:class="{ active: i == selectedIndex }"
+									:id="`homescreen-leftbar-${id}-tab`"
+									data-bs-toggle="tab"
+									:data-bs-target="`#homescreen-leftbar-${id}-tabcontent`"
+									type="button"
+									role="tab"
+									:aria-controls="`#homescreen-leftbar-${id}-tabcontent`"
+									aria-selected="true"
+									@click="(ev) => tabClicked(ev, i)"
+								>
+									{{ getName(c, i) }}
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="tab-content" id="nav-tabContent">
-				<template v-for="(id, i) in normalizedIndexHeaders" :key="id">
+				<template v-for="(id, i) in normalizedIndexHeaders[0]" :key="id">
 					<div
 						v-show="i === selectedIndex"
 						class="tab-pane fade show"
