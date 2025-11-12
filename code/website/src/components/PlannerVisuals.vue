@@ -91,7 +91,7 @@ const applyClass = (sem_id: SemId) => {
 				<th scope="row" :id="`${sem_id}`">{{ sem_id }}</th>
 				<td v-for="(_name, id) in slots.length" :id="`${sem_id}-${id}`">
 					<button
-						class="btn btn-outline-secondary pt-5 pb-5"
+						class="btn btn-outline-secondary p-4-5"
 						@click="placeCourse(sem_id, id)"
 						v-if="!getPlan(sem_id, id)"
 					>
@@ -173,5 +173,9 @@ tr.dark-gray-row td {
 tr.gray-row td {
 	background-color: lavender;
 	border-radius: 10px;
+}
+.p-4-5 {
+	padding-top: 2rem;
+	padding-bottom: 2rem;
 }
 </style>

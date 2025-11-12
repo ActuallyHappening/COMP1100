@@ -210,7 +210,7 @@ function coreCourseChecker(course: Course) {
 				https://github.com/COMP1100-7110-2025-s2/Mon_9am_Team_10/issues/31
 			 -->
 			<!-- <p class="m-0 p-0" v-if="coreCourseChecker(course)">Core course</p> -->
-			<p class="m-0 p-0">
+			<p class="m-0 p-0 pt-2">
 				Prereqs passed:
 				<span v-if="prereqChecked"
 					><i
