@@ -197,7 +197,7 @@ function coreCourseChecker(course: Course) {
 				<div>
 					<button
 						type="button"
-						class="btn-close"
+						class="btn-close btn-deselect"
 						aria-label="Close"
 						@click.prevent="close"
 					></button>
@@ -253,13 +253,12 @@ button.course-selection {
 table button:hover {
 	background-color: inherit;
 }
-.btn-close:hover :not(.btn-deselect) {
-	filter: invert(100%) sepia(100%) hue-rotate(300deg) saturate(100000%);
+.btn-deselect:hover {
+	/* filter: invert(100%) sepia(100%) hue-rotate(300deg) saturate(100000%); */
 	opacity: 1;
 }
-.btn-deselect:hover {
-	filter: invert(100%) sepia(100%) hue-rotate(300deg) saturate(100000%);
-	opacity: 1;
+.invert .btn-deselect {
+	filter: invert(100%);
 }
 .gray-text {
 	color: gray;

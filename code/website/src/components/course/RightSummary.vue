@@ -254,24 +254,34 @@ const deselect = () => {
 		:id="'vue-RightSummaryCourse-' + course?.code"
 	>
 		<template v-if="!error">
-			<div class="d-flex justify-content-center">
-				<a
-					class="mb-2"
-					:href="
-						'https://programs-courses.uq.edu.au/course.html?course_code=' +
-						course?.code
-					"
-					target="_blank"
-				>
-					<h3 class="text-center">{{ course?.code }}</h3>
-					<p class="text-center">{{ course?.name }}</p>
-				</a>
-				<button
-					type="button"
-					class="btn-close btn-deselect align-self-start"
-					aria-label="Close"
-					@click.prevent="deselect"
-				></button>
+			<div class="d-flex justify-content-end">
+				<div style="visibility: hidden;">
+					<button
+						type="button" disabled
+						class="btn-close btn-deselect align-self-start"
+					></button>
+				</div>
+				<div class="m-auto">
+					<a
+						class="mb-2"
+						:href="
+							'https://programs-courses.uq.edu.au/course.html?course_code=' +
+							course?.code
+						"
+						target="_blank"
+					>
+						<h3 class="text-center">{{ course?.code }}</h3>
+						<p class="text-center">{{ course?.name }}</p>
+					</a>
+				</div>
+				<div class="invert">
+					<button
+						type="button"
+						class="btn-close btn-deselect align-self-start"
+						aria-label="Close"
+						@click.prevent="deselect"
+					></button>
+				</div>
 			</div>
 			<ul class="text-start">
 				<li>
@@ -367,13 +377,12 @@ button.course-selection {
 table button:hover {
 	background-color: inherit;
 }
-.btn-close:hover :not(.btn-deselect) {
-	filter: invert(100%) sepia(100%) hue-rotate(300deg) saturate(100000%);
+.btn-deselect:hover {
+	/* filter: invert(100%) sepia(100%) hue-rotate(300deg) saturate(100000%); */
 	opacity: 1;
 }
-.btn-deselect:hover {
-	filter: invert(100%) sepia(100%) hue-rotate(300deg) saturate(100000%);
-	opacity: 1;
+.invert .btn-deselect {
+	filter: invert(100%);
 }
 .gray-text {
 	color: gray;
