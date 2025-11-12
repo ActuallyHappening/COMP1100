@@ -289,13 +289,16 @@ function getName(ob: any[], ind: number) {
 		id="parent-div"
 		v-if="programAPI.getCurrent()"
 	>
-		<div class="col-3 panel">
+		<div class="col-3 panel" style="position: relative;">
 			<div class="nav nav-tabs" id="nav-tab" role="tablist" @wheel="navScroll" v-if="programAPI.getCurrent()">
 				<div
 					v-for="(c, index) in normalizedIndexHeaders[1]"
 					:key="index"
+					style="border-left: #dee2e6;border-left-width: 1px;border-left-style: solid;"
 				>
-    				<p class="fw-bold text-center mb-3">{{ index }}</p>
+    				<p v-if="Object.keys(normalizedIndexHeaders[1]).length > 1" class="fw-bold text-center mb-3">{{ index }}</p>
+					<p v-if="Object.keys(normalizedIndexHeaders[1]).length == 1" class="fw-bold text-center mb-3" style="position: absolute; left: 50%; transform: translateX(-50%)">{{ index }}</p>
+					<p v-if="Object.keys(normalizedIndexHeaders[1]).length == 1" class="fw-bold text-center mb-3" style="visibility: hidden;">{{ index }}</p>
 					<div class="d-flex overflow-auto flex-nowrap">
 						<div v-for="(id, i) in normalizedIndexHeaders[0]" :key="id" class="mb-2">
 							<div v-if="including(c, i)">
