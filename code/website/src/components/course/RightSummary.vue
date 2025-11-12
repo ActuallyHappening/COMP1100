@@ -68,6 +68,8 @@ const sems = computed(() => {
 		return "Sem 1" + summer;
 	} else if (course.value.sem_2) {
 		return "Sem 2" + summer;
+	} else if (course.value.sem_summer) {
+		return "Summer";
 	} else {
 		handleError("Unknown semesters");
 		return "Unknown" + summer;
