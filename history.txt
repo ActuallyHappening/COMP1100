@@ -1,5 +1,0 @@
-#V2
-EXPORT
-USE NS comp1100 DB master
-EXPORT
-INFO FOR DB
