@@ -27,7 +27,7 @@
 
 [Figma Prototype of MVP](https://www.figma.com/design/Yb9IH8Shsnvece29JBb0xT/Figma--V2?node-id=0-1&t=37LTjdZOkpJqk7wm-1)
 
-***INSERT ACTUAL WEBSITE LINK HERE***
+[Coded Solution of MVP](https://comp1100.netlify.app/)
 
 # MVP Test Cards
 Hypothesis: We hypothesise students find it more seamless now that there exists only one central tab to select courses

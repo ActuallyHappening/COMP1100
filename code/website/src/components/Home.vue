@@ -95,7 +95,6 @@ const normalizedIndexHeaders = computed((): string[] => {
 		} else {
 			dict[programRequirementAPI.get(currentProgram.program_requirements[idx][0])?.name.split(" ")[0]] = [[idx, programRequirementAPI.get(currentProgram.program_requirements[idx][0])]];
 		}
-		console.log(dict)
 		const i = Number(idx);
 		ret[i] = normalize(getHeaderByIndex(i));
 	}

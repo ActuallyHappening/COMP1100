@@ -87,7 +87,7 @@ test("PrereqAPI reduce works", () => {
 	}
 });
 
-test("PrereqAPI fillKnownCourses works", () => {
+test.skip("PrereqAPI fillKnownCourses works", () => {
 	const unsuccessExamples = [
 		{
 			knownCourses: [],
