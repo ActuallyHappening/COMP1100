@@ -5,7 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
-		"build": "npm run tests && vite build && cp netlify.toml dist/",
+		"build": "vitest run && vite build && cp netlify.toml dist/",
 		"test": "vitest",
 		"preview": "vite preview"
 	},
