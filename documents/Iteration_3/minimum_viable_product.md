@@ -25,7 +25,7 @@
 		- any course incompatibilities
 		- Then the link to course profile
 
-[Figma Prototype of MVP](https://www.figma.com/design/Yb9IH8Shsnvece29JBb0xT/Figma--V2?node-id=0-1&t=lfZCIs3N9kiiBgM5-1)
+[Figma Prototype of MVP](https://www.figma.com/design/Yb9IH8Shsnvece29JBb0xT/Figma--V2?node-id=0-1&t=37LTjdZOkpJqk7wm-1)
 
 ***INSERT ACTUAL WEBSITE LINK HERE***
 
