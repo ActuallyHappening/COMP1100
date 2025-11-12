@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import _, { update } from "lodash";
+import _ from "lodash";
 import { computed, watch } from "vue";
 import {
 	programRequirementAPI,
