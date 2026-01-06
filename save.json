@@ -1,0 +1,28 @@
+{
+	"version": "0.1.1",
+	"current": "Plan 1",
+	"plans": {
+		"Plan 1": {
+			"name": "My first plan",
+			"programId": "comp",
+			"topLevelReqsSelected": {
+				"0": "bcomp-core",
+				"1": "bcomp-maj-prolac",
+				"2": "bcomp-breadth",
+				"3": "bcomp-gen-elec"
+			},
+			"planner": {
+				"2025 Sem 1": ["math1050", "math1052", null, null],
+				"2025 Sem 2": ["comp1100", "infs1200", "stat1301", "scie1000"],
+				"2026 Sem 1": ["math1071", "math1081", "csse1001", "csse2002"],
+				"2026 Sem 2": [null, null, "csse2010", "cosc2500"],
+				"2027 Sem 1": [null, null, "comp2048", "cosc3000"],
+				"2027 Sem 2": [null, null, null, "cosc3500"],
+				"2028 Sem 1": [null, null, null, null],
+				"2028 Sem 2": [null, null, null, null],
+				"2029 Sem 1": [null, null, null, null],
+				"2029 Sem 2": [null, null, null, null]
+			}
+		}
+	}
+}

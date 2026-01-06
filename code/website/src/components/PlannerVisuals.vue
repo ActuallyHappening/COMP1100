@@ -13,6 +13,7 @@ import {
 } from "../apis/planner";
 import { programAPI } from "../apis/db/program";
 
+/** Unused logic for correct number of semesters */
 function change_board_len() {
 	let counter = 0;
 	const required = programAPI.getCurrent().required_cp / 8;
@@ -84,7 +85,7 @@ const applyClass = (sem_id: SemId) => {
 		</thead>
 		<tbody>
 			<tr
-				v-for="sem_id in change_board_len()"
+				v-for="sem_id in sem_ids"
 				:id="`row-${sem_id}`"
 				:class="applyClass(sem_id)"
 			>

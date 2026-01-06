@@ -28,7 +28,13 @@ export const defaultPlanner = (): Planner => {
 };
 
 /** Future idea: First two slots are core, and second and third for electives? */
-export const slots = ["Course 1", "Course 2", "Course 3", "Course 4"] as const;
+export const slots = [
+	"Course 1",
+	"Course 2",
+	"Course 3",
+	"Course 4",
+	"Overload",
+] as const;
 
 /** Lowercase */
 export type SemPlan = [
