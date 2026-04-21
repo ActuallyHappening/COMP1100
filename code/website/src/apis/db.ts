@@ -26,11 +26,14 @@ export function refresh() {
 	return Promise.resolve()
 		.then(() => {
 			return db.connect(
-				"wss://eager-bee-06aqohg53hq27c0jg11k14gdbk.aws-use1.surreal.cloud",
+				// "wss://eager-bee-06aqohg53hq27c0jg11k14gdbk.aws-use1.surreal.cloud",
+				"wss://creative-swallo-06egut78q5ostc88hn8182m37o.aws-usw2.surreal.cloud/",
 				{
 					namespace: "comp1100",
 					database: "master",
 					// guest auth
+					username: "viewer",
+					password: "e670af83-7e30-422d-8b9f-7e8c22803e3b",
 				},
 			);
 		})
