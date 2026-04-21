@@ -15,10 +15,6 @@ export type Program = {
 
 export const programs = ref(null as Program[] | null);
 
-export const REMOVEME = (yourRecordId: RecordId) => {
-  console.log('Are they the same?', yourRecordId === RecordId, yourRecordId, RecordId)
-}
-
 export const programAPI = {
 	getAll(): Program[] | null {
 		const ret = programs.value;

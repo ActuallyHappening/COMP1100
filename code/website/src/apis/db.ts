@@ -1,5 +1,5 @@
 import { Surreal, Table, RecordId } from "surrealdb";
-import { programs, REMOVEME } from "./db/program";
+import { programs } from "./db/program";
 import { courses } from "./db/course";
 import { adv_courses } from "./db/adv_courses";
 import { program_requirements } from "./db/program_requirement";
@@ -73,22 +73,5 @@ export function refresh() {
         _.cloneDeep(program_requirements.value),
       );
       console.info(`adv_courses`, _.cloneDeep(adv_courses.value), adv_courses.value);
-
-      REMOVEME(RecordId);
-
-      for (const program of programs.value) {
-        console.log('program:', program, program.id, program.id instanceof RecordId);
-        // console.log('program stuff', program.id.toString(), program.id.toJSON())
-        // console.log('program stuff', program.id.id)
-      }
-      db
-        .select(new Table("program"))
-        .then((data) => {
-          for (const program of data) {
-            console.log('2program:', program, program.id, program.id instanceof RecordId);
-            console.log('2program stuff', program.id.toString(), program.id.toJSON())
-            console.log('2program stuff', program.id.id)
-          }
-        })
     });
 }
