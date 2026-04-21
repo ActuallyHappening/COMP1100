@@ -242,9 +242,10 @@ function getName(ob: any[], ind: number) {
 									</option>
 									<option
 										v-for="program in programs"
-										:key="program.id.id.toString()"
-										:value="program.id.id.toString()"
+										 :key="123 + Math.random()"
+										 :value="456"
 									>
+										{{ program.id }}
 										{{ program.name }}
 									</option>
 								</select>

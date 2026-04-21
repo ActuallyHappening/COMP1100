@@ -8,5 +8,11 @@ import vueDevTools from "vite-plugin-vue-devtools";
 
 // https://vite.dev/config/
 export default defineConfig({
-	plugins: [vue(), vueDevTools()],
+  resolve: {
+    dedupe: ["surrealdb"],
+  },
+  optimizeDeps: {
+    include: ["surrealdb"], // force a single pre-bundle entry
+  },
+  plugins: [vue(), vueDevTools()],
 });
