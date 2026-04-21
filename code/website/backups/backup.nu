@@ -1,7 +1,7 @@
 git pull
 
 # let root_url = echo "https://eager-bee-06aqohg53hq27c0jg11k14gdbk.aws-use1.surreal.cloud/"
-let root_url = echo "wss://creative-swallo-06egut78q5ostc88hn8182m37o.aws-usw2.surreal.cloud/"
+let root_url = echo "https://creative-swallo-06egut78q5ostc88hn8182m37o.aws-usw2.surreal.cloud/"
 
 def backup_table [name: string] {
 	(curl -X GET $"($root_url)/key/($name)"
